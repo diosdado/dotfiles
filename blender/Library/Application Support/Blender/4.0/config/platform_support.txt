@@ -1,0 +1,6 @@
+{Intel Inc./Intel Iris Pro OpenGL Engine/4.1 INTEL-12.10.16}=SUPPORTED
+{Intel Inc./Intel Iris Pro OpenGL Engine/4.1 INTEL-12.10.22}=SUPPORTED
+{Intel Inc./Intel Iris Pro OpenGL Engine/4.1 INTEL-12.10.25}=SUPPORTED
+{Intel Inc./Intel Iris Pro OpenGL Engine/4.1 INTEL-16.5.2}=SUPPORTED
+{Intel Inc./Intel Iris Pro OpenGL Engine/4.1 INTEL-18.4.6}=SUPPORTED
+{Apple M2/Metal API/1.2}=SUPPORTED

@@ -1,0 +1,130 @@
+#!/usr/bin/env sh
+
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+#
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# global settings
+yabai -m config                                 \
+    external_bar                 off:40:0       \
+    menubar_opacity              1.0            \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          off            \
+    display_arrangement_order    horizontal     \
+    window_origin_display        cursor         \
+    window_placement             second_child   \
+    window_zoom_persist          on             \
+    window_shadow                on             \
+    window_animation_duration    0.0            \
+    window_animation_easing      ease_out_circ  \
+    window_opacity_duration      0.0            \
+    active_window_opacity        1.0            \
+    normal_window_opacity        0.8            \
+    window_opacity               off            \
+    insert_feedback_color        0xff00ff00     \
+    split_ratio                  0.50           \
+    split_type                   auto           \
+    auto_balance                 on             \
+    top_padding                  06             \
+    bottom_padding               06             \
+    left_padding                 06             \
+    right_padding                06             \
+    window_gap                   06             \
+    layout                       bsp            \
+    mouse_modifier               fn             \
+    mouse_action1                move           \
+    mouse_action2                resize         \
+    mouse_drop_action            swap
+
+# floated windows
+yabai -m rule --add app="^System Settings$"         manage=off 
+yabai -m rule --add app="^Calculator$"              manage=off 
+yabai -m rule --add app="^MAMP PRO$"                manage=off 
+yabai -m rule --add app="^Stickies$"                manage=off 
+yabai -m rule --add app="^Transmission$"            manage=off 
+yabai -m rule --add title=""                        manage=off 
+yabai -m rule --add app="^Photo Booth$"             manage=off 
+yabai -m rule --add app="^Whisky$"                  manage=off 
+yabai -m rule --add app="^FaceTime$"                manage=off 
+yabai -m rule --add app="^Activity Monitor$"        manage=off 
+yabai -m rule --add app="^Light Notepad$"           manage=off 
+yabai -m rule --add app="^Preview$"                 manage=off 
+yabai -m rule --add app="^Karabiner-Elements$"      manage=off 
+yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off 
+yabai -m rule --add app="^Logi Options\+$"          manage=off 
+yabai -m rule --add app="^GIMP$"                    manage=off 
+# yabai -m rule --add app="^Inkscape$"                manage=off 
+
+# spaces
+yabai -m space 1 --label s_main
+yabai -m space 2 --label s_design
+yabai -m space 3 --label s_tasks
+yabai -m space 4 --label s_email
+yabai -m space 5 --label s_texting
+yabai -m space 6 --label s_development
+yabai -m space 7 --label s_settings
+yabai -m space 8 --label s_media
+yabai -m space 9 --label s_games
+
+# default spaces
+yabai -m rule --add app="^Alacritty$"               space=s_main
+yabai -m rule --add app="^kitty$"                   space=s_main
+yabai -m rule --add app="^Vivaldi$"                 space=s_main
+yabai -m rule --add app="^Inkscape$"                space=s_design
+yabai -m rule --add app="^GIMP$"                    space=s_design
+yabai -m rule --add app="^Blender$"                 space=s_design
+yabai -m rule --add app="^RawTherapee$"             space=s_design
+yabai -m rule --add app="^Reminders$"               space=s_tasks
+yabai -m rule --add app="^Calendar$"                space=s_tasks
+yabai -m rule --add app="^Gmail$"                   space=s_email
+yabai -m rule --add app="^Mail$"                    space=s_email
+yabai -m rule --add app="^whatsapp.com$"            space=s_texting
+yabai -m rule --add app="^Instagram$"               space=s_texting
+yabai -m rule --add app="^Spotify$"                 space=s_media
+yabai -m rule --add app="^Music$"                   space=s_media
+yabai -m rule --add app="^VLC$"                     space=s_media
+yabai -m rule --add app="^OpenEmu$"                 space=s_games
+yabai -m rule --add app="^Whisky$"                  space=s_games
+yabai -m rule --add app="^Steam$"                   space=s_games
+yabai -m rule --add title="^wine64-preloader$"      space=s_games
+yabai -m rule --add app="^Filezilla$"               space=s_settings
+yabai -m rule --add app="^Transmission$"            space=s_settings
+yabai -m rule --add app="^Karabiner-Elements$"      space=s_settings
+yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_settings
+yabai -m rule --add app="^MAMP PRO$"                space=s_settings
+yabai -m rule --add app="^VSCodium$"                space=s_development
+yabai -m rule --add app="^DevToys$"                 space=s_development
+
+
+# yabai -m signal --add event=window_created action='
+#     yabai -m query --windows --window $yabai_window_id | jq -er "(.\"app\" | contains(\"GIMP\")) and ((.\"title\" | contains(\"GIMP\") | not) and (.\"title\" | contains(\"GNU Image\") | not))" &&
+#     yabai -m window $yabai_window_id --toggle float --layer above --grid 4:4:1:1:2:2
+# '
+
+# Las ventanas GIMP e Inkscape son manejadas de manera independiente para que solo las principales (y no los diálogos) se acoplen al tile
+yabai -m signal --add event=window_created action='
+    yabai -m query --windows --window $yabai_window_id | jq -er "(.\"app\" | contains(\"GIMP\")) and ((.\"title\" | contains(\"– GIMP\")) or (.\"title\" | contains(\"GNU Image\")))" &&
+    yabai -m window $yabai_window_id --toggle float
+'
+
+# yabai -m signal --add event=window_created action='
+#     yabai -m query --windows --window $yabai_window_id | jq -er "(.\"app\" | contains(\"Inkscape\")) and (.\"title\" | contains(\"Inkscape\"))" &&
+#     yabai -m window $yabai_window_id --toggle float
+
+# selected window border
+borders                         \
+    style=round                 \
+    active_color=0xff00ff00     \
+    inactive_color=0x00ffffff   \
+    width=8.0                   \
+    hidpi=on                    \
+    blacklist="Stickies"
+
+echo "yabai configuration loaded.."

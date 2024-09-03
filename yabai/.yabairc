@@ -27,7 +27,7 @@ yabai -m config                                 \
     window_opacity_duration      0.0            \
     active_window_opacity        1.0            \
     normal_window_opacity        0.8            \
-    window_opacity               off            \
+    window_opacity               on             \
     insert_feedback_color        0xff00ff00     \
     split_ratio                  0.50           \
     split_type                   auto           \
@@ -44,23 +44,28 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 # floated windows
-yabai -m rule --add app="^System Settings$"         manage=off 
-yabai -m rule --add app="^Calculator$"              manage=off 
-yabai -m rule --add app="^MAMP PRO$"                manage=off 
-yabai -m rule --add app="^Stickies$"                manage=off 
-yabai -m rule --add app="^Transmission$"            manage=off 
-yabai -m rule --add title=""                        manage=off 
-yabai -m rule --add app="^Photo Booth$"             manage=off 
-yabai -m rule --add app="^Whisky$"                  manage=off 
-yabai -m rule --add app="^FaceTime$"                manage=off 
-yabai -m rule --add app="^Activity Monitor$"        manage=off 
-yabai -m rule --add app="^Light Notepad$"           manage=off 
-yabai -m rule --add app="^Preview$"                 manage=off 
-yabai -m rule --add app="^Karabiner-Elements$"      manage=off 
-yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off 
-yabai -m rule --add app="^Logi Options\+$"          manage=off 
-yabai -m rule --add app="^GIMP$"                    manage=off 
-# yabai -m rule --add app="^Inkscape$"                manage=off 
+yabai -m rule --add app="^System Settings$"         manage=off
+yabai -m rule --add app="^Calculator$"              manage=off
+yabai -m rule --add app="^MAMP PRO$"                manage=off
+yabai -m rule --add app="^Stickies$"                manage=off
+yabai -m rule --add app="^Transmission$"            manage=off
+yabai -m rule --add app="^Photo Booth$"             manage=off
+yabai -m rule --add app="^Whisky$"                  manage=off
+yabai -m rule --add app="^FaceTime$"                manage=off
+yabai -m rule --add app="^Activity Monitor$"        manage=off
+yabai -m rule --add app="^Light Notepad$"           manage=off
+yabai -m rule --add app="^Preview$"                 manage=off
+yabai -m rule --add app="^Karabiner-Elements$"      manage=off
+yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
+yabai -m rule --add app="^Logi Options\+$"          manage=off
+yabai -m rule --add app="^GIMP$"                    manage=off
+yabai -m rule --add app="^Only Switch$"             manage=off
+yabai -m rule --add app="^Epson Printer Utility 4$" manage=off
+yabai -m rule --add app="^Print Center$"            manage=off
+yabai -m rule --add app="^Boom 3D$"                 manage=off
+yabai -m rule --add title="General"                 manage=off
+yabai -m rule --add title="run"                     manage=off
+yabai -m rule --add title=""                        manage=off
 
 # spaces
 yabai -m space 1 --label s_main
@@ -77,11 +82,12 @@ yabai -m space 9 --label s_games
 yabai -m rule --add app="^Alacritty$"               space=s_main
 yabai -m rule --add app="^kitty$"                   space=s_main
 yabai -m rule --add app="^Vivaldi$"                 space=s_main
+yabai -m rule --add app="^Krita$"                   space=s_design
 yabai -m rule --add app="^Inkscape$"                space=s_design
 yabai -m rule --add app="^GIMP$"                    space=s_design
 yabai -m rule --add app="^Blender$"                 space=s_design
 yabai -m rule --add app="^RawTherapee$"             space=s_design
-yabai -m rule --add app="^Reminders$"               space=s_tasks
+yabai -m rule --add app="^Reminders$"               space=s_main
 yabai -m rule --add app="^Calendar$"                space=s_tasks
 yabai -m rule --add app="^Gmail$"                   space=s_email
 yabai -m rule --add app="^Mail$"                    space=s_email
@@ -99,8 +105,10 @@ yabai -m rule --add app="^Transmission$"            space=s_settings
 yabai -m rule --add app="^Karabiner-Elements$"      space=s_settings
 yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_settings
 yabai -m rule --add app="^MAMP PRO$"                space=s_settings
+yabai -m rule --add app="^Safari$"                  space=s_development
 yabai -m rule --add app="^VSCodium$"                space=s_development
 yabai -m rule --add app="^DevToys$"                 space=s_development
+yabai -m rule --add app="^Xcode$"                   space=s_development
 
 
 # yabai -m signal --add event=window_created action='
@@ -115,8 +123,9 @@ yabai -m signal --add event=window_created action='
 '
 
 # yabai -m signal --add event=window_created action='
-#     yabai -m query --windows --window $yabai_window_id | jq -er "(.\"app\" | contains(\"Inkscape\")) and (.\"title\" | contains(\"Inkscape\"))" &&
+#     yabai -m query --windows --window $yabai_window_id | jq -er "(.\"app\" | contains(\"Inkscape\")) and (.\"title\" | contains(\" - Inkscape\"))" &&
 #     yabai -m window $yabai_window_id --toggle float
+# '
 
 # selected window border
 borders                         \

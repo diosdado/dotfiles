@@ -29,13 +29,13 @@ vim.keymap.set('n', '<leader>pc', function()
     })
 end, {})
 
-vim.keymap.set('n', '<leader>pf', function()
+vim.keymap.set('n', '<leader>pd', function()
     require('telescope.builtin').find_files({
         hidden = true,
     })
 end, {})
 
--- vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
 vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})

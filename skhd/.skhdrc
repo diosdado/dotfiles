@@ -1,13 +1,14 @@
 
-# yabai -m space 1 --label s_main
-# yabai -m space 2 --label s_design
-# yabai -m space 3 --label s_tasks
-# yabai -m space 4 --label s_email
-# yabai -m space 5 --label s_texting
-# yabai -m space 6 --label s_development
-# yabai -m space 7 --label s_settings
-# yabai -m space 8 --label s_media
-# yabai -m space 9 --label s_games
+# yabai spaces
+# 1 - s_main
+# 2 - s_design
+# 3 - s_tasks
+# 4 - s_email
+# 5 - s_texting
+# 6 - s_development
+# 7 - s_settings
+# 8 - s_media
+# 9 - s_games
 
 
 
@@ -19,10 +20,7 @@ shift + alt - e : yabai -m window --toggle zoom-parent
 shift + alt - m : yabai -m window --toggle zoom-fullscreen
 
 # Make primary window
-shift + alt - return : yabai -m window --swap first
-
-# Bigger first window
-hyper - p : yabai -m space --balance ; yabai -m window first --resize right:360:0
+shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:460:0
 
 shift + alt - o : yabai -m config window_opacity on
 ctrl + shift + alt - o : yabai -m config window_opacity off
@@ -91,16 +89,18 @@ shift + cmd - l : yabai -m window --resize right:200:0
 # Programs
 cmd - 0x0A : open /Applications/kitty.app
 cmd - 1 : open /Applications/Vivaldi.app
-cmd - 2 : open /System/Applications/Calendar.app ; open /System/Applications/Reminders.app
+cmd - 2 : open /System/Applications/Calendar.app
+cmd - 0 : open /System/Applications/Reminders.app
 cmd - 3 : open /Users/david.diosdado/Applications/Instagram.app ; open /Users/david.diosdado/Applications/whatsapp.com.app
 cmd - 4 : open /Users/david.diosdado/Applications/Gmail.app ; open /System/Applications/Mail.app
-cmd - 5 : open /Applications/ONLYOFFICE.app
+cmd - 5 : open /Applications/MAMP\ PRO.app
 cmd - 6 : open /Applications/DevToys.app
 cmd - 7 : open /Applications/VSCodium.app
 
-alt - 0x0A : open /Applications/XnViewMP.app
+# alt - 0x0A : open /Applications/XnViewMP.app
+alt - 0x0A : open /Applications/GIMP.app
 alt - 1 : open /Applications/Inkscape.app
-alt - 2 : open /Applications/GIMP.app
+alt - 2 : open /Applications/Krita.app
 alt - 3 : open /Applications/Blender.app
 alt - 4 : open /Applications/RawTherapee.app
 alt - space : open /System/Applications/Launchpad.app
@@ -110,11 +110,12 @@ hyper - 1 : open /System/Applications/Music.app
 hyper - 2 : open /Applications/VLC.app
 hyper - 4 : open /Applications/Boom 3D.app
 hyper - 5 : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
-hyper - 6 : open /Applications/MAMP\ PRO.app
 hyper - 7 : open /System/Applications/Stickies.app
 hyper - c : open /Users/david.diosdado/Applications/ShowShortcuts.app
 
 
 hyper - m : yabai -m space --focus s_media
 
+
+hyper - return : ~/dotfiles/yabai/reminders-to-current-space.sh
 

@@ -45,10 +45,6 @@ vim.keymap.set("n", "Q", "<nop>")
 -- select all
 vim.keymap.set("n", "<C-a>", "ggVG")
 
--- page up/down
--- vim.keymap.set("n", "<C-k>", "<C-u>")
--- vim.keymap.set("n", "<C-j>", "<C-d>")
-
 -- yank to clipboard
 vim.keymap.set("v", "<leader>y", "\"+y")
 
@@ -97,8 +93,8 @@ vim.keymap.set('n', '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent =
 vim.keymap.set('n', '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- quickfix
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- tmux
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -109,10 +105,7 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>t", ":vsplit<CR>:Oil<CR>")
 vim.keymap.set("n", "<leader>o", "^v$h\"+y")
 
-
-
-vim.keymap.set("n", "<leader>k", ":bprevious<CR>")
-vim.keymap.set("n", "<leader>j", ":bnext<CR>")
+vim.keymap.set("n", "<leader>y", ":! yabai -m query --windows > ~/yabai-output.json<CR><CR>:e ~/yabai-output.json<CR>", { silent = true })
 
 
 

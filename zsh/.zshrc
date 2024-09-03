@@ -75,6 +75,7 @@ alias t-t="tmuxifier load-session tensorflow"
 alias t-g="tmuxifier load-session general"
 alias t-hc="tmuxifier load-session homeselect"
 alias t-st="tmuxifier load-session seatsa"
+alias t-tt="tmuxifier load-session sdx-tasks"
 
 
 

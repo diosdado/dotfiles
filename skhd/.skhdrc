@@ -111,10 +111,8 @@ hyper - c : open /Users/david.diosdado/Applications/ShowShortcuts.app
 hyper - m : yabai -m space --focus s_media
 
 
-hyper - return : ~/dotfiles/yabai/reminders-to-current-space.sh
-hyper - tab : ~/dotfiles/yabai/toggle-display.sh
+hyper - return : ~/.scripts/yabai-reminders-to-current-space.sh
+hyper - tab : ~/.scripts/yabai-toggle-display.sh
+hyper - 0 : ~/.scripts/kill-library-agent.sh
 
-
-hyper - p : ~/dotfiles/skhd/kill-library-agent.sh
-
-hyper - y : sendkeys --application-name "Vivaldi" --characters "<c:r:command,shift><c:r:command>"
+hyper - y : ~/.scripts/reload-browser-without-cache.sh

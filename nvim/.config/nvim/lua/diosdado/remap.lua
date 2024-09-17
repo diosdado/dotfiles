@@ -76,8 +76,8 @@ vim.keymap.set("n", "<leader>-", function()
 end)
 
 
--- Save file, Switch to Firefox and Refresh
-vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!sendkeys --application-name 'Vivaldi' --characters '<c:r:command,shift><c:r:command>'<CR><CR>")
+-- Save file, Switch to Browser and Refresh
+vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
 
 -- reformat entire file
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)

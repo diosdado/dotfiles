@@ -14,9 +14,7 @@ space_tasks=$(echo $spaces | jq '.[] | select(."label" == "s_tasks") | .index')
 space_current=$(echo $spaces | jq '.[] | select(."has-focus" == true) | .index')
 
 if [ "$window_space" -eq "$space_current" ]; then
-    echo 'equal'
     yabai -m window $window_id --space $space_tasks
 else
-    echo 'unequal'
     yabai -m window $window_id --space $space_current
 fi

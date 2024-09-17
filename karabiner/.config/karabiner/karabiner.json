@@ -93,26 +93,6 @@
                                 },
                                 "to": [{ "key_code": "page_down" }],
                                 "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "period",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "comma",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "type": "basic"
                             }
                         ]
                     },

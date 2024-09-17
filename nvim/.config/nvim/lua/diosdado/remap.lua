@@ -77,7 +77,7 @@ end)
 
 
 -- Save file, Switch to Firefox and Refresh
-vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!open '/Applications/SwitchToFirefoxAndRefresh.app'<CR><CR>")
+vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!sendkeys --application-name 'Vivaldi' --characters '<c:r:command,shift><c:r:command>'<CR><CR>")
 
 -- reformat entire file
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)

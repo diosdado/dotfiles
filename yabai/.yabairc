@@ -8,9 +8,6 @@
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
 #
 
-
-
-
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -47,25 +44,27 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 # floated windows
-yabai -m rule --add app="^System Settings$"         manage=off
+yabai -m rule --add app="^System\ Settings$"        manage=off
 yabai -m rule --add app="^Calculator$"              manage=off
-yabai -m rule --add app="^MAMP PRO$"                manage=off
+yabai -m rule --add app="^MAMP\ PRO$"               manage=off
 yabai -m rule --add app="^Stickies$"                manage=off
 yabai -m rule --add app="^Transmission$"            manage=off
-yabai -m rule --add app="^Photo Booth$"             manage=off
+yabai -m rule --add app="^Photo\ Booth$"            manage=off
 yabai -m rule --add app="^Whisky$"                  manage=off
 yabai -m rule --add app="^FaceTime$"                manage=off
-yabai -m rule --add app="^Activity Monitor$"        manage=off
-yabai -m rule --add app="^Light Notepad$"           manage=off
+yabai -m rule --add app="^Activity\ Monitor$"       manage=off
 yabai -m rule --add app="^Preview$"                 manage=off
 yabai -m rule --add app="^Karabiner-Elements$"      manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
-yabai -m rule --add app="^Logi Options\+$"          manage=off
+yabai -m rule --add app="^Logi\ Options\+$"         manage=off
 yabai -m rule --add app="^GIMP$"                    manage=off
 yabai -m rule --add app="^Only Switch$"             manage=off
-yabai -m rule --add app="^Epson Printer Utility 4$" manage=off
-yabai -m rule --add app="^Print Center$"            manage=off
-yabai -m rule --add app="^Boom 3D$"                 manage=off
+yabai -m rule --add app="^Contacts$"                manage=off
+yabai -m rule --add app="^Print\ Center$"           manage=off
+yabai -m rule --add app="^Screen\ Sharing$"         manage=off
+yabai -m rule --add app="^Boom\ 3D$"                manage=off
+yabai -m rule --add app="^Finder$"                  manage=off
+yabai -m rule --add app="^TextEdit$"                manage=off
 yabai -m rule --add title="General"                 manage=off
 yabai -m rule --add title="run"                     manage=off
 yabai -m rule --add title=""                        manage=off
@@ -131,4 +130,3 @@ yabai -m signal --add event=window_created action='
 '
 
 
-echo "yabai configuration loaded.."

@@ -20,5 +20,6 @@ if [ -z "$new_layout" ]; then
     esac
 fi
 
-yabai -m space --layout $new_layout ; ~/.scripts/notification.sh -m "$new_layout" -t "Yabai"
+yabai -m space --layout $new_layout
+~/.scripts/notification.sh -m "$new_layout" -t "Yabai"
 

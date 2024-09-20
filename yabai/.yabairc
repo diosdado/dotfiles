@@ -19,9 +19,9 @@ yabai -m config                                 \
     focus_follows_mouse          off            \
     display_arrangement_order    horizontal     \
     window_origin_display        cursor         \
-    window_placement             second_child   \
+    window_placement             first_child    \
     window_zoom_persist          on             \
-    window_shadow                on             \
+    window_shadow                off            \
     window_animation_duration    0.0            \
     window_animation_easing      ease_out_circ  \
     window_opacity_duration      0.0            \
@@ -58,6 +58,8 @@ yabai -m rule --add app="^Karabiner-Elements$"      manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
 yabai -m rule --add app="^Logi\ Options\+$"         manage=off
 yabai -m rule --add app="^GIMP$"                    manage=off
+yabai -m rule --add app="^Inkscape$"                manage=off
+yabai -m rule --add app="DeskPad"                   manage=off
 yabai -m rule --add app="^Only Switch$"             manage=off
 yabai -m rule --add app="^Contacts$"                manage=off
 yabai -m rule --add app="^Print\ Center$"           manage=off
@@ -65,9 +67,7 @@ yabai -m rule --add app="^Screen\ Sharing$"         manage=off
 yabai -m rule --add app="^Boom\ 3D$"                manage=off
 yabai -m rule --add app="^Finder$"                  manage=off
 yabai -m rule --add app="^TextEdit$"                manage=off
-yabai -m rule --add title="General"                 manage=off
-yabai -m rule --add title="run"                     manage=off
-yabai -m rule --add title=""                        manage=off
+yabai -m rule --add app="wine64-preloader"          manage=off
 
 # spaces
 yabai -m space 1 --label s_main
@@ -101,7 +101,7 @@ yabai -m rule --add app="^VLC$"                     space=s_media
 yabai -m rule --add app="^OpenEmu$"                 space=s_games
 yabai -m rule --add app="^Whisky$"                  space=s_games
 yabai -m rule --add app="^Steam$"                   space=s_games
-yabai -m rule --add title="^wine64-preloader$"      space=s_games
+yabai -m rule --add app="wine64-preloader"          space=s_games
 yabai -m rule --add app="^Filezilla$"               space=s_settings
 yabai -m rule --add app="^Transmission$"            space=s_settings
 yabai -m rule --add app="^Karabiner-Elements$"      space=s_settings
@@ -112,7 +112,7 @@ yabai -m rule --add app="^VSCodium$"                space=s_development
 yabai -m rule --add app="^DevToys$"                 space=s_development
 yabai -m rule --add app="^Xcode$"                   space=s_development
 
-
+yabai -m signal --add event=window_created action='~/.scripts/yabai-new-window.sh'
 
 borders                         \
     style=round                 \
@@ -120,13 +120,6 @@ borders                         \
     inactive_color=0x00ffffff   \
     width=8.0                   \
     hidpi=on                    \
-    blacklist="Stickies"
-
-
-# Las ventanas GIMP e Inkscape son manejadas de manera independiente para que solo las principales (y no los diálogos) se acoplen al tile
-yabai -m signal --add event=window_created action='
-    yabai -m query --windows --window $yabai_window_id | jq -er "(.\"app\" | contains(\"GIMP\")) and ((.\"title\" | contains(\"– GIMP\")) or (.\"title\" | contains(\"GNU Image\")))" &&
-    yabai -m window $yabai_window_id --toggle float
-'
+    blacklist="Stickies,Free\ Ruler"
 
 

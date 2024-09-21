@@ -19,7 +19,7 @@ yabai -m config                                 \
     focus_follows_mouse          off            \
     display_arrangement_order    horizontal     \
     window_origin_display        cursor         \
-    window_placement             first_child    \
+    window_placement             last_child     \
     window_zoom_persist          on             \
     window_shadow                off            \
     window_animation_duration    0.0            \
@@ -84,6 +84,7 @@ yabai -m space 9 --label s_games
 yabai -m rule --add app="^Alacritty$"               space=s_main
 yabai -m rule --add app="^kitty$"                   space=s_main
 yabai -m rule --add app="^Vivaldi$"                 space=s_main
+yabai -m rule --add app="^Filezilla$"               space=s_main
 yabai -m rule --add app="^Krita$"                   space=s_design
 yabai -m rule --add app="^Inkscape$"                space=s_design
 yabai -m rule --add app="^GIMP$"                    space=s_design
@@ -102,7 +103,6 @@ yabai -m rule --add app="^OpenEmu$"                 space=s_games
 yabai -m rule --add app="^Whisky$"                  space=s_games
 yabai -m rule --add app="^Steam$"                   space=s_games
 yabai -m rule --add app="wine64-preloader"          space=s_games
-yabai -m rule --add app="^Filezilla$"               space=s_settings
 yabai -m rule --add app="^Transmission$"            space=s_settings
 yabai -m rule --add app="^Karabiner-Elements$"      space=s_settings
 yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_settings
@@ -112,8 +112,17 @@ yabai -m rule --add app="^VSCodium$"                space=s_development
 yabai -m rule --add app="^DevToys$"                 space=s_development
 yabai -m rule --add app="^Xcode$"                   space=s_development
 
-yabai -m signal --add event=window_created action='~/.scripts/yabai-new-window.sh'
+# manage new windows for specific programs
+# yabai -m signal --add event=window_created label='new_window' action='~/.scripts/yabai-new-window.sh'
 
+# change space s_main layout according to display size
+yabai -m signal --add event=display_resized label='display_size' action='~/.scripts/yabai-display-size.sh'
+yabai -m signal --add event=display_added label='display_added' action='~/.scripts/yabai-display-size.sh'
+yabai -m signal --add event=display_removed label='display_removed' action='~/.scripts/yabai-display-size.sh'
+yabai -m signal --add event=display_moved label='display_moved' action='~/.scripts/yabai-display-size.sh'
+~/.scripts/yabai-display-size.sh
+
+# start helper app to show borders around focused window
 borders                         \
     style=round                 \
     active_color=0xff00ff00     \

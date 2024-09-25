@@ -48,6 +48,8 @@ hyper - tab : ~/.scripts/yabai-toggle-display.sh
 shift + alt - tab : ~/.scripts/yabai-switch-display.sh
 # Utilities
 hyper - 0 : ~/.scripts/kill-library-agent.sh
+hyper - 0x18 : qlmanage -p ~/Notes/Shortcuts.html
+hyper - 0x1B : qlmanage -p ~/Notes/ShortcutsVim.html
 
 
 # Focus windows
@@ -73,13 +75,13 @@ cmd - 1 : open /Applications/Vivaldi.app
 cmd - 2 : open /System/Applications/Calendar.app
 cmd - 3 : open ~/Applications/Instagram.app ; open ~/Applications/whatsapp.com.app
 cmd - 4 : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-alt - 0x0A : open /Applications/GIMP.app
-alt - 1 : open /Applications/Inkscape.app
-alt - 2 : open /Applications/Krita.app
-alt - 3 : open /System/Applications/TextEdit.app
+cmd + alt - 0x0A : open /Applications/GIMP.app
+cmd + alt - 1 : open /Applications/Inkscape.app
+cmd + alt - 2 : open /Applications/Blender.app
+cmd + alt - 3 : open /Applications/RawTherapee.app
 hyper - 0x0A : open ~/Applications/Spotify.app
+hyper - t : open /System/Applications/TextEdit.app
 hyper - 1 : open /System/Applications/Music.app
-hyper - 2 : open /Applications/VLC.app
 hyper - 3 : open /Applications/Boom\ 3D.app
 hyper - 6 : open /System/Library/CoreServices/Finder.app/Contents/Applications/AirDrop.app
 hyper - 7 : open ~/Desktop/Projects/
@@ -90,9 +92,6 @@ hyper - m : open /Applications/MAMP\ PRO.app
 hyper - d : open /Applications/DevToys.app
 hyper - v : open /Applications/VSCodium.app
 hyper - s : open /System/Applications/Stickies.app
-hyper - z : open ~/Applications/ShowShortcuts.app
-hyper - b : open /Applications/Blender.app
-hyper - t : open /Applications/RawTherapee.app
 hyper - f : open /Applications/FileZilla.app
 hyper - x : open /Applications/Xcode.app
 hyper - r : open /Applications/Free\ Ruler.app
@@ -101,10 +100,7 @@ hyper - a : open /Applications/Safari.app
 hyper - n : open /System/Applications/Utilities/Screen\ Sharing.app
 hyper - c : open /System/Applications/Contacts.app
 hyper - o : open /Applications/ONLYOFFICE.app
-hyper - y : open /Applications/Whisky.app
-hyper - u : open /Applications/OpenEmu.app
-hyper - i : open /Applications/Steam.app
-hyper - g : open /System/Applications/Photo\ Booth.app
+hyper - 0x29 : open /System/Applications/Photo\ Booth.app
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 
 

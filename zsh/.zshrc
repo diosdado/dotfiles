@@ -68,14 +68,12 @@ _fzf_compgen_dir() {
 
 eval "$(tmuxifier init -)"
 
+alias so="source ~/.zshrc"
+alias ta="tmux attach"
+alias td="~/.scripts/tmux-sessionizer.sh ~/dotfiles"
+alias tss="~/.scripts/tmux-sessionizer.sh"
 
 alias t-s="tmuxifier load-session sandox"
-alias t-c="tmuxifier load-session config"
-alias t-t="tmuxifier load-session tensorflow"
-alias t-g="tmuxifier load-session general"
-alias t-hc="tmuxifier load-session homeselect"
-alias t-st="tmuxifier load-session seatsa"
-alias t-tt="tmuxifier load-session sdx-tasks"
 
 
 

@@ -2,7 +2,8 @@
 
 killall AMPDevicesAgent 2>/dev/null
 killall AMPLibraryAgent 2>/dev/null
+diskutil unmount /Volumes/Music
 
-~/.scripts/notification.sh -m "Music Library Agents were closed to allow ejection of external volumes" -t "Library Agents"
+~/.scripts/notification.sh -m "Ejecting external drive 'Music'" -t "Library Agents"
 
 

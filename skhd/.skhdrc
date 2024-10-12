@@ -49,7 +49,6 @@ shift + alt - tab : ~/.scripts/yabai-switch-display.sh
 # Utilities
 hyper - 0 : ~/.scripts/kill-library-agent.sh
 hyper - 0x18 : qlmanage -p ~/Notes/Shortcuts.html
-hyper - 0x1B : qlmanage -p ~/Notes/ShortcutsVim.html
 
 
 # Focus windows
@@ -102,7 +101,7 @@ hyper - c : open /System/Applications/Contacts.app
 hyper - o : open /Applications/ONLYOFFICE.app
 hyper - 0x29 : open /System/Applications/Photo\ Booth.app
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
-
+hyper - i : open /Applications/AS\ Timer.app
 
 
 

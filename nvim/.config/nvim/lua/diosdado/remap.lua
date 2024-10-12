@@ -1,22 +1,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Navegación de página
--- vim.keymap.set("n", "<leader>l", "20zl")
--- vim.keymap.set("n", "<leader>h", "20zh")
-
 -- Usar $ y 0 para inicio y final de línea omitiendo espacios
 vim.keymap.set("n", "0", "^")
 vim.keymap.set("n", "$", "g_")
 
-
-vim.keymap.set("n", "<D-j>", "<C-d>")
-vim.keymap.set("n", "<C-n>", "<C-^>")
-vim.keymap.set("n", "<leader>0", "<C-^>")
-
 -- netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
--- vim.keymap.set("n", "<leader>pv", ":Oil<CR>")
 
 -- move code up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -75,10 +65,6 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 
-
--- Save file, Switch to Browser and Refresh
-vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
-
 -- reformat entire file
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
@@ -96,17 +82,17 @@ vim.keymap.set('n', '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- tmux
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
-
-
--- vim.keymap.set("n", "<leader>t", ":vsplit<CR>:wincmd r<CR>:Oil<CR>")
-vim.keymap.set("n", "<leader>t", ":vsplit<CR>:Oil<CR>")
+-- save file, switch to browser and refresh
+vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
+-- switch between the two last 2 buffers
+vim.keymap.set("n", "<leader>b", ":b#<CR>")
+-- copy line to clipboard
 vim.keymap.set("n", "<leader>o", "^v$h\"+y")
-
-vim.keymap.set("n", "<leader>y", ":! yabai -m query --windows > ~/yabai-output.json<CR><CR>:e ~/yabai-output.json<CR>", { silent = true })
-
-
-
-
+-- show yabai window objects
+vim.keymap.set("n", "<leader>¿", ":! yabai -m query --windows > ~/yabai-output.json<CR><CR>:e ~/yabai-output.json<CR>", { silent = true })
+-- yank filename
+vim.keymap.set("n", "<leader>f", ":let @\" = expand('%')<CR>")
+-- new vsplit
+vim.keymap.set("n", "<leader>v", ":vsplit<CR><C-w>l")
+-- netrw left panel
+vim.keymap.set("n", "<leader>t", ":Lexplore<CR>:vertical resize 30<CR>")

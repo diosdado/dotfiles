@@ -84,6 +84,8 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 vim.g.python3_host_prog = '/opt/miniconda3/envs/tensorflow/bin/python'
 vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
+vim.g.netrw_list_hide = '.DS_Store,.git'
+vim.g.netrw_hide = 1
 
 
 -- vim.api.nvim_create_autocmd("BufWritePost", {

@@ -19,9 +19,22 @@ require('lazy').setup({
     'tpope/vim-surround',
     'ThePrimeagen/vim-be-good',
     'christoomey/vim-tmux-navigator',
+    -- {
+    --     "nvim-neo-tree/neo-tree.nvim",
+    --     branch = "v3.x",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    --         "MunifTanjim/nui.nvim",
+    --         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    --     }
+    -- },
     {
         "nvim-telescope/telescope-file-browser.nvim",
         dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    },
+    {
+        'lewis6991/gitsigns.nvim'
     },
     {
         'andymass/vim-matchup',

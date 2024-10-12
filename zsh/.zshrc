@@ -70,13 +70,14 @@ eval "$(tmuxifier init -)"
 
 alias so="source ~/.zshrc"
 alias ta="tmux attach"
-alias td="~/.scripts/tmux-sessionizer.sh ~/dotfiles"
-alias tn="~/.scripts/tmux-sessionizer.sh ~/Notes"
+alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles"
+alias tn="~/.scripts/tmux-sessionizer.sh -d ~/Notes"
 alias tss="~/.scripts/tmux-sessionizer.sh"
+alias tsss="~/.scripts/tmux-sessionizer.sh -s 1"
 
-alias t-c="~/.scripts/tmux-sessionizer.sh ~/Desktop/Projects/Design/Sandox/repo/Copywriting"
+alias t-c="~/.scripts/tmux-sessionizer.sh -d ~/Desktop/Projects/Design/Sandox/repo/Copywriting"
 alias t-s="tmuxifier load-session sandox"
-
+alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css"
 
 
 # -------------------------------------------------------------------------------------------

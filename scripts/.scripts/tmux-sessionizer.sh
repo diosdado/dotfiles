@@ -4,8 +4,8 @@
 while getopts d:s: flag
 do
     case "${flag}" in
-        d) directory=${OPTARG};;
-        s) watch_sass=${OPTARG};;
+        d) directory=${OPTARG};; # create session in specific directory
+        s) watch_sass=${OPTARG};; # create extra split for sass watch compilation
     esac
 done
 
@@ -23,7 +23,7 @@ fi
 
 # set session name to the directory name
 selected_name=$(basename "$selected" | tr . _)
-
+# get the tmux process id
 tmux_running=$(pgrep tmux)
 
 # settings for new tmux session
@@ -42,15 +42,16 @@ fi
 _s+="select-pane -t 1.1 \\; "
 
 
-# tmux is running
+# tmux is not running
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     eval "tmux new-session -s $_s attach"
     exit 0
 fi
 
-
+# tmux is running and the session doesn't exists
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     eval "tmux new-session -ds $_s"
 fi
 
+# switch to the existing tmux session with the name
 tmux attach \; switch-client -t $selected_name

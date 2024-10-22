@@ -109,6 +109,7 @@ yabai -m rule --add app="^Transmission$"            space=s_settings
 yabai -m rule --add app="^Karabiner-Elements$"      space=s_settings
 yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_settings
 yabai -m rule --add app="^MAMP PRO$"                space=s_settings
+yabai -m rule --add app="^Shortcuts$"               space=s_development
 yabai -m rule --add app="^Safari$"                  space=s_development
 yabai -m rule --add app="^VSCodium$"                space=s_development
 yabai -m rule --add app="^DevToys$"                 space=s_development

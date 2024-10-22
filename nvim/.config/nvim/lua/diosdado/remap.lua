@@ -66,7 +66,7 @@ vim.keymap.set("n", "<leader>-", function()
 end)
 
 -- reformat entire file
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.format)
 
 -- Resize splits
 vim.keymap.set("n", "<C-Up>", "<C-w>+")

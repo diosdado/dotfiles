@@ -1,20 +1,51 @@
 local builtin = require('telescope.builtin')
 
-vim.keymap.set('n', '<leader>pt', function()
-    require('telescope').extensions.live_grep_args.live_grep_args({
-        cwd = '~/Notes',
-        prompt_title = 'Notes by tags',
-        default_text = '\\{\\{\\{',
+
+-- DEFAULT SEARCH IGNORES PACKAGES ----------------------------------------------------------------
+vim.keymap.set('n', '<leader>pf', function()
+    require('telescope.builtin').find_files({
+        file_ignore_patterns = {
+            "^vendor/",
+            "^node_modules/",
+        }
     })
 end, {})
 
+
+-- SEARCH INCLUDING HIDDEN FILES ------------------------------------------------------------------
+vim.keymap.set('n', '<leader>pd', function()
+    require('telescope.builtin').find_files({
+        hidden = true,
+    })
+end, {})
+
+
+-- HANDY TELESCOPE SEARCH TYPES -------------------------------------------------------------------
+-- Current repo
+vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
+-- Current opened buffers
+vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
+-- Nvim help files
+vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
+-- LSP Symbols
+vim.keymap.set('n', '<leader>ps', builtin.lsp_document_symbols, {})
+-- Last opened files
+vim.keymap.set('n', '<leader>po', builtin.oldfiles, {})
+-- Search the current selected string in the directory
+vim.keymap.set('n', '<leader>pw', builtin.grep_string, {})
+-- Live grep in files
+vim.keymap.set("n", "<leader>pr", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+
+
+-- SEARCH WITHIN MY NOTES -------------------------------------------------------------------------
+-- By title
 vim.keymap.set('n', '<leader>pn', function()
     require('telescope.builtin').find_files({
         cwd = '~/Notes',
         prompt_title = 'Notes by title',
     })
 end, {})
-
+-- By contents
 vim.keymap.set('n', '<leader>pnn', function()
     require('telescope').extensions.live_grep_args.live_grep_args({
         cwd = '~/Notes',
@@ -22,28 +53,33 @@ vim.keymap.set('n', '<leader>pnn', function()
     })
 end, {})
 
-vim.keymap.set('n', '<leader>pc', function()
+
+-- LARAVEL SHORTCUTS ------------------------------------------------------------------------------
+-- Migrations
+vim.keymap.set('n', '<leader>pug', function()
     require('telescope.builtin').find_files({
-        cwd = '~/.config',
-        prompt_title = 'Configuration files',
+        prompt_title = 'Laravel Migrations',
+        cwd = './database/migrations',
     })
 end, {})
-
-vim.keymap.set('n', '<leader>pd', function()
+-- Models
+vim.keymap.set('n', '<leader>pum', function()
     require('telescope.builtin').find_files({
-        hidden = true,
+        cwd = './app/Models',
+        prompt_title = 'Laravel Models',
     })
 end, {})
-
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>ps', builtin.lsp_document_symbols, {})
-vim.keymap.set('n', '<leader>po', builtin.oldfiles, {})
-vim.keymap.set('n', '<leader>pw', builtin.grep_string, {})
-vim.keymap.set("n", "<leader>pr", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-
-
-
--- vim.keymap.set("n", "<leader>pd", ":Telescope find_files hidden=true"
+-- Controllers
+vim.keymap.set('n', '<leader>puc', function()
+    require('telescope.builtin').find_files({
+        cwd = './app/http/Controllers',
+        prompt_title = 'Laravel Controllers',
+    })
+end, {})
+-- Controllers
+vim.keymap.set('n', '<leader>puv', function()
+    require('telescope.builtin').find_files({
+        cwd = './resources/views',
+        prompt_title = 'Laravel Views',
+    })
+end, {})

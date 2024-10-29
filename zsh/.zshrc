@@ -47,7 +47,7 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
-
+export PATH=~/.composer/vendor/bin:$PATH
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -74,9 +74,10 @@ alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles"
 alias tn="~/.scripts/tmux-sessionizer.sh -d ~/Notes"
 alias tss="~/.scripts/tmux-sessionizer.sh"
 alias tsss="~/.scripts/tmux-sessionizer.sh -s 1"
+alias cdp="cd ~/Desktop/Projects"
+
 
 alias t-c="~/.scripts/tmux-sessionizer.sh -d ~/Desktop/Projects/Design/Sandox/repo/Copywriting"
-alias t-s="tmuxifier load-session sandox"
 alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css"
 
 

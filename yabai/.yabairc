@@ -47,7 +47,7 @@ yabai -m config                                 \
 yabai -m rule --add app="^System\ Settings$"        manage=off
 yabai -m rule --add app="^Calculator$"              manage=off
 yabai -m rule --add app="^MAMP\ PRO$"               manage=off
-yabai -m rule --add app="Font\ Book"               manage=off
+yabai -m rule --add app="Font\ Book"                manage=off
 yabai -m rule --add app="^Stickies$"                manage=off
 yabai -m rule --add app="^Transmission$"            manage=off
 yabai -m rule --add app="^Photo\ Booth$"            manage=off
@@ -68,19 +68,23 @@ yabai -m rule --add app="^Screen\ Sharing$"         manage=off
 yabai -m rule --add app="^Boom\ 3D$"                manage=off
 yabai -m rule --add app="^Finder$"                  manage=off
 yabai -m rule --add app="^TextEdit$"                manage=off
-yabai -m rule --add app="wine64-preloader"          manage=off
-yabai -m rule --add title="Prompt\ \:\:\ Block Site"    manage=off
+yabai -m rule --add app="^Reminders$"               sticky=on
+yabai -m rule --add app="^Reminders$"               manage=off
+
+
+# reminders appear on all spaces
+# yabai -m rule --add app="^Reminders$"               float=on
 
 # spaces
 yabai -m space 1 --label s_main
+yabai -m space 3 --label s_office_games
 yabai -m space 2 --label s_design
-yabai -m space 3 --label s_tasks
-yabai -m space 4 --label s_email
-yabai -m space 5 --label s_texting
-yabai -m space 6 --label s_development
-yabai -m space 7 --label s_settings
-yabai -m space 8 --label s_media
-yabai -m space 9 --label s_games
+yabai -m space 4 --label s_tasks
+yabai -m space 5 --label s_email
+yabai -m space 6 --label s_texting
+yabai -m space 7 --label s_development
+yabai -m space 8 --label s_settings
+yabai -m space 9 --label s_media
 
 # default spaces
 yabai -m rule --add app="^Alacritty$"               space=s_main
@@ -92,7 +96,6 @@ yabai -m rule --add app="^Inkscape$"                space=s_design
 yabai -m rule --add app="^GIMP$"                    space=s_design
 yabai -m rule --add app="^Blender$"                 space=s_design
 yabai -m rule --add app="^RawTherapee$"             space=s_design
-yabai -m rule --add app="^Reminders$"               space=s_main
 yabai -m rule --add app="^Calendar$"                space=s_tasks
 yabai -m rule --add app="^Gmail$"                   space=s_email
 yabai -m rule --add app="^Mail$"                    space=s_email
@@ -101,10 +104,12 @@ yabai -m rule --add app="^Instagram$"               space=s_texting
 yabai -m rule --add app="^Spotify$"                 space=s_media
 yabai -m rule --add app="^Music$"                   space=s_media
 yabai -m rule --add app="^VLC$"                     space=s_media
-yabai -m rule --add app="^OpenEmu$"                 space=s_games
-yabai -m rule --add app="^Whisky$"                  space=s_games
-yabai -m rule --add app="^Steam$"                   space=s_games
-yabai -m rule --add app="wine64-preloader"          space=s_games
+yabai -m rule --add app="^ONLYOFFICE$"              space=s_office_games
+yabai -m rule --add app="^MySQLWorkbench$"          space=s_office_games
+yabai -m rule --add app="^OpenEmu$"                 space=s_office_games
+yabai -m rule --add app="^Whisky$"                  space=s_office_games
+yabai -m rule --add app="^Steam$"                   space=s_office_games
+yabai -m rule --add app="wine64-preloader"          space=s_office_games
 yabai -m rule --add app="^Transmission$"            space=s_settings
 yabai -m rule --add app="^Karabiner-Elements$"      space=s_settings
 yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_settings
@@ -123,15 +128,10 @@ yabai -m signal --add event=display_resized label='display_size' action='~/.scri
 yabai -m signal --add event=display_added label='display_added' action='~/.scripts/yabai-display-size.sh'
 yabai -m signal --add event=display_removed label='display_removed' action='~/.scripts/yabai-display-size.sh'
 yabai -m signal --add event=display_moved label='display_moved' action='~/.scripts/yabai-display-size.sh'
-~/.scripts/yabai-display-size.sh
+yabai -m signal --add event=window_focused label='window_focused' action='~/.scripts/yabai-window-focused.sh'
+# yabai -m signal --add event=window_focused label='window_focused_new_window' action='~/.scripts/yabai-new-window.sh'
 
-# start helper app to show borders around focused window
-borders                         \
-    style=round                 \
-    active_color=0xff00ff00     \
-    inactive_color=0x00ffffff   \
-    width=8.0                   \
-    hidpi=on                    \
-    blacklist="Stickies,Free\ Ruler"
+~/.scripts/yabai-display-size.sh
+~/.scripts/reset-borders.sh
 
 

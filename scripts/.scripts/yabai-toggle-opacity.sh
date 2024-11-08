@@ -1,13 +1,15 @@
 #!/bin/bash
 
-opacity=$(yabai -m config window_opacity)
+window=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true)')
 
-if [ "$opacity" == "on" ]; then
-    new_opacity="off"
+window_id=$(echo $window | jq '.id')
+window_opacity=$(echo $window | jq '.opacity')
+
+yabai -m window "$window_id" --opacity 0.0
+
+if [[ "1.0000" > "$window_opacity" ]]; then
+    yabai -m window "$window_id" --opacity 0.0
 else
-    new_opacity="on"
+    yabai -m window "$window_id" --opacity 0.4
 fi
-
-yabai -m config window_opacity $new_opacity
-
 

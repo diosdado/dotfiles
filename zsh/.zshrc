@@ -34,6 +34,11 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# -------------------------------------------------------------------------------------------
+# PHPActor
+# -------------------------------------------------------------------------------------------
+alias phpactor="~/.local/bin/phpactor"
+
 
 # -------------------------------------------------------------------------------------------
 # fzf
@@ -68,12 +73,26 @@ _fzf_compgen_dir() {
 
 eval "$(tmuxifier init -)"
 
+# shortcut to re-source zsh configuration
 alias so="source ~/.zshrc"
+
+# shortcut to return to tmux
 alias ta="tmux attach"
+
+# The scriptable directory must be linked to ~/Scriptable ~/Library/Mobile\ Documents/iCloud~dk~simonbs~Scriptable/Documents/
+
+# tmux session for Scriptable widgets
+alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable"
+# tmux session for dotfiles
 alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles"
+# tmux session for notes
 alias tn="~/.scripts/tmux-sessionizer.sh -d ~/Notes"
+# sessions with nvim and a terminal
 alias tss="~/.scripts/tmux-sessionizer.sh"
+
+# sessions with nvim, a terminal and a sass compiler
 alias tsss="~/.scripts/tmux-sessionizer.sh -s 1"
+
 alias cdp="cd ~/Desktop/Projects"
 
 

@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>ps', builtin.lsp_document_symbols, {})
 -- Last opened files
 vim.keymap.set('n', '<leader>po', builtin.oldfiles, {})
--- Search the current selected string in the directory
+-- ?
 vim.keymap.set('n', '<leader>pw', builtin.grep_string, {})
 -- Live grep in files
 vim.keymap.set("n", "<leader>pr", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
@@ -56,28 +56,28 @@ end, {})
 
 -- LARAVEL SHORTCUTS ------------------------------------------------------------------------------
 -- Migrations
-vim.keymap.set('n', '<leader>pug', function()
+vim.keymap.set('n', '<leader>lg', function()
     require('telescope.builtin').find_files({
         prompt_title = 'Laravel Migrations',
         cwd = './database/migrations',
     })
 end, {})
 -- Models
-vim.keymap.set('n', '<leader>pum', function()
+vim.keymap.set('n', '<leader>lm', function()
     require('telescope.builtin').find_files({
         cwd = './app/Models',
         prompt_title = 'Laravel Models',
     })
 end, {})
 -- Controllers
-vim.keymap.set('n', '<leader>puc', function()
+vim.keymap.set('n', '<leader>lc', function()
     require('telescope.builtin').find_files({
         cwd = './app/http/Controllers',
         prompt_title = 'Laravel Controllers',
     })
 end, {})
 -- Controllers
-vim.keymap.set('n', '<leader>puv', function()
+vim.keymap.set('n', '<leader>lv', function()
     require('telescope.builtin').find_files({
         cwd = './resources/views',
         prompt_title = 'Laravel Views',

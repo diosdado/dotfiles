@@ -42,12 +42,12 @@ if [ "$is_inkscape_other" -eq "1" ]; then
 fi
 
 # Browser windows are sent to the secondary display by default
-if [ "$is_browser" -eq "1" ]; then
-    yabai -m space --focus "s_main"
-    total_displays=$(yabai -m query --displays | jq -r length)
-    if [ "$total_displays" -gt "1" ]; then
-        yabai -m window --display "$secondary_display"
-        yabai -m display --focus "$secondary_display"
-    fi
-fi
+# if [ "$is_browser" -eq "1" ]; then
+#     yabai -m space --focus "s_main"
+#     total_displays=$(yabai -m query --displays | jq -r length)
+#     if [ "$total_displays" -gt "1" ]; then
+#         yabai -m window --display "$secondary_display"
+#         yabai -m display --focus "$secondary_display"
+#     fi
+# fi
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# toggles the opacity of the current window
+
 window=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true)')
 
 window_id=$(echo $window | jq '.id')

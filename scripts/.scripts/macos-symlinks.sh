@@ -7,3 +7,5 @@ syncdir="$gdrivedir/Computer Sync"
 ln -s "$myclouddir/Notes" ~/Notes
 ln -s "$gdrivedir/MAMP PRO/MAMP PRO" "~/Library/Application Support/appsolute/MAMP PRO"
 ln -s "$syncdir/FileZilla" ~/.config/filezilla
+ln -s "~/Library/Mobile Documents/iCloud~dk~simonbs~Scriptable/Documents" ~/Scriptable
+

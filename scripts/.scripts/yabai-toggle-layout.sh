@@ -1,10 +1,14 @@
 #!/bin/bash
 
+# cycles the layout of the current space
+# l: sets the layout to the one specifided
+# s: instead of the current space the layout is applied to the space with the specified index
+
 while getopts l:s: flag
 do
     case "${flag}" in
-        l) new_layout=${OPTARG};;
-        s) space_index=${OPTARG};;
+        l) new_layout=${OPTARG};;   # layout name
+        s) space_index=${OPTARG};;  # space index
     esac
 done
 

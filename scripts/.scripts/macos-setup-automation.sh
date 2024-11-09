@@ -197,6 +197,17 @@ echo "Adding Git configuration..."
 git config --global user.name "David Diosdado"
 git config --global user.email diosdado@trigger.mx
 
+# -------------------------------------------------------------------------------------------------
+# PHP LSP
+# -------------------------------------------------------------------------------------------------
+# phpactor
+curl -Lo phpactor.phar https://github.com/phpactor/phpactor/releases/latest/download/phpactor.phar
+sudo -u $SUDO_USER chmod a+x phpactor.phar
+sudo -u $SUDO_USER mv phpactor.phar ~/.local/bin/phpactor
+# php-cs-fixer
+curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o php-cs-fixer
+sudo -u $SUDO_USER chmod a+x php-cs-fixer
+sudo -u $SUDO_USER mv php-cs-fixer /usr/local/bin/php-cs-fixer
 
 # -------------------------------------------------------------------------------------------------
 # Cleanup

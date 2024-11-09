@@ -2,6 +2,8 @@
 
 
 # start helper app to show borders around focused window
+# https://github.com/FelixKratz/JankyBorders
+
 borders                         \
     style=round                 \
     active_color=0xff00ff00     \

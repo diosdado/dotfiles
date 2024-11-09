@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 
+# based on the tmux sessionizer by theprimeagen
+# https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+# uses fzf
+
+
+OIFS="$IFS"
+IFS=$'\n'
+
 # get parameters from flag
-while getopts d:s: flag
+while getopts d:s flag
 do
     case "${flag}" in
         d) directory=${OPTARG};; # create session in specific directory
-        s) watch_sass=${OPTARG};; # create extra split for sass watch compilation
+        s) watch_sass="1";; # create extra split for sass watch compilation
     esac
 done
 
-# select directory to to create session
+# select the directory to create a session
 if [[ -n $directory ]]; then
     selected=$directory
 else
@@ -25,6 +33,12 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 # get the tmux process id
 tmux_running=$(pgrep tmux)
+
+# -------------------------------------------------------------------------------------------------
+# I use two specific layouts of tmux session:
+# - one with two panes, one for neovim and the other for a terminal
+# - one with three panes: neovim, terminal and a third one for a sass compiler observer for css
+# -------------------------------------------------------------------------------------------------
 
 # settings for new tmux session
 _s="$selected_name -c $selected \\; "
@@ -55,3 +69,5 @@ fi
 
 # switch to the existing tmux session with the name
 tmux attach \; switch-client -t $selected_name
+
+IFS="$OIFS"

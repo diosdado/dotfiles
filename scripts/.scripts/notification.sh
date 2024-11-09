@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shows a macOS notification using apple script
+
 title="Notification"
 
 while getopts m:t: flag

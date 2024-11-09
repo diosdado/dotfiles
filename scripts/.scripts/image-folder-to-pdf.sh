@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# converts all the folders with jpg images to pdfs
+# requires imagemagik
+
+
 OIFS="$IFS"
 IFS=$'\n'
 

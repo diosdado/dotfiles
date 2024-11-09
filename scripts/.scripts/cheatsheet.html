@@ -1,0 +1,429 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title></title>
+    <style>
+        body {
+            background: black;
+            font-size: 14px;
+            line-height: 1em;
+            color: white;
+            font-family: JetBrainsMono Nerd Font Mono, monospace;
+            font-weight: 100;
+            padding: 0;
+        }
+
+        b {
+            font-weight: 700;
+        }
+
+        .columns {
+            column-count: 4;
+            column-fill: auto;
+        }
+
+        .columns>div {
+            margin-bottom: 1em;
+            padding: .5em;
+            border-radius: .5em;
+        }
+
+        .mem {
+            opacity: .5;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+            text-indent: -2em;
+            padding-left: 2em;
+            padding-bottom: .5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="columns">
+        <div style="background-color:red">
+            <p><b>Launch App</b></p>
+            <p><b>⌘[return] </b>→ Reminders</p>
+            <p><b>⌘⌥| </b>→ Gimp</p>
+            <p><b>⌘⌥2 </b>→ Blender</p>
+            <p><b>⌘⌥3 </b>→ RawTherapee</p>
+            <p><b>✦1 </b>→ Music</p>
+            <p><b>✦2 </b>→ VLC</p>
+            <p><b>✦3 </b>→ Boom 3D</p>
+            <p><b>✦6 </b>→ AirDrop</p>
+            <p><b>✦7 </b>→ Projects</p>
+            <p><b>✦8 </b>→ GoogleDrive</p>
+            <p><b>✦9 </b>→ iCloud</p>
+            <p><b>✦e </b>→ Karabiner</p>
+            <p><b>✦v </b>→ VSCodium</p>
+            <p><b>✦n </b>→ Screen Sharing</p>
+            <p><b>✦c </b>→ Contacts</p>
+            <p><b>✦y </b>→ Whisky</p>
+            <p><b>✦i </b>→ AS Timer</p>
+            <p><b>✦q </b>→ Activity Monitor</p>
+            <div class="mem">
+                <p><b>⌘| </b>→ kitty</p>
+                <p><b>⌘1 </b>→ Vivaldi</p>
+                <p><b>⌘2 </b>→ Calendar</p>
+                <p><b>⌘3 </b>→ WhatsApp/Instagram</p>
+                <p><b>⌘4 </b>→ Mail</p>
+                <p><b>⌘⌥1 </b>→ Inkscape</p>
+                <p><b>⌥[space] </b>→ Launchpad</p>
+                <p><b>✦| </b>→ Spotify</p>
+                <p><b>✦¿ </b>→ Cheatsheet</p>
+                <p><b>✦0 </b>→ Eject Music Drive</p>
+                <p><b>✦m </b>→ MAMP PRO</p>
+                <p><b>✦d </b>→ DevToys</p>
+                <p><b>✦s </b>→ Stickies</p>
+                <p><b>✦b </b>→ Blender</p>
+                <p><b>✦t </b>→ TextEdit</p>
+                <p><b>✦f </b>→ FileZilla</p>
+                <p><b>✦x </b>→ Xcode</p>
+                <p><b>✦r </b>→ Free Ruler</p>
+                <p><b>✦p </b>→ DeskPad</p>
+                <p><b>✦a </b>→ Safari</p>
+                <p><b>✦o </b>→ ONLYOFFICE</p>
+                <p><b>✦ñ </b>→ Photo Booth</p>
+                <p><b>✦[enter] </b>→ Reminders</p>
+            </div>
+        </div>
+        <div style="background-color:brown">
+            <p><b>Bash aliases</b></p>
+            <p><b>tn </b>→ tmux session for Notes</p>
+            <p><b>wsass </b>→ watch sass</p>
+            <p><b>tw </b>→ tmux session for icloud Scriptable widgets</p>
+
+            <div class="mem">
+                <p><b>so </b>→ source .zshrc</p>
+                <p><b>ta </b>→ tmux attach</p>
+                <p><b>td </b>→ tmux session for .dotfiles</p>
+                <p><b>tss </b>→ tmux sessionizer</p>
+                <p><b>tsss </b>→ tmux sessionizer with sass</p>
+            </div>
+        </div>
+        <div style="background-color:green">
+            <p><b>Tmux</b></p>
+            <p><b>&#x3C;b&#x3E;c </b>→ create window</p>
+            <p><b>&#x3C;b&#x3E;& </b>→ kill window</p>
+            <p><b>&#x3C;b&#x3E;% </b>→ split horizontal</p>
+            <p><b>&#x3C;b&#x3E;arrow </b>→ move between splits</p>
+            <p><b>&#x3C;b&#x3E;" </b>→ split vertical</p>
+            <p><b>&#x3C;b&#x3E;}{ </b>→ move pane</p>
+            <p><b>&#x3C;b&#x3E;! </b>→ turn pane into a window</p>
+            <p><b>Custom</b></p>
+            <p>tmux new -s session-name</p>
+            <p>tmux attach -t session-name</p>
+            <div class="mem">
+                <p><b>&#x3C;b&#x3E;z </b>→ zoom</p>
+                <p><b>⌘u </b>→ previous session</p>
+                <p><b>⌘i </b>→ next session</p>
+                <p><b>⌘o </b>→ last session</p>
+                p><b>⌘p </b>→ fzf bwtween sessions</p>
+            </div>
+        </div>
+        <div style="background-color:blue">
+            <p><b>Yabai</b></p>
+            <p><b>⇧⌥f </b>→ float curent window</p>
+            <p><b>⇧⌥a </b>→ stack layout</p>
+            <p><b>⇧⌥s </b>→ bps layout</p>
+            <p><b>⇧⌥&#x3C; </b>→ cycle layouts</p>
+            <p><b>⇧⌥p </b>→ toggle picture in picture</p>
+            <p><b>⇧⌥r </b>→ rotate layout</p>
+            <p><b>⇧⌥v </b>→ toggle vertical layout</p>
+            <p><b>⇧⌥n </b>→ decenter window </p>
+            <p><b>⇧⌥c </b>→ center window</p>
+            <p><b>⇧⌥&#x3C; </b>→ cycle layouts</p>
+            <p><b>⇧⌥m </b>→ zoom parent</p>
+            <p><b>⇧^⌥m </b>→ zoom fullscreen</p>
+            <p><b>⇧⌘l </b>→ bigger window</p>
+            <p><b>⇧⌘h </b>→ smaller window</p>
+            <p><b>⇧⌥hjkl </b>→ focus</p>
+            <p><b>⇧^⌥hjkl </b>→ swap</p>
+            <p><b>^⌥ </b>→ warp</p>
+            <div class="mem">
+                <p><b>⇧⌥o </b>→ toggle opacity</p>
+                <p><b>⇧⌥b </b>→ balance layout</p>
+                <p><b>⇧⌥⏎ </b>→ to main</p>
+                <p><b>⇧^⌥⏎ </b>→ to main (bigger)</p>
+                <p><b>⇧⌥z </b>→ restart yabai</p>
+                <p><b>⇧⌥x </b>→ restart borders</p>
+            </div>
+        </div>
+        <div style="background-color:purple">
+            <p><b>BASH</b></p>
+            <p><b>^z </b>→ sleep program</p>
+            <p><b>^k </b>→ borrar hasta final de línea</p>
+            <p><b>^r </b>→ buscar en historial</p>
+            <p><b>alias </b>→ alias cls='printf "\033c"'</p>
+            <p><b>rm -r </b>→ remove dir recursive</p>
+            <p><b>chmod -R 774 [dir] </b>→ permisos</p>
+            <p><b>chown -R [owner]:[group] [dir] </b>→ owner</p>
+            <p><b>diff </b>→ diff -q dir-1/ dir-2/</p>
+            <p><b>date </b>→ fecha/hora actual</p>
+            <p><b>history </b>→ command history</p>
+            <p><b>ps </b>→ procesos</p>
+            <p><b>df </b>→ disk free</p>
+            <p><b>cal </b>→ calendario</p>
+            <p><b>ln </b>→ ln -s original link</p>
+            <p><b>diskutil list </b>→ discos montados</p>
+            <p><b>mount </b>→ discos montados</p>
+            <p><b>env </b>→ variables entorno</p>
+            <p><b>echo $SHELL </b>→ ruta shell actual</p>
+            <p><b>du -h -d 2 | sort -h </b>→ dir size</p>
+            <p><b>ls -d */ </b>→ listar dirs</p>
+            <p><b>cp -r </b>→ copiar folder</p>
+            <p><b>ps -ax | grep httpd </b>→ qué archivo config está usando httpd</p>
+            <p><b>pwd -P </b>→ ubicación real symlink</p>
+            <p><b>mdfind </b>→ spotlight</p>
+            <p><b>lsof | grep [volumen] </b>→ procesos que usan un volumen</p>
+            <p><b>scp </b>→ descargar por ssh (scp user@server.com:/directory/file ./destination)</p>
+            <p><b>csh </b>→ c shell</p>
+            <p><b>ksh </b>→ korn shell</p>
+            <p><b>tcsh </b>→ enhanced c shell</p>
+            <p><b>dd </b>→ convert and copy a file</p>
+            <p><b>df </b>→ disk free</p>
+            <p><b>ed </b>→ ed text editor</p>
+            <p><b>expr </b>→ calcula expresiones</p>
+            <p><b>hostname </b>→ show hostname</p>
+            <p><b>launchctl </b>→ run programs according to a schedule like cron</p>
+            <p><b>link </b>→ ln, symlinks</p>
+            <p><b>pax </b>→ archive utilty</p>
+            <p><b>sh </b>→ posix command interpreter</p>
+            <p><b>sleep </b>→ suspend execution for interval of time</p>
+            <p><b>stty </b>→ sets certain I/O options for the device that is the current standard input</p>
+            <p><b>sync </b>→ synchronizes cached data to permanent storage.</p>
+            <p><b>test </b>→ evaluates expression</p>
+            <p><b>tty </b>→ name of the terminal</p>
+            <p><b>unlink </b>→ rm </p>
+            <p><b>wait4path </b>→ sleeps until path exists</p>
+            <p><b>^l </b>→ limpiar pantalla</p>
+            <div class="mem">
+                <p><b>mkdir </b>→ new dir</p>
+                <p><b>rmdir </b>→ remove dir</p>
+                <p><b>rm </b>→ remove file</p>
+                <p><b>killall </b>→ matar proceso</p>
+                <p><b>kill </b>→ terminate or signal process</p>
+                <p><b>^a </b>→ inicio de línea</p>
+                <p><b>^e </b>→ final de línea</p>
+                <p><b>^u </b>→ borrar línea</p>
+                <p><b>^c </b>→ terminar operación</p>
+                <p><b>&#x3E; </b>→ mandar el output</p>
+                <p><b>&& </b>→ ejecuta si anterior dio 0</p>
+                <p><b>|| </b>→ ejecuta si anterior no dio 0</p>
+                <p><b>; </b>→ ejecuta siempre</p>
+
+            </div>
+        </div>
+
+        <div style="background-color:green">
+            <p><b>Telescope</b></p>
+            <p><b>ps </b>→ document symbols</p>
+            <p><b>pw </b>→ grep string</p>
+            <p><b>pr </b>→ live grep</p>
+            <p><b>ps </b>→ lsp symbols</p>
+            <div class="mem">
+                <p><b>pt </b>→ notes by tags</p>
+                <p><b>pf </b>→ telescope</p>
+                <p><b>pd </b>→ telescope all files</p>
+                <p><b>ph </b>→ help tags</p>
+                <p><b>pg </b>→ git files</p>
+            </div>
+        </div>
+
+        <div style="background-color:blue">
+            <p><b>Marks</b></p>
+            <p><b>:marks</b></p>
+            <p><b>ma </b>→ mark a</p>
+            <p><b>`a </b>→ jump to a</p>
+            <p><b>y`a </b>→ yank to a</p>
+            <p><b>`0 </b>→ jump to where closed</p>
+            <p><b>`= </b>→ jump to last edited</p>
+            <p><b>`. </b>→ jump to last change</p>
+            <p><b>`` </b>→ jump to last jump</p>
+            <p><b>`= </b>→ jump to last edited</p>
+            <p><b>:ju[umps]</b></p>
+            <p><b>^i </b>→ jump forward</p>
+            <p><b>^o </b>→ jump backwards</p>
+            <p><b>:changes</b></p>
+            <p><b>g, </b>→ go to newer changes</p>
+            <p><b>g; </b>→ go to older changes</p>
+        </div>
+
+        <div style="background-color:red">
+            <p><b>Netrw</b></p>
+            <p><b>d </b>→ new dir</p>
+            <p><b>a </b>→ hidden files</p>
+            <p><b>c </b>→ set current dir</p>
+            <p><b>gh </b>→ toggle dot files</p>
+            <p><b>r </b>→ reverse sorting</p>
+            <p><b>s </b>→ sorting type</p>
+            <p><b>S </b>→ sort by suffix/prefix</p>
+            <p><b>X </b>→ execute file</p>
+            <p><b>i </b>→ tree view</p>
+            <p><b>mt </b>→ assign target</p>
+            <p><b>mf </b>→ mark file</p>
+            <p><b>mc </b>→ copy files in the target</p>
+            <p><b>mm </b>→ move files to the target</p>
+            <p><b>mx </b>→ run external command</p>
+            <div class="mem">
+                <p><b>% </b>→ new file</p>
+                <p><b>R </b>→ rename</p>
+                <p><b>D </b>→ delete</p>
+                <p><b>- </b>→ parent dir</p>
+            </div>
+        </div>
+
+        <div style="background-color:blueviolet">
+            <p><b>Vim Remaps</b></p>
+            <p><b>^u </b>→ previous buffer</p>
+            <p><b>^i </b>→ next buffer</p>
+            <p><b>^o </b>→ last buffer</p>
+            <p>_<b>f </b>→ copy buffer filename</p>
+            <p>_<b>j </b>→ quickfix prev</p>
+            <p>_<b>k </b>→ quickfix next</p>
+            <p>^<b>arrows </b>→ resize pane</p>
+            <p><b>LSP</b></p>
+            <p><b>gd </b>→ go to definition</p>
+            <p><b>K </b>→ definition help hover</p>
+            <p>_<b>vws </b>→ vim.lsp.buf.workspace_symbol() </p>
+            <p>_<b>vd </b>→ vim.diagnostic.open_float() </p>
+            <p><b>[d </b>→ vim.diagnostic.goto_next() </p>
+            <p><b>]d </b>→ vim.diagnostic.goto_prev() </p>
+            <p>_<b>vca </b>→ vim.lsp.buf.code_action() </p>
+            <p>_<b>vrr </b>→ vim.lsp.buf.references() </p>
+            <p>_<b>vrn </b>→ vim.lsp.buf.rename() </p>
+            <p>^<b>s </b>→ vim.lsp.buf.signature_help() </p>
+            <div class="mem">
+                <p>_<b>o </b>→ copy line to clipboard</p>
+                <p>_<b>¿ </b>→ yabai file</p>
+                <p>_<b>s </b>→ global replace current word</p>
+                <p>_<b>r </b>→ reformat file</p>
+                <p>_<b>v </b>→ vsplit</p>
+                <p>_<b>t </b>→ sidebar netrw</p>
+                <p>_<b>- </b>→ wordwrap</p>
+                <p>_<b>ñ </b>→ save and open in browser</p>
+            </div>
+        </div>
+
+        <div style="background-color:maroon">
+            <p><b>Vim Search</b></p>
+            <p><b>/\v </b>→ use nonalpha as regex</p>
+            <p>:noh[lsearch] remove highlight</p>
+            <p>Range:</p>
+            <p><b>. </b>→ Current line</p>
+            <p><b>$ </b>→ line</p>
+            <p><b>% </b>→ Whole file</p>
+            <p><b>x </b>→ Line number x</p>
+            <p><b>.,+x </b>→ From current until x lines</p>
+            <p><b>'t </b>→ position of mark "t"</p>
+            <p><b>\/ </b>→ next line previous search matches</p>
+            <p><b>\? </b>→ prev line previous search matches</p>
+            <p><b>\& </b>→ next line previous substitute matches</p>
+            <p><b>:vim[grep]/pattern/{`{file}`} </b>→ find in files</p>
+            <p><b>:cn[ext] </b>→ next match</p>
+            <p><b>:cp[rev] </b>→ prev match</p>
+            <p><b>:cope[n] </b>→ list matches</p>
+            <p><b>:cll[ose] </b>→ close quickfix view</p>
+            <p><b>Flags</b></p>
+            <p><b>i/I </b>→ case</p>
+            <p><b>c </b>→ confirm each</p>
+            <p>replace with HI (y/n/a/q/l/^E/^Y)?:</p>
+            <p><b>a </b>→ all</p>
+            <p><b>q </b>→ quit no substituting not undo</p>
+            <p><b>l </b>→ substitute this and exit</p>
+            <p><b>^E </b>→ scroll up</p>
+            <p><b>^Y </b>→ scroll down</p>
+            <p><b>Greedy</b></p>
+            <p><b>\+ </b>→ 1 or more</p>
+            <p><b>\= </b>→ 0 or 1 more</p>
+            <p><b>\{n,m} </b>→ from n to m</p>
+            <p><b>\{n} </b>→ exactly n times</p>
+            <p><b>\{,m} </b>→ from 0 to m</p>
+            <p><b>\{n,} </b>→ at least n</p>
+            <p><b>Non-greedy</b></p>
+            <p><b>\{-} </b>→ 0 or more</p>
+            <p><b>\{-n,m} </b>→ 1 or more</p>
+            <p><b>\{-n,} </b>→ at lease or more</p>
+            <p><b>\{-,m} </b>→ 1 or more</p>
+            <p>Grouping & Backreferences</p>
+            <p><b>& </b>→ whole matched pattern</p>
+            <p><b>\L </b>→ following characters are made lowercase</p>
+            <p><b>\0 </b>→ whole matched pattern</p>
+            <p><b>\U </b>→ following characters are made uppercase</p>
+            <p><b>\E </b>→ end of \U and \L</p>
+            <p><b>\e </b>→ end of \U and \L</p>
+            <p><b>\r </b>→ split line in two at this point</p>
+            <p><b>\9 </b>→ matched pattern in the ninth pair of \(\)</p>
+            <p><b>\l </b>→ next character made lowercase</p>
+            <p><b>~ </b>→ previous substitute string</p>
+            <p><b>\u </b>→ next character made uppercase</p>
+            <div class="mem">
+                <p><b>/ </b>→ search</p>
+                <p><b>? </b>→ search backwards</p>
+                <p><b>q: </b>→ view full history</p>
+                <p>Delimiters: /#_@.</p>
+                <p><b>[] </b>→ include</p>
+                <p><b>[^] </b>→ exclude</p>
+                <p><b>g </b>→ Replace all</p>
+                <p><b>* </b>→ 0 or more</p>
+                <p><b>\( \) </b>→ capture group</p>
+                <p><b>s </b>→ substitute chars</p>
+                <p><b>\1 </b>→ matched pattern in the first pair of \(\)</p>
+                <p><b>\2 </b>→ matched pattern in the second pair of \(\)</p>
+            </div>
+        </div>
+
+        <div style="background-color:green">
+            <p><b>K </b>→ Man page for word</p>
+            <p><b>gd </b>→ local declaration</p>
+            <p><b>gD </b>→ global declaration</p>
+            <p><b>gj </b>→ multi-line down</p>
+            <p><b>gk </b>→ multi-line up</p>
+            <p><b>ge/gE </b>→ backwards e/E</p>
+            <p><b>ge_ </b>→ last non-blank char</p>
+            <p><b>H </b>→ top of screen</p>
+            <p><b>L </b>→ bottom of the screen</p>
+            <p><b>M </b>→ middle of the screen</p>
+            <p><b>R </b>→ replace until ESC</p>
+            <p><b>gwip </b>→ paragraph to 1 line</p>
+            <p><b>:sav →</b> save as</p>
+            <p><b>:reg →</b> registers</p>
+            <p><b>:h [comando] </b>→ ayuda</p>
+            <p><b>ea </b>→ append after end gi → Go last place insert mode ^+w </b>→ delete word</p>
+            <p><b>gi </b>→ Go last place insert mode</p>
+            <p><b>^w </b>→ delete word</p>
+            <p><b>^t </b>→ tab</p>
+            <p><b>^d </b>→ de-indent</p>
+            <p><b>o </b>→ start/end selection</p>
+            <p><b>~ </b>→ switch case</p>
+            <p>Select</p>
+            <p><b>b </b>→ ()</p>
+            <p><b>B </b>→ {}</p>
+            <p><b>% </b>→ {} or []</p>
+            <p><b>p </b>→ paragraph</p>
+            <p><b>[ </b>→ block []</p>
+            <p><b>f </b>→ increasingly bigger block</p>
+            <p><b>gb </b>→ Adds cursor</p>
+            <p><b>s </b>→ sentence</p>
+            <p><b>gu </b>→ Switch case</p>
+            <p><b>>% </b>→ Increase indent {/[ block</p>
+            <p><b>>i{ </b>→ Increase inner block indent</p>
+            <p><b>=2a{ </b>→ Re-indent '2 blocks'</p>
+            <p><b>]p </b>→ Paste match indent</p>
+            <div class="mem">
+
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

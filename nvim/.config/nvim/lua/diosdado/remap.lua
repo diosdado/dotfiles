@@ -84,8 +84,14 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- save file, switch to browser and refresh
 vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
+
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<leader>b", ":b#<CR>")
+vim.keymap.set("n", "<C-u>", ":bprev<CR>")
+-- switch between the two last 2 buffers
+vim.keymap.set("n", "<C-i>", ":bnext<CR>")
+-- switch between the two last 2 buffers
+vim.keymap.set("n", "<C-o>", ":b#<CR>")
+
 -- copy line to clipboard
 vim.keymap.set("n", "<leader>o", "^v$h\"+y")
 -- show yabai window objects

@@ -91,7 +91,7 @@ alias tn="~/.scripts/tmux-sessionizer.sh -d ~/Notes"
 alias tss="~/.scripts/tmux-sessionizer.sh"
 
 # sessions with nvim, a terminal and a sass compiler
-alias tsss="~/.scripts/tmux-sessionizer.sh -s 1"
+alias tsss="~/.scripts/tmux-sessionizer.sh -s"
 
 alias cdp="cd ~/Desktop/Projects"
 

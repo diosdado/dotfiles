@@ -121,17 +121,18 @@ yabai -m rule --add app="^DevToys$"                 space=s_development
 yabai -m rule --add app="^Xcode$"                   space=s_development
 
 # manage new windows for specific programs
-yabai -m signal --add event=window_created label='new_window' action='~/.scripts/yabai-new-window.sh'
+yabai -m signal --add event=window_created      label='custom-management-of-new-windows-created'    action='~/.scripts/yabai-custom-management-of-new-windows.sh'
 
 # change space s_main layout according to display size
-yabai -m signal --add event=display_resized label='display_size' action='~/.scripts/yabai-display-size.sh'
-yabai -m signal --add event=display_added label='display_added' action='~/.scripts/yabai-display-size.sh'
-yabai -m signal --add event=display_removed label='display_removed' action='~/.scripts/yabai-display-size.sh'
-yabai -m signal --add event=display_moved label='display_moved' action='~/.scripts/yabai-display-size.sh'
-yabai -m signal --add event=window_focused label='window_focused' action='~/.scripts/yabai-window-focused.sh'
-# yabai -m signal --add event=window_focused label='window_focused_new_window' action='~/.scripts/yabai-new-window.sh'
+yabai -m signal --add event=display_resized     label='change-layout-on-display-resized'    action='~/.scripts/yabai-change-layout-on-display-size.sh'
+yabai -m signal --add event=display_added       label='change-layout-on-display-added'      action='~/.scripts/yabai-change-layout-on-display-size.sh'
+yabai -m signal --add event=display_removed     label='change-layout-on-display-removed'    action='~/.scripts/yabai-change-layout-on-display-size.sh'
+yabai -m signal --add event=display_moved       label='change-layout-on-display-moved'      action='~/.scripts/yabai-change-layout-on-display-size.sh'
 
-~/.scripts/yabai-display-size.sh
+# change opacity of specific apps when focused
+yabai -m signal --add event=window_focused      label='custom-opacity-on-focus'             action='~/.scripts/yabai-custom-opacity-on-focus.sh'
+
+~/.scripts/yabai-change-layout-on-display-size.sh
 ~/.scripts/reset-borders.sh
 
 

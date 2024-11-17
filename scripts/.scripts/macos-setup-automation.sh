@@ -132,6 +132,7 @@ CASKS=(
     tomatobar
     monitorcontrol
     devtoys
+    homerow
     kitty
     alacritty
     pika

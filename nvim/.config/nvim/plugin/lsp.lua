@@ -1,6 +1,19 @@
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 lsp.ensure_installed({
+    -- 'css-lsp',
+    -- 'eslint-lsp',
+    -- 'html-lsp',
+    -- 'lua-language-server',
+    -- 'php-cs-fixer',
+    -- 'phpactor',
+    -- 'prettier',
+    -- 'pyright',
+    -- 'some-sass-language-server',
+    -- 'sql-formatter',
+    -- 'stylelint',
+    -- 'typescript-language-server',
+
 --    'tsserver',
 --    'blade-formatter',
 --    'eslint',
@@ -53,7 +66,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
@@ -62,4 +75,10 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
-
+-- require('lspconfig').phpactor.setup {
+--     on_attach = on_attach,
+--     init_options = {
+--         ["language_server_phpstan.enabled"] = false,
+--         ["language_server_psalm.enabled"] = false,
+--     }
+-- }

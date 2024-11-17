@@ -2,52 +2,38 @@
 
 # Custom tiling rules for Inkscape and Gimp
 
-default_browser="Vivaldi"
-secondary_display="1"
+while getopts "a" flag
+do
+    case $flag in
+        a) checkall="1";; # reeavaluates all gimp and inkscape windows, not just the current
+    esac
+done
 
-window=$(yabai -m query --windows --window)
-window_id=$(echo $window | jq '.id')
 
-is_gimp_main_conditions='
-    (."app" | contains("GIMP")) and
-    (
-        (."title" | contains("– GIMP")) or
-        (."title" | contains("GNU Image"))
-    )
-'
-is_inkscape_main_conditions='
-    (."app" | contains("Inkscape")) and
-    (."title" | contains(" - Inkscape"))
-'
-is_inkscape_other_conditions='
-    (."app" | contains("Inkscape")) and
-    (."title" | contains(" - Inkscape") | not)
-'
-is_browser_conditions="
-    (.\"app\" | contains(\"$default_browser\"))
-"
-echo $window | jq -er "$is_gimp_main_conditions" && is_gimp_main="1"
-echo $window | jq -er "$is_inkscape_main_conditions" && is_inkscape_main="1"
-echo $window | jq -er "$is_inkscape_other_conditions" && is_inkscape_other="1"
-echo $window | jq -er "$is_browser_conditions" && is_browser="1"
-
-# Only Inkscape and Gimp main windows should be tiled
-if [ "$is_gimp_main" -eq "1" ] || [ "$is_inkscape_main" -eq "1" ]; then
-    yabai -m window $window_id --toggle float
+if [[ "$checkall" -eq "1" ]]; then
+    windows=$(yabai -m query --windows | jq '.[] | select(.app == "Inkscape" or .app == "GIMP") | .id')
+else
+    windows=$(yabai -m query --windows --window | jq '.id')
 fi
 
-# Inkscape dialogues are resized and centered on the screen to force their redrawing
-if [ "$is_inkscape_other" -eq "1" ]; then
-    yabai -m window $window_id --grid 7:5:1:1:3:5
-fi
 
-# Browser windows are sent to the secondary display by default
-# if [ "$is_browser" -eq "1" ]; then
-#     yabai -m space --focus "s_main"
-#     total_displays=$(yabai -m query --displays | jq -r length)
-#     if [ "$total_displays" -gt "1" ]; then
-#         yabai -m window --display "$secondary_display"
-#         yabai -m display --focus "$secondary_display"
-#     fi
-# fi
+for window_id in $windows; do
+    window=$(yabai -m query --windows --window $window_id)
+    floating=$(echo $window | jq 'if ."is-floating" then 1 else 0 end')
+    case $(~/.scripts/yabai-evaluate-window.sh -w $window_id) in
+        is_gimp_main|is_inkscape_main)
+            if [[ "$floating" -eq "1" ]]; then
+                yabai -m window $window_id --toggle float
+            fi
+            ;;
+        is_inkscape_other)
+            # yabai -m window $window_id --grid 7:5:1:1:3:5
+            ;;
+    esac
+done
+
+
+
+
+
 

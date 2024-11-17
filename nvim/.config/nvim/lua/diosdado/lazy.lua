@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     'tpope/vim-commentary',
     'tpope/vim-surround',
-    'ThePrimeagen/vim-be-good',
+    -- 'ThePrimeagen/vim-be-good',
     'christoomey/vim-tmux-navigator',
     -- {
     --     "nvim-neo-tree/neo-tree.nvim",

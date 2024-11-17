@@ -1,108 +1,57 @@
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$path
-
-
-# -------------------------------------------------------------------------------------------
-# Powerlevel10k
-# -------------------------------------------------------------------------------------------
-
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-
-# -------------------------------------------------------------------------------------------
-# oh-my-zsh
-# -------------------------------------------------------------------------------------------
-
-export ZSH="$HOME/.oh-my-zsh"
-ZLE_RPROMPT_INDENT=0
-ZSH_THEME="powerlevel10k/powerlevel10k"
-# KEYTIMEOUT=2000
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# alias vim="/opt/homebrew/bin/nvim"
-
-
-# -------------------------------------------------------------------------------------------
-# Powerlevel10k source
-# -------------------------------------------------------------------------------------------
-
-source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# -------------------------------------------------------------------------------------------
-# PHPActor
-# -------------------------------------------------------------------------------------------
-alias phpactor="~/.local/bin/phpactor"
 
 
-# -------------------------------------------------------------------------------------------
-# fzf
-# -------------------------------------------------------------------------------------------
-
-eval "$(fzf --zsh)"
-
-# -- Use fd instead of fzf --
-
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export PATH="$HOME/.tmuxifier/bin:$PATH"
+export TERM=xterm-256color
 export PATH=~/.composer/vendor/bin:$PATH
 
-# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
-}
+# aliases
+alias phpactor="~/.local/bin/phpactor"
+alias so="source ~/.zshrc" # reload zshrc
+alias ls="ls --color=auto" # always color ls output
+alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
+alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # whatch sass
 
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
-}
-
-
-# -------------------------------------------------------------------------------------------
-# Tmuxifier
-# -------------------------------------------------------------------------------------------
-
-eval "$(tmuxifier init -)"
-
-# shortcut to re-source zsh configuration
-alias so="source ~/.zshrc"
-
-# shortcut to return to tmux
+# tmux shortcuts
 alias ta="tmux attach"
+alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable" # Scriptable widgets
+alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles" # dotfiles
+alias th="tmux new-session -s home -c ~/" # home
+alias tss="~/.scripts/tmux-sessionizer.sh" # nvim & terminal
+alias tssh="~/.scripts/tmux-sessionizer.sh -d ~/mounted-sshfs" # nvim & terminal with mounted ssh
+alias tsss="~/.scripts/tmux-sessionizer.sh -s" # nvim, terminal & sass compiler
 
-# The scriptable directory must be linked to ~/Scriptable ~/Library/Mobile\ Documents/iCloud~dk~simonbs~Scriptable/Documents/
-
-# tmux session for Scriptable widgets
-alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable"
-# tmux session for dotfiles
-alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles"
-# tmux session for notes
-alias tn="~/.scripts/tmux-sessionizer.sh -d ~/Notes"
-# sessions with nvim and a terminal
-alias tss="~/.scripts/tmux-sessionizer.sh"
-
-# sessions with nvim, a terminal and a sass compiler
-alias tsss="~/.scripts/tmux-sessionizer.sh -s"
-
-alias cdp="cd ~/Desktop/Projects"
-
-
-alias t-c="~/.scripts/tmux-sessionizer.sh -d ~/Desktop/Projects/Design/Sandox/repo/Copywriting"
-alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css"
+# load plugins
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $(brew --prefix)/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    autoload -Uz compinit
+    compinit
+fi
 
 
-# -------------------------------------------------------------------------------------------
-# Conda
-# -------------------------------------------------------------------------------------------
+# fzf
+eval "$(fzf --zsh)"
+
+
+# history setup
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
 
 
 # >>> conda initialize >>>

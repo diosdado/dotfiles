@@ -68,12 +68,12 @@ yabai -m rule --add app="^Screen\ Sharing$"         manage=off
 yabai -m rule --add app="^Boom\ 3D$"                manage=off
 yabai -m rule --add app="^Finder$"                  manage=off
 yabai -m rule --add app="^TextEdit$"                manage=off
-yabai -m rule --add app="^Reminders$"               sticky=on
-yabai -m rule --add app="^Reminders$"               manage=off
+yabai -m rule --add app="VLC"                       manage=off
+yabai -m rule --add app="VLC"                       sticky=on
+yabai -m rule --add app="owncloud"                  manage=off
+yabai -m rule --add app="Reminders"                 sticky=on
+yabai -m rule --add app="Reminders"                 manage=off
 
-
-# reminders appear on all spaces
-# yabai -m rule --add app="^Reminders$"               float=on
 
 # spaces
 yabai -m space 1 --label s_main
@@ -90,6 +90,7 @@ yabai -m space 9 --label s_media
 yabai -m rule --add app="^Alacritty$"               space=s_main
 yabai -m rule --add app="^kitty$"                   space=s_main
 yabai -m rule --add app="^Vivaldi$"                 space=s_main
+yabai -m rule --add app="^Firefox Developer Edition$"   space=s_main
 yabai -m rule --add app="^Filezilla$"               space=s_main
 yabai -m rule --add app="^Krita$"                   space=s_design
 yabai -m rule --add app="^Inkscape$"                space=s_design
@@ -103,7 +104,6 @@ yabai -m rule --add app="^whatsapp.com$"            space=s_texting
 yabai -m rule --add app="^Instagram$"               space=s_texting
 yabai -m rule --add app="^Spotify$"                 space=s_media
 yabai -m rule --add app="^Music$"                   space=s_media
-yabai -m rule --add app="^VLC$"                     space=s_media
 yabai -m rule --add app="^ONLYOFFICE$"              space=s_office_games
 yabai -m rule --add app="^MySQLWorkbench$"          space=s_office_games
 yabai -m rule --add app="^OpenEmu$"                 space=s_office_games

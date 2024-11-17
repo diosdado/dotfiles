@@ -4,6 +4,7 @@
 # this script kills these agents and ejects the volume called 'Music'
 
 
+killall Music 2>/dev/null
 killall AMPDevicesAgent 2>/dev/null
 killall AMPLibraryAgent 2>/dev/null
 diskutil unmount /Volumes/Music

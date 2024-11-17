@@ -3,12 +3,20 @@
 
 
 # Restart Yabai
-shift + alt - z : yabai --restart-service
+shift + alt - z : ~/.scripts/yabai-custom-management-of-new-windows.sh -a
+ctrl + shift + alt - z : yabai --restart-service
 shift + alt - x : ~/.scripts/reset-borders.sh
 
+shift + cmd - 0x29 : ~/.scripts/reload-browser-without-cache.sh
+
 # Make primary window
-shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:300:0
-ctrl + shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:600:0
+shift + alt - return : yabai -m window --swap first ; \
+    yabai -m space --balance ; \
+    yabai -m window first --resize right:300:0
+ctrl + shift + alt - return : yabai -m window --swap first ; \
+    yabai -m space --balance ; \
+    yabai -m window first --resize right:600:0
+
 # Switch modes
 shift + alt - s : ~/.scripts/yabai-toggle-layout.sh -l "stack"
 shift + alt - b : ~/.scripts/yabai-toggle-layout.sh -l "bsp"
@@ -20,7 +28,9 @@ shift + alt - f : yabai -m window --toggle float --grid 7:5:1:1:3:5
 
 shift + alt - p : yabai -m window --toggle pip
 
+# de-center window
 shift + alt - n : yabai -m window --grid 8:8:4:4:3:3
+# center window
 shift + alt - c : yabai -m window --grid 8:8:2:2:4:4
 
 # Rotate layout
@@ -45,7 +55,7 @@ hyper - tab : ~/.scripts/yabai-cycle-window-between-displays.sh
 shift + alt - tab : ~/.scripts/yabai-cycle-between-displays.sh
 # Utilities
 hyper - 0 : ~/.scripts/kill-music-library-agent-and-eject.sh
-# 0x18 - ¿
+# 0x18 is ¿
 hyper - 0x18 : qlmanage -p ~/.scripts/cheatsheet.html
 
 
@@ -67,43 +77,47 @@ ctrl + alt - l : yabai -m window --swap east
 
 
 # Programs
-# 0x0A is |
-cmd - 0x0A : open /Applications/kitty.app
+cmd - 0x0A : open /Applications/kitty.app # 0x0A is |
 cmd - 1 : open /Applications/Vivaldi.app
 cmd - 2 : open /System/Applications/Calendar.app
-hyper - return : open /System/Applications/Reminders.app
 cmd - 3 : open ~/Applications/Instagram.app ; open ~/Applications/whatsapp.com.app
 cmd - 4 : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-cmd + alt - 0x0A : open /Applications/GIMP.app
-cmd + alt - 1 : open /Applications/Inkscape.app
-cmd + alt - 2 : open /Applications/Blender.app
-cmd + alt - 3 : open /Applications/RawTherapee.app
-# 0x0A is |
-hyper - 0x0A : open ~/Applications/Spotify.app
-hyper - t : open /System/Applications/TextEdit.app
-hyper - 1 : open /System/Applications/Music.app
-hyper - 3 : open /Applications/Boom\ 3D.app
+cmd - 7 : open ~/Applications/Spotify.app
+cmd - 8 : open /System/Applications/Music.app
+cmd - 9 : open /Applications/Boom\ 3D.app
+cmd - 0 : open /Applications/VLC.app
+alt - 0x0A : open /Applications/GIMP.app
+alt - 1 : open /Applications/Inkscape.app
+alt - 2 : open /Applications/Blender.app
+alt - 3 : open /Applications/RawTherapee.app
+hyper - return : open /System/Applications/Reminders.app
+hyper - 5 : open /Users/david.diosdado/ownCloud/
 hyper - 6 : open /System/Library/CoreServices/Finder.app/Contents/Applications/AirDrop.app
 hyper - 7 : open ~/Desktop/Projects/
 hyper - 8 : open ~/Google\ Drive/My\ Drive/
 hyper - 9 : open ~/Library/Mobile\ Documents/com~apple~CloudDocs/
-hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
-hyper - m : open /Applications/MAMP\ PRO.app
-hyper - d : open /Applications/DevToys.app
-hyper - v : open /Applications/VSCodium.app
-hyper - s : open /System/Applications/Stickies.app
-hyper - f : open /Applications/FileZilla.app
-hyper - x : open /Applications/Xcode.app
-hyper - r : open /Applications/Free\ Ruler.app
-hyper - p : open /Applications/DeskPad.app
 hyper - a : open /Applications/Safari.app
-hyper - n : open /System/Applications/Utilities/Screen\ Sharing.app
+hyper - b : open /System/Applications/Photo\ Booth.app
 hyper - c : open /System/Applications/Contacts.app
-hyper - o : open /Applications/ONLYOFFICE.app
-#0x29 is ñ
-hyper - 0x29 : open /System/Applications/Photo\ Booth.app
-hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
+hyper - d : open /Applications/DevToys.app
+hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
+hyper - f : open /Applications/FileZilla.app
+hyper - g : open /Applications/Sequel\ Ace.app
 hyper - i : open /Applications/AS\ Timer.app
+# hjkl are used for arrows
+hyper - m : open /Applications/MAMP\ PRO.app
+hyper - n : open /System/Applications/Utilities/Screen\ Sharing.app
+hyper - 0x29 : open /Applications/Firefox\ Developer\ Edition.app #0x29 is ñ
+hyper - o : open /Applications/ONLYOFFICE.app
+hyper - p : open /Applications/DeskPad.app
+hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
+hyper - r : open /Applications/Free\ Ruler.app
+hyper - s : open /System/Applications/Stickies.app
+hyper - t : open /System/Applications/TextEdit.app
+hyper - v : open /Applications/VSCodium.app
+# w is used for the color picker Pika app
+hyper - x : open /Applications/Xcode.app
+hyper - z : open /System/Applications/System\ Settings.app
 
 
 

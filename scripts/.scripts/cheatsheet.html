@@ -32,6 +32,7 @@
         }
 
         .mem {
+            display:none;
             opacity: .5;
         }
 
@@ -50,30 +51,32 @@
         <div style="background-color:red">
             <p><b>Launch App</b></p>
             <p><b>⌘[return] </b>→ Reminders</p>
-            <p><b>⌘⌥| </b>→ Gimp</p>
-            <p><b>⌘⌥2 </b>→ Blender</p>
-            <p><b>⌘⌥3 </b>→ RawTherapee</p>
-            <p><b>✦1 </b>→ Music</p>
-            <p><b>✦2 </b>→ VLC</p>
-            <p><b>✦3 </b>→ Boom 3D</p>
-            <p><b>✦6 </b>→ AirDrop</p>
-            <p><b>✦7 </b>→ Projects</p>
-            <p><b>✦8 </b>→ GoogleDrive</p>
-            <p><b>✦9 </b>→ iCloud</p>
             <p><b>✦e </b>→ Karabiner</p>
-            <p><b>✦v </b>→ VSCodium</p>
+            <p><b>✦g </b>→ Sequel Ace</p>
+            <p><b>✦i </b>→ AS Timer</p>
             <p><b>✦n </b>→ Screen Sharing</p>
             <p><b>✦c </b>→ Contacts</p>
-            <p><b>✦y </b>→ Whisky</p>
-            <p><b>✦i </b>→ AS Timer</p>
-            <p><b>✦q </b>→ Activity Monitor</p>
+            <p><b>⌘7 </b>→ Spotify</p>
+            <p><b>⌘8 </b>→ Music</p>
+            <p><b>⌘9 </b>→ Boom 3D</p>
+            <p><b>⌘0 </b>→ VLC</p>
             <div class="mem">
+                <p><b>✦5 </b>→ ownCloud</p>
+                <p><b>✦6 </b>→ AirDrop</p>
+                <p><b>✦8 </b>→ GoogleDrive</p>
+                <p><b>✦9 </b>→ iCloud</p>
+                <p><b>✦q </b>→ Activity Monitor</p>
+                <p><b>✦7 </b>→ Projects</p>
+                <p><b>⌥| </b>→ Gimp</p>
+                <p><b>⌥1 </b>→ Inkscape</p>
+                <p><b>⌥2 </b>→ Blender</p>
+                <p><b>⌥3 </b>→ RawTherapee</p>
+                <p><b>✦v </b>→ VSCodium</p>
                 <p><b>⌘| </b>→ kitty</p>
                 <p><b>⌘1 </b>→ Vivaldi</p>
                 <p><b>⌘2 </b>→ Calendar</p>
                 <p><b>⌘3 </b>→ WhatsApp/Instagram</p>
                 <p><b>⌘4 </b>→ Mail</p>
-                <p><b>⌘⌥1 </b>→ Inkscape</p>
                 <p><b>⌥[space] </b>→ Launchpad</p>
                 <p><b>✦| </b>→ Spotify</p>
                 <p><b>✦¿ </b>→ Cheatsheet</p>
@@ -111,29 +114,28 @@
             <p><b>Tmux</b></p>
             <p><b>&#x3C;b&#x3E;c </b>→ create window</p>
             <p><b>&#x3C;b&#x3E;& </b>→ kill window</p>
+            <p><b>&#x3C;b&#x3E;x </b>→ kill pane</p>
             <p><b>&#x3C;b&#x3E;% </b>→ split horizontal</p>
-            <p><b>&#x3C;b&#x3E;arrow </b>→ move between splits</p>
             <p><b>&#x3C;b&#x3E;" </b>→ split vertical</p>
+            <p><b>&#x3C;b&#x3E;arrow </b>→ move between splits</p>
             <p><b>&#x3C;b&#x3E;}{ </b>→ move pane</p>
             <p><b>&#x3C;b&#x3E;! </b>→ turn pane into a window</p>
-            <p><b>Custom</b></p>
-            <p>tmux new -s session-name</p>
-            <p>tmux attach -t session-name</p>
             <div class="mem">
                 <p><b>&#x3C;b&#x3E;z </b>→ zoom</p>
                 <p><b>⌘u </b>→ previous session</p>
                 <p><b>⌘i </b>→ next session</p>
                 <p><b>⌘o </b>→ last session</p>
-                p><b>⌘p </b>→ fzf bwtween sessions</p>
+                <p><b>⌘p </b>→ fzf bwtween sessions</p>
+                <p><b>Custom</b></p>
+                <p><b>&#x3C;b&#x3E;<span style="opacity:.99;">-</span> </b>→ split horizontal</p>
+                <p><b>&#x3C;b&#x3E;| </b>→ split vertical</p>
+                <p>tmux new -s session-name</p>
+                <p>tmux attach -t session-name</p>
             </div>
         </div>
         <div style="background-color:blue">
             <p><b>Yabai</b></p>
-            <p><b>⇧⌥f </b>→ float curent window</p>
-            <p><b>⇧⌥a </b>→ stack layout</p>
-            <p><b>⇧⌥s </b>→ bps layout</p>
             <p><b>⇧⌥&#x3C; </b>→ cycle layouts</p>
-            <p><b>⇧⌥p </b>→ toggle picture in picture</p>
             <p><b>⇧⌥r </b>→ rotate layout</p>
             <p><b>⇧⌥v </b>→ toggle vertical layout</p>
             <p><b>⇧⌥n </b>→ decenter window </p>
@@ -147,11 +149,16 @@
             <p><b>⇧^⌥hjkl </b>→ swap</p>
             <p><b>^⌥ </b>→ warp</p>
             <div class="mem">
+                <p><b>⇧⌥p </b>→ toggle picture in picture</p>
+                <p><b>⇧⌥f </b>→ float curent window</p>
+                <p><b>⇧⌥s </b>→ stack layout</p>
+                <p><b>⇧⌥b </b>→ bps layout</p>
                 <p><b>⇧⌥o </b>→ toggle opacity</p>
                 <p><b>⇧⌥b </b>→ balance layout</p>
                 <p><b>⇧⌥⏎ </b>→ to main</p>
                 <p><b>⇧^⌥⏎ </b>→ to main (bigger)</p>
-                <p><b>⇧⌥z </b>→ restart yabai</p>
+                <p><b>⇧⌥z </b>→ reevaluate Inkscape and Gimp </p>
+                <p><b>^⇧⌥z </b>→ restart yabai</p>
                 <p><b>⇧⌥x </b>→ restart borders</p>
             </div>
         </div>
@@ -160,54 +167,43 @@
             <p><b>^z </b>→ sleep program</p>
             <p><b>^k </b>→ borrar hasta final de línea</p>
             <p><b>^r </b>→ buscar en historial</p>
-            <p><b>alias </b>→ alias cls='printf "\033c"'</p>
-            <p><b>rm -r </b>→ remove dir recursive</p>
-            <p><b>chmod -R 774 [dir] </b>→ permisos</p>
-            <p><b>chown -R [owner]:[group] [dir] </b>→ owner</p>
+            <p><b>id </b>→ id user, group</p>
+            <p><b>tail</b>→ changes file realtime → tail -f {filename}</p>
+            <p><b>fswatch</b>watch changes in directory → fswatch -xr {directory}</p>
+            <p><b>scp </b>→ scp {user}@{host}:{remote-file} {destination} -P {port}</p>
+            <p><b>sshfs </b>→ sshfs {user}@{host}:{directory} -o port={port}</p>
+            <p><b>nvim </b>→ scp://{user}@{host}:{port}//{remote-file}</p>
+            <p><b>tar </b>→ tar -xvf {filename}</p>
+            <p><b>chmod, chown</b> refs:{a}ll, {u}ser, {g}roup, {o}ther. modes:{r}ead, {w}rite, e{x}ecute. operators:{-}remove, {+}add, {=}clear</p>
+            <p><b>chmod -R 774 [dir] </b>→ permissions → chmod {ref}{operator}{modes}</p>
+            <p>chmod u=rwx,go=u-w → readable/executable by everyone and writable by owner only</p>
+            <p><b>chown </b>→ owner → chown -R {owner}:{group} {dir/file} </p>
             <p><b>diff </b>→ diff -q dir-1/ dir-2/</p>
-            <p><b>date </b>→ fecha/hora actual</p>
-            <p><b>history </b>→ command history</p>
             <p><b>ps </b>→ procesos</p>
             <p><b>df </b>→ disk free</p>
             <p><b>cal </b>→ calendario</p>
-            <p><b>ln </b>→ ln -s original link</p>
             <p><b>diskutil list </b>→ discos montados</p>
             <p><b>mount </b>→ discos montados</p>
             <p><b>env </b>→ variables entorno</p>
-            <p><b>echo $SHELL </b>→ ruta shell actual</p>
+            <p><b>$SHELL </b>→ ruta shell actual</p>
             <p><b>du -h -d 2 | sort -h </b>→ dir size</p>
             <p><b>ls -d */ </b>→ listar dirs</p>
-            <p><b>cp -r </b>→ copiar folder</p>
             <p><b>ps -ax | grep httpd </b>→ qué archivo config está usando httpd</p>
-            <p><b>pwd -P </b>→ ubicación real symlink</p>
             <p><b>mdfind </b>→ spotlight</p>
             <p><b>lsof | grep [volumen] </b>→ procesos que usan un volumen</p>
-            <p><b>scp </b>→ descargar por ssh (scp user@server.com:/directory/file ./destination)</p>
-            <p><b>csh </b>→ c shell</p>
-            <p><b>ksh </b>→ korn shell</p>
-            <p><b>tcsh </b>→ enhanced c shell</p>
             <p><b>dd </b>→ convert and copy a file</p>
-            <p><b>df </b>→ disk free</p>
-            <p><b>ed </b>→ ed text editor</p>
-            <p><b>expr </b>→ calcula expresiones</p>
-            <p><b>hostname </b>→ show hostname</p>
+            <p><b>expr </b>→ calcula expresiones matematicas</p>
             <p><b>launchctl </b>→ run programs according to a schedule like cron</p>
-            <p><b>link </b>→ ln, symlinks</p>
             <p><b>pax </b>→ archive utilty</p>
-            <p><b>sh </b>→ posix command interpreter</p>
             <p><b>sleep </b>→ suspend execution for interval of time</p>
             <p><b>stty </b>→ sets certain I/O options for the device that is the current standard input</p>
-            <p><b>sync </b>→ synchronizes cached data to permanent storage.</p>
-            <p><b>test </b>→ evaluates expression</p>
             <p><b>tty </b>→ name of the terminal</p>
-            <p><b>unlink </b>→ rm </p>
+            <p><b>sync </b>→ synchronizes cached data to permanent storage.</p>
+            <p><b>test </b>→ evaluates expression like if statement</p>
             <p><b>wait4path </b>→ sleeps until path exists</p>
-            <p><b>^l </b>→ limpiar pantalla</p>
             <div class="mem">
-                <p><b>mkdir </b>→ new dir</p>
-                <p><b>rmdir </b>→ remove dir</p>
-                <p><b>rm </b>→ remove file</p>
-                <p><b>killall </b>→ matar proceso</p>
+                <p><b>ln </b>→ ln -s original link</p>
+                <p><b>alias </b>→ alias {word}='{command}'</p>
                 <p><b>kill </b>→ terminate or signal process</p>
                 <p><b>^a </b>→ inicio de línea</p>
                 <p><b>^e </b>→ final de línea</p>
@@ -217,7 +213,6 @@
                 <p><b>&& </b>→ ejecuta si anterior dio 0</p>
                 <p><b>|| </b>→ ejecuta si anterior no dio 0</p>
                 <p><b>; </b>→ ejecuta siempre</p>
-
             </div>
         </div>
 
@@ -226,14 +221,56 @@
             <p><b>ps </b>→ document symbols</p>
             <p><b>pw </b>→ grep string</p>
             <p><b>pr </b>→ live grep</p>
-            <p><b>ps </b>→ lsp symbols</p>
             <div class="mem">
+                <p><b>pp </b>→ preferences (dotfiles)</p>
                 <p><b>pt </b>→ notes by tags</p>
                 <p><b>pf </b>→ telescope</p>
                 <p><b>pd </b>→ telescope all files</p>
                 <p><b>ph </b>→ help tags</p>
                 <p><b>pg </b>→ git files</p>
             </div>
+        </div>
+
+        <div style="background-color:green">
+            <p><b>grep</b></p>
+            <p>grep {flags} {regex} {location pattern}</p<           <p><b>-v </b>→ inverse</p>
+            <p><b>Encuentra todos los archivos php que contengan esa ip</b></p>
+            <p>grep -r --include \*.php "10.0.1.131"</p>
+            <p><b>GNU grep no funciona con include</b></p>
+            <p>find . -name "*.php" -exec grep "162" {} \;</p>
+
+            <p><b>-r </b>→ recursive directory</p>
+            <p><b>-i </b>→ case insensitive</p>
+            <p><b>-n </b>→ line number</p>
+            <p><b>-c </b>→ count occurrences</p>
+            <p><b>--include </b>→ especifica qué archivos revisar, se pone un --include por cada pattern</p>
+
+            <p><b>find</b></p>
+            <p>find {location} -type f/d -name {regex}
+            <p><b>-exec </b>→ execute command</p>
+            <p><b>{} </b>→ placeholder for find results</p>
+            <p><b>\; </b>→ execute command for each file</p>
+            <p><b>\+ </b>→ concatenate all find results and execute command for that resulting line </p>
+            <p>{find command} -exec command {}
+            <p><b>-name </b>→ type f/d</p>
+
+            <p><b>locate</b></p>
+            <p>find names in internal database without traversing file system</p>
+
+            <p><b>fzf</b></p>
+            <p><b>--preview="{command}" </b>→ preview file using program, for example cat or bat "bat --color=always {}"</p>
+
+
+            <p><b>awk</b></p>
+            <p>process data on text files, se puede usar para procesar log files, csvs, etc.</p>
+            <p><b>-F </b>→ field separator</p>
+            <p><b>$1,$2,$3 </b>→ fields</p>
+
+            <p><b>awk -F, '$3 &#x3C; 50 {print $1, $2}' data.csv</b></p>
+            <p> mostraría los campos 1 y 2 de las filas en las que el campo 3 sea menor que 50</p>
+
+
+
         </div>
 
         <div style="background-color:blue">
@@ -280,16 +317,18 @@
         </div>
 
         <div style="background-color:blueviolet">
+            <p><b>Vim</b></p>
+            <p><b>:set readonly</b>→ allow write readonly</p>
+            <p><b>:w!</b>→ force write readonly file</p>
+            <p><b>:w! ~/tempfile.txt</b>→ force write to temp file</p>
+            <p><b>:!chmod +w %</b>→ force write to temp file</p>
+        </div>
+        <div style="background-color:blueviolet">
             <p><b>Vim Remaps</b></p>
-            <p><b>^u </b>→ previous buffer</p>
-            <p><b>^i </b>→ next buffer</p>
-            <p><b>^o </b>→ last buffer</p>
             <p>_<b>f </b>→ copy buffer filename</p>
             <p>_<b>j </b>→ quickfix prev</p>
             <p>_<b>k </b>→ quickfix next</p>
-            <p>^<b>arrows </b>→ resize pane</p>
             <p><b>LSP</b></p>
-            <p><b>gd </b>→ go to definition</p>
             <p><b>K </b>→ definition help hover</p>
             <p>_<b>vws </b>→ vim.lsp.buf.workspace_symbol() </p>
             <p>_<b>vd </b>→ vim.diagnostic.open_float() </p>
@@ -300,6 +339,11 @@
             <p>_<b>vrn </b>→ vim.lsp.buf.rename() </p>
             <p>^<b>s </b>→ vim.lsp.buf.signature_help() </p>
             <div class="mem">
+                <p>^<b>arrows </b>→ resize pane</p>
+                <p><b>gd </b>→ go to definition</p>
+                <p><b>^u </b>→ previous buffer</p>
+                <p><b>^i </b>→ next buffer</p>
+                <p><b>^o </b>→ last buffer</p>
                 <p>_<b>o </b>→ copy line to clipboard</p>
                 <p>_<b>¿ </b>→ yabai file</p>
                 <p>_<b>s </b>→ global replace current word</p>
@@ -359,7 +403,6 @@
             <p><b>\E </b>→ end of \U and \L</p>
             <p><b>\e </b>→ end of \U and \L</p>
             <p><b>\r </b>→ split line in two at this point</p>
-            <p><b>\9 </b>→ matched pattern in the ninth pair of \(\)</p>
             <p><b>\l </b>→ next character made lowercase</p>
             <p><b>~ </b>→ previous substitute string</p>
             <p><b>\u </b>→ next character made uppercase</p>
@@ -380,12 +423,8 @@
         </div>
 
         <div style="background-color:green">
-            <p><b>K </b>→ Man page for word</p>
             <p><b>gd </b>→ local declaration</p>
             <p><b>gD </b>→ global declaration</p>
-            <p><b>gj </b>→ multi-line down</p>
-            <p><b>gk </b>→ multi-line up</p>
-            <p><b>ge/gE </b>→ backwards e/E</p>
             <p><b>ge_ </b>→ last non-blank char</p>
             <p><b>H </b>→ top of screen</p>
             <p><b>L </b>→ bottom of the screen</p>
@@ -403,20 +442,23 @@
             <p><b>o </b>→ start/end selection</p>
             <p><b>~ </b>→ switch case</p>
             <p>Select</p>
-            <p><b>b </b>→ ()</p>
-            <p><b>B </b>→ {}</p>
-            <p><b>% </b>→ {} or []</p>
-            <p><b>p </b>→ paragraph</p>
-            <p><b>[ </b>→ block []</p>
             <p><b>f </b>→ increasingly bigger block</p>
             <p><b>gb </b>→ Adds cursor</p>
             <p><b>s </b>→ sentence</p>
-            <p><b>gu </b>→ Switch case</p>
-            <p><b>>% </b>→ Increase indent {/[ block</p>
-            <p><b>>i{ </b>→ Increase inner block indent</p>
+            <p><b>&#x3E;% </b>→ Increase indent {/[ block</p>
+            <p><b>&#x3E;i{ </b>→ Increase inner block indent</p>
             <p><b>=2a{ </b>→ Re-indent '2 blocks'</p>
             <p><b>]p </b>→ Paste match indent</p>
             <div class="mem">
+                <p><b>% </b>→ {} or []</p>
+                <p><b>p </b>→ paragraph</p>
+                <p><b>[ </b>→ block []</p>
+                <p><b>gu </b>→ Switch case</p>
+                <p><b>gj </b>→ multi-line down</p>
+                <p><b>gk </b>→ multi-line up</p>
+                <p><b>ge/gE </b>→ backwards e/E</p>
+                <p><b>b </b>→ ()</p>
+                <p><b>B </b>→ {}</p>
 
             </div>
         </div>

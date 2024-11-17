@@ -12,6 +12,18 @@ vim.keymap.set('n', '<leader>pf', function()
 end, {})
 
 
+vim.keymap.set('n', '<leader>pp', function()
+    require('telescope.builtin').find_files({
+        cwd = '~/dotfiles/',
+        prompt_title = 'Preferences',
+        hidden = true,
+        file_ignore_patterns = {
+            "blender/",
+            ".git/",
+        }
+    })
+end, {})
+
 -- SEARCH INCLUDING HIDDEN FILES ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>pd', function()
     require('telescope.builtin').find_files({

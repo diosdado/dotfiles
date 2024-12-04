@@ -22,11 +22,12 @@ alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:pub
 
 # tmux shortcuts
 alias ta="tmux attach"
+alias tx="~/.scripts/tmux-sessionizer.sh -d"
 alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable" # Scriptable widgets
 alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles" # dotfiles
 alias th="tmux new-session -s home -c ~/" # home
 alias tss="~/.scripts/tmux-sessionizer.sh" # nvim & terminal
-alias tssh="~/.scripts/tmux-sessionizer.sh -d ~/mounted-sshfs" # nvim & terminal with mounted ssh
+alias tsh="~/.scripts/tmux-sessionizer.sh -f" # nvim & terminal with mounted ssh
 alias tsss="~/.scripts/tmux-sessionizer.sh -s" # nvim, terminal & sass compiler
 
 # load plugins

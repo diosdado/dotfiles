@@ -81,6 +81,7 @@ cmd - 0x0A : open /Applications/kitty.app # 0x0A is |
 cmd - 1 : open /Applications/Vivaldi.app
 cmd - 2 : open /System/Applications/Calendar.app
 cmd - 3 : open ~/Applications/Instagram.app ; open ~/Applications/whatsapp.com.app
+# cmd - 3 : open ~/Applications/whatsapp.com.app
 cmd - 4 : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
 cmd - 7 : open ~/Applications/Spotify.app
 cmd - 8 : open /System/Applications/Music.app

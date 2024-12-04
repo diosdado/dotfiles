@@ -9,11 +9,12 @@ OIFS="$IFS"
 IFS=$'\n'
 
 # get parameters from flag
-while getopts d:s flag
+while getopts d:sf flag
 do
     case "${flag}" in
         d) directory=${OPTARG};; # create session in specific directory
         s) watch_sass="1";; # create extra split for sass watch compilation
+        f) volumes=1;;
     esac
 done
 
@@ -21,8 +22,13 @@ done
 if [[ -n $directory ]]; then
     selected=$directory
 else
-    selected=$(find ~/Desktop/Projects/Development/ -mindepth 2 -maxdepth 2 -type d | fzf)
+    if [[ -z $volumes ]]; then
+        selected=$(find ~/Desktop/Projects/Development/ -mindepth 2 -maxdepth 2 -type d | fzf)
+    else
+        selected=$(find ~/Library/Application\ Support/Mountain\ Duck/Volumes.noindex/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    fi
 fi
+
 
 # abort if there is no selected directory
 if [[ -z $selected ]]; then
@@ -41,19 +47,20 @@ tmux_running=$(pgrep tmux)
 # -------------------------------------------------------------------------------------------------
 
 # settings for new tmux session
-_s="$selected_name -c $selected \\; "
+_s="$selected_name -c '$selected' \\; "
 _s+="split-window -v \\; "
 _s+="send-keys -t 1.1 \"nvim .\" Enter \\; "
-_s+="send-keys -t 1.2 \"cd $selected\" Enter \\; "
+_s+="send-keys -t 1.2 \"cd '$selected'\" Enter \\; "
 _s+="send-keys -t 1.2 \"clear\" Enter \\; "
 _s+="resize-pane -t 1.2 -y 10% \\; "
 # create new terminal to watch for file changes in sass files
 if [[ -n $watch_sass ]]; then
     _s+="split-window -t 1.2 -h \\; "
-    _s+="send-keys -t 1.3 \"cd $selected\" Enter \\; "
+    _s+="send-keys -t 1.3 \"cd '$selected'\" Enter \\; "
     _s+="send-keys -t 1.3 \"sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css\" Enter \\; "
 fi
 _s+="select-pane -t 1.1 \\; "
+
 
 
 # tmux is not running

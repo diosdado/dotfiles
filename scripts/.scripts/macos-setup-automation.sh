@@ -73,7 +73,7 @@ brew install gnu-tar
 brew install gnu-indent
 brew install gnu-which
 brew install findutils
-
+brew install inetutils
 
 # -------------------------------------------------------------------------------------------------
 # ZSH Tools
@@ -125,14 +125,12 @@ CASKS=(
     google-drive
     mamp
     google-chrome
-    rocket
     logi-options+
     wacom-tablet
     contexts
     tomatobar
     monitorcontrol
     devtoys
-    homerow
     kitty
     alacritty
     pika
@@ -153,8 +151,8 @@ CASKS=(
     whisky
     appcleaner
     firefox@developer-edition
+    librewolf
     openemu
-    krita
     sequel-ace
     itsycal
     zoom
@@ -162,6 +160,7 @@ CASKS=(
     keepingyouawake
     qlstephen
     suspicious-package
+    mysqlworkbench
 )
 PYTHON_PACKAGES=(
     ipython

@@ -68,9 +68,13 @@ yabai -m rule --add app="^Screen\ Sharing$"         manage=off
 yabai -m rule --add app="^Boom\ 3D$"                manage=off
 yabai -m rule --add app="^Finder$"                  manage=off
 yabai -m rule --add app="^TextEdit$"                manage=off
+yabai -m rule --add app="^Hex\ Fiend$"              manage=off
+yabai -m rule --add app="^ownCloud$"                manage=off
+yabai -m rule --add app="^Trello$"                  manage=off
+yabai -m rule --add app="owncloud"                  manage=off
+yabai -m rule --add app="^Hex\ Fiend$"              manage=off
 # yabai -m rule --add app="VLC"                       manage=off
 # yabai -m rule --add app="VLC"                       sticky=on
-yabai -m rule --add app="owncloud"                  manage=off
 yabai -m rule --add app="Reminders"                 sticky=on
 yabai -m rule --add app="Reminders"                 manage=off
 yabai -m rule --add app="Mountain\ Duck"            sticky=on

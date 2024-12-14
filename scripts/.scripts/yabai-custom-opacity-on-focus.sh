@@ -7,8 +7,17 @@ do
     esac
 done
 
+query='.[] | select(
+    ."app" == "Stickies" or
+    ."app" == "Reminders" or
+    ."app" == "Finder" or
+    ."app" == "Instagram" or
+    ."app" == "System Settings" or
+    ."app" == "whatsapp.com"
+) | .id'
+
 focused=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true) | .id')
-windows=$(yabai -m query --windows | jq '.[] | select(."app" == "Stickies" or ."app" == "Reminders") | .id')
+windows=$(yabai -m query --windows | jq "$query")
 
 for win_id in $windows; do
     if [[ "$focused" -eq "$win_id" || "$reset" -eq "1" ]]; then

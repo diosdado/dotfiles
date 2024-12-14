@@ -24,6 +24,16 @@ vim.keymap.set('n', '<leader>pp', function()
     })
 end, {})
 
+
+-- FAST CLIPBOARD FILES ---------------------------------------------------------------------------
+vim.keymap.set('n', '<leader>pc', function()
+    require('telescope.builtin').find_files({
+        cwd = '~/clipboard/',
+        prompt_title = 'Fast clipboard',
+    })
+end, {})
+
+
 -- SEARCH INCLUDING HIDDEN FILES ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>pd', function()
     require('telescope.builtin').find_files({
@@ -65,6 +75,12 @@ vim.keymap.set('n', '<leader>pnn', function()
     })
 end, {})
 
+vim.keymap.set('n', '<leader>pk', function()
+    require('telescope').extensions.live_grep_args.live_grep_args({
+        cwd = '/Users/david.diosdado/ownCloud/Bases-conocimiento',
+        prompt_title = 'Sandox Knownledge Base',
+    })
+end, {})
 
 -- LARAVEL SHORTCUTS ------------------------------------------------------------------------------
 -- Migrations

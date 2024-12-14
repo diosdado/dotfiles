@@ -58,6 +58,12 @@ vim.keymap.set("n", "<tab>", "<nop>")
 -- select all
 vim.keymap.set("n", "<C-a>", "ggVG")
 
+
+
+vim.keymap.set("n", "<leader>+", ":windo diffthis<CR>")
+vim.keymap.set("n", "<leader>}", ":windo diffoff<CR>")
+
+
 --------------------------------------------------------------------------------------------------
 -- buffers
 --------------------------------------------------------------------------------------------------
@@ -124,7 +130,7 @@ vim.keymap.set("n", "<leader>f", ":let @\" = expand('%')<CR>")
 -- save file, switch to browser and refresh
 vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
 -- make the current file executable
-vim.keymap.set("n", "<leader>x", "<cmd>chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", ":! chmod +x %<CR>")
 -- show yabai window objects
 vim.keymap.set("n", "<leader>¿", ":! yabai -m query --windows > ~/yabai-output.json<CR><CR>:e ~/yabai-output.json<CR>", { silent = true })
 -- create new note

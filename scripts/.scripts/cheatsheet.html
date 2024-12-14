@@ -120,6 +120,9 @@
             <p><b>&#x3C;b&#x3E;arrow </b>→ move between splits</p>
             <p><b>&#x3C;b&#x3E;}{ </b>→ move pane</p>
             <p><b>&#x3C;b&#x3E;! </b>→ turn pane into a window</p>
+            <p><b>list-keys </b>→ shortcuts</p>
+            <p>tmux new -s session-name</p>
+            <p>tmux attach -t session-name</p>
             <div class="mem">
                 <p><b>&#x3C;b&#x3E;z </b>→ zoom</p>
                 <p><b>⌘u </b>→ previous session</p>
@@ -129,8 +132,6 @@
                 <p><b>Custom</b></p>
                 <p><b>&#x3C;b&#x3E;<span style="opacity:.99;">-</span> </b>→ split horizontal</p>
                 <p><b>&#x3C;b&#x3E;| </b>→ split vertical</p>
-                <p>tmux new -s session-name</p>
-                <p>tmux attach -t session-name</p>
             </div>
         </div>
         <div style="background-color:blue">
@@ -164,16 +165,32 @@
         </div>
         <div style="background-color:purple">
             <p><b>BASH</b></p>
-            <p><b>^z </b>→ sleep program</p>
-            <p><b>^k </b>→ borrar hasta final de línea</p>
+ps -aux |grep -i postgres
+doas netstat -atn | grep
+doas netstat -na -f inet inet | grep LISTEN
+/var/www/cache -mapall=root -network=10.0.0.0 -mask=255.255.240.0
+
+            <p><b>uname -a </b>→ sistema operativo</p>
+            <p><b>dmesg | head -1 </b>→ kernel</p>
+
+            <p><b>^z </b>→ sleep process</p>
+            <p><b>fg </b>→ resume sleeping process</p>
+
+            <p><b>sudo passwd</b> → modifica password</p>
+            <p><b>sudo ls -plah /home</b> → dice qué usuarios tienen home *si un usuario nunca se ha loggeado no crea su carpeta home</p>
+            <p><b>more /etc/passwd</b> → lista los usuarios</p>
+            <p><b>more /etc/group</b> → más fiable pero no siempre está</p>
+            <p><b>ifconfig</b> → configuration of network</p>
+
             <p><b>^r </b>→ buscar en historial</p>
             <p><b>id </b>→ id user, group</p>
-            <p><b>tail</b>→ changes file realtime → tail -f {filename}</p>
-            <p><b>fswatch</b>watch changes in directory → fswatch -xr {directory}</p>
+            <p><b>tar </b>→ expandir: tar -xvf {filename}, comprimir: tar -czvf file.tar.gz directory </p>
+            <p><b>tail </b>→ changes file realtime → tail -f {filename}</p>
+            <p><b>fswatch </b>→ watch changes in directory → fswatch -xr {directory}</p>
             <p><b>scp </b>→ scp {user}@{host}:{remote-file} {destination} -P {port}</p>
+            <p><b>cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat &#x3E;&#x3E; ~/.ssh/authorized_keys'</b></p>
             <p><b>sshfs </b>→ sshfs {user}@{host}:{directory} -o port={port}</p>
             <p><b>nvim </b>→ scp://{user}@{host}:{port}//{remote-file}</p>
-            <p><b>tar </b>→ tar -xvf {filename}</p>
             <p><b>chmod, chown</b> refs:{a}ll, {u}ser, {g}roup, {o}ther. modes:{r}ead, {w}rite, e{x}ecute. operators:{-}remove, {+}add, {=}clear</p>
             <p><b>chmod -R 774 [dir] </b>→ permissions → chmod {ref}{operator}{modes}</p>
             <p>chmod u=rwx,go=u-w → readable/executable by everyone and writable by owner only</p>
@@ -318,6 +335,8 @@
 
         <div style="background-color:blueviolet">
             <p><b>Vim</b></p>
+
+            <p><b>:windo diffthis</b>→ diff two splits</p>
             <p><b>:set readonly</b>→ allow write readonly</p>
             <p><b>:w!</b>→ force write readonly file</p>
             <p><b>:w! ~/tempfile.txt</b>→ force write to temp file</p>

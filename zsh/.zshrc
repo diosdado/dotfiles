@@ -16,19 +16,36 @@ export PATH=~/.composer/vendor/bin:$PATH
 # aliases
 alias phpactor="~/.local/bin/phpactor"
 alias so="source ~/.zshrc" # reload zshrc
-alias ls="ls --color=auto" # always color ls output
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
 alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # whatch sass
+
+alias msg="~/.scripts/mysql-script-generator.sh"
+
+
+alias mys="~/.scripts/mysql-select-length.sh"
 
 # tmux shortcuts
 alias ta="tmux attach"
 alias tx="~/.scripts/tmux-sessionizer.sh -d"
 alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable" # Scriptable widgets
 alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles" # dotfiles
-alias th="tmux new-session -s home -c ~/" # home
+alias th="~/.scripts/tmux-sessionizer.sh -d ~/" # home
 alias tss="~/.scripts/tmux-sessionizer.sh" # nvim & terminal
-alias tsh="~/.scripts/tmux-sessionizer.sh -f" # nvim & terminal with mounted ssh
+alias tsx="~/.scripts/tmux-sessionizer.sh -d /Volumes/Music/Projects/" # nvim & terminal
+alias tssh="~/.scripts/tmux-sessionizer.sh -d ~/mounted-sshfs/" # nvim & terminal with mounted ssh
+alias tftp="~/.scripts/tmux-sessionizer.sh -f" # nvim & terminal with mounted ssh
 alias tsss="~/.scripts/tmux-sessionizer.sh -s" # nvim, terminal & sass compiler
+
+
+# reference to the mamp mysql installation
+alias mmysql="/Applications/MAMP/Library/bin/mysql"
+alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
+
+
+# override commands
+alias ls="ls -plah --color=auto" # always color ls output
+alias more="less"
+
 
 # load plugins
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh

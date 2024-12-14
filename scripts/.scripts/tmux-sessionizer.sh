@@ -23,7 +23,7 @@ if [[ -n $directory ]]; then
     selected=$directory
 else
     if [[ -z $volumes ]]; then
-        selected=$(find ~/Desktop/Projects/Development/ -mindepth 2 -maxdepth 2 -type d | fzf)
+        selected=$(find ~/Desktop/Projects/Development /Volumes/Music/Projects/Development -mindepth 2 -maxdepth 2 -type d | fzf)
     else
         selected=$(find ~/Library/Application\ Support/Mountain\ Duck/Volumes.noindex/ -mindepth 1 -maxdepth 1 -type d | fzf)
     fi

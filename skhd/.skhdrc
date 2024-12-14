@@ -2,6 +2,26 @@
 # all special keys are for an spanish iso keyboard
 
 
+
+# fast clipboard
+# ´
+ctrl - 0x21 : cat ~/clipboard/cp_backtick.txt | pbcopy ; sendkeys -c "<c:v:command>"
+# +
+ctrl - 0x1E : cat ~/clipboard/cp_plus.txt | pbcopy ; sendkeys -c "<c:v:command>"
+# {
+ctrl - 0x27 : cat ~/clipboard/cp_curly_open.txt | pbcopy ; sendkeys -c "<c:v:command>"
+# }
+ctrl - 0x2A : cat ~/clipboard/cp_curly_close.txt | pbcopy ; sendkeys -c "<c:v:command>"
+# ,
+ctrl - 0x2B : cat ~/clipboard/cp_colon.txt | pbcopy ; sendkeys -c "<c:v:command>"
+# .
+ctrl - 0x2F : cat ~/clipboard/cp_period.txt | pbcopy ; sendkeys -c "<c:v:command>"
+# -
+ctrl - 0x2C : cat ~/clipboard/cp_hyphen.txt | pbcopy ; sendkeys -c "<c:v:command>"
+
+# ¿
+ctrl - 0x18 : ~/.scripts/fast-clipboard-contents.sh
+
 # Restart Yabai
 shift + alt - z : ~/.scripts/yabai-custom-management-of-new-windows.sh -a
 ctrl + shift + alt - z : yabai --restart-service
@@ -92,6 +112,7 @@ alt - 1 : open /Applications/Inkscape.app
 alt - 2 : open /Applications/Blender.app
 alt - 3 : open /Applications/RawTherapee.app
 hyper - return : open /System/Applications/Reminders.app
+# hyper - 5 : open ~/Applications/ownCloud.app
 hyper - 5 : open /Users/david.diosdado/ownCloud/
 hyper - 6 : open /System/Library/CoreServices/Finder.app/Contents/Applications/AirDrop.app
 hyper - 7 : open ~/Desktop/Projects/
@@ -110,14 +131,17 @@ hyper - m : open /Applications/MAMP\ PRO.app
 hyper - n : open /System/Applications/Utilities/Screen\ Sharing.app
 hyper - 0x29 : open /Applications/Firefox\ Developer\ Edition.app #0x29 is ñ
 hyper - o : open /Applications/ONLYOFFICE.app
+# '
+hyper - 0x1B : open /Applications/DeskPad.app
+# hyper - p : open /Applications/Sloth.app
 hyper - p : open /Applications/DeskPad.app
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 hyper - r : open /Applications/Free\ Ruler.app
 hyper - s : open /System/Applications/Stickies.app
-hyper - t : open /System/Applications/TextEdit.app
+hyper - t : open ~/Applications/Trello.app #open /System/Applications/TextEdit.app
 hyper - v : open /Applications/VSCodium.app
 # w is used for the color picker Pika app
-hyper - x : open /Applications/Xcode.app
+hyper - x : open /Applications/Hex\ Fiend.app # open /Applications/Xcode.app
 hyper - z : open /System/Applications/System\ Settings.app
 
 

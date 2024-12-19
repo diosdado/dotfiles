@@ -52,18 +52,6 @@ fi
 
 
 # -------------------------------------------------------------------------------------------------
-# Install oh-my-zsh and powerlevel10k
-# -------------------------------------------------------------------------------------------------
-echo "Installing oh-my-zsh and powerlevel10k..."
-# oh-my-szh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-zsh_theme="powerlevel10k/powerlevel10k"
-sed -i '' "s/robbyrussell/$zsh_theme/g" ~/.zshrc
-
-
-# -------------------------------------------------------------------------------------------------
 # GNU Core Tools and utilities
 # -------------------------------------------------------------------------------------------------
 echo "Installing GNU Tools and utilities..."
@@ -98,7 +86,6 @@ PACKAGES=(
     terminal-notifier
     postgresql
     bash
-    hub
     imagemagick
     python
     python3
@@ -124,15 +111,12 @@ CASKS=(
     boom-3d
     google-drive
     mamp
-    google-chrome
     logi-options+
     wacom-tablet
     contexts
-    tomatobar
     monitorcontrol
     devtoys
     kitty
-    alacritty
     pika
     captin
     blender
@@ -146,21 +130,19 @@ CASKS=(
     onlyoffice
     owncloud
     rawtherapee
-    the-unarchiver
     transmission
     whisky
     appcleaner
     firefox@developer-edition
-    librewolf
     openemu
     sequel-ace
     itsycal
-    zoom
     steam
-    keepingyouawake
     qlstephen
     suspicious-package
     mysqlworkbench
+    dosbox
+    powershell
 )
 PYTHON_PACKAGES=(
     ipython

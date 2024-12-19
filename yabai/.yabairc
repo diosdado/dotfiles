@@ -54,14 +54,14 @@ yabai -m rule --add app="^Photo\ Booth$"            manage=off
 yabai -m rule --add app="^Whisky$"                  manage=off
 yabai -m rule --add app="^FaceTime$"                manage=off
 yabai -m rule --add app="^Activity\ Monitor$"       manage=off
-yabai -m rule --add app="^Preview$"                 manage=off
+# yabai -m rule --add app="^Preview$"                 manage=off
 yabai -m rule --add app="^Karabiner-Elements$"      manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
 yabai -m rule --add app="^Logi\ Options\+$"         manage=off
 yabai -m rule --add app="^GIMP$"                    manage=off
 yabai -m rule --add app="^Inkscape$"                manage=off
 yabai -m rule --add app="DeskPad"                   manage=off
-yabai -m rule --add app="^Only Switch$"             manage=off
+yabai -m rule --add app="^Only\ Switch$"            manage=off
 yabai -m rule --add app="^Contacts$"                manage=off
 yabai -m rule --add app="^Print\ Center$"           manage=off
 yabai -m rule --add app="^Screen\ Sharing$"         manage=off
@@ -73,17 +73,20 @@ yabai -m rule --add app="^ownCloud$"                manage=off
 yabai -m rule --add app="^Trello$"                  manage=off
 yabai -m rule --add app="owncloud"                  manage=off
 yabai -m rule --add app="^Hex\ Fiend$"              manage=off
-# yabai -m rule --add app="VLC"                       manage=off
-# yabai -m rule --add app="VLC"                       sticky=on
-yabai -m rule --add app="Reminders"                 sticky=on
-yabai -m rule --add app="Reminders"                 manage=off
-yabai -m rule --add app="Mountain\ Duck"            sticky=on
+yabai -m rule --add app="VLC"                       manage=off
 yabai -m rule --add app="Mountain\ Duck"            manage=off
+yabai -m rule --add app="UTM"                       manage=off
+yabai -m rule --add app="Sloth"                     manage=off
+yabai -m rule --add app="VirtualBox"                manage=off
+yabai -m rule --add app="Homerow"                   manage=off
+yabai -m rule --add app="App Store"                 manage=off
 
+yabai -m rule --add app="VLC"                       sticky=on
+yabai -m rule --add app="Mountain\ Duck"            sticky=on
 # spaces
 yabai -m space 1 --label s_main
-yabai -m space 3 --label s_office_games
 yabai -m space 2 --label s_design
+yabai -m space 3 --label s_office_games
 yabai -m space 4 --label s_tasks
 yabai -m space 5 --label s_email
 yabai -m space 6 --label s_texting
@@ -95,7 +98,7 @@ yabai -m space 9 --label s_media
 yabai -m rule --add app="^Alacritty$"               space=s_main
 yabai -m rule --add app="^kitty$"                   space=s_main
 yabai -m rule --add app="^Vivaldi$"                 space=s_main
-yabai -m rule --add app="^Firefox Developer Edition$"   space=s_main
+yabai -m rule --add app="^Firefox\ Developer\ Edition$"   space=s_main
 yabai -m rule --add app="^Filezilla$"               space=s_main
 yabai -m rule --add app="^Krita$"                   space=s_design
 yabai -m rule --add app="^Inkscape$"                space=s_design
@@ -103,6 +106,7 @@ yabai -m rule --add app="^GIMP$"                    space=s_design
 yabai -m rule --add app="^Blender$"                 space=s_design
 yabai -m rule --add app="^RawTherapee$"             space=s_design
 yabai -m rule --add app="^Calendar$"                space=s_tasks
+yabai -m rule --add app="^Reminders$"               space=s_tasks
 yabai -m rule --add app="^Gmail$"                   space=s_email
 yabai -m rule --add app="^Mail$"                    space=s_email
 yabai -m rule --add app="^whatsapp.com$"            space=s_texting

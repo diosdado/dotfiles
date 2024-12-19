@@ -4,15 +4,183 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Diosdado - Media control keys using option key - use with fn checkbox disabled and f1 = f1 etc. in Function Keys menu.",
+                        "description": "Diosdado - Hyper+backspace → CapsLock",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [{ "key_code": "caps_lock" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Escape → Meh(⌃⌥⇧)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_shift",
+                                        "modifiers": ["right_control", "right_option"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Hyper+cmd-(hjkl) → home/pg-down/pg-up/end",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "home" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "page_down" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "page_up" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "end" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Hyper+spacebar → a+ctrl",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Hyper+option-(hjkl) → ctrl-(hjkl)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "h",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "j",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "l",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - F keys+option → Media keys (needs fn disabled and f1=f1 etc)",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "f1",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "display_brightness_decrement" }],
                                 "type": "basic"
@@ -20,10 +188,7 @@
                             {
                                 "from": {
                                     "key_code": "f2",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "display_brightness_increment" }],
                                 "type": "basic"
@@ -31,10 +196,7 @@
                             {
                                 "from": {
                                     "key_code": "f3",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "mission_control" }],
                                 "type": "basic"
@@ -42,10 +204,7 @@
                             {
                                 "from": {
                                     "key_code": "f4",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "launchpad" }],
                                 "type": "basic"
@@ -53,10 +212,7 @@
                             {
                                 "from": {
                                     "key_code": "f5",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "illumination_decrement" }],
                                 "type": "basic"
@@ -64,10 +220,7 @@
                             {
                                 "from": {
                                     "key_code": "f6",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "illumination_increment" }],
                                 "type": "basic"
@@ -75,10 +228,7 @@
                             {
                                 "from": {
                                     "key_code": "f7",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "rewind" }],
                                 "type": "basic"
@@ -86,10 +236,7 @@
                             {
                                 "from": {
                                     "key_code": "f8",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "play_or_pause" }],
                                 "type": "basic"
@@ -97,10 +244,7 @@
                             {
                                 "from": {
                                     "key_code": "f9",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "fastforward" }],
                                 "type": "basic"
@@ -108,10 +252,7 @@
                             {
                                 "from": {
                                     "key_code": "f10",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "mute" }],
                                 "type": "basic"
@@ -119,10 +260,7 @@
                             {
                                 "from": {
                                     "key_code": "f11",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
                                 "to": [{ "key_code": "volume_decrement" }],
                                 "type": "basic"
@@ -143,33 +281,29 @@
                             {
                                 "from": {
                                     "key_code": "comma",
-                                    "modifiers": { "mandatory": ["right_command", "right_option", "right_control", "right_shift"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["command"]
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["left_shift"]
                                     }
-                                ],
+                                },
+                                "to": { "key_code": "escape" },
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "period",
-                                    "modifiers": { "mandatory": ["right_command", "right_option", "right_control", "right_shift"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["command"]
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["left_shift"]
                                     }
-                                ],
+                                },
+                                "to": { "key_code": "escape" },
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Diosdado - Hyper-(hjkl) to (←↓↑→) keys",
+                        "description": "Diosdado - Hyper+(hjkl) → (←↓↑→) keys",
                         "manipulators": [
                             {
                                 "from": {
@@ -214,55 +348,11 @@
                                 },
                                 "to": [{ "key_code": "right_arrow" }],
                                 "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "open_bracket",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "home" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "close_bracket",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "page_up" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "end" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "page_down" }],
-                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Diosdado - Caps Lock → Hyper Key (⌃⌥⇧⌘)",
+                        "description": "Diosdado - CapsLock → Hyper(⌃⌥⇧⌘)",
                         "manipulators": [
                             {
                                 "from": {
@@ -280,7 +370,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "slash",
+                                    "key_code": "delete_or_backspace",
                                     "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
                                 },
                                 "to": [{ "key_code": "caps_lock" }],
@@ -348,10 +438,6 @@
                         "vendor_id": 1133
                     },
                     "simple_modifications": [
-                        {
-                            "from": { "key_code": "f12" },
-                            "to": [{ "key_code": "right_control" }]
-                        },
                         {
                             "from": { "key_code": "grave_accent_and_tilde" },
                             "to": [{ "key_code": "non_us_backslash" }]

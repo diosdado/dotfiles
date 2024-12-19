@@ -9,7 +9,6 @@ done
 
 query='.[] | select(
     ."app" == "Stickies" or
-    ."app" == "Reminders" or
     ."app" == "Finder" or
     ."app" == "Instagram" or
     ."app" == "System Settings" or

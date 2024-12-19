@@ -15,3 +15,4 @@ else
     yabai -m window "$window_id" --opacity 0.4
 fi
 
+

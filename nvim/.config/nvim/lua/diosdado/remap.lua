@@ -56,7 +56,7 @@ vim.keymap.set("n", "Q", "<nop>")
 -- disable tab
 vim.keymap.set("n", "<tab>", "<nop>")
 -- select all
-vim.keymap.set("n", "<C-a>", "ggVG")
+vim.keymap.set("n", "<leader>a", "ggVG")
 
 
 
@@ -90,11 +90,11 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<C-u>", ":bprev<CR>")
+vim.keymap.set("n", "<F10>", ":bprev<CR>")
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<C-i>", ":bnext<CR>")
+vim.keymap.set("n", "<F11>", ":bnext<CR>")
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<C-o>", ":b#<CR>")
+vim.keymap.set("n", "<F12>", ":b#<CR>")
 -- quickfix
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
@@ -126,7 +126,8 @@ vim.keymap.set("n", "<leader>f", ":let @\" = expand('%')<CR>")
 --------------------------------------------------------------------------------------------------
 -- etc
 --------------------------------------------------------------------------------------------------
-
+-- replace in selection
+vim.keymap.set("v", "<leader>r", ':s::g<Left><Left>')
 -- save file, switch to browser and refresh
 vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
 -- make the current file executable

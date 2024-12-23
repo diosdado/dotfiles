@@ -12,34 +12,32 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 export TERM=xterm-256color
 export PATH=~/.composer/vendor/bin:$PATH
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+
 
 # aliases
 alias phpactor="~/.local/bin/phpactor"
 alias so="source ~/.zshrc" # reload zshrc
-alias cdp="cd ~/Desktop/Projects"
+alias cdp="cd ~/Projects"
 alias cdd="cd ~/Downloads"
+
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
 alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # whatch sass
 
-alias msg="~/.scripts/mysql-script-generator.sh"
-
-
-alias mys="~/.scripts/mysql-select-length.sh"
-
 # tmux shortcuts
 alias ta="tmux attach"
-alias tx="~/.scripts/tmux-sessionizer.sh -d"
-alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable" # Scriptable widgets
-alias td="~/.scripts/tmux-sessionizer.sh -d ~/dotfiles" # dotfiles
-alias th="~/.scripts/tmux-sessionizer.sh -d ~/" # home
-alias tss="~/.scripts/tmux-sessionizer.sh" # nvim & terminal
-alias tsx="~/.scripts/tmux-sessionizer.sh -d /Volumes/Music/Projects/" # nvim & terminal
-alias tssh="~/.scripts/tmux-sessionizer.sh -d ~/mounted-sshfs/" # nvim & terminal with mounted ssh
-alias tftp="~/.scripts/tmux-sessionizer.sh -f" # nvim & terminal with mounted ssh
-alias tsss="~/.scripts/tmux-sessionizer.sh -s" # nvim, terminal & sass compiler
-alias tk="~/.scripts/tmux-sessionizer.sh -d /Users/david.diosdado/ownCloud/Bases-conocimiento/"
+alias ts="~/.scripts/tmux-sessionizer.sh"
+alias tsd="ts -d"
+alias th="tsd ~/"
+
+alias tssh="tsd ~/mounted-sshfs/" # nvim & terminal with mounted ssh
+alias tftp="ts -f" # nvim & terminal with mounted ssh
+alias tsass="ts -s" # nvim, terminal & sass compiler
+alias tk="tsd /Users/david.diosdado/ownCloud/Bases-conocimiento/"
 
 
+# alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable" # Scriptable widgets
 # reference to the mamp mysql installation
 alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"

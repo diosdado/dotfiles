@@ -38,7 +38,7 @@ else
     yabai -m space "$space_index" --layout "$new_layout"
 fi
 
-~/.scripts/notification.sh -m "$space\rLayout: $new_layout" -t "Yabai"
 
+terminal-notifier -message "$space\rLayout: $new_layout" -title "Yabai"
 
 

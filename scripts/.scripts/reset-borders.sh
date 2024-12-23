@@ -10,5 +10,5 @@ borders                         \
     inactive_color=0x00ffffff   \
     width=8.0                   \
     hidpi=on                    \
-    blacklist="Stickies,Free\ Ruler,Reminders"
+    blacklist="Stickies,Free\ Ruler,Reminders,wine64\-preloader,steamwebhelper.exe"
 

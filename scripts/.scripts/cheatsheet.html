@@ -184,7 +184,7 @@
 
             <p><b>^r </b>→ buscar en historial</p>
             <p><b>id </b>→ id user, group</p>
-            <p><b>tar </b>→ expandir: tar -xvf {filename}, comprimir: tar -czvf file.tar.gz directory </p>
+            <p><b>tar </b>→ extract: tar -xvf {filename}, compress: tar -czvf {filename} {data} </p>
             <p><b>tail </b>→ changes file realtime → tail -f {filename}</p>
             <p><b>fswatch </b>→ watch changes in directory → fswatch -xr {directory}</p>
             <p><b>scp </b>→ scp {user}@{host}:{remote-file} {destination} -P {port}</p>
@@ -335,9 +335,13 @@
 
         <div style="background-color:blueviolet">
             <p><b>Vim</b></p>
-
-            <p><b>:windo diffthis</b>→ diff two splits</p>
-            <p><b>:set readonly</b>→ allow write readonly</p>
+            <p><b>:o </b>→ open file</p>
+            <p><b>:saveas </b>→ save a copy with another name</p>
+            <p><b>:bd </b>→ buffer delete (close file)</p>
+            <p><b>^w </b>→ windows (s:split, w:switch, q:quit, v:split)</p>
+            <p><b>:w </b>→ !sudo tee % </p>
+            <p><b>:windo </b>→ diffthis</b>→ diff two splits</p>
+            <p><b>:set </b>→ readonly</b>→ allow write readonly</p>
             <p><b>:w!</b>→ force write readonly file</p>
             <p><b>:w! ~/tempfile.txt</b>→ force write to temp file</p>
             <p><b>:!chmod +w %</b>→ force write to temp file</p>

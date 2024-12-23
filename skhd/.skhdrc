@@ -39,8 +39,8 @@ shift + cmd - l : yabai -m window --resize right:200:0
 shift + alt - o : ~/.scripts/yabai-toggle-opacity.sh
 
 # Restart Yabai
-shift + alt - z : ~/.scripts/yabai-custom-management-of-new-windows.sh -a
-ctrl + shift + alt - z : yabai --restart-service
+
+shift + alt - z : yabai --restart-service
 shift + alt - x : ~/.scripts/reset-borders.sh
 
 # Make primary window
@@ -96,7 +96,7 @@ hyper - 6 : open /System/Library/CoreServices/Finder.app/Contents/Applications/A
 hyper - 7 : open ~/Desktop/Projects/
 hyper - 8 : open ~/Google\ Drive/My\ Drive/
 hyper - 9 : open ~/Library/Mobile\ Documents/com~apple~CloudDocs/
-hyper - 0x1B : ~/.scripts/fast-clipboard-contents.sh -f ~/.cb.txt ; qlmanage -p ~/.cb.txt #
+hyper - 0x1B : ~/.scripts/fast-clipboard-contents.sh
 hyper - 0x18 : qlmanage -p ~/.scripts/cheatsheet.html # ¿
 
 hyper - a : open /Applications/Safari.app
@@ -116,8 +116,7 @@ hyper - m : open /Applications/MAMP\ PRO.app
 # hyper - n
 rcmd + rshift + ralt + rctrl - 0x29 : ~/.scripts/development-browser.sh # ñ
 rcmd + rshift + ralt + rctrl + lshift - 0x29 : ~/.scripts/development-browser.sh -r # ñ + shift
-rcmd + rshift + ralt + rctrl - o : open /Applications/ONLYOFFICE.app
-rcmd + rshift + ralt + rctrl + lshift - o : open -n /Applications/ONLYOFFICE.app # o + shift
+# hyper - o
 hyper - p : open /Applications/Sloth.app
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 hyper - r : open /Applications/Free\ Ruler.app
@@ -134,7 +133,8 @@ hyper - z : open /System/Applications/System\ Settings.app
 # Meh
 # -------------------------------------------------------------------------------------------------
 
-meh - f1 : open /Applications/ONLYOFFICE.app
+rshift + ralt + rctrl - f1 : open /Applications/ONLYOFFICE.app
+rshift + ralt + rctrl + lshift - f1 : open -n /Applications/ONLYOFFICE.app
 meh - f2 : open /Applications/Inkscape.app
 meh - f3 : open /Applications/GIMP.app
 meh - f4 : open /Applications/RawTherapee.app
@@ -153,6 +153,8 @@ meh - v : open /Applications/VLC.app
 meh - w : open /Applications/Whisky.app
 
 meh - space : yabai -m space --toggle show-desktop
+meh - backspace : ~/.scripts/notification-disk-free.sh
+
 
 # -------------------------------------------------------------------------------------------------
 # Actions

@@ -8,6 +8,7 @@
 OIFS="$IFS"
 IFS=$'\n'
 
+
 # get parameters from flag
 while getopts d:sf flag
 do
@@ -18,12 +19,13 @@ do
     esac
 done
 
+
 # select the directory to create a session
 if [[ -n $directory ]]; then
     selected=$directory
 else
     if [[ -z $volumes ]]; then
-        selected=$(find ~/Desktop/Projects/Development /Volumes/Music/Projects/Development -mindepth 2 -maxdepth 2 -type d | fzf)
+        selected=$(find ~/Desktop/Projects/Development /Volumes/Diosdado/Projects/Development -mindepth 2 -maxdepth 2 -type d | fzf)
     else
         selected=$(find ~/Library/Application\ Support/Mountain\ Duck/Volumes.noindex/ -mindepth 1 -maxdepth 1 -type d | fzf)
     fi
@@ -35,10 +37,12 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
+
 # set session name to the directory name
 selected_name=$(basename "$selected" | tr . _)
 # get the tmux process id
 tmux_running=$(pgrep tmux)
+
 
 # -------------------------------------------------------------------------------------------------
 # I use two specific layouts of tmux session:
@@ -78,3 +82,6 @@ fi
 tmux attach \; switch-client -t $selected_name
 
 IFS="$OIFS"
+
+
+

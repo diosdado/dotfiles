@@ -12,7 +12,7 @@ yabai -m window "$window_id" --opacity 0.0
 if [[ "1.0000" > "$window_opacity" ]]; then
     yabai -m window "$window_id" --opacity 0.0
 else
-    yabai -m window "$window_id" --opacity 0.4
+    yabai -m window "$window_id" --opacity 0.6
 fi
 
 

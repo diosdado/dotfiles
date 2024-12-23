@@ -165,23 +165,21 @@
         </div>
         <div style="background-color:purple">
             <p><b>BASH</b></p>
+            <p><b>lsof | grep {volume} </b>→ check process locking the volume</p>
             <p><b>chflags -h hidden {symlink} </b>→ hide symling in finder</p>
             <p><b>dig </b>→ dns lookup</p>
             <p><b>ps -a | grep -i postgres </b>→ ver si está corriendo proceso</p>
             <p><b>doas netstat -na -f inet inet | grep LISTEN </b>→ listenin ports</p>
-
+            <p><b>ln -s {source} {target}</b>→ symlinks</p>
             <p><b>uname -a </b>→ sistema operativo</p>
             <p><b>dmesg | head -1 </b>→ kernel</p>
-
             <p><b>^z </b>→ sleep process</p>
             <p><b>fg </b>→ resume sleeping process</p>
-
             <p><b>sudo passwd</b> → modifica password</p>
             <p><b>sudo ls -plah /home</b> → dice qué usuarios tienen home *si un usuario nunca se ha loggeado no crea su carpeta home</p>
             <p><b>more /etc/passwd</b> → lista los usuarios</p>
             <p><b>more /etc/group</b> → más fiable pero no siempre está</p>
             <p><b>ifconfig</b> → configuration of network</p>
-
             <p><b>^r </b>→ buscar en historial</p>
             <p><b>id </b>→ id user, group</p>
             <p><b>tar </b>→ extract: tar -xvf {filename}, compress: tar -czvf {filename} {data} </p>

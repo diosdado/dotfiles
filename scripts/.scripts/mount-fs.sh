@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ~/.$1.sshvolume.config
+. ~/Projects/Development/MountedSSH/.$1.sshvolume.config
 
 if [ ! -d $directory ]; then
   mkdir -p $directory;

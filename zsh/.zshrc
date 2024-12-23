@@ -9,6 +9,9 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+# disable  'vi' mode
+bindkey -e
+
 
 export TERM=xterm-256color
 export PATH=~/.composer/vendor/bin:$PATH
@@ -19,32 +22,22 @@ export VISUAL="$EDITOR"
 # aliases
 alias phpactor="~/.local/bin/phpactor"
 alias so="source ~/.zshrc" # reload zshrc
-alias cdp="cd ~/Projects"
-alias cdd="cd ~/Downloads"
-
+alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # watch sass
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
-alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # whatch sass
-
-# tmux shortcuts
+alias mount-fs="~/.scripts/mount-fs.sh"
+alias umount-fs="~/.scripts/umount-fs.sh"
+alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
 alias ta="tmux attach"
-alias ts="~/.scripts/tmux-sessionizer.sh"
-alias tsd="ts -d"
-alias th="tsd ~/"
-
-alias tssh="tsd ~/mounted-sshfs/" # nvim & terminal with mounted ssh
-alias tftp="ts -f" # nvim & terminal with mounted ssh
-alias tsass="ts -s" # nvim, terminal & sass compiler
-alias tk="tsd /Users/david.diosdado/ownCloud/Bases-conocimiento/"
+alias th="ts -d ~/"
 
 
-# alias tw="~/.scripts/tmux-sessionizer.sh -d ~/Scriptable" # Scriptable widgets
 # reference to the mamp mysql installation
 alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
 
 
 # override commands
-alias ls="ls -plah --color=auto" # always color ls output
+alias ls="ls -plah --color=auto"
 alias more="less"
 
 

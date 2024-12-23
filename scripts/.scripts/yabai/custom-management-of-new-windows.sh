@@ -20,7 +20,7 @@ fi
 for window_id in $windows; do
     window=$(yabai -m query --windows --window $window_id)
     floating=$(echo $window | jq 'if ."is-floating" then 1 else 0 end')
-    case $(~/.scripts/yabai-evaluate-window.sh -w $window_id) in
+    case $(~/.scripts/yabai/evaluate-window.sh -w $window_id) in
         is_gimp_main|is_inkscape_main)
             if [[ "$floating" -eq "1" ]]; then
                 yabai -m window $window_id --toggle float

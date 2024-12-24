@@ -1,36 +1,48 @@
 #!/bin/bash
 
+dir=~/clipboard/
+file=${dir}.cb.txt
+space=''
 
-filename=~/.cb.txt
-delimiter=""
+touch $file
+echo $space > $file
 
-touch $filename
+echo -e "[ HYPER ´ ]" >> $file
+cat ${dir}cp_backtick.txt >> $file
 
-echo "" > $filename
-echo -e "[ HYPER ´ ]" >> $filename
-cat ~/clipboard/cp_backtick.txt >> $filename
-echo -e $delimiter >> $filename
-echo -e "[ HYPER + ]" >> $filename
-cat ~/clipboard/cp_plus.txt >> $filename
-echo -e $delimiter >> $filename
-echo -e "[ HYPER { ]" >> $filename
-cat ~/clipboard/cp_curly_open.txt >> $filename
-echo -e $delimiter >> $filename
-echo -e "[ HYPER } ]" >> $filename
-cat ~/clipboard/cp_curly_close.txt >> $filename
-echo -e $delimiter >> $filename
-echo -e "[ MEH - ]" >> $filename
-cat ~/clipboard/cp_hyphen.txt >> $filename
-echo -e $delimiter >> $filename
-echo -e "[ MEH . ]" >> $filename
-cat ~/clipboard/cp_period.txt >> $filename
-echo -e $delimiter >> $filename
-echo -e "[ MEH , ]" >> $filename
-cat ~/clipboard/cp_comma.txt >> $filename
+echo -e $space >> $file
+
+echo -e "[ HYPER + ]" >> $file
+cat ${dir}cp_plus.txt >> $file
+
+echo -e $space >> $file
+
+echo -e "[ HYPER { ]" >> $file
+cat ${dir}cp_curly_open.txt >> $file
+
+echo -e $space >> $file
+
+echo -e "[ HYPER } ]" >> $file
+cat ${dir}cp_curly_close.txt >> $file
+
+echo -e $space >> $file
+
+echo -e "[ MEH - ]" >> $file
+cat ${dir}cp_hyphen.txt >> $file
+
+echo -e $space >> $file
+
+echo -e "[ MEH . ]" >> $file
+cat ${dir}cp_period.txt >> $file
+
+echo -e $space >> $file
+
+echo -e "[ MEH , ]" >> $file
+cat ${dir}cp_comma.txt >> $file
 
 
 OIFS="$IFS" ; IFS=$'\n'
-osascript -e "tell app \"System Events\" to display alert \"Fast Clipboard\" message \"$(cat ~/.cb.txt)\""
+osascript -e "tell app \"System Events\" to display alert \"Fast Clipboard\" message \"$(cat $file)\""
 IFS="$OIFS"
 
 

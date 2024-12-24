@@ -133,7 +133,7 @@ vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without
 -- make the current file executable
 vim.keymap.set("n", "<leader>x", ":! chmod +x %<CR>")
 -- show yabai window objects
-vim.keymap.set("n", "<leader>¿", ":! yabai -m query --windows > ~/yabai-output.json<CR><CR>:e ~/yabai-output.json<CR>", { silent = true })
+vim.keymap.set("n", "<leader>¿", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>", { silent = true })
 -- create new note
 vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.txt<Left><Left><Left><Left>]])
 -- source configuration

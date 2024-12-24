@@ -22,10 +22,11 @@ for win_id in $windows; do
     if [[ "$focused" -eq "$win_id" || "$reset" -eq "1" ]]; then
         yabai -m window "$win_id" --opacity 0.0
     else
-        yabai -m window "$win_id" --opacity 0.4
+        yabai -m window "$win_id" --opacity 0.5
     fi
 done
 
+# (( $( echo "9.8 < 1" | bc -l ) ))
 
 
 

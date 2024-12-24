@@ -63,6 +63,10 @@ brew install gnu-which
 brew install findutils
 brew install inetutils
 
+brew install socat
+brew install htop
+# brew install inetutils
+
 # -------------------------------------------------------------------------------------------------
 # ZSH Tools
 # -------------------------------------------------------------------------------------------------
@@ -199,24 +203,6 @@ brew cleanup
 echo "Ask the doctor"
 brew doctor
 echo "Installations done"
-
-
-# -------------------------------------------------------------------------------------------------
-# Create holders for fast clipboard
-# -------------------------------------------------------------------------------------------------
-mkdir ~/clipboard
-touch /clipboard/cp_backtick.txt
-touch /clipboard/cp_colon.txt
-touch /clipboard/cp_curly_close.txt
-touch /clipboard/cp_curly_open.txt
-touch /clipboard/cp_hyphen.txt
-touch /clipboard/cp_period.txt
-touch /clipboard/cp_plus.txt
-
-
-
-
-
 
 
 

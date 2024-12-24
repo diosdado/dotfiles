@@ -4,32 +4,6 @@ OIFS="$IFS"
 IFS=$'\n'
 
 tables=(
-avisos_bitacora
-c4
-conmutador
-custodias
-cvehicular
-do
-evaluacion
-iet
-intranet
-inventario_bd
-inventario
-listhub
-login_soportes
-login
-mspv_rest
-mspv
-proveedores
-rh
-sed
-sistareas
-sisteareas
-sistemas
-soportes
-uniformes
-variables
-
 )
 
 

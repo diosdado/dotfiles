@@ -8,7 +8,6 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
 # disable  'vi' mode
 bindkey -e
 
@@ -19,8 +18,12 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 
-# aliases
+# aliases to programs
 alias phpactor="~/.local/bin/phpactor"
+alias mmysql="/Applications/MAMP/Library/bin/mysql"
+alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
+
+# aliases to scripts
 alias so="source ~/.zshrc" # reload zshrc
 alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # watch sass
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
@@ -29,12 +32,6 @@ alias umount-fs="~/.scripts/umount-fs.sh"
 alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
 alias ta="tmux attach"
 alias th="ts -d ~/"
-
-
-# reference to the mamp mysql installation
-alias mmysql="/Applications/MAMP/Library/bin/mysql"
-alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
-
 
 # override commands
 alias ls="ls -plah --color=auto"

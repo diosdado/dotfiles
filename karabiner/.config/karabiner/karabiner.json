@@ -4,6 +4,25 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Diosdado - Spacebar → Meh(⌃⌥⇧)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_shift",
+                                        "modifiers": ["right_control", "right_option"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "spacebar" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Diosdado - Hyper+backspace → CapsLock",
                         "manipulators": [
                             {
@@ -17,11 +36,11 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - Escape → Meh(⌃⌥⇧)",
+                        "description": "Diosdado - RightControl → Meh(⌃⌥⇧)",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "escape",
+                                    "key_code": "right_control",
                                     "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control"] }
                                 },
                                 "to": [
@@ -36,14 +55,14 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - Hyper+cmd-(hjkl) → home/pg-down/pg-up/end",
+                        "description": "Diosdado - Meh-(hjkl) → home/pg-down/pg-up/end",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
-                                        "optional": ["any"]
+                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "optional": []
                                     }
                                 },
                                 "to": [{ "key_code": "home" }],
@@ -53,8 +72,8 @@
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
-                                        "optional": ["any"]
+                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "optional": []
                                     }
                                 },
                                 "to": [{ "key_code": "page_down" }],
@@ -64,8 +83,8 @@
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
-                                        "optional": ["any"]
+                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "optional": []
                                     }
                                 },
                                 "to": [{ "key_code": "page_up" }],
@@ -75,8 +94,8 @@
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift", "left_command"],
-                                        "optional": ["any"]
+                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "optional": []
                                     }
                                 },
                                 "to": [{ "key_code": "end" }],
@@ -638,7 +657,11 @@
             "simple_modifications": [
                 {
                     "from": { "key_code": "right_command" },
-                    "to": [{ "key_code": "right_control" }]
+                    "to": [{ "key_code": "left_control" }]
+                },
+                {
+                    "from": { "key_code": "right_shift" },
+                    "to": [{ "key_code": "left_shift" }]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }

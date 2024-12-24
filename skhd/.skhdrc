@@ -87,7 +87,8 @@ hyper - f3 : yabai -m space --focus s_media
 # -------------------------------------------------------------------------------------------------
 
 hyper - 0x0A : open /Applications/kitty.app # 0x0A is |
-hyper - 1 : open /Applications/Vivaldi.app
+hyper - 0 : ~/.scripts/kill-music-library-agent-and-eject.sh
+hyper - 1 : open /Applications/Floorp.app
 hyper - 2 : open /System/Applications/Calendar.app ; open /System/Applications/Reminders.app
 hyper - 3 : open ~/Applications/Instagram.app ; open ~/Applications/whatsapp.com.app ; sleep 1 ; open ~/Applications/whatsapp.com.app
 hyper - 4 : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
@@ -99,14 +100,15 @@ hyper - 9 : open ~/Library/Mobile\ Documents/com~apple~CloudDocs/
 hyper - 0x1B : ~/.scripts/fast-clipboard-contents.sh
 hyper - 0x18 : qlmanage -p ~/.scripts/cheatsheet.html # ¿
 
-hyper - a : open /Applications/Safari.app
-rcmd + rshift + ralt + rctrl - b : open /Applications/Blender.app
-rcmd + rshift + ralt + rctrl + lshift - b : open -n /Applications/Blender.app
+rcmd + rshift + ralt + rctrl - a : open /Applications/ONLYOFFICE.app # hyper
+rcmd + rshift + ralt + rctrl + lshift - a : open -n /Applications/ONLYOFFICE.app # hyper+shift
+rcmd + rshift + ralt + rctrl - b : open /Applications/Blender.app # hyper
+rcmd + rshift + ralt + rctrl + lshift - b : open -n /Applications/Blender.app # hyper+shift
 hyper - c : open /System/Applications/Contacts.app
 hyper - d : open /Applications/DevToys.app
 hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
 hyper - f : open /Applications/FileZilla.app
-# hyper - g
+hyper - g : open /Applications/GIMP.app
 # hyper - h -> left arrow (karabiner)
 # hyper - i
 # hyper - j -> down arrow (karabiner)
@@ -120,39 +122,30 @@ rcmd + rshift + ralt + rctrl + lshift - 0x29 : ~/.scripts/development-browser.sh
 hyper - p : open /Applications/Sloth.app
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 hyper - r : open /Applications/Free\ Ruler.app
-hyper - s : open /System/Applications/Stickies.app
+hyper - s : open /Applications/Inkscape.app
 hyper - t : open /System/Applications/TextEdit.app
 # hyper - u
 hyper - v : open /Applications/VSCodium.app
 # hyper - w -> color picker (Pika)
 hyper - x : open /Applications/Hex\ Fiend.app # open /Applications/Xcode.app/Applications/Sloth.app/
-# hyper - y
+hyper - y : open /Applications/RawTherapee.app
 hyper - z : open /System/Applications/System\ Settings.app
 
 # -------------------------------------------------------------------------------------------------
 # Meh
 # -------------------------------------------------------------------------------------------------
 
-rshift + ralt + rctrl - f1 : open /Applications/ONLYOFFICE.app
-rshift + ralt + rctrl + lshift - f1 : open -n /Applications/ONLYOFFICE.app
-meh - f2 : open /Applications/Inkscape.app
-meh - f3 : open /Applications/GIMP.app
-meh - f4 : open /Applications/RawTherapee.app
+# meh - a : open /System/Applications/Utilities/Activity\ Monitor.app
+# meh - b : open /Applications/Boom\ 3D.app
+# meh - c : open /Applications/AppCleaner.app
+# meh - m : open /System/Applications/Music.app
+# meh - p : open /System/Applications/Photo\ Booth.app
+# meh - s : open /Users/david.diosdado/Applications/Spotify.app
+# meh - t : open /Applications/Transmission.app
+# meh - u : open /Applications/UTM.app
+# meh - v : open /Applications/VLC.app
+# meh - w : open /Applications/Whisky.app
 
-meh - 0 : ~/.scripts/kill-music-library-agent-and-eject.sh
-meh - a : open /System/Applications/Utilities/Activity\ Monitor.app
-meh - b : open /Applications/Boom\ 3D.app
-meh - c : open /Applications/AppCleaner.app
-meh - m : open /System/Applications/Music.app
-meh - o : open /Applications/OpenEmu.app
-meh - p : open /System/Applications/Photo\ Booth.app
-meh - s : open /Users/david.diosdado/Applications/Spotify.app
-meh - t : open /Applications/Transmission.app
-meh - u : open /Applications/UTM.app
-meh - v : open /Applications/VLC.app
-meh - w : open /Applications/Whisky.app
-
-meh - space : yabai -m space --toggle show-desktop
 meh - backspace : ~/.scripts/notification-disk-free.sh
 
 

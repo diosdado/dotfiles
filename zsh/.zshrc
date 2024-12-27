@@ -32,6 +32,7 @@ alias umount-fs="~/.scripts/umount-fs.sh"
 alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
 alias ta="tmux attach"
 alias th="ts -d ~/"
+alias td="ts -d ~/dotfiles"
 
 # override commands
 alias ls="ls -plah --color=auto"

@@ -29,7 +29,8 @@ meh - 0x2B : cat ~/clipboard/cp_comma.txt | pbcopy ; sendkeys -c "<c:v:command>"
 # Rotate layout
 shift + alt - r : yabai -m space --rotate 270
 # Zoom
-# shift + alt + ctrl - m : yabai -m window --toggle zoom-fullscreen
+alt + ctrl - m : yabai -m window --toggle zoom-fullscreen
+shift + alt - m : yabai -m window --toggle zoom-parent
 # Toggle horizontal/vertical
 shift + alt - v : yabai -m window --toggle split
 # Resize
@@ -45,10 +46,10 @@ shift + alt - x : ~/.scripts/yabai/reset-borders.sh
 
 # Make primary window
 shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:300:0
-ctrl + shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:600:0
+ctrl + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:600:0
 
 # Balance
-shift + alt - a : yabai -m space --balance
+shift + alt - 0 : yabai -m space --balance
 
 # Switch modes
 shift + alt - s : ~/.scripts/yabai/toggle-layout.sh -l "stack"
@@ -72,10 +73,10 @@ shift + alt - h : yabai -m window --focus west
 shift + alt - l : yabai -m window --focus east
 
 # Swap windows
-ctrl + alt - j : yabai -m window --swap south
-ctrl + alt - k : yabai -m window --swap north
-ctrl + alt - h : yabai -m window --swap west
-ctrl + alt - l : yabai -m window --swap east
+ctrl + alt - j : yabai -m window --warp south
+ctrl + alt - k : yabai -m window --warp north
+ctrl + alt - h : yabai -m window --warp west
+ctrl + alt - l : yabai -m window --warp east
 
 # Switch desktops
 hyper - f1 : yabai -m space --focus s_design
@@ -96,12 +97,14 @@ hyper - 5 : open /Users/david.diosdado/ownCloud/
 hyper - 6 : open /System/Library/CoreServices/Finder.app/Contents/Applications/AirDrop.app
 hyper - 7 : open ~/Desktop/Projects/
 hyper - 8 : open ~/Google\ Drive/My\ Drive/
-hyper - 9 : open ~/Library/Mobile\ Documents/com~apple~CloudDocs/
-hyper - 0x1B : ~/.scripts/fast-clipboard-contents.sh
+hyper - 9 : :pen ~/Library/Mobile\ Documents/com~apple~CloudDocs/
+hyper - 0x1B : ~/.scripts/fast-clipboard-contents.sh # '
 hyper - 0x18 : qlmanage -p ~/.scripts/cheatsheet.html # ¿
 
+# a
 rcmd + rshift + ralt + rctrl - a : open /Applications/ONLYOFFICE.app # hyper
 rcmd + rshift + ralt + rctrl + lshift - a : open -n /Applications/ONLYOFFICE.app # hyper+shift
+# b
 rcmd + rshift + ralt + rctrl - b : open /Applications/Blender.app # hyper
 rcmd + rshift + ralt + rctrl + lshift - b : open -n /Applications/Blender.app # hyper+shift
 hyper - c : open /System/Applications/Contacts.app
@@ -110,7 +113,7 @@ hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karab
 hyper - f : open /Applications/FileZilla.app
 hyper - g : open /Applications/GIMP.app
 # hyper - h -> left arrow (karabiner)
-# hyper - i
+# hyper - i :
 # hyper - j -> down arrow (karabiner)
 # hyper - k -> up arrow (karabiner)
 # hyper - l -> right arrow (karabiner)
@@ -118,13 +121,13 @@ hyper - m : open /Applications/MAMP\ PRO.app
 # hyper - n
 rcmd + rshift + ralt + rctrl - 0x29 : ~/.scripts/development-browser.sh # ñ
 rcmd + rshift + ralt + rctrl + lshift - 0x29 : ~/.scripts/development-browser.sh -r # ñ + shift
-# hyper - o
+# hyper - o :
 hyper - p : open /Applications/Sloth.app
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 hyper - r : open /Applications/Free\ Ruler.app
 hyper - s : open /Applications/Inkscape.app
 hyper - t : open /System/Applications/TextEdit.app
-# hyper - u
+# hyper - u :
 hyper - v : open /Applications/VSCodium.app
 # hyper - w -> color picker (Pika)
 hyper - x : open /Applications/Hex\ Fiend.app # open /Applications/Xcode.app/Applications/Sloth.app/
@@ -135,19 +138,19 @@ hyper - z : open /System/Applications/System\ Settings.app
 # Meh
 # -------------------------------------------------------------------------------------------------
 
-# meh - a : open /System/Applications/Utilities/Activity\ Monitor.app
-# meh - b : open /Applications/Boom\ 3D.app
-# meh - c : open /Applications/AppCleaner.app
-# meh - m : open /System/Applications/Music.app
-# meh - p : open /System/Applications/Photo\ Booth.app
-# meh - s : open /Users/david.diosdado/Applications/Spotify.app
-# meh - t : open /Applications/Transmission.app
-# meh - u : open /Applications/UTM.app
-# meh - v : open /Applications/VLC.app
-# meh - w : open /Applications/Whisky.app
-
+meh - a : open /System/Applications/Utilities/Activity\ Monitor.app
+meh - b : open /Applications/Boom\ 3D.app
+meh - c : open /Applications/AppCleaner.app
+meh - m : open /System/Applications/Music.app
+meh - p : open /System/Applications/Photo\ Booth.app
+meh - s : open /Users/david.diosdado/Applications/Spotify.app
+meh - t : open /Applications/Transmission.app
+meh - u : open /Applications/UTM.app
+meh - v : open /Applications/VLC.app
+meh - w : open /Applications/Whisky.app
 meh - backspace : ~/.scripts/notification-disk-free.sh
-
+# meh - 0x1B :  # '
+# meh - 0x18 :  # ¿
 
 # -------------------------------------------------------------------------------------------------
 # Actions

@@ -5,6 +5,7 @@
                 "rules": [
                     {
                         "description": "Diosdado - Spacebar → Meh(⌃⌥⇧)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -40,7 +41,7 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_control",
+                                    "key_code": "escape",
                                     "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control"] }
                                 },
                                 "to": [
@@ -55,13 +56,13 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - Meh-(hjkl) → home/pg-down/pg-up/end",
+                        "description": "Diosdado - Hyper+command → home/pg-down/pg-up/end",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
-                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
                                         "optional": []
                                     }
                                 },
@@ -72,7 +73,7 @@
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
-                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
                                         "optional": []
                                     }
                                 },
@@ -83,7 +84,7 @@
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
-                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
                                         "optional": []
                                     }
                                 },
@@ -94,11 +95,55 @@
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
-                                        "mandatory": ["right_option", "right_control", "right_shift"],
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
                                         "optional": []
                                     }
                                 },
                                 "to": [{ "key_code": "end" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": {
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
+                                        "optional": []
+                                    }
+                                },
+                                "to": [{ "key_code": "f1" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": {
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
+                                        "optional": []
+                                    }
+                                },
+                                "to": [{ "key_code": "f2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
+                                        "optional": []
+                                    }
+                                },
+                                "to": [{ "key_code": "f3" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": {
+                                        "mandatory": ["right_option", "right_control", "right_shift", "right_command", "left_command"],
+                                        "optional": []
+                                    }
+                                },
+                                "to": [{ "key_code": "f4" }],
                                 "type": "basic"
                             }
                         ]
@@ -464,10 +509,6 @@
                         {
                             "from": { "key_code": "non_us_backslash" },
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
-                        },
-                        {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_control" }]
                         }
                     ],
                     "treat_as_built_in_keyboard": true
@@ -494,10 +535,6 @@
                         {
                             "from": { "key_code": "non_us_backslash" },
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
-                        },
-                        {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_control" }]
                         }
                     ]
                 },
@@ -658,6 +695,10 @@
                 {
                     "from": { "key_code": "right_command" },
                     "to": [{ "key_code": "left_control" }]
+                },
+                {
+                    "from": { "key_code": "right_option" },
+                    "to": [{ "key_code": "left_option" }]
                 },
                 {
                     "from": { "key_code": "right_shift" },

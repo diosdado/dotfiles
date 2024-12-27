@@ -90,18 +90,16 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<F10>", ":bprev<CR>")
--- switch between the two last 2 buffers
-vim.keymap.set("n", "<F11>", ":bnext<CR>")
--- switch between the two last 2 buffers
-vim.keymap.set("n", "<F12>", ":b#<CR>")
+vim.keymap.set("n", "<PageDown>", ":b#<CR>")
 -- quickfix
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "{", "`")
-vim.keymap.set("v", "{", "`")
+vim.keymap.set("n", "'", "`")
+vim.keymap.set("v", "'", "`")
 vim.keymap.set("n", "<leader>m", ":marks<CR>")
+
+
 --------------------------------------------------------------------------------------------------
 -- yank to clipboard
 --------------------------------------------------------------------------------------------------
@@ -121,7 +119,7 @@ vim.keymap.set("n", "<leader>'", "vi'\"+y")
 -- copy " to clipboard
 vim.keymap.set("n", "<leader>\"", "vi\"\"+y")
 -- copy filename
-vim.keymap.set("n", "<leader>f", ":let @\" = expand('%')<CR>")
+vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:p\")<CR><CR>")
 
 --------------------------------------------------------------------------------------------------
 -- etc
@@ -140,6 +138,7 @@ vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.txt<Left><Left><Left><Left>]])
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
 
 
 vim.keymap.set("v", "<leader>$", "<cmd>'<,'>s:\\([a-z0-9_]*\\)\\([,\\n]\\):$\\1\\2:g<CR>")

@@ -27,17 +27,17 @@ cat ${dir}cp_curly_close.txt >> $file
 
 echo -e $space >> $file
 
-echo -e "[ MEH - ]" >> $file
+echo -e "[ CTRL - ]" >> $file
 cat ${dir}cp_hyphen.txt >> $file
 
 echo -e $space >> $file
 
-echo -e "[ MEH . ]" >> $file
+echo -e "[ CTRL . ]" >> $file
 cat ${dir}cp_period.txt >> $file
 
 echo -e $space >> $file
 
-echo -e "[ MEH , ]" >> $file
+echo -e "[ CTRL , ]" >> $file
 cat ${dir}cp_comma.txt >> $file
 
 

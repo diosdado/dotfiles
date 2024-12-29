@@ -9,6 +9,16 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+
+--------------------------------------------------------------------------------------------------
+-- latin american iso keyboard accomodations
+--------------------------------------------------------------------------------------------------
+
+vim.keymap.set("n", "'", "`")
+vim.keymap.set("n", ",", ";")
+vim.keymap.set("n", ";", ",")
+vim.keymap.set("n", "<leader>m", ":marks<CR>")
+
 --------------------------------------------------------------------------------------------------
 -- navigation
 --------------------------------------------------------------------------------------------------
@@ -58,27 +68,12 @@ vim.keymap.set("n", "<tab>", "<nop>")
 -- select all
 vim.keymap.set("n", "<leader>a", "ggVG")
 
-
-
-vim.keymap.set("n", "<leader>+", ":windo diffthis<CR>")
-vim.keymap.set("n", "<leader>}", ":windo diffoff<CR>")
-
-
 --------------------------------------------------------------------------------------------------
 -- buffers
 --------------------------------------------------------------------------------------------------
 
--- switch windows
-vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>W")
-vim.keymap.set({ "v", "n" }, "<leader>e", "<C-w>w")
 -- close window
 vim.keymap.set("n", "<leader>q", "<cmd>clo<CR>")
-vim.keymap.set("v", "<leader>q", "<cmd>clo<CR>")
---resize splits
-vim.keymap.set("n", "<C-Down>", "<C-w>5+")
-vim.keymap.set("n", "<C-Up>", "<C-w>5-")
-vim.keymap.set("n", "<C-Right>", "<C-w>5>")
-vim.keymap.set("n", "<C-Left>", "<C-w>5<")
 -- netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- new vsplit
@@ -90,15 +85,14 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<PageDown>", ":b#<CR>")
+vim.keymap.set("n", "<F12>", ":b#<CR>")
+-- previous buffer
+vim.keymap.set("n", "<PageDown>", ":bprev<CR>")
+-- next buffer
+vim.keymap.set("n", "<PageUp>", ":bnext<CR>")
 -- quickfix
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
-vim.keymap.set("n", "'", "`")
-vim.keymap.set("v", "'", "`")
-vim.keymap.set("n", "<leader>m", ":marks<CR>")
-
 
 --------------------------------------------------------------------------------------------------
 -- yank to clipboard
@@ -124,6 +118,7 @@ vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:p\")<CR><CR>")
 --------------------------------------------------------------------------------------------------
 -- etc
 --------------------------------------------------------------------------------------------------
+
 -- replace in selection
 vim.keymap.set("v", "<leader>r", ':s::g<Left><Left>')
 -- save file, switch to browser and refresh
@@ -140,6 +135,6 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 
-
-vim.keymap.set("v", "<leader>$", "<cmd>'<,'>s:\\([a-z0-9_]*\\)\\([,\\n]\\):$\\1\\2:g<CR>")
+-- php convertir parametros en variables
+-- vim.keymap.set("v", "<leader>$", "<cmd>'<,'>s:\\([a-z0-9_]*\\)\\([,\\n]\\):$\\1\\2:g<CR>")
 

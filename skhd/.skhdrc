@@ -16,11 +16,11 @@ hyper - 0x27 : cat ~/clipboard/cp_curly_open.txt | pbcopy ; sendkeys -c "<c:v:co
 # close curly brace }
 hyper - 0x2A : cat ~/clipboard/cp_curly_close.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
 # hyphen -
-meh - 0x2C : cat ~/clipboard/cp_hyphen.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+ctrl - 0x2C : cat ~/clipboard/cp_hyphen.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
 # period .
-meh - 0x2F : cat ~/clipboard/cp_period.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+ctrl - 0x2F : cat ~/clipboard/cp_period.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
 # comma ,
-meh - 0x2B : cat ~/clipboard/cp_comma.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+ctrl - 0x2B : cat ~/clipboard/cp_comma.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
 
 # -------------------------------------------------------------------------------------------------
 # yabai
@@ -33,9 +33,6 @@ alt + ctrl - m : yabai -m window --toggle zoom-fullscreen
 shift + alt - m : yabai -m window --toggle zoom-parent
 # Toggle horizontal/vertical
 shift + alt - v : yabai -m window --toggle split
-# Resize
-shift + cmd - h : yabai -m window --resize right:-200:0
-shift + cmd - l : yabai -m window --resize right:200:0
 # Toggle opacity
 shift + alt - o : ~/.scripts/yabai/toggle-opacity.sh
 
@@ -87,70 +84,73 @@ hyper - f3 : yabai -m space --focus s_media
 # Hyper
 # -------------------------------------------------------------------------------------------------
 
-hyper - 0x0A : open /Applications/kitty.app # 0x0A is |
-hyper - 0 : ~/.scripts/kill-music-library-agent-and-eject.sh
-hyper - 1 : open /Applications/Floorp.app
-hyper - 2 : open /System/Applications/Calendar.app ; open /System/Applications/Reminders.app
-hyper - 3 : open ~/Applications/Instagram.app ; open ~/Applications/whatsapp.com.app ; sleep 1 ; open ~/Applications/whatsapp.com.app
-hyper - 4 : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-hyper - 5 : open /Users/david.diosdado/ownCloud/
-hyper - 6 : open /System/Library/CoreServices/Finder.app/Contents/Applications/AirDrop.app
+# LEFT HAND ---------------------------------------------------------------------------------------
+
+# | 1 2 3 4 5
+cmd - 0x0A : open /Applications/Floorp.app
+hyper - 1 : open /Applications/Sloth.app
+hyper - 2 : open /Applications/MAMP\ PRO.app
+hyper - 3 : open /Applications/UTM.app
+hyper - 4 : ~/.scripts/kill-music-library-agent-and-eject.sh
+
+# q w e r t
+hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
+# hyper - w -> color picker (Pika)
+hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
+hyper - r : open /Applications/Free\ Ruler.app
+hyper - t : open /System/Applications/TextEdit.app
+
+# a s d f g
+rcmd + rshift + ralt + rctrl - a : open /Applications/ONLYOFFICE.app # hyper
+rcmd + rshift + ralt + rctrl + lshift - a : open -n /Applications/ONLYOFFICE.app # hyper+shift
+hyper - s : open /Applications/Inkscape.app
+hyper - d : open /Applications/DevToys.app
+hyper - f : open /Applications/FileZilla.app
+hyper - g : open /Applications/GIMP.app
+
+# z x c v b
+hyper - z :
+hyper - x : open /Applications/Hex\ Fiend.app
+hyper - c : open /Applications/AppCleaner.app
+hyper - v : open /Applications/VSCodium.app
+hyper - b : open /Applications/Blender.app
+
+# RIGHT HAND --------------------------------------------------------------------------------------
+
+# 6 7 8 9 0 ' ¿
+hyper - 6 : open /Users/david.diosdado/ownCloud/
 hyper - 7 : open ~/Desktop/Projects/
-hyper - 8 : open ~/Google\ Drive/My\ Drive/
-hyper - 9 : :pen ~/Library/Mobile\ Documents/com~apple~CloudDocs/
+hyper - 8 : open /System/Applications/System\ Settings.app
+hyper - 9 : open /System/Applications/Photo\ Booth.app
+hyper - 0 : ~/.scripts/notification-disk-free.sh
 hyper - 0x1B : ~/.scripts/fast-clipboard-contents.sh # '
 hyper - 0x18 : qlmanage -p ~/.scripts/cheatsheet.html # ¿
 
-# a
-rcmd + rshift + ralt + rctrl - a : open /Applications/ONLYOFFICE.app # hyper
-rcmd + rshift + ralt + rctrl + lshift - a : open -n /Applications/ONLYOFFICE.app # hyper+shift
-# b
-rcmd + rshift + ralt + rctrl - b : open /Applications/Blender.app # hyper
-rcmd + rshift + ralt + rctrl + lshift - b : open -n /Applications/Blender.app # hyper+shift
-hyper - c : open /System/Applications/Contacts.app
-hyper - d : open /Applications/DevToys.app
-hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
-hyper - f : open /Applications/FileZilla.app
-hyper - g : open /Applications/GIMP.app
+# y u i o p ´ +
+hyper - y : open /System/Applications/Calendar.app ; open /System/Applications/Reminders.app
+hyper - u : open /Applications/kitty.app # 0x0A is |
+hyper - i : open /Applications/Floorp.app
+hyper - o : open ~/Applications/Instagram.app ; open ~/Applications/whatsapp.com.app ; sleep 1 ; open ~/Applications/whatsapp.com.app
+hyper - p : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
+# hyper - 0x21 : fast clipboard
+# hyper - 0x1E : fast clipboard
+
+# h j k l ñ { }
 # hyper - h -> left arrow (karabiner)
-# hyper - i :
 # hyper - j -> down arrow (karabiner)
 # hyper - k -> up arrow (karabiner)
 # hyper - l -> right arrow (karabiner)
-hyper - m : open /Applications/MAMP\ PRO.app
-# hyper - n
-rcmd + rshift + ralt + rctrl - 0x29 : ~/.scripts/development-browser.sh # ñ
-rcmd + rshift + ralt + rctrl + lshift - 0x29 : ~/.scripts/development-browser.sh -r # ñ + shift
-# hyper - o :
-hyper - p : open /Applications/Sloth.app
-hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
-hyper - r : open /Applications/Free\ Ruler.app
-hyper - s : open /Applications/Inkscape.app
-hyper - t : open /System/Applications/TextEdit.app
-# hyper - u :
-hyper - v : open /Applications/VSCodium.app
-# hyper - w -> color picker (Pika)
-hyper - x : open /Applications/Hex\ Fiend.app # open /Applications/Xcode.app/Applications/Sloth.app/
-hyper - y : open /Applications/RawTherapee.app
-hyper - z : open /System/Applications/System\ Settings.app
+hyper - 0x29 : ~/.scripts/development-browser.sh -r # ñ
+# hyper - 0x27 : fast clipboard
+# hyper - 0x2A : fast clipboard
 
-# -------------------------------------------------------------------------------------------------
-# Meh
-# -------------------------------------------------------------------------------------------------
+# n m , . -
+hyper - n : open /Users/david.diosdado/Applications/Spotify.app
+hyper - m : open /System/Applications/Music.app
+# hyper - 0x2C : disabled (karabiner)
+# hyper - 0x2F : disabled (karabiner)
+# hyper - 0x2B : disabled (karabiner)
 
-meh - a : open /System/Applications/Utilities/Activity\ Monitor.app
-meh - b : open /Applications/Boom\ 3D.app
-meh - c : open /Applications/AppCleaner.app
-meh - m : open /System/Applications/Music.app
-meh - p : open /System/Applications/Photo\ Booth.app
-meh - s : open /Users/david.diosdado/Applications/Spotify.app
-meh - t : open /Applications/Transmission.app
-meh - u : open /Applications/UTM.app
-meh - v : open /Applications/VLC.app
-meh - w : open /Applications/Whisky.app
-meh - backspace : ~/.scripts/notification-disk-free.sh
-# meh - 0x1B :  # '
-# meh - 0x18 :  # ¿
 
 # -------------------------------------------------------------------------------------------------
 # Actions

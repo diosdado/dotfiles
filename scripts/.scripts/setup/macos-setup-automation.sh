@@ -147,6 +147,7 @@ CASKS=(
     mysqlworkbench
     dosbox
     powershell
+    php-cs-fixer
 )
 PYTHON_PACKAGES=(
     ipython
@@ -191,9 +192,15 @@ curl -Lo phpactor.phar https://github.com/phpactor/phpactor/releases/latest/down
 sudo -u $SUDO_USER chmod a+x phpactor.phar
 sudo -u $SUDO_USER mv phpactor.phar ~/.local/bin/phpactor
 # php-cs-fixer
-curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o php-cs-fixer
-sudo -u $SUDO_USER chmod a+x php-cs-fixer
-sudo -u $SUDO_USER mv php-cs-fixer /usr/local/bin/php-cs-fixer
+# curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o php-cs-fixer
+# sudo -u $SUDO_USER chmod a+x php-cs-fixer
+# sudo -u $SUDO_USER mv php-cs-fixer /usr/local/bin/php-cs-fixer
+
+
+
+
+
+
 
 # -------------------------------------------------------------------------------------------------
 # Cleanup
@@ -203,6 +210,17 @@ brew cleanup
 echo "Ask the doctor"
 brew doctor
 echo "Installations done"
+
+brew install pipx
+
+
+npm i -g pyright
+npm i -g sql-language-server
+npm i -g bash-language-server
+npm i -g dockerfile-language-server-nodejs
+pipx install python-lsp-server
+
+
 
 
 

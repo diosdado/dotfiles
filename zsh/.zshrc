@@ -1,3 +1,6 @@
+
+fastfetch
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,20 +11,23 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# disable  'vi' mode
-bindkey -e
+# 'vi' mode
+bindkey -v
+export KEYTIMEOUT=1
 
 
 export TERM=xterm-256color
 export PATH=~/.composer/vendor/bin:$PATH
 export EDITOR=nvim
 export VISUAL="$EDITOR"
-
+export PATH="$HOME/.tmuxifier/bin:$PATH"
 
 # aliases to programs
 alias phpactor="~/.local/bin/phpactor"
 alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
+alias usage="du -h -d 1 | sort -hr"
+alias cb="pbcopy"
 
 # aliases to scripts
 alias so="source ~/.zshrc" # reload zshrc
@@ -29,10 +35,11 @@ alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:pub
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
 alias mount-fs="~/.scripts/mount-fs.sh"
 alias umount-fs="~/.scripts/umount-fs.sh"
+alias attach="tmux attach"
 alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
-alias ta="tmux attach"
 alias th="ts -d ~/"
 alias td="ts -d ~/dotfiles"
+alias tk="ts -d  ~/ownCloud/Bases-conocimiento"
 
 # override commands
 alias ls="ls -plah --color=auto"
@@ -53,7 +60,7 @@ fi
 
 # fzf
 eval "$(fzf --zsh)"
-
+eval "$(tmuxifier init -)"
 
 # history setup
 SAVEHIST=1000
@@ -62,7 +69,6 @@ setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
-
 
 
 

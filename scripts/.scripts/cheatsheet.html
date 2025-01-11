@@ -8,7 +8,7 @@
     <style>
         body {
             background: black;
-            font-size: 14px;
+            font-size: 12px;
             line-height: 1em;
             color: white;
             font-family: JetBrainsMono Nerd Font Mono, monospace;
@@ -57,9 +57,6 @@
             <p><b>✦⌘l </b>→ f12</p>
             <p><b>✦⌘1-0 </b>→ f1-f10</p>
             <p><b>✦spacebar </b>→ ^a</p>
-        </div>
-        <div style="background-color:red">
-            <p><b>Launch App</b></p>
             <p><b>✦8 </b>→ System settings</p>
             <p><b>✦9 </b>→ Photo booth</p>
             <p><b>✦0 </b>→ Disk free space</p>
@@ -85,14 +82,33 @@
         </div>
         <div style="background-color:blue">
             <p><b>Yabai</b></p>
-            <p><b>⇧⌥r </b>→ rotate layout</p>
-            <p><b>⇧⌥v </b>→ toggle vertical layout</p>
             <p><b>⇧⌥m </b>→ zoom parent</p>
             <p><b>^⌥m </b>→ zoom fullscreen</p>
             <p><b>⇧⌥o </b>→ toggle opacity</p>
         </div>
         <div style="background-color:purple">
             <p><b>BASH</b></p>
+            <p><b>tracert, traceroute </b>→ saltos que da el request</p>
+            <p><b>doas pkill hiawatha ; doas hiawatha </b>→ reinicio de hiawatha</p>
+            <p><b>sudo systemctl restart mysql </b>→ restart de servicio de mysql en server</p>
+            <p><b>less /etc/passwd </b>→ listado de usuarios</p>
+            <p><b>adduser (ksh, wheel) </b>→ creación de usuarios (perl script)</p>
+            <p><b>usermod (-a) -G {group} {user} </b>→ agregar grupos a usuario (en macos se usa dscl)</p>
+            <p><b>doas tail -1000 {file} | grep -i {text} </b>→ revisión de logs</p>
+            <p><b>lspci </b>→ nics</p>
+            <p><b>ls /etc/*-release file </b>→ Print Linux distribution name and version.</p>
+            <p><b>lsb_release command </b>→ Show Linux distribution-specific information.</p>
+            <p><b>/proc/version file </b>→ Use this file to see Linux kernel version that is currently running.</p>
+            <p><b>hostnamectl command </b>→ Display host name and Linux distro info on systemd based distros.</p>
+            <p><b>lspci | grep -E -i --color 'network|ethernet' </b>→ ver nics fisicos</p>
+            <p><b>ip link show, ip a </b>→ para revisar número de nics, los que importan son los que están como eth y
+                emo y que estén up</p>
+            <p><b>free -m </b>→ memoria ram</p>
+            <p><b>cat /proc/mounts </b>→ info discos montados</p>
+            <p><b>lscpu </b>→ número de procesadores</p>
+            <p><b>cat /proc/cpuinfo </b>→ info de procesadores</p>
+            <p><b>lsblk</b>→ discos duros</p>
+            <p><b>camcontrol devlist </b>→ discos duros bsd
             <p><b>openssl {mdf5/sha1/etc} {filename} </b>→ get checksum of file</p>
             <p><b>sha256sum {filename} </b>→ get checksum of file</p>
             <p><b>lsof | grep {volume} </b>→ check process locking the volume</p>
@@ -105,11 +121,13 @@
             <p><b>dmesg | head -1 </b>→ kernel</p>
             <p><b>^z/fg </b>→ sleep/resume process</p>
             <p><b>sudo passwd</b> → modifica password</p>
-            <p><b>sudo ls -plah /home</b> → dice qué usuarios tienen home *si un usuario nunca se ha loggeado no crea su
-                carpeta home</p>
+            <p><b>sudo ls -plah /home</b> → dice qué usuarios tienen home *si un usuario nunca se ha loggeado no
+                crea su carpeta home</p>
             <p><b>more /etc/passwd</b> → lista los usuarios</p>
             <p><b>more /etc/group</b> → más fiable pero no siempre está</p>
             <p><b>ifconfig</b> → configuration of network</p>
+            <p><b>ip address</b> → configuration of network</p>
+
             <p><b>^r </b>→ buscar en historial</p>
             <p><b>id </b>→ id user, group</p>
             <p><b>tar </b>→ extract: tar -xvf {filename}, compress: tar -czvf {filename} {data} </p>
@@ -117,7 +135,8 @@
             <p><b>fswatch </b>→ watch changes in directory → fswatch -xr {directory}</p>
             <p><b>watch </b>→ execute a program periodically, showing output fullscreen</p>
             <p><b>scp </b>→ scp {user}@{host}:{remote-file} {destination} -P {port}</p>
-            <p><b>cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat &#x3E;&#x3E; ~/.ssh/authorized_keys'</b></p>
+            <p><b>cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat &#x3E;&#x3E;
+                    ~/.ssh/authorized_keys'</b></p>
             <p><b>sshfs </b>→ sshfs {user}@{host}:{directory} -o port={port}</p>
             <p><b>nvim </b>→ scp://{user}@{host}:{port}//{remote-file}</p>
             <p><b>chmod, chown</b> refs:{a}ll, {u}ser, {g}roup, {o}ther. modes:{r}ead, {w}rite, e{x}ecute.
@@ -139,7 +158,6 @@
             <p><b>stty </b>→ sets certain I/O options for the device that is the current standard input</p>
             <p><b>tty </b>→ name of the terminal</p>
             <p><b>sync </b>→ synchronizes cached data to permanent storage.</p>
-            <p><b>test </b>→ evaluates expression like if statement</p>
             <p><b>wait4path </b>→ sleeps until path exists</p>
             <p><b>mdfind </b>→ spotlight</p>
             <p><b>&& </b>→ ejecuta si anterior dio 0</p>
@@ -221,10 +239,6 @@
                 <p><b>D </b>→ delete</p>
                 <p><b>- </b>→ parent dir</p>
             </div>
-        </div>
-
-        <div style="background-color:blueviolet">
-            <p><b>Vim</b></p>
         </div>
 
         <div style="background-color:green">
@@ -315,33 +329,20 @@
             <p><b>gwip </b>→ paragraph to 1 line</p>
             <p><b>:sav →</b> save as</p>
             <p><b>:reg →</b> registers</p>
-
             <p><b>Insert mode</b></p>
             <p><b>^w </b>→ delete word</p>
             <p><b>^t </b>→ tab</p>
             <p><b>^d </b>→ de-indent</p>
-
             <p><b>Visual mode</b></p>
             <p><b>o </b>→ start/end selection</p>
             <p><b>~ </b>→ switch case</p>
             <p><b>^a </b>→ increment numbers</p>
             <p><b>^x </b>→ decrement numbers</p>
-
-            <p>Select</p>
-            <p><b>f </b>→ increasingly bigger block</p>
-            <p><b>gb </b>→ Adds cursor</p>
-            <p><b>s </b>→ sentence</p>
-            <p><b>&#x3E;% </b>→ Increase indent {/[ block</p>
             <p><b>&#x3E;i{ </b>→ Increase inner block indent</p>
             <p><b>=2a{ </b>→ Re-indent '2 blocks'</p>
             <p><b>]p </b>→ Paste match indent</p>
             <p><b>% </b>→ {} or []</p>
-            <p><b>b </b>→ ()</p>
-            <p><b>B </b>→ {}</p>
             <p><b>p </b>→ paragraph</p>
-            <p><b>gj </b>→ multi-line down</p>
-            <p><b>gk </b>→ multi-line up</p>
-            <p><b>ge/gE </b>→ backwards e/E</p>
         </div>
 
 

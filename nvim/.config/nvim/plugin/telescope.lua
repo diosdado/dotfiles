@@ -33,6 +33,13 @@ vim.keymap.set('n', '<leader>pc', function()
     })
 end, {})
 
+-- TMUXIFIER LAYOUTS
+vim.keymap.set('n', '<leader>pl', function()
+    require('telescope.builtin').find_files({
+        cwd = '~/.tmuxifier/layouts/',
+        prompt_title = 'Tmuxifier',
+    })
+end, {})
 
 -- SEARCH INCLUDING HIDDEN FILES ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>pd', function()
@@ -68,7 +75,7 @@ vim.keymap.set('n', '<leader>pn', function()
     })
 end, {})
 -- By contents
-vim.keymap.set('n', '<leader>pnn', function()
+vim.keymap.set('n', '<leader>pt', function()
     require('telescope').extensions.live_grep_args.live_grep_args({
         cwd = '~/Notes',
         prompt_title = 'Notes by content',

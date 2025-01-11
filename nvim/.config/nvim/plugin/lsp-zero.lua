@@ -54,7 +54,6 @@ cmp.setup({
 })
 
 require 'lspconfig'.pyright.setup {}
-require 'lspconfig'.bashls.setup {}
 require 'lspconfig'.sqlls.setup {}
 require 'lspconfig'.pylsp.setup {
     settings = {

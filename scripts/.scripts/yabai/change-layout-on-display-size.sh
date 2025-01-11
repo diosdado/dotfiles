@@ -14,8 +14,8 @@ width_integer=$(printf "%1.f" $display_main_width)
 
 
 if [ $(printf "%1.f" $width_integer) -gt 1800 ]; then
-    ~/.scripts/yabai/yabai-toggle-layout.sh -s "$space_main_index" -l "bsp"
+    ~/.scripts/yabai/toggle-layout.sh -s "$space_main_index" -l "bsp"
 else
-    ~/.scripts/yabai/yabai-toggle-layout.sh -s "$space_main_index" -l "stack"
+    ~/.scripts/yabai/toggle-layout.sh -s "$space_main_index" -l "stack"
 fi
 

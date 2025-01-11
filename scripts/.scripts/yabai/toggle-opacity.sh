@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+. ~/.scripts/.conf
+
 # toggles the opacity of the current window
 
 window=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true)')
@@ -12,7 +15,7 @@ yabai -m window "$window_id" --opacity 0.0
 if [[ "1.0000" > "$window_opacity" ]]; then
     yabai -m window "$window_id" --opacity 0.0
 else
-    yabai -m window "$window_id" --opacity 0.6
+    yabai -m window "$window_id" --opacity $manual_opacity
 fi
 
 

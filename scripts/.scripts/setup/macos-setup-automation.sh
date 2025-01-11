@@ -109,12 +109,14 @@ PACKAGES=(
     fzf
     fd
     powerlevel10k
+    neofetch
     socsieng/tap/sendkeys
 )
 CASKS=(
     boom-3d
     google-drive
     mamp
+    deskpad
     logi-options+
     wacom-tablet
     contexts
@@ -220,7 +222,7 @@ npm i -g bash-language-server
 npm i -g dockerfile-language-server-nodejs
 pipx install python-lsp-server
 
-
+git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
 
 

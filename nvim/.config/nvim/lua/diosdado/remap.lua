@@ -32,6 +32,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- keep cursor cented on screen while doing page-up/page-down
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "}", "<C-d>zz")
+vim.keymap.set("n", "{", "<C-u>zz")
 -- keep search terms in the middle while navigating with n/N
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -71,9 +73,14 @@ vim.keymap.set("n", "<leader>a", "ggVG")
 --------------------------------------------------------------------------------------------------
 -- buffers
 --------------------------------------------------------------------------------------------------
-
+-- use line as filename and open it in a new buffer
+vim.keymap.set("n", "<leader>e", "^v$h\"zy<ESC>:e <C-R>z<CR>")
 -- close window
 vim.keymap.set("n", "<leader>q", "<cmd>clo<CR>")
+-- close buffer
+vim.keymap.set("n", "<leader>Q", ":q!<CR>")
+-- delete buffer
+vim.keymap.set("n", "<leader>D", ":bd!<CR>")
 -- netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- new vsplit
@@ -85,11 +92,12 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<F12>", ":b#<CR>")
+vim.keymap.set("n", "<PageDown>", ":b#<CR>")
+vim.keymap.set("n", "<PageUp>", ":b#<CR>")
 -- previous buffer
-vim.keymap.set("n", "<PageDown>", ":bprev<CR>")
+-- vim.keymap.set("n", "<PageDown>", ":bprev<CR>")
 -- next buffer
-vim.keymap.set("n", "<PageUp>", ":bnext<CR>")
+-- vim.keymap.set("n", "<PageUp>", ":bnext<CR>")
 -- quickfix
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")

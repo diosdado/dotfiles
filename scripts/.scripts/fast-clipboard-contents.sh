@@ -7,38 +7,41 @@ space=''
 touch $file
 echo $space > $file
 
-echo -e "[ HYPER ´ ]" >> $file
-cat ${dir}cp_backtick.txt >> $file
-
+echo -e "[ y ]" >> $file
+cat ${dir}cp_y.txt >> $file
 echo -e $space >> $file
 
-echo -e "[ HYPER + ]" >> $file
-cat ${dir}cp_plus.txt >> $file
-
+echo -e "[ u ]" >> $file
+cat ${dir}cp_u.txt >> $file
 echo -e $space >> $file
 
-echo -e "[ HYPER { ]" >> $file
-cat ${dir}cp_curly_open.txt >> $file
-
+echo -e "[ i ]" >> $file
+cat ${dir}cp_i.txt >> $file
 echo -e $space >> $file
 
-echo -e "[ HYPER } ]" >> $file
-cat ${dir}cp_curly_close.txt >> $file
-
+echo -e "[ o ]" >> $file
+cat ${dir}cp_o.txt >> $file
 echo -e $space >> $file
 
-echo -e "[ CTRL - ]" >> $file
-cat ${dir}cp_hyphen.txt >> $file
-
+echo -e "[ p ]" >> $file
+cat ${dir}cp_p.txt >> $file
 echo -e $space >> $file
 
-echo -e "[ CTRL . ]" >> $file
-cat ${dir}cp_period.txt >> $file
-
+echo -e "[ h ]" >> $file
+cat ${dir}cp_h.txt >> $file
 echo -e $space >> $file
 
-echo -e "[ CTRL , ]" >> $file
-cat ${dir}cp_comma.txt >> $file
+echo -e "[ j ]" >> $file
+cat ${dir}cp_j.txt >> $file
+echo -e $space >> $file
+
+echo -e "[ k ]" >> $file
+cat ${dir}cp_k.txt >> $file
+echo -e $space >> $file
+
+echo -e "[ l ]" >> $file
+cat ${dir}cp_l.txt >> $file
+echo -e $space >> $file
 
 
 OIFS="$IFS" ; IFS=$'\n'

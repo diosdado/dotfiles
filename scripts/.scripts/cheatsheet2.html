@@ -1,0 +1,354 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Vim</title>
+    <style>
+        body {
+            background: black;
+            font-size: 12px;
+            line-height: 1em;
+            color: white;
+            font-family: JetBrainsMono Nerd Font Mono, monospace;
+            font-weight: 100;
+            padding: 0;
+        }
+
+        b {
+            font-weight: 700;
+        }
+
+        .columns {
+            column-count: 4;
+            column-fill: auto;
+        }
+
+        .columns>div {
+            margin-bottom: 1em;
+            padding: .5em;
+            border-radius: .5em;
+        }
+
+        .mem {
+            display: none;
+            opacity: .5;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+            text-indent: -2em;
+            padding-left: 2em;
+            padding-bottom: .5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="columns">
+        <div style="background-color:red">
+            <p><b>✦⌘u </b>→ home</p>
+            <p><b>✦⌘i </b>→ end</p>
+            <p><b>✦⌘j </b>→ page-down</p>
+            <p><b>✦⌘k </b>→ page-up</p>
+            <p><b>✦⌘o </b>→ f11</p>
+            <p><b>✦⌘l </b>→ f12</p>
+            <p><b>✦⌘1-0 </b>→ f1-f10</p>
+            <p><b>✦spacebar </b>→ ^a</p>
+            <p><b>✦8 </b>→ System settings</p>
+            <p><b>✦9 </b>→ Photo booth</p>
+            <p><b>✦0 </b>→ Disk free space</p>
+        </div>
+        <div style="background-color:green">
+            <p><b>Tmux</b></p>
+            <p><b>&#x3C;b&#x3E;& </b>→ kill window</p>
+            <p><b>&#x3C;b&#x3E;x </b>→ kill pane</p>
+            <p><b>&#x3C;b&#x3E;% </b>→ split horizontal</p>
+            <p><b>&#x3C;b&#x3E;" </b>→ split vertical</p>
+            <p><b>&#x3C;b&#x3E;arrow </b>→ move between splits</p>
+            <p><b>&#x3C;b&#x3E;}{ </b>→ move pane</p>
+            <p><b>&#x3C;b&#x3E;! </b>→ turn pane into a window</p>
+            <p><b>list-keys </b>→ shortcuts</p>
+            <p>tmux new -s session-name</p>
+            <p>tmux attach -t session-name</p>
+            <div class="mem">
+                <p><b>&#x3C;b&#x3E;z </b>→ zoom</p>
+                <p><b>Custom</b></p>
+                <p><b>&#x3C;b&#x3E;<span style="opacity:.99;">-</span> </b>→ split horizontal</p>
+                <p><b>&#x3C;b&#x3E;| </b>→ split vertical</p>
+            </div>
+        </div>
+        <div style="background-color:blue">
+            <p><b>Yabai</b></p>
+            <p><b>⇧⌥m </b>→ zoom parent</p>
+            <p><b>^⌥m </b>→ zoom fullscreen</p>
+            <p><b>⇧⌥o </b>→ toggle opacity</p>
+        </div>
+        <div style="background-color:purple">
+            <p><b>BASH</b></p>
+            <p><b>nvim </b>→ scp://{user}@{host}:{port}//{remote-file}</p>
+            <p><b>tracert, traceroute </b>→ saltos que da el request</p>
+            <p><b>doas pkill hiawatha ; doas hiawatha </b>→ reinicio de hiawatha</p>
+            <p><b>sudo systemctl restart mysql </b>→ restart de servicio de mysql en server</p>
+            <p><b>less /etc/passwd </b>→ listado de usuarios</p>
+            <p><b>adduser (ksh, wheel) </b>→ creación de usuarios (perl script)</p>
+            <p><b>usermod (-a) -G {group} {user} </b>→ agregar grupos a usuario (en macos se usa dscl)</p>
+            <p><b>doas tail -1000 {file} | grep -i {text} </b>→ revisión de logs</p>
+            <p><b>lspci </b>→ nics</p>
+            <p><b>ls /etc/*-release file </b>→ Print Linux distribution name and version.</p>
+            <p><b>lsb_release command </b>→ Show Linux distribution-specific information.</p>
+            <p><b>/proc/version file </b>→ Use this file to see Linux kernel version that is currently running.</p>
+            <p><b>hostnamectl command </b>→ Display host name and Linux distro info on systemd based distros.</p>
+            <p><b>lspci | grep -E -i --color 'network|ethernet' </b>→ ver nics fisicos</p>
+            <p><b>ip link show, ip a </b>→ para revisar número de nics, los que importan son los que están como eth y
+                emo y que estén up</p>
+            <p><b>free -m </b>→ memoria ram</p>
+            <p><b>cat /proc/mounts </b>→ info discos montados</p>
+            <p><b>lscpu </b>→ número de procesadores</p>
+            <p><b>cat /proc/cpuinfo </b>→ info de procesadores</p>
+            <p><b>lsblk</b>→ discos duros</p>
+            <p><b>camcontrol devlist </b>→ discos duros bsd
+            <p><b>openssl {mdf5/sha1/etc} {filename} </b>→ get checksum of file</p>
+            <p><b>sha256sum {filename} </b>→ get checksum of file</p>
+            <p><b>lsof | grep {volume} </b>→ check process locking the volume</p>
+            <p><b>chflags -h hidden {symlink} </b>→ hide symling in finder</p>
+            <p><b>dig </b>→ dns lookup</p>
+            <p><b>ps -a | grep -i postgres </b>→ ver si está corriendo proceso</p>
+            <p><b>doas netstat -na -f inet inet | grep LISTEN </b>→ listenin ports</p>
+            <p><b>ln -s {source} {target}</b>→ symlinks</p>
+            <p><b>uname -a </b>→ sistema operativo</p>
+            <p><b>dmesg | head -1 </b>→ kernel</p>
+            <p><b>^z/fg </b>→ sleep/resume process</p>
+            <p><b>sudo passwd</b> → modifica password</p>
+            <p><b>sudo ls -plah /home</b> → dice qué usuarios tienen home *si un usuario nunca se ha loggeado no
+                crea su carpeta home</p>
+            <p><b>more /etc/passwd</b> → lista los usuarios</p>
+            <p><b>more /etc/group</b> → más fiable pero no siempre está</p>
+            <p><b>ifconfig</b> → configuration of network</p>
+            <p><b>ip address</b> → configuration of network</p>
+
+            <p><b>^r </b>→ buscar en historial</p>
+            <p><b>id </b>→ id user, group</p>
+            <p><b>tar </b>→ extract: tar -xvf {filename}, compress: tar -czvf {filename} {data} </p>
+            <p><b>tail </b>→ changes file realtime → tail -f {filename}</p>
+            <p><b>fswatch </b>→ watch changes in directory → fswatch -xr {directory}</p>
+            <p><b>watch </b>→ execute a program periodically, showing output fullscreen</p>
+            <p><b>scp </b>→ scp {user}@{host}:{remote-file} {destination} -P {port}</p>
+            <p><b>cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat &#x3E;&#x3E;
+                    ~/.ssh/authorized_keys'</b></p>
+            <p><b>sshfs </b>→ sshfs {user}@{host}:{directory} -o port={port}</p>
+            <p><b>nvim </b>→ scp://{user}@{host}:{port}//{remote-file}</p>
+            <p><b>chmod, chown</b> refs:{a}ll, {u}ser, {g}roup, {o}ther. modes:{r}ead, {w}rite, e{x}ecute.
+                operators:{-}remove, {+}add, {=}clear</p>
+            <p><b>chmod -R 774 [dir] </b>→ permissions → chmod {ref}{operator}{modes}</p>
+            <p>chmod u=rwx,go=u-w → readable/executable by everyone and writable by owner only</p>
+            <p><b>chown </b>→ owner → chown -R {owner}:{group} {dir/file} </p>
+            <p><b>diff </b>→ diff -q dir-1/ dir-2/</p>
+            <p><b>diskutil list </b>→ discos montados</p>
+            <p><b>mount </b>→ discos montados</p>
+            <p><b>du -h -d 2 | sort -h </b>→ dir size</p>
+            <p><b>ls -d */ </b>→ listar dirs</p>
+            <p><b>ps -ax | grep httpd </b>→ qué archivo config está usando httpd</p>
+            <p><b>lsof | grep [volumen] </b>→ procesos que usan un volumen</p>
+            <p><b>dd </b>→ convert and copy a file</p>
+            <p><b>expr </b>→ calcula expresiones matematicas</p>
+            <p><b>launchctl </b>→ run programs according to a schedule like cron</p>
+            <p><b>pax </b>→ archive utilty</p>
+            <p><b>stty </b>→ sets certain I/O options for the device that is the current standard input</p>
+            <p><b>tty </b>→ name of the terminal</p>
+            <p><b>sync </b>→ synchronizes cached data to permanent storage.</p>
+            <p><b>wait4path </b>→ sleeps until path exists</p>
+            <p><b>mdfind </b>→ spotlight</p>
+            <p><b>&& </b>→ ejecuta si anterior dio 0</p>
+            <p><b>|| </b>→ ejecuta si anterior no dio 0</p>
+            <p><b>; </b>→ ejecuta siempre</p>
+            <div class="mem">
+            </div>
+        </div>
+
+        <div style="background-color:green">
+            <p><b>SEARCH</b></p>
+            <p><b>bsd grep</b></p>
+            <p>grep -irwn 'string' 'absolute-path'</p>
+            <p><b>grep</b></p>
+            <p>grep {flags} {regex} {location pattern}</p< <p><b>-v </b>→ inverse</p>
+            <p><b>Encuentra todos los archivos php que contengan esa ip</b></p>
+            <p>grep -r --include \*.php "10.0.1.131"</p>
+            <p><b>GNU grep no funciona con include</b></p>
+            <p>find . -name "*.php" -exec grep "162" {} \;</p>
+
+            <p><b>-r </b>→ recursive directory</p>
+            <p><b>-i </b>→ case insensitive</p>
+            <p><b>-n </b>→ line number</p>
+            <p><b>-c </b>→ count occurrences</p>
+            <p><b>--include </b>→ especifica qué archivos revisar, se pone un --include por cada pattern</p>
+
+            <p><b>find</b></p>
+            <p>find {location} -type f/d -name {regex}
+            <p><b>-exec </b>→ execute command</p>
+            <p><b>{} </b>→ placeholder for find results</p>
+            <p><b>\; </b>→ execute command for each file</p>
+            <p><b>\+ </b>→ concatenate all find results and execute command for that resulting line </p>
+            <p>{find command} -exec command {}
+            <p><b>-name </b>→ type f/d</p>
+            <p><b>locate </b>→ find names in internal database without traversing file system</p>
+            <p><b>fzf --preview="bat --color=always {}</b>→ preview file using program, for example cat or bat</p>
+            <p><b>awk -F, '$3 &#x3C; 50 {print $1, $2}' data.csv </b> → show fields 1 and 2 of the rows in which field 3
+                is smaller than 50</p>
+        </div>
+
+        <div style="background-color:blue">
+            <p><b>Marks</b></p>
+            <p><b>:marks</b></p>
+            <p><b>ma </b>→ mark a</p>
+            <p><b>`a </b>→ jump to a</p>
+            <p><b>y`a </b>→ yank to a</p>
+            <p><b>`0 </b>→ jump to where closed</p>
+            <p><b>`= </b>→ jump to last edited</p>
+            <p><b>`. </b>→ jump to last change</p>
+            <p><b>`` </b>→ jump to last jump</p>
+            <p><b>`= </b>→ jump to last edited</p>
+            <p><b>:ju[umps]</b></p>
+            <p><b>^i </b>→ jump forward</p>
+            <p><b>^o </b>→ jump backwards</p>
+            <p><b>:changes</b></p>
+            <p><b>g, </b>→ go to newer changes</p>
+            <p><b>g; </b>→ go to older changes</p>
+        </div>
+
+        <div style="background-color:red">
+            <p><b>Netrw</b></p>
+            <p><b>d </b>→ new dir</p>
+            <p><b>a </b>→ hidden files</p>
+            <p><b>c </b>→ set current dir</p>
+            <p><b>gh </b>→ toggle dot files</p>
+            <p><b>r </b>→ reverse sorting</p>
+            <p><b>s </b>→ sorting type</p>
+            <p><b>S </b>→ sort by suffix/prefix</p>
+            <p><b>X </b>→ execute file</p>
+            <p><b>i </b>→ tree view</p>
+            <p><b>mt </b>→ assign target</p>
+            <p><b>mf </b>→ mark file</p>
+            <p><b>mc </b>→ copy files in the target</p>
+            <p><b>mm </b>→ move files to the target</p>
+            <p><b>mx </b>→ run external command</p>
+            <div class="mem">
+                <p><b>% </b>→ new file</p>
+                <p><b>R </b>→ rename</p>
+                <p><b>D </b>→ delete</p>
+                <p><b>- </b>→ parent dir</p>
+            </div>
+        </div>
+
+        <div style="background-color:green">
+            <p><b>Telescope</b></p>
+            <p><b>ps </b>→ document symbols</p>
+            <p><b>pw </b>→ grep string</p>
+            <p><b>pr </b>→ live grep</p>
+            <p><b>pd </b>→ all files</p>
+        </div>
+        <div style="background-color:blueviolet">
+            <p><b>Vim Remaps</b></p>
+            <!-- <p>_<b>f </b>→ copy buffer filename</p> -->
+            <p>_<b>j </b>→ quickfix prev</p>
+            <p>_<b>k </b>→ quickfix next</p>
+            <p><b>LSP</b></p>
+            <p><b>K </b>→ definition help hover</p>
+            <p>_<b>vws </b>→ vim.lsp.buf.workspace_symbol() </p>
+            <p>_<b>vd </b>→ vim.diagnostic.open_float() </p>
+            <p><b>[d </b>→ vim.diagnostic.goto_next() </p>
+            <p><b>]d </b>→ vim.diagnostic.goto_prev() </p>
+            <p>_<b>vca </b>→ vim.lsp.buf.code_action() </p>
+            <p>_<b>vrr </b>→ vim.lsp.buf.references() </p>
+            <p>_<b>vrn </b>→ vim.lsp.buf.rename() </p>
+            <p>^<b>s </b>→ vim.lsp.buf.signature_help() </p>
+        </div>
+
+        <div style="background-color:maroon">
+            <p><b>Vim Search</b></p>
+            <p><b>/\v </b>→ use nonalpha as regex</p>
+            <p>:noh[lsearch] remove highlight</p>
+            <p>Range:</p>
+            <p><b>. </b>→ Current line</p>
+            <p><b>$ </b>→ line</p>
+            <p><b>% </b>→ Whole file</p>
+            <p><b>x </b>→ Line number x</p>
+            <p><b>.,+x </b>→ From current until x lines</p>
+            <p><b>'t </b>→ position of mark "t"</p>
+            <p><b>\/ </b>→ next line previous search matches</p>
+            <p><b>\? </b>→ prev line previous search matches</p>
+            <p><b>\& </b>→ next line previous substitute matches</p>
+            <p><b>:vim[grep]/pattern/{`{file}`} </b>→ find in files</p>
+            <p><b>:cn[ext] </b>→ next match</p>
+            <p><b>:cp[rev] </b>→ prev match</p>
+            <p><b>:cope[n] </b>→ list matches</p>
+            <p><b>:cll[ose] </b>→ close quickfix view</p>
+            <p><b>Flags</b></p>
+            <p><b>i/I </b>→ case</p>
+            <p><b>c </b>→ confirm each</p>
+            <p>replace with HI (y/n/a/q/l/^E/^Y)?:</p>
+            <p><b>a </b>→ all</p>
+            <p><b>q </b>→ quit no substituting not undo</p>
+            <p><b>l </b>→ substitute this and exit</p>
+            <p><b>^E </b>→ scroll up</p>
+            <p><b>^Y </b>→ scroll down</p>
+            <p><b>Greedy</b></p>
+            <p><b>\+ </b>→ 1 or more</p>
+            <p><b>\= </b>→ 0 or 1 more</p>
+            <p><b>\{n,m} </b>→ from n to m</p>
+            <p><b>\{n} </b>→ exactly n times</p>
+            <p><b>\{,m} </b>→ from 0 to m</p>
+            <p><b>\{n,} </b>→ at least n</p>
+            <p><b>Non-greedy</b></p>
+            <p><b>\{-} </b>→ 0 or more</p>
+            <p><b>\{-n,m} </b>→ 1 or more</p>
+            <p><b>\{-n,} </b>→ at lease or more</p>
+            <p><b>\{-,m} </b>→ 1 or more</p>
+            <p>Grouping & Backreferences</p>
+            <p><b>& </b>→ whole matched pattern</p>
+            <p><b>\L </b>→ following characters are made lowercase</p>
+            <p><b>\0 </b>→ whole matched pattern</p>
+            <p><b>\U </b>→ following characters are made uppercase</p>
+            <p><b>\E </b>→ end of \U and \L</p>
+            <p><b>\e </b>→ end of \U and \L</p>
+            <p><b>\l </b>→ next character made lowercase</p>
+            <p><b>~ </b>→ previous substitute string</p>
+            <p><b>\u </b>→ next character made uppercase</p>
+        </div>
+
+        <div style="background-color:green">
+            <p><b>Vim</b></p>
+            <p><b>:w !sudo tee % </b>→ save file with sudo </p>
+            <p><b>^w </b>→ windows (s:split, w:switch, q:quit, v:split)</p>
+            <p><b>:!chmod +w %</b>→ make file writeable</p>
+            <p><b>R </b>→ replace until ESC</p>
+            <p><b>gd </b>→ local declaration</p>
+            <p><b>gD </b>→ global declaration</p>
+            <p><b>ge_ </b>→ last non-blank char</p>
+            <p><b>gwip </b>→ paragraph to 1 line</p>
+            <p><b>:sav →</b> save as</p>
+            <p><b>:reg →</b> registers</p>
+            <p><b>Insert mode</b></p>
+            <p><b>^w </b>→ delete word</p>
+            <p><b>^t </b>→ tab</p>
+            <p><b>^d </b>→ de-indent</p>
+            <p><b>Visual mode</b></p>
+            <p><b>o </b>→ start/end selection</p>
+            <p><b>~ </b>→ switch case</p>
+            <p><b>^a </b>→ increment numbers</p>
+            <p><b>^x </b>→ decrement numbers</p>
+            <p><b>&#x3E;i{ </b>→ Increase inner block indent</p>
+            <p><b>=2a{ </b>→ Re-indent '2 blocks'</p>
+            <p><b>]p </b>→ Paste match indent</p>
+            <p><b>% </b>→ {} or []</p>
+            <p><b>p </b>→ paragraph</p>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

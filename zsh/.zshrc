@@ -11,10 +11,8 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# 'vi' mode
-bindkey -v
-export KEYTIMEOUT=1
-
+# disable  'vi' mode
+bindkey -e
 
 export TERM=xterm-256color
 export PATH=~/.composer/vendor/bin:$PATH
@@ -28,15 +26,18 @@ alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
 alias usage="du -h -d 1 | sort -hr"
 alias cb="pbcopy"
+alias tf="tmuxifier load-session"
+alias ntf="tmuxifier new-session"
 
 # aliases to scripts
 alias so="source ~/.zshrc" # reload zshrc
-alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css" # watch sass
+alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css public/sass:public/css" # watch sass
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
 alias mount-fs="~/.scripts/mount-fs.sh"
 alias umount-fs="~/.scripts/umount-fs.sh"
 alias attach="tmux attach"
 alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
+alias tss="~/.scripts/tmux/tmux-sessionizer.sh -s"
 alias th="ts -d ~/"
 alias td="ts -d ~/dotfiles"
 alias tk="ts -d  ~/ownCloud/Bases-conocimiento"

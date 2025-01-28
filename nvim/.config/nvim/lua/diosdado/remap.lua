@@ -14,9 +14,9 @@ vim.g.maplocalleader = " "
 -- latin american iso keyboard accomodations
 --------------------------------------------------------------------------------------------------
 
-vim.keymap.set("n", "'", "`")
-vim.keymap.set("n", ",", ";")
-vim.keymap.set("n", ";", ",")
+-- vim.keymap.set("n", "'", "`")
+-- vim.keymap.set("n", ",", ";")
+-- vim.keymap.set("n", ";", ",")
 vim.keymap.set("n", "<leader>m", ":marks<CR>")
 
 --------------------------------------------------------------------------------------------------
@@ -32,8 +32,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- keep cursor cented on screen while doing page-up/page-down
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "}", "<C-d>zz")
-vim.keymap.set("n", "{", "<C-u>zz")
+-- vim.keymap.set("n", "}", "<C-d>zz")
+-- vim.keymap.set("n", "{", "<C-u>zz")
 -- keep search terms in the middle while navigating with n/N
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -92,13 +92,7 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<PageDown>", ":b#<CR>")
-vim.keymap.set("n", "<PageUp>", ":b#<CR>")
--- previous buffer
--- vim.keymap.set("n", "<PageDown>", ":bprev<CR>")
--- next buffer
--- vim.keymap.set("n", "<PageUp>", ":bnext<CR>")
--- quickfix
+vim.keymap.set("n", "<F5>", ":b#<CR>")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -130,11 +124,12 @@ vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:p\")<CR><CR>")
 -- replace in selection
 vim.keymap.set("v", "<leader>r", ':s::g<Left><Left>')
 -- save file, switch to browser and refresh
-vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/reload-browser-without-cache.sh<CR><CR>")
+vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/development-browser.sh -r<CR><CR>")
+vim.keymap.set("n", "<leader>;", "<cmd>w<CR>:!~/.scripts/development-browser.sh -r<CR><CR>")
 -- make the current file executable
 vim.keymap.set("n", "<leader>x", ":! chmod +x %<CR>")
 -- show yabai window objects
-vim.keymap.set("n", "<leader>¿", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>", { silent = true })
+vim.keymap.set("n", "<leader>/", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>", { silent = true })
 -- create new note
 vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.txt<Left><Left><Left><Left>]])
 -- source configuration

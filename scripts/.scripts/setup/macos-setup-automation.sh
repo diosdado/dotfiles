@@ -96,7 +96,6 @@ PACKAGES=(
     pypy
     git
     stow
-    only-switch
     fswatsh
     jq
     sass/sass/sass
@@ -113,21 +112,30 @@ PACKAGES=(
     socsieng/tap/sendkeys
 )
 CASKS=(
+    onyx
+    yam-display
+    only-switch
     boom-3d
     google-drive
     mamp
     deskpad
     logi-options+
+    floorp
     wacom-tablet
     contexts
     monitorcontrol
+    mountain-duck
+    mysqlworkbench
     devtoys
+    macfuse
     kitty
     pika
     captin
     blender
     gimp
     vscodium
+    hiddenbar
+    whatsapp
     inkscape
     vlc
     vivaldi
@@ -138,6 +146,8 @@ CASKS=(
     rawtherapee
     transmission
     whisky
+    free-ruler
+    hex-fiend
     appcleaner
     firefox@developer-edition
     openemu
@@ -145,11 +155,11 @@ CASKS=(
     itsycal
     steam
     qlstephen
+    sloth
     suspicious-package
-    mysqlworkbench
     dosbox
     powershell
-    php-cs-fixer
+    qcad
 )
 PYTHON_PACKAGES=(
     ipython

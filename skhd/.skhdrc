@@ -1,40 +1,22 @@
 
-# ALL SPECIAL KEYS ARE FOR AN SPANISH ISO KEYBOARD
-
 
 # default mode
 :: default : borders active_color=0xff00ff00
-
-# arrows mode
-:: arrows : borders active_color=0xff5991f1
-hyper - n ; arrows
-arrows < escape ; default
-
-arrows < h : skhd --key "left"
-arrows < j : skhd --key "down"
-arrows < k : skhd --key "up"
-arrows < l : skhd --key "right"
-
 
 
 # -------------------------------------------------------------------------------------------------
 # fast clipboard
 # -------------------------------------------------------------------------------------------------
 
-# backtick ´
-hyper - 0x21 : cat ~/clipboard/cp_backtick.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-# plus +
-hyper - 0x1E : cat ~/clipboard/cp_plus.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-# open curly brace {
-hyper - 0x27 : cat ~/clipboard/cp_curly_open.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-# close curly brace }
-hyper - 0x2A : cat ~/clipboard/cp_curly_close.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-# hyphen -
-ctrl - 0x2C : cat ~/clipboard/cp_hyphen.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-# period .
-ctrl - 0x2F : cat ~/clipboard/cp_period.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-# comma ,
-ctrl - 0x2B : cat ~/clipboard/cp_comma.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - y : cat ~/clipboard/cp_y.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - u : cat ~/clipboard/cp_u.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - i : cat ~/clipboard/cp_i.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - o : cat ~/clipboard/cp_o.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - p : cat ~/clipboard/cp_p.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - h : cat ~/clipboard/cp_h.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - k : cat ~/clipboard/cp_k.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+meh - l : cat ~/clipboard/cp_l.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+
 
 # -------------------------------------------------------------------------------------------------
 # yabai
@@ -42,7 +24,7 @@ ctrl - 0x2B : cat ~/clipboard/cp_comma.txt | pbcopy ; sendkeys -c "<c:v:command>
 
 # yabai movements mode
 :: yabai @ : borders active_color=0xffea333d
-hyper - m ; yabai
+hyper - 0x27 ; yabai
 yabai < escape ; default
 
 # close window
@@ -108,7 +90,7 @@ shift + alt - z : yabai --restart-service
 shift + alt - x : ~/.scripts/yabai/reset-borders.sh
 
 # Make primary window
-shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:300:0
+hyper - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:300:0
 
 # Switch modes
 shift + alt - s : ~/.scripts/yabai/toggle-layout.sh -l "stack"
@@ -120,10 +102,7 @@ shift + alt - f : yabai -m window --toggle float --grid 7:5:1:1:3:5
 # center window
 shift + alt - c : yabai -m window --grid 8:8:2:2:4:4
 
-# Focus displays
-hyper - tab : ~/.scripts/yabai/cycle-between-displays.sh
-hyper - return : ~/.scripts/yabai/cycle-window-between-displays.sh
-
+# move window to display
 shift + alt - 1 : yabai -m window --display 1
 shift + alt - 2 : yabai -m window --display 2
 shift + alt - 3 : yabai -m window --display 3
@@ -135,70 +114,67 @@ shift + alt - 3 : yabai -m window --display 3
 # LEFT HAND ---------------------------------------------------------------------------------------
 
 # | 1 2 3 4 5
-hyper - 0x0A : open /Applications/MAMP\ PRO.app
-# hyper - 1 -> f1 (karabiner)
-# hyper - 2 -> f2 (karabiner)
-# hyper - 3 -> f3 (karabiner)
-# hyper - 4 -> f4 (karabiner)
-# hyper - 5 -> f5 (karabiner)
+# hyper - 0x18
+hyper - 1 : open /Applications/Inkscape.app
+hyper - 2 : open /Applications/GIMP.app
+hyper - 3 : open /Applications/Blender.app
+# hyper - 4
+hyper - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
 
 # q w e r t
-hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
+# hyper - q :
 # hyper - w -> color picker (Pika)
 hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
 hyper - r : open /Applications/Free\ Ruler.app
-hyper - t : open /System/Applications/TextEdit.app
+hyper - t : open /Users/david.diosdado/Applications/Microsoft\ Teams.app
 
 # a s d f g
-rcmd + rshift + ralt + rctrl - a : open /Applications/ONLYOFFICE.app # hyper
-rcmd + rshift + ralt + rctrl + lshift - a : open -n /Applications/ONLYOFFICE.app # hyper+shift
-hyper - s : open /Applications/Inkscape.app
+hyper - a : open /Applications/Safari.app
+hyper - s : open /Users/david.diosdado/Applications/Sandox\ Meet.app
 hyper - d : open /Applications/DevToys.app
 hyper - f : open /Applications/FileZilla.app
-hyper - g : open /Applications/GIMP.app
+# hyper - g : open
+
 
 # z x c v b
-hyper - z : open /Applications/DeskPad.app
+# hyper - z :
 hyper - x : open /Applications/Hex\ Fiend.app
 hyper - c : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app
 hyper - v : open /Applications/VSCodium.app
-# hyper - b : open /Applications/Blender.app
+# hyper - b :
 
 # RIGHT HAND --------------------------------------------------------------------------------------
 
-# 6 7 8 9 0 ' ¿
-# hyper - 6 -> f6 (karabiner)
-# hyper - 7 -> f7 (karabiner)
-# hyper - 8 -> f8 (karabiner)
-# hyper - 9 -> f9 (karabiner)
-# hyper - 0 -> f10 (karabiner)
-# hyper - 0x1B -> f11 (karabiner) # '
-# hyper - 0x18 -> f12 (karabiner) # ¿
+# 6 7 8 9 0 -
+hyper - 6 : open ~/Desktop/Projects/
+# hyper - 7 :
+hyper - 8 : ~/.scripts/notification-disk-free.sh
+hyper - 9 : ~/.scripts/fast-clipboard-contents.sh
+hyper - 0 : killall qlmanage ; qlmanage -p ~/.scripts/cheatsheet2.html
+hyper - 0x1B : killall qlmanage ; qlmanage -p ~/.scripts/cheatsheet.html
 
 # y u i o p ´ +
-hyper - y : ~/.scripts/yabai/toggle-hidden.sh -n "Reminders" -p /System/Applications/Reminders.app
+hyper - y : open /System/Applications/Reminders.app ; open /Users/david.diosdado/Applications/Trello.app
 hyper - u : open /Applications/kitty.app
 hyper - i : open /Applications/Floorp.app
-hyper - o : ~/.scripts/yabai/toggle-hidden.sh -n "WhatsApp" -p /Applications/WhatsApp.app
+hyper - o : open /Applications/WhatsApp.app ; open ~/Applications/Instagram.app
 hyper - p : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-# hyper - 0x21 -> fast clipboard
-# hyper - 0x1E -> fast clipboard
 
-# h j k l ñ { }
+# h j k l ; '
 # hyper - h -> left arrow (karabiner)
 # hyper - j -> down arrow (karabiner)
 # hyper - k -> up arrow (karabiner)
 # hyper - l -> right arrow (karabiner)
-hyper - 0x29 : ~/.scripts/development-browser.sh -r # ñ
-# hyper - 0x27 -> fast clipboard # {
-# hyper - 0x2A -> fast clipboard # }
+hyper - 0x29 : ~/.scripts/development-browser.sh # ;
+# hyper - 0x27 :  # '
 
-# n m , . -
-# hyper - n -> hjkl arrows mode
-# hyper - m -> yabai movements mode
-# hyper - 0x2C -> disabled (karabiner) # ,
+# n m , . /
+rcmd + rshift + ralt + rctrl - n : open /Applications/ONLYOFFICE.app
+rcmd + rshift + ralt + rctrl + lcmd - n : open -n /Applications/ONLYOFFICE.app # hyper+shift
+hyper - m : open /Applications/MAMP\ PRO.app
+# hyper - 0x2B -> disabled (karabiner) # ,
 # hyper - 0x2F -> disabled (karabiner) # .
-# hyper - 0x2B -> disabled (karabiner) # -
+# hyper - 0x2C :
 
 
 # -------------------------------------------------------------------------------------------------
@@ -208,22 +184,14 @@ hyper - 0x29 : ~/.scripts/development-browser.sh -r # ñ
 # LEFT HAND ---------------------------------------------------------------------------------------
 
 # | 1 2 3 4 5
-rcmd + rshift + ralt + rctrl + lcmd - 1 : open /Applications/UTM.app
-rcmd + rshift + ralt + rctrl + lcmd - 2 : open /Applications/Sloth.app
-rcmd + rshift + ralt + rctrl + lcmd - 3 :
-rcmd + rshift + ralt + rctrl + lcmd - 4 :
-rcmd + rshift + ralt + rctrl + lcmd - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
+# rcmd + rshift + ralt + rctrl + lcmd - 1 : open /Applications/UTM.app
+# rcmd + rshift + ralt + rctrl + lcmd - 2 : open /Applications/Sloth.app
+# rcmd + rshift + ralt + rctrl + lcmd - 3 :
+# rcmd + rshift + ralt + rctrl + lcmd - 4 :
 
 # RIGHT HAND --------------------------------------------------------------------------------------
 
 # 6 7 8 9 0 ' ¿
-rcmd + rshift + ralt + rctrl + lcmd - 6 : open /Users/david.diosdado/ownCloud/
-rcmd + rshift + ralt + rctrl + lcmd - 7 : open ~/Desktop/Projects/
-rcmd + rshift + ralt + rctrl + lcmd - 8 : open /System/Applications/System\ Settings.app
-rcmd + rshift + ralt + rctrl + lcmd - 9 : open /System/Applications/Photo\ Booth.app
-rcmd + rshift + ralt + rctrl + lcmd - 0 : ~/.scripts/notification-disk-free.sh
-rcmd + rshift + ralt + rctrl + lcmd - 0x1B : ~/.scripts/fast-clipboard-contents.sh # '
-rcmd + rshift + ralt + rctrl + lcmd - 0x18 : killall qlmanage ; qlmanage -p ~/.scripts/cheatsheet.html # ¿
 
 # -------------------------------------------------------------------------------------------------
 # Actions

@@ -13,17 +13,11 @@ done
 
 query='.[] | select(
     ."app" == "Stickies" or
-    ."app" == "Finder" or
-    ."app" == "Instagram" or
     ."app" == "System Settings" or
-    ."app" == "Reminders" or
-    ."app" == "Calendar" or
-    ."app" == "Sandox Meet" or
-    ."app" == "Trello" or
-    ."app" == "Microsoft Teams" or
-    ."app" == "WhatsApp" or
-    ."app" == "‎WhatsApp"
+    ."app" == "Finder"
 ) | .id'
+# ."app" == "WhatsApp" or
+# ."app" == "‎WhatsApp"
 
 focused=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true) | .id')
 windows=$(yabai -m query --windows | jq "$query")

@@ -8,7 +8,189 @@
                 },
                 "rules": [
                     {
+                        "description": "Diosdado - Esc → Hyper(⌃⌥⇧⌘)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_shift",
+                                        "modifiers": ["right_command", "right_control", "right_option"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Hyper+spacebar → a+ctrl",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Disable sysdiagnose and wifi logging",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["left_shift"]
+                                    }
+                                },
+                                "to": { "key_code": "escape" },
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["left_shift"]
+                                    }
+                                },
+                                "to": { "key_code": "escape" },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Hyper+(hjkl) → (←↓↑→) keys",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "left_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "up_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "down_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - F13+ → Media keys (needs fn disabled and f1=f1 etc)",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "f13" },
+                                "to": [{ "key_code": "display_brightness_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f14" },
+                                "to": [{ "key_code": "display_brightness_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f15" },
+                                "to": [{ "key_code": "mission_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f16" },
+                                "to": [{ "key_code": "launchpad" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f17" },
+                                "to": [{ "key_code": "illumination_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f18" },
+                                "to": [{ "key_code": "illumination_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f19" },
+                                "to": [{ "key_code": "rewind" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f20" },
+                                "to": [{ "key_code": "play_or_pause" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f21" },
+                                "to": [{ "key_code": "fastforward" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f22" },
+                                "to": [{ "key_code": "mute" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f23" },
+                                "to": [{ "key_code": "volume_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f24" },
+                                "to": [{ "key_code": "volume_increment" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Diosdado - Hyper+number → function keys",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -145,27 +327,8 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - Spacebar → Meh(⌃⌥⇧)",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift",
-                                        "modifiers": ["right_control", "right_option"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "spacebar" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Diosdado - Hyper+backspace → CapsLock",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -178,21 +341,8 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - RightControl → Meh(⌃⌥⇧)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control"] }
-                                },
-                                "to": [{ "key_code": "fn" }],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Diosdado - Hyper+command → home/pg-down/pg-up/end",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -213,7 +363,7 @@
                                         "optional": []
                                     }
                                 },
-                                "to": [{ "key_code": "page_down" }],
+                                "to": [{ "key_code": "page_up" }],
                                 "type": "basic"
                             },
                             {
@@ -224,7 +374,7 @@
                                         "optional": []
                                     }
                                 },
-                                "to": [{ "key_code": "page_up" }],
+                                "to": [{ "key_code": "page_down" }],
                                 "type": "basic"
                             },
                             {
@@ -241,28 +391,8 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - Hyper+spacebar → a+ctrl",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "a",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Diosdado - Hyper+option-(hjkl) → ctrl-(hjkl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -331,184 +461,8 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - F keys+option → Media keys (needs fn disabled and f1=f1 etc)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f1",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "display_brightness_decrement" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f2",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "display_brightness_increment" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f3",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "mission_control" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f4",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "launchpad" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f5",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "illumination_decrement" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f6",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "illumination_increment" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f7",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "rewind" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f8",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "play_or_pause" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f9",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "fastforward" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f10",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "mute" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f11",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "volume_decrement" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f12",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "key_code": "volume_increment" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Diosdado - Disable sysdiagnose and wifi logging",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "comma",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["left_shift"]
-                                    }
-                                },
-                                "to": { "key_code": "escape" },
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "period",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["left_shift"]
-                                    }
-                                },
-                                "to": { "key_code": "escape" },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Diosdado - Hyper+(hjkl) → (←↓↑→) keys",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "left_arrow" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "up_arrow" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "down_arrow" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": {
-                                        "mandatory": ["right_command", "right_option", "right_control", "right_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "right_arrow" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Diosdado - CapsLock → Hyper(⌃⌥⇧⌘)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -538,6 +492,56 @@
             },
             "devices": [
                 {
+                    "fn_function_keys": [
+                        {
+                            "from": { "key_code": "f1" },
+                            "to": [{ "key_code": "f1" }]
+                        },
+                        {
+                            "from": { "key_code": "f2" },
+                            "to": [{ "key_code": "f2" }]
+                        },
+                        {
+                            "from": { "key_code": "f3" },
+                            "to": [{ "key_code": "f3" }]
+                        },
+                        {
+                            "from": { "key_code": "f4" },
+                            "to": [{ "key_code": "f4" }]
+                        },
+                        {
+                            "from": { "key_code": "f5" },
+                            "to": [{ "key_code": "f5" }]
+                        },
+                        {
+                            "from": { "key_code": "f6" },
+                            "to": [{ "key_code": "f6" }]
+                        },
+                        {
+                            "from": { "key_code": "f7" },
+                            "to": [{ "key_code": "f7" }]
+                        },
+                        {
+                            "from": { "key_code": "f8" },
+                            "to": [{ "key_code": "f8" }]
+                        },
+                        {
+                            "from": { "key_code": "f9" },
+                            "to": [{ "key_code": "f9" }]
+                        },
+                        {
+                            "from": { "key_code": "f10" },
+                            "to": [{ "key_code": "f10" }]
+                        },
+                        {
+                            "from": { "key_code": "f11" },
+                            "to": [{ "key_code": "f11" }]
+                        },
+                        {
+                            "from": { "key_code": "f12" },
+                            "to": [{ "key_code": "f12" }]
+                        }
+                    ],
                     "identifiers": {
                         "is_keyboard": true,
                         "product_id": 50475,
@@ -551,6 +555,18 @@
                         {
                             "from": { "key_code": "non_us_backslash" },
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
+                        },
+                        {
+                            "from": { "key_code": "right_command" },
+                            "to": [{ "key_code": "left_control" }]
+                        },
+                        {
+                            "from": { "key_code": "right_option" },
+                            "to": [{ "key_code": "left_option" }]
+                        },
+                        {
+                            "from": { "key_code": "right_shift" },
+                            "to": [{ "key_code": "left_shift" }]
                         }
                     ],
                     "treat_as_built_in_keyboard": true
@@ -562,23 +578,6 @@
                         "vendor_id": 1133
                     },
                     "ignore": true
-                },
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "non_us_backslash" }]
-                        },
-                        {
-                            "from": { "key_code": "non_us_backslash" },
-                            "to": [{ "key_code": "grave_accent_and_tilde" }]
-                        }
-                    ]
                 },
                 {
                     "identifiers": {
@@ -733,21 +732,7 @@
             ],
             "name": "Default profile",
             "selected": true,
-            "simple_modifications": [
-                {
-                    "from": { "key_code": "right_command" },
-                    "to": [{ "key_code": "left_control" }]
-                },
-                {
-                    "from": { "key_code": "right_option" },
-                    "to": [{ "key_code": "left_option" }]
-                },
-                {
-                    "from": { "key_code": "right_shift" },
-                    "to": [{ "key_code": "left_shift" }]
-                }
-            ],
-            "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
     ]
 }

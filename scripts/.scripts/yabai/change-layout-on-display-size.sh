@@ -2,6 +2,8 @@
 
 # Automatic layout for s_main space based on display size
 
+exit
+
 spaces=$(yabai -m query --spaces)
 displays=$(yabai -m query --displays)
 space_main=$(echo $spaces | jq '.[] | select(."label" == "s_main")')

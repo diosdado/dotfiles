@@ -32,8 +32,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- keep cursor cented on screen while doing page-up/page-down
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- vim.keymap.set("n", "}", "<C-d>zz")
--- vim.keymap.set("n", "{", "<C-u>zz")
 -- keep search terms in the middle while navigating with n/N
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -53,11 +51,19 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.format)
 -- start a global replace whith the current word
 vim.keymap.set("n", "<leader>s", [[:%s:\<<C-r><C-w>\>:<C-r><C-w>:gI<Left><Left><Left>]])
+
+vim.keymap.set("v", "<leader>sn", [[:s:\([^ ]*\):!is_null(\1) \&\&<CR>]])
+vim.keymap.set("v", "<leader>se", [[:s:\(.*\):echo '\1 \: ' \. $\1 . '<br>';<CR>]])
+vim.keymap.set("v", "<leader>so", [[:s:\(.*\):<option value="\1">\1</option><CR>]])
+vim.keymap.set("v", "<leader>s$", [[:s:\(.*\):$\1 = sx_normalized_post_var('\1');<CR>]])
+vim.keymap.set("v", "<leader>sv", [[:s:^[  ]*\(.*\), *\(.*\):<option value="\1">\2</option><CR>]])
+vim.keymap.set("v", "<leader>s'", [[:s:['"]*::g<CR>]])
+
 -- remove windows newline chars ^M
 vim.keymap.set("n", "<leader>z", ":%s:\\r::g<CR>")
 -- change case
-vim.keymap.set("n", "<leader>,", "viwu")
-vim.keymap.set("n", "<leader>.", "viwU")
+vim.keymap.set("n", "<leader>[", "viwu")
+vim.keymap.set("n", "<leader>]", "viwU")
 
 --------------------------------------------------------------------------------------------------
 -- disable some default shortcuts
@@ -70,6 +76,7 @@ vim.keymap.set("n", "<tab>", "<nop>")
 -- select all
 vim.keymap.set("n", "<leader>a", "ggVG")
 
+vim.keymap.set("v", "u", "<nop>")
 --------------------------------------------------------------------------------------------------
 -- buffers
 --------------------------------------------------------------------------------------------------
@@ -92,7 +99,7 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<F5>", ":b#<CR>")
+vim.keymap.set("n", "<home>", ":b#<CR>")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -114,8 +121,12 @@ vim.keymap.set("n", "<leader>%", "vi%\"+y")
 vim.keymap.set("n", "<leader>'", "vi'\"+y")
 -- copy " to clipboard
 vim.keymap.set("n", "<leader>\"", "vi\"\"+y")
--- copy filename
-vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:p\")<CR><CR>")
+-- copy absolute filename
+vim.keymap.set("n", "<leader>ff", ":let @* = expand(\"%:p\")<CR><CR>")
+-- copy relative filename
+vim.keymap.set("n", "<leader>fr", ":let @* = expand(\"%:f\")<CR><CR>")
+-- copy only filename
+vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:t\")<CR><CR>")
 
 --------------------------------------------------------------------------------------------------
 -- etc
@@ -136,6 +147,7 @@ vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.txt<Left><Left><Left><Left>]])
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
 
 
 -- php convertir parametros en variables

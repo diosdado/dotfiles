@@ -57,7 +57,7 @@
 
 <body>
     <div class="columns">
-        <div style="background-color:green">
+        <div style="background-color:#51cb20">
             <p><b>Tmux</b></p>
             <p><b>&#x3C;b&#x3E;& </b>→ kill window</p>
             <p><b>&#x3C;b&#x3E;x </b>→ kill pane</p>
@@ -76,7 +76,7 @@
                 <p><b>&#x3C;b&#x3E;| </b>→ split vertical</p>
             </div>
         </div>
-        <div style="background-color:green">
+        <div style="background-color:#76B041">
             <p><b>NETWORK</b></p>
 
             <p><b>tracert, traceroute, tracepath </b>→ route packets take to host</p>
@@ -105,7 +105,7 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>pkg_delete</b> → remove installed package</p>
             <p><b>/etc/pkg.conf </b> → package repository</p>
         </div>
-        <div style="background-color:purple">
+        <div style="background-color:#639A88">
             <p><b>SYSADMIN</b></p>
             <p><b>ps -ax </b>→ list all processes</p>
             <p><b>ps -ax | grep httpd </b>→ process using httpd</p>
@@ -127,6 +127,7 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>adduser </b>→ create user <span>bsd</span></p>
             <p><b>useradd </b>→ create user <span>linux</span></p>
             <p><b>usermod (-a) -G {group} {user} </b>→ add user group <span>bsd</span> <span>linux</span></p>
+            <p><b>gpasswd -d {user} {group} </b>→ remove user from group</p>
             <p><b>passwd </b>→ change password</p>
             <p><b>dscl . append /Group/group {group} {user}</b>→ add user group <span>macos</span></p>
             <p><b>lsb_release command </b>→ distro info <span>linux</span></p>
@@ -134,7 +135,7 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>dmesg </b>→ system message buffer</p>
             <p><b>chflags -h hidden {symlink} </b>→ hide symling in finder <span>macos</span> <span>bsd</span></p>
             <p><b>openssl {mdf5/sha1/etc} {filename} </b>→ get checksum of file</p>
-            <p><b>systemctl {action} {service} </b>→ start/stop service/daemon</p>
+            <p><b>systemctl restart mysql  </b>→ restart mysql</p>
             <p><b>launchd </b>→ system wide daemon manager <span>macos</span></p>
             <p><b>launchctl </b>→ interface with launchd <span>macos</span></p>
             <p><b>service {service-name} status </b>→ interface with launchd <span>macos</span></p>
@@ -143,7 +144,17 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>exportfs -arv </b>→ selectively export or unexport directories without restarting the NFS service</p>
             <p><b>ln -s /usr/local/bin/{package} /var/www/bin/ </b>→ make package accessible to www</p>
         </div>
-        <div style="background-color:purple">
+        <div style="background-color:#3A5683">
+            <p><b>firewall-cmd</b></p>
+            <p><b>--get-active-zones</b>→ current zone </p>
+            <p><b>--zone=public --list-all</b>→ list all rules of zone</p>
+            <p><b>--zone=public --remove-service=service</b>→ remove service</p>
+            <p><b>--zone=public --add-source=192.168.240.103</b>→ add ip to zone </p>
+            <p><b>--zone=public --add-source=192.168.255.0/24</b>→ add ip segment to zone </p>
+            <p><b>--zone=public --add-rich-rule='rule family=ipv4 service name=ssh log prefix="Dropped SSH" level="notice" limit value=1/m drop'</b>→ add ip to zone </p>
+            <p><b>/var/log/messages</b>→ firewall messages</p>
+        </div>
+        <div style="background-color:#2708A0">
             <p><b>PERMISSIONS</b></p>
             <p><b>chmod, chown</b></p>
             <p>refs:{a}ll, {u}ser, {g}roup, {o}ther</p>
@@ -153,7 +164,7 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>chmod u=rwx,go=u-w </b>→ readable/executable by everyone and writable by owner only</p>
             <p><b>chown (-R) {owner}:{group} {file/dir}</b>→ change owner</p>
         </div>
-        <div style="background-color:purple">
+        <div style="background-color:#51CB20">
             <p><b>BASH</b></p>
             <p><b>ln -s {source} {target}</b>→ symlinks</p>
             <p><b>tar -xvf {filename} </b>→ extract</p>
@@ -175,7 +186,7 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>mdfind </b>→ spotlight</p>
         </div>
 
-        <div style="background-color:green">
+        <div style="background-color:#76B041">
             <p><b>SEARCH</b></p>
             <p><b>bsd grep</b></p>
             <p>grep -irwn 'string' 'absolute-path'</p>

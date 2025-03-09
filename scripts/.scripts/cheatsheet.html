@@ -58,6 +58,10 @@
 <body>
     <div class="columns">
         <div style="background-color:#51cb20">
+            <p><b>ps | grep vi | grep -v grep</b>→ check process ignore grep</p>
+
+        </div>
+        <div style="background-color:#51cb20">
             <p><b>Tmux</b></p>
             <p><b>&#x3C;b&#x3E;& </b>→ kill window</p>
             <p><b>&#x3C;b&#x3E;x </b>→ kill pane</p>
@@ -117,7 +121,10 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>mount </b>→ mounted volumes</p>
             <p><b>lsof </b>→ list open files <span>macos</span></p>
             <p><b>lsof | grep {volume} </b>→ process using volume</p>
-            <p><b>/etc/{passwd, group, *-release} </b>→ users, groups, distro</p>
+            <p><b>vipw </b>→ edit group related files locking them</p>
+cambiar cosas que se hacen en passwd también en shadow
+añadir /bin/bash al usuario en passwd o en group?
+            <p><b>/etc/{passwd, shadow, group, gshadow, *-release} </b>→ users, groups, distro</p>
             <p><b>/proc/{mounts, version, cpuinfo} </b>→ disks, kernel, cpus <span>bsd</span> <span>linux</span></p>
             <p><b>/home </b>→ user home folders <span>bsd</span> <span>linux</span></p>
             <p><b>/Users </b>→ user home folders <span>macos</span></p>
@@ -126,7 +133,8 @@ sudo rm /etc/systemd/system/nginx.service remove service unit
             <p><b>free -m </b>→ ram</p>
             <p><b>adduser </b>→ create user <span>bsd</span></p>
             <p><b>useradd </b>→ create user <span>linux</span></p>
-            <p><b>usermod (-a) -G {group} {user} </b>→ add user group <span>bsd</span> <span>linux</span></p>
+            <p><b>user mod -G {group} {user} </b>→ add user group <span>bsd</span></p>
+            <p><b>usermod -a -G {group} {user} </b>→ add user group <span>linux</span></p>
             <p><b>gpasswd -d {user} {group} </b>→ remove user from group</p>
             <p><b>passwd </b>→ change password</p>
             <p><b>dscl . append /Group/group {group} {user}</b>→ add user group <span>macos</span></p>

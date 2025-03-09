@@ -32,41 +32,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-
--- You'll find a list of language servers here:
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
--- These are example language servers.
--- require('lspconfig').phpactor.setup({})
-
-local cmp = require('cmp')
-
-cmp.setup({
-    sources = {
-        { name = "nvim_lua" },
-        { name = "nvim_lsp" },
-        -- { name = "luasnip" },
-        -- { name = "buffer" },
-        -- { name = "path" },
-    },
-    snippet = {
-        expand = function(args)
-            -- You need Neovim v0.10 to use vim.snippet
-            vim.snippet.expand(args.body)
-        end,
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-})
-
+require 'lspconfig'.phpactor.setup {}
 require 'lspconfig'.pyright.setup {}
 require 'lspconfig'.sqlls.setup {}
 require 'lspconfig'.pylsp.setup {
@@ -92,14 +58,52 @@ require "lspconfig".dockerls.setup {
         }
     }
 }
-require 'lspconfig'.phpactor.setup {
-    on_attach = on_attach,
-    init_options = {
-        ["language_server_phpstan.enabled"] = false,
-        ["language_server_psalm.enabled"] = false,
-    }
-}
 
 
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+  }
+})
+
+
+
+local cmp = require('cmp')
+cmp.setup({
+    sources = {
+        { name = "nvim_lua" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        -- { name = "buffer" },
+        -- { name = "path" },
+    },
+    snippet = {
+        expand = function(args)
+            vim.snippet.expand(args.body)
+        end,
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+        -- Navigate between completion items
+        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
+        ['<C-n>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
+
+        -- `Enter` key to confirm completion
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+        -- Ctrl+Space to trigger completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
+
+        -- Scroll up and down in the completion documentation
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    }),
+})
 

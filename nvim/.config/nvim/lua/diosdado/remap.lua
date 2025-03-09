@@ -148,6 +148,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+vim.keymap.set("n", "<leader>i", "<cmd>LspInfo<CR>")
 
 
 -- php convertir parametros en variables

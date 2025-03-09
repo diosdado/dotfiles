@@ -16,12 +16,12 @@ bindkey -e
 
 export TERM=xterm-256color
 export PATH=~/.composer/vendor/bin:$PATH
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH=~/.local/bin/:$PATH
 export EDITOR=nvim
 export VISUAL="$EDITOR"
-export PATH="$HOME/.tmuxifier/bin:$PATH"
 
 # aliases to programs
-alias phpactor="~/.local/bin/phpactor"
 alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
 alias usage="du -h -d 1 | sort -hr"

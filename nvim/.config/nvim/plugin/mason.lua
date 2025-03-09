@@ -1,12 +1,12 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = { 'phpactor' },
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    },
-})
+-- require("mason").setup()
+-- require("mason-lspconfig").setup({
+--     ensure_installed = { 'phpactor' },
+--     handlers = {
+--         function(server_name)
+--             require('lspconfig')[server_name].setup({})
+--         end,
+--     },
+-- })
 
 
 --blade-formatter

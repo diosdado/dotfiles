@@ -43,6 +43,12 @@ yabai -m config                                 \
     mouse_action2                resize         \
     mouse_drop_action            swap
 
+
+
+
+
+
+
 # floated windows
 yabai -m rule --add app="^System\ Settings$"        manage=off
 yabai -m rule --add app="^Calculator$"              manage=off
@@ -67,39 +73,63 @@ yabai -m rule --add app="^ownCloud$"                manage=off
 yabai -m rule --add app="^VLC$"                     manage=off
 yabai -m rule --add app="^Mountain\ Duck$"          manage=off
 yabai -m rule --add app="^Homerow$"                 manage=off
-yabai -m rule --add app="^Finder$"                 manage=off
+yabai -m rule --add app="^Finder$"                  manage=off
 yabai -m rule --add app="^Disk Utility$"            manage=off
-
+yabai -m rule --add app="^OBS Studio$"              manage=off
+yabai -m rule --add app="^FortiClient$"             manage=off
+yabai -m rule --add app="^Calendar$"                manage=off
 yabai -m rule --add app="^Windows App$"             manage=off
 yabai -m rule --add app="^UTM$"                     manage=off
 yabai -m rule --add app="^Screen\ Sharing$"         manage=off
+yabai -m rule --add app="^Crunchyroll$"             manage=off
+yabai -m rule --add app="^QuickTime Player$"        manage=off
+yabai -m rule --add app="^Safari$"                  manage=off
+yabai -m rule --add app="^DevToys$"                 manage=off
+yabai -m rule --add app="^Instagram$"               manage=off
+yabai -m rule --add app="^Trello$"                  manage=off
+yabai -m rule --add app="^AppCleaner$"              manage=off
+yabai -m rule --add app="^Hex Fiend$"               manage=off
+yabai -m rule --add app="^Font Book$"               manage=off
+yabai -m rule --add app="^Dictionary$"              manage=off
 
+
+yabai -m rule --add app="^iPhone Mirroring$"        sticky=on
 yabai -m rule --add app="^VLC$"                     sticky=on
+yabai -m rule --add app="^QuickTime Player$"        sticky=on
 yabai -m rule --add app="^Boom\ 3D$"                sticky=on
+yabai -m rule --add app="^Calendar$"                sticky=on
+yabai -m rule --add app="^OBS Studio$"              sticky=on
+yabai -m rule --add app="^Safari$"                  sticky=on
+yabai -m rule --add app="^DevToys$"                 sticky=on
+yabai -m rule --add app="^Instagram$"               sticky=on
+yabai -m rule --add app="^Trello$"                  sticky=on
+yabai -m rule --add app="^AppCleaner$"              sticky=on
 
-# spaces display 1
+
+# spaces display 1 (LG)
 yabai -m space 1 --label s_main
 yabai -m space 2 --label s_design
-yabai -m space 3 --label s_virtualization
-yabai -m space 4 --label s_settings
-yabai -m space 5 --label s_entertainment
-# spaced display 2
-yabai -m space 6 --label s_browser
-yabai -m space 7 --label s_office
-yabai -m space 8 --label s_tasks
-yabai -m space 9 --label s_development
-yabai -m space 10 --label s_messages
-yabai -m space 11 --label s_email
+yabai -m space 3 --label s_office
+yabai -m space 4 --label s_extras
+yabai -m space 5 --label s_settings
+yabai -m space 6 --label s_entertainment
+# spaces display 2 (macbook)
+yabai -m space 7 --label s_secondary
+yabai -m space 8 --label s_virtualization
+yabai -m space 9 --label s_meet
+yabai -m space 10 --label s_email
+yabai -m space 11 --label s_messages
+# spaced display 3 (ipad)
+yabai -m space 12 --label s_tertiary
+yabai -m space 13 --label s_messages_2
 
 # default spaces
 
-yabai -m rule --add app="^Floorp$"                          space=s_browser
-
-yabai -m rule --add app="^Alacritty$"                       space=s_main
+yabai -m rule --add app="^Floorp$"                          space=s_main
 yabai -m rule --add app="^kitty$"                           space=s_main
 yabai -m rule --add app="^LibreWolf$"                       space=s_main
-yabai -m rule --add app="^Filezilla$"                       space=s_main
 yabai -m rule --add app="^Safari$"                          space=s_main
+yabai -m rule --add app="^VSCodium$"                        space=s_main
 
 yabai -m rule --add app="^Krita$"                           space=s_design
 yabai -m rule --add app="^Inkscape$"                        space=s_design
@@ -116,31 +146,25 @@ yabai -m rule --add app="^wine64-preloader$"                space=s_entertainmen
 yabai -m rule --add app="^Whisky$"                          space=s_entertainment
 yabai -m rule --add app="^Steam$"                           space=s_entertainment
 yabai -m rule --add app="^OpenEmu$"                         space=s_entertainment
-yabai -m rule --add app="^Crunchyroll$"                     space=s_entertainment
 
 yabai -m rule --add app="^Transmission$"                    space=s_settings
 yabai -m rule --add app="^Karabiner-Elements$"              space=s_settings
 yabai -m rule --add app="^Karabiner-EventViewer$"           space=s_settings
 yabai -m rule --add app="^MAMP PRO$"                        space=s_settings
-yabai -m rule --add app="^Shortcuts$"                       space=s_settings
 
-yabai -m rule --add app="^DevToys$"                         space=s_development
-yabai -m rule --add app="^VSCodium$"                        space=s_development
+yabai -m rule --add app="^Sandox\ Meet$"                    space=s_meet
+yabai -m rule --add app="^Microsoft\ Teams$"                space=s_meet
+yabai -m rule --add app="^zoom.us$"                         space=s_meet
 
-yabai -m rule --add app="^Sandox\ Meet$"                    space=s_office
-yabai -m rule --add app="^Microsoft\ Teams$"                space=s_office
-yabai -m rule --add app="^zoom.us$"                         space=s_office
 yabai -m rule --add app="^draw.io$"                         space=s_office
 yabai -m rule --add app="^ownCloud$"                        space=s_office
 yabai -m rule --add app="^ONLYOFFICE$"                      space=s_office
 
 yabai -m rule --add app="^WhatsApp$"                        space=s_messages
-yabai -m rule --add app="^Instagram$"                       space=s_messages
+yabai -m rule --add app="^Reminders$"                       space=s_messages
 yabai -m rule --add app="‎WhatsApp"                    space=s_messages
 
-yabai -m rule --add app="^Trello$"                          space=s_tasks
-yabai -m rule --add app="^Reminders$"                       space=s_tasks
-yabai -m rule --add app="^Calendar$ "                       space=s_tasks
+yabai -m rule --add app="^FileZilla$"                       space=s_extras
 
 yabai -m rule --add app="^Windows App$"                     space=s_virtualization
 yabai -m rule --add app="^Screen\ Sharing$"                 space=s_virtualization
@@ -151,17 +175,12 @@ yabai -m rule --add app="^UTM$"                             space=s_virtualizati
 # manage new windows for specific programs
 yabai -m signal --add event=window_created      label='custom-management-of-new-windows-created'    action='~/.scripts/yabai/custom-management-of-new-windows.sh'
 
-# change space s_main layout according to display size
-# yabai -m signal --add event=display_resized     label='change-layout-on-display-resized'    action='~/.scripts/yabai/change-layout-on-display-size.sh'
-# yabai -m signal --add event=display_added       label='change-layout-on-display-added'      action='~/.scripts/yabai/change-layout-on-display-size.sh'
-# yabai -m signal --add event=display_removed     label='change-layout-on-display-removed'    action='~/.scripts/yabai/change-layout-on-display-size.sh'
-# yabai -m signal --add event=display_moved       label='change-layout-on-display-moved'      action='~/.scripts/yabai/change-layout-on-display-size.sh'
-
 # yabai -m rule --add app="^ONLYOFFICE$"                      space=s_main
 # change opacity of specific apps when focused
 yabai -m signal --add event=window_focused      label='custom-opacity-on-focus'             action='~/.scripts/yabai/custom-opacity-on-focus.sh'
 
 # ~/.scripts/yabai/change-layout-on-display-size.sh
 ~/.scripts/yabai/reset-borders.sh
+~/.scripts/yabai/rule-default.sh
 
 

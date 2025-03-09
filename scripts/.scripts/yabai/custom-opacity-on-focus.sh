@@ -12,12 +12,23 @@ done
 # sed -i 's/var=.*/var=new_value/' file_name
 
 query='.[] | select(
+	."app" == "Windows App" or
+	."app" == "Instagram" or
+	."app" == "DevToys" or
     ."app" == "Stickies" or
     ."app" == "System Settings" or
+    ."app" == "Transmission" or
+    ."app" == "iPhone Mirroring" or
+    ."app" == "Karabiner-Elements" or
+    ."app" == "Karabiner-EventViewer" or
+    ."app" == "Hex Fiend" or
+    ."app" == "Calendar" or
+    ."app" == "Font Book" or
+    ."app" == "MAMP PRO" or
+	."app" == "OBS Studio" or
+	."app" == "Trello" or
     ."app" == "Finder"
 ) | .id'
-# ."app" == "WhatsApp" or
-# ."app" == "‎WhatsApp"
 
 focused=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true) | .id')
 windows=$(yabai -m query --windows | jq "$query")

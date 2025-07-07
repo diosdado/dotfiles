@@ -26,8 +26,6 @@ alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
 alias usage="du -h -d 1 | sort -hr"
 alias cb="pbcopy"
-alias tf="tmuxifier load-session"
-alias ntf="tmuxifier new-session"
 
 # aliases to scripts
 alias so="source ~/.zshrc" # reload zshrc
@@ -35,12 +33,17 @@ alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:pub
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
 alias mount-fs="~/.scripts/mount-fs.sh"
 alias umount-fs="~/.scripts/umount-fs.sh"
-alias attach="tmux attach"
+
+# tmux sessions
+alias ta="tmux attach"
+alias tf="~/.scripts/tmux/tmuxifier-load.sh"
+alias tn="tmuxifier new-session"
 alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
 alias tss="~/.scripts/tmux/tmux-sessionizer.sh -s"
 alias th="ts -d ~/"
 alias td="ts -d ~/dotfiles"
 alias tk="ts -d  ~/ownCloud/Bases-conocimiento"
+alias rv="~/.scripts/remote-vv.sh"
 
 # override commands
 alias ls="ls -plah --color=auto"
@@ -64,8 +67,8 @@ eval "$(fzf --zsh)"
 eval "$(tmuxifier init -)"
 
 # history setup
-SAVEHIST=1000
-HISTSIZE=999
+SAVEHIST=100000
+HISTSIZE=100000
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups

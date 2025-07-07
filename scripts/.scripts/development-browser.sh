@@ -20,6 +20,7 @@ if [[ -n $reload ]]; then
     sendkeys --application-name "$development_browser" --characters "<c:f9><c:r:command>"
 else
     open "/Applications/$development_browser.app"
+    sendkeys --application-name "$development_browser" --characters "<c:f9><c:r:command>"
 fi
 
 

@@ -54,44 +54,29 @@
 
         <div style="background-color:#111D15">
             <p><b>⇧^⌥yuiophjkl</b> → fast clipboard</p>
-            <p><b>✦1</b> → utm</p>
-            <p><b>✦2</b> → rdp</p>
-            <p><b>✦3</b> → boom</p>
             <p><b>✦5</b> → eject</p>
-            <p><b>✦8</b> → disk free</p>
-            <p><b>✦9</b> → clipboard</p>
             <p><b>✦0</b> → cheatsheet general</p>
             <p><b>✦-</b> → cheatsheet commands</p>
-            <p><b>✦r</b> → ruler</p>
             <p><b>✦t</b> → teams</p>
-            <p><b>✦g</b> → ghostty</p>
             <p><b>✦c</b> → calendar</p>
-            <p><b>✦\</b> → stickies</p>
         </div>
         <div style="background-color:#223433">
-            <p><b>✦'</b> → Yabai Mode</p>
-            <p><b>w</b> →  close</p>
-            <p><b>r</b> →  rotate</p>
-            <p><b>v</b> →  toggle vertical</p>
-            <p><b>hjkl </b> →  focus</p>
-            <p><b>⇧hjkl </b> →  swap</p>
-            <p><b>^hjkl </b> →  warp</p>
-            <p><b>z  </b> →  zoom parent</p>
-            <p><b>⇧z </b> →  zoom fullscreen</p>
-            <p><b>b </b> →  balance</p>
-            <p><b>f </b> →  float</p>
-            <p><b>a </b> →  bsp</p>
-            <p><b>s </b> →  stack</p>
-            <p><b>o </b> →  opacity</p>
-            <p><b>↵ </b> →  cycle displays</p>
-            <p><b>space </b> →  show desktop</p>
-            <p><b></b>Non Yabai Mode</p>
-            <p><b>⇧⌥z</b> → restart yabai</p>
-            <p><b>⇧⌥x</b> → restart borders</p>
-            <p><b>⇧⌥o </b> →  opacity window</p>
-            <p><b>^⌥o </b> →  opacity focused</p>
-            <p><b>✦↵ </b> →  main</p>
-            <p><b>⇧⌥123 </b> →  move to display</p>
+            <p><b>Yabai</b></p>
+            <p><b>⇧⌘r</b> → restart yabai</p>
+            <p><b>⇧⌘x</b> → restart borders</p>
+            <p><b>⇧⌥o </b> → opacity window</p>
+            <p><b>^⌥o </b> → opacity focused</p>
+            <p><b>⇧⌥v </b> → toggle vertical</p>
+            <p><b>⇧⌥r </b> → rotate layout</p>
+            <p><b>⇧⌥u </b> → zoom parent</p>
+            <p><b>^⌥u </b> → zoom fullscreen</p>
+            <p><b>^⇧⌥{hjkl} </b> → resize</p>
+            <p><b>^⌘{hjkl} </b> → move</p>
+            <p><b>⇧⌥{hjkl} </b> → focus</p>
+            <p><b>^⇧{hjkl} </b> → move to screen</p>
+            <p><b>⇧⌥b </b> → balance</p>
+            <p><b>⇧⌥↵ </b> → make main</p>
+            <p><b>⇧⌥f </b> → float window</p>
         </div>
         <div style="background-color:#2F3745">
             <p><b>Marks</b></p>
@@ -134,6 +119,18 @@
                 <p><b>D </b> → delete</p>
                 <p><b>- </b> → parent dir</p>
             </div>
+        </div>
+
+        <div style="background-color:#684278">
+            <p><b>Vim-surround</b></p>
+            <p><b>cs{sur}{new} </b> → change surround to new</p>
+            <p><b>ds{sur} </b> → delete surround</p>
+            <p><b>ys{i/a}{element} </b> → surround inside or around element (ysiw' → 'word')</p>
+            <p><b>yss{sur} </b> → surround line </p>
+            <p><b>S{sur} </b> → surround visual mode</p>
+            <p><b>Vim-commentary</b></p>
+            <p><b>gcc</b> → comment line</p>
+            <p><b>gc{motion}</b> → comment motion </p>
         </div>
 
         <div style="background-color:#684278">
@@ -215,7 +212,19 @@
         </div>
 
         <div style="background-color:#2F3745">
+
+
             <p><b>Vim</b></p>
+            <p><b>_c </b> → quickfix open</p>
+            <p><b>^[ </b> → quickfix next</p>
+            <p><b>^] </b> → quickfix prev</p>
+            <p><b>^q </b> → from telescope, send to quickfix list</p>
+            <p><b> </b> → </p>
+
+            <p><b>'' </b> → move between last two motions</p>
+            <p><b>m{letter} </b> → create a mark</p>
+            <p><b>m{LETTER} </b> → create a global mark</p>
+            <p><b>'{letter} </b> → go to mark</p>
             <p><b>:w !sudo tee % </b> → save file with sudo </p>
             <p><b>^w </b> → windows (s:split, w:switch, q:quit, v:split)</p>
             <p><b>:!chmod +w %</b> → make file writeable</p>

@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------------------------
 -- leader and esc
 --------------------------------------------------------------------------------------------------
@@ -40,7 +39,10 @@ vim.keymap.set("n", "<leader>9", "zfat")
 -- remap up/down to multiline wordwrapped navigation
 vim.keymap.set('n', '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
+-- zoom
+vim.keymap.set("n", "zi", "<c-w>|")
+vim.keymap.set("n", "zo", "<c-w>=")
+vim.keymap.set("n", "zx", "<c-w>x")
 --------------------------------------------------------------------------------------------------
 -- manipulation
 --------------------------------------------------------------------------------------------------
@@ -76,7 +78,7 @@ vim.keymap.set("n", "<tab>", "<nop>")
 -- select all
 vim.keymap.set("n", "<leader>a", "ggVG")
 
-vim.keymap.set("v", "u", "<nop>")
+-- vim.keymap.set("v", "u", "<nop>")
 --------------------------------------------------------------------------------------------------
 -- buffers
 --------------------------------------------------------------------------------------------------
@@ -99,9 +101,23 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<home>", ":b#<CR>")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<PageDown>", ":b#<CR>")
+
+-- vim.keymap.set("n", "<leader>c", "<cmd>copen<CR>")
+-- vim.keymap.set("n", "<C-[>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-]>", "<cmd>cprev<CR>zz")
+
+-- Cycle through quickfix list items
+vim.keymap.set('n', ']e', '<Cmd>try | cnext | catch | cfirst | catch | endtry<CR>')
+vim.keymap.set('n', '[e', '<Cmd>try | cprevious | catch | clast | catch | endtry<CR>')
+
+
+
+
+
+
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 --------------------------------------------------------------------------------------------------
 -- yank to clipboard
@@ -121,12 +137,12 @@ vim.keymap.set("n", "<leader>%", "vi%\"+y")
 vim.keymap.set("n", "<leader>'", "vi'\"+y")
 -- copy " to clipboard
 vim.keymap.set("n", "<leader>\"", "vi\"\"+y")
--- copy absolute filename
-vim.keymap.set("n", "<leader>ff", ":let @* = expand(\"%:p\")<CR><CR>")
--- copy relative filename
-vim.keymap.set("n", "<leader>fr", ":let @* = expand(\"%:f\")<CR><CR>")
--- copy only filename
-vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:t\")<CR><CR>")
+-- -- copy absolute filename
+-- vim.keymap.set("n", "<leader>ff", ":let @* = expand(\"%:p\")<CR><CR>")
+-- -- copy relative filename
+-- vim.keymap.set("n", "<leader>fr", ":let @* = expand(\"%:f\")<CR><CR>")
+-- -- copy only filename
+-- vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:t\")<CR><CR>")
 
 --------------------------------------------------------------------------------------------------
 -- etc
@@ -140,7 +156,8 @@ vim.keymap.set("n", "<leader>;", "<cmd>w<CR>:!~/.scripts/development-browser.sh 
 -- make the current file executable
 vim.keymap.set("n", "<leader>x", ":! chmod +x %<CR>")
 -- show yabai window objects
-vim.keymap.set("n", "<leader>/", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>", { silent = true })
+vim.keymap.set("n", "<leader>/", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>",
+    { silent = true })
 -- create new note
 vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.txt<Left><Left><Left><Left>]])
 -- source configuration
@@ -151,6 +168,25 @@ end)
 vim.keymap.set("n", "<leader>i", "<cmd>LspInfo<CR>")
 
 
+
+
+
+vim.keymap.set('n', '<leader>c', function()
+    local qf_exists = false
+    for _, win in pairs(vim.fn.getwininfo()) do
+        if win["quickfix"] == 1 then
+            qf_exists = true
+        end
+    end
+    if qf_exists == true then
+        vim.cmd "cclose"
+        return
+    end
+    vim.cmd "copen"
+end, {})
+
+
+
+
 -- php convertir parametros en variables
 -- vim.keymap.set("v", "<leader>$", "<cmd>'<,'>s:\\([a-z0-9_]*\\)\\([,\\n]\\):$\\1\\2:g<CR>")
-

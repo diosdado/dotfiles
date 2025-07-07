@@ -112,34 +112,25 @@ PACKAGES=(
     socsieng/tap/sendkeys
 )
 CASKS=(
-    onyx
-    yam-display
+    obs
     only-switch
     boom-3d
     google-drive
     mamp
-    deskpad
-    logi-options+
-    floorp
     wacom-tablet
     contexts
     monitorcontrol
-    mountain-duck
     mysqlworkbench
     devtoys
     macfuse
     kitty
     pika
-    captin
     blender
     gimp
     vscodium
-    hiddenbar
     whatsapp
     inkscape
     vlc
-    vivaldi
-    balance-lock
     karabiner-elements
     onlyoffice
     owncloud
@@ -149,24 +140,25 @@ CASKS=(
     free-ruler
     hex-fiend
     appcleaner
-    firefox@developer-edition
     openemu
+    librewolf
     sequel-ace
     itsycal
     steam
-    qlstephen
     sloth
-    suspicious-package
-    dosbox
-    powershell
     qcad
+    microsoft-teams
+    spotify
+    homerow
+    instantview
+    jitsi-meet
 )
 PYTHON_PACKAGES=(
     ipython
     virtualenv
     virtualenvwrapper
 )
-
+brew install --cask kkk
 # -------------------------------------------------------------------------------------------------
 # Installing packages
 # -------------------------------------------------------------------------------------------------

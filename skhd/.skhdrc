@@ -1,197 +1,189 @@
 
-
 # default mode
+# -------------------------------------------------------------------------------------------------
 :: default : borders active_color=0xff00ff00
 
-
-
-
-# -------------------------------------------------------------------------------------------------
-# yabai
+# normal shortcuts
 # -------------------------------------------------------------------------------------------------
 
-# yabai movements mode
-:: yabai @ : borders active_color=0xffea333d
-hyper - 0x27 ; yabai
-yabai < escape ; default
+# resize window
+ctrl + shift - h : ~/.scripts/yabai/resize-window.sh -h
+ctrl + shift - l : ~/.scripts/yabai/resize-window.sh -l
+# ctrl + shift + alt - k : ~/.scripts/yabai/resize-window.sh -u
+# ctrl + shift + alt - j : ~/.scripts/yabai/resize-window.sh -d
 
-# close window
-yabai < w : yabai -m window --close
+# move window
+# cmd + shift - j : yabai -m window --swap south
+# cmd + shift - k : yabai -m window --swap north
+cmd + shift - h : yabai -m window --swap west
+cmd + shift - l : yabai -m window --swap east
 
-# Rotate layout
-yabai < r : yabai -m space --rotate 270
+# focus window
+alt + shift - j : yabai -m window --focus south
+alt + shift - k : yabai -m window --focus north
+alt + shift - h : yabai -m window --focus west
+alt + shift - l : yabai -m window --focus east
+
+# focus screen
+# ctrl + shift + alt - j : yabai -m display --focus south
+# ctrl + shift + alt - k : yabai -m display --focus north
+# ctrl + shift + alt - h : yabai -m display --focus west
+# ctrl + shift + alt - l : yabai -m display --focus east
+
+# move window to screen
+meh - j : ~/.scripts/yabai/send-to-display.sh -d south
+meh - k : ~/.scripts/yabai/send-to-display.sh -d north
+meh - h : ~/.scripts/yabai/send-to-display.sh -d west
+meh - l : ~/.scripts/yabai/send-to-display.sh -d east
+
+# Zoom 'size Up'
+cmd + shift - f : yabai -m window --toggle zoom-fullscreen
+alt + shift - f : yabai -m window --toggle zoom-parent
+# cmd + shift - f : yabai -m window --toggle zoom-fullscreen
+
+# rotate layout
+alt + shift - r : yabai -m space --rotate 270
 
 # Horizontal/vertical
-yabai < v : yabai -m window --toggle split
+alt + shift - v : yabai -m window --toggle split
 
-# Focus windows
-yabai < j : yabai -m window --focus south
-yabai < k : yabai -m window --focus north
-yabai < h : yabai -m window --focus west
-yabai < l : yabai -m window --focus east
-
-# Swap windows
-yabai < shift - j : yabai -m window --swap south
-yabai < shift - k : yabai -m window --swap north
-yabai < shift - h : yabai -m window --swap west
-yabai < shift - l : yabai -m window --swap east
-
-# Swap windows
-yabai < ctrl - j : yabai -m window --warp south
-yabai < ctrl - k : yabai -m window --warp north
-yabai < ctrl - h : yabai -m window --warp west
-yabai < ctrl - l : yabai -m window --warp east
-
-# Zoom
-yabai < shift - z : yabai -m window --toggle zoom-fullscreen
-yabai < z : yabai -m window --toggle zoom-parent
-
-# Make primary window
-yabai < p : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:400:0
-
-# Balance
-yabai < b : yabai -m space --balance
-
-# float window
-yabai < f : yabai -m window --toggle float --grid 7:5:1:1:3:5
-
-# Switch modes
-yabai < s : ~/.scripts/yabai/toggle-layout.sh -l "stack"
-yabai < a : ~/.scripts/yabai/toggle-layout.sh -l "bsp"
-
-# Toggle opacity
-yabai < o : ~/.scripts/yabai/toggle-opacity.sh
-
-# Focus displays
-yabai < return : ~/.scripts/yabai/cycle-window-between-displays.sh
-
-yabai < space : yabai -m space --toggle show-desktop
-
-# other shortcuts
-
-
-
-# Toggle opacity
+# toggle opacity
 shift + alt - o : ~/.scripts/yabai/toggle-opacity.sh
 ctrl + alt - o : ~/.scripts/yabai/toggle-custom-opacity-on-focus.sh ; ~/.scripts/yabai/custom-opacity-on-focus.sh
 
-# Restart Yabai
-shift + alt - z : yabai --restart-service
-shift + alt - x : ~/.scripts/yabai/reset-borders.sh
+# restart Yabai
+shift + cmd - r : yabai --restart-service
 
-# Make primary window
-hyper - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:300:0
+# restart borders
+shift + cmd - x : ~/.scripts/yabai/reset-borders.sh
 
-# Switch modes
+# Balance
+shift + alt - b : yabai -m space --balance
+
+# set primary window
+shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:400:0
+
+# stack layout
 shift + alt - s : ~/.scripts/yabai/toggle-layout.sh -l "stack"
+
+# bsp layout
 shift + alt - a : ~/.scripts/yabai/toggle-layout.sh -l "bsp"
 
 # float window
-shift + alt - f : yabai -m window --toggle float --grid 7:5:1:1:3:5
+shift + cmd - d : yabai -m window --toggle float --grid 7:5:1:1:3:5
 
-# center window
-shift + alt - c : yabai -m window --grid 8:8:2:2:4:4
-
-# move window to display
-hyper - 0x18 : ~/.scripts/yabai/rule-default.sh
-hyper - 1 : ~/.scripts/yabai/rule-1-monitor.sh
-hyper - 2 : ~/.scripts/yabai/rule-meeting.sh
-hyper - 3 : ~/.scripts/yabai/rule-3-monitors.sh
-hyper - 4 : ~/.scripts/yabai/rule-sharing.sh
+hyper - 3 : ~/.scripts/yabai/rule-terminal-browser-to-3.sh
 
 
-
-
-
-
-
-# -------------------------------------------------------------------------------------------------
-# Meh
+# MEH - Left hand
 # -------------------------------------------------------------------------------------------------
 
-meh - 6 : cat ~/clipboard/cp_y.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-meh - 7 : cat ~/clipboard/cp_u.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-meh - 8 : cat ~/clipboard/cp_i.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-meh - 9 : cat ~/clipboard/cp_o.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-meh - 0 : cat ~/clipboard/cp_p.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
-meh - 0x1B : cat ~/clipboard/cp_p.txt | pbcopy ; sendkeys -c "<c:v:command>" --initial-delay 0
+# meh - q :
+# meh - w :
+# meh - e :
+# meh - r :
+meh - t : open ~/Applications/Brave\ Browser\ Apps.localized/TypingClub.app
 
-meh - y : open /Applications/Windows\ App.app
+# meh - a :
+meh - s :  open ~/Applications/Brave\ Browser\ Apps.localized/Spotify.app
+meh - d : open ~/Applications/Brave\ Browser\ Apps.localized/Disney+.app
+# meh - f :
+meh - g : open ~/Applications/Brave\ Browser\ Apps.localized/ChatGPT.app
+
+# meh - z :
+# meh - x :
+meh - c : open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Watch\ Popular\ Anime.app
+# meh - v :
+# meh - b :
+
+
+# MEH - Right hand
+# -------------------------------------------------------------------------------------------------
+
+
+meh - y : open ~/Applications/Brave\ Browser\ Apps.localized/YouTube.app
 meh - u : open /Applications/UTM.app
-meh - i : open /Applications/Inkscape.app
+meh - i : open /System/Applications/iPhone\ Mirroring.app
 meh - o : open /Applications/OBS.app
-meh - p : open /Applications/GIMP.app
-meh - k : open /System/Applications/Stickies.app
-meh - 0x2A : open /System/Applications/Utilities/Screen\ Sharing.app
-meh - m : open /System/Applications/iPhone\ Mirroring.app
+meh - p : open ~/Applications/Brave\ Browser\ Apps.localized/Prime\ Video.app
+# meh - 0x2A : # \
 
+# meh - h :
+# meh - j :
+# meh - k :
+# meh - l :
+# meh - 0x29 : # ;
+# meh - 0x27 : # '
+
+# meh - n :
+meh - m : open /System/Applications/Music.app
+# meh - 0x2B -> disabled (karabiner) # ,
+# meh - 0x2F -> disabled (karabiner) # .
+# meh - 0x2C -> doesn't work # /
+
+
+# HYPER - Left hand
 # -------------------------------------------------------------------------------------------------
-# Hyper
-# -------------------------------------------------------------------------------------------------
-
-# LEFT HAND ---------------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------------- | 1 2 3 4 5
-# hyper - 1
-# hyper - 3
-# hyper - 4
+hyper - 0x18 : ~/.scripts/yabai/layout-default.sh # =
+hyper - 0x0A : ~/.scripts/yabai/layout-default.sh # =
+hyper - 1 : open /Applications/Inkscape.app
+hyper - 2 : open /Applications/GIMP.app
+# hyper - 1 : ~/.scripts/yabai/rule-1-display.sh
+# hyper - 2 : ~/.scripts/notification-disk-free.sh
+hyper - 3 : ~/.scripts/fast-clipboard-contents.sh
+# hyper - 4 :
 hyper - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
 
-# --------------------------------------------------------------------------------------- q w e r t
-# hyper - q
+# hyper - q :
 # hyper - w -> color picker (Pika)
 hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
-# hyper - r
-hyper - t : open /Users/david.diosdado/Applications/Trello.app
+hyper - r : open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
+hyper - t : open ~/Applications/Microsoft\ Teams.app
 
-# --------------------------------------------------------------------------------------- a s d f g
-# hyper - a
-hyper - s : open /Users/david.diosdado/Applications/Sandox\ Meet.app
+# hyper - a :
+hyper - s : open /System/Applications/Stickies.app
 hyper - d : open /Applications/DevToys.app
 hyper - f : open /Applications/FileZilla.app
-# hyper - g
+hyper - g : open ~/Applications/Brave\ Browser\ Apps.localized/ChatGPT.app
 
-# --------------------------------------------------------------------------------------- z x c v b
-# hyper - z
+# hyper - z :
 hyper - x : open /Applications/Hex\ Fiend.app
 hyper - c : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app
 hyper - v : open /Applications/VSCodium.app
-hyper - b : open /System/Applications/Font\ Book.app
+# hyper - b :
 
-# RIGHT HAND --------------------------------------------------------------------------------------
 
-# ------------------------------------------------------------------------------------- 6 7 8 9 0 -
+# HYPER - Right hand
+# -------------------------------------------------------------------------------------------------
+
 hyper - 6 : open ~/Desktop/Projects/
-hyper - 7 : open /Users/david.diosdado/Applications/Spotify.app ; test -d /Volumes/Music && open /System/Applications/Music.app
-hyper - 8 : ~/.scripts/notification-disk-free.sh
-hyper - 9 : ~/.scripts/fast-clipboard-contents.sh
+hyper - 7 : ~/.scripts/goto-entertainment.sh
+hyper - 8 : ~/.scripts/goto-design.sh
+# hyper - 9 : open /Applications/Blender.app
 hyper - 0 : ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet2.html
-hyper - 0x1B : ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet.html
+hyper - 0x1B : ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet.html # -
 
-# ----------------------------------------------------------------------------------- y u i o p ´ +
-hyper - y : ~/.scripts/activate-meet.sh
+hyper - y : ~/.scripts/goto-conference.sh
 hyper - u : open /Applications/kitty.app
-hyper - i : open /Applications/Floorp.app
+hyper - i : open /Applications/Brave\ Browser.app
 hyper - o : open /System/Applications/Reminders.app ; sleep .2 ; open /Applications/WhatsApp.app
 hyper - p : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-hyper - 0x2A : open /Applications/Safari.app
+hyper - 0x2A : open /Applications/MAMP\ PRO.app # \
 
-# h j k l ; '
 # hyper - h -> left arrow (karabiner)
 # hyper - j -> down arrow (karabiner)
 # hyper - k -> up arrow (karabiner)
 # hyper - l -> right arrow (karabiner)
-hyper - 0x29 : ~/.scripts/development-browser.sh
-# hyper - 0x27 -> yabai mode
+# hyper - 0x29 : ~/.scripts/development-browser.sh # ;
+hyper - 0x29 : open /Applications/LibreWolf.app
+hyper - 0x27 : ~/.scripts/goto-virtualization.sh # '
+# hyper - 0x27 :
 
-# n m , . /
-hyper - n : open /Applications/ONLYOFFICE.app
-hyper - m : open /Applications/MAMP\ PRO.app
-# hyper - 0x2B -> disabled (karabiner)
-# hyper - 0x2F -> disabled (karabiner)
-# hyper - 0x2C -> doesn't work
-
-
+hyper - m : open /Applications/Jitsi\ Meet.app
+hyper - n : ~/.scripts/goto-office.sh
+# hyper - 0x2B -> disabled (karabiner) # ,
+# hyper - 0x2F -> disabled (karabiner) # .
+# hyper - 0x2C -> doesn't work # /
 
 
 

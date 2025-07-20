@@ -9,12 +9,8 @@
 # resize window
 ctrl + shift - h : ~/.scripts/yabai/resize-window.sh -h
 ctrl + shift - l : ~/.scripts/yabai/resize-window.sh -l
-# ctrl + shift + alt - k : ~/.scripts/yabai/resize-window.sh -u
-# ctrl + shift + alt - j : ~/.scripts/yabai/resize-window.sh -d
 
 # move window
-# cmd + shift - j : yabai -m window --swap south
-# cmd + shift - k : yabai -m window --swap north
 cmd + shift - h : yabai -m window --swap west
 cmd + shift - l : yabai -m window --swap east
 
@@ -24,22 +20,12 @@ alt + shift - k : yabai -m window --focus north
 alt + shift - h : yabai -m window --focus west
 alt + shift - l : yabai -m window --focus east
 
-# focus screen
-# ctrl + shift + alt - j : yabai -m display --focus south
-# ctrl + shift + alt - k : yabai -m display --focus north
-# ctrl + shift + alt - h : yabai -m display --focus west
-# ctrl + shift + alt - l : yabai -m display --focus east
-
 # move window to screen
-meh - j : ~/.scripts/yabai/send-to-display.sh -d south
-meh - k : ~/.scripts/yabai/send-to-display.sh -d north
 meh - h : ~/.scripts/yabai/send-to-display.sh -d west
 meh - l : ~/.scripts/yabai/send-to-display.sh -d east
 
-# Zoom 'size Up'
+# fullscreen
 cmd + shift - f : yabai -m window --toggle zoom-fullscreen
-# alt + shift - f : yabai -m window --toggle zoom-parent
-# cmd + shift - f : yabai -m window --toggle zoom-fullscreen
 
 # rotate layout
 alt + shift - r : yabai -m space --rotate 270
@@ -72,22 +58,23 @@ shift + alt - a : ~/.scripts/yabai/toggle-layout.sh -l "bsp"
 # float window
 shift + alt - f : yabai -m window --toggle float --grid 7:5:1:1:3:5
 
-
-
-# MEH - Left hand
 # -------------------------------------------------------------------------------------------------
+# MEH
+# -------------------------------------------------------------------------------------------------
+
+# left hand
 
 # meh - q :
 # meh - w :
 # meh - e :
 # meh - r :
-meh - t : open ~/Applications/Brave\ Browser\ Apps.localized/TypingClub.app
+# meh - t :
 
 # meh - a :
-meh - s :  open ~/Applications/Brave\ Browser\ Apps.localized/Spotify.app
-meh - d : open ~/Applications/Brave\ Browser\ Apps.localized/Disney+.app
+# meh - s :
+# meh - d :
 # meh - f :
-meh - g : open /Applications/GIMP.app
+# meh - g :
 
 # meh - z :
 # meh - x :
@@ -95,17 +82,14 @@ meh - c : open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Wat
 # meh - v :
 # meh - b :
 
-
-# MEH - Right hand
-# -------------------------------------------------------------------------------------------------
-
+# right hand
 
 # meh - y :
 meh - u : open /Applications/Inkscape.app
 meh - i : open /Applications/GIMP.app
 meh - o : open /Applications/OBS.app
-meh - p :
-# meh - 0x2A -> doesn't work
+# meh - p :
+# meh - 0x2A -> doesn't work # \
 
 # meh - h :
 # meh - j :
@@ -115,14 +99,17 @@ meh - 0x29 : ~/.scripts/yabai/toggle-hidden.sh -n "Reminders" -p /System/Applica
 meh - 0x27 : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app # '
 
 # meh - n :
-meh - m : open /System/Applications/Music.app
+# meh - m :
 # meh - 0x2B -> disabled (karabiner) # ,
 # meh - 0x2F -> disabled (karabiner) # .
 # meh - 0x2C -> doesn't work # /
 
-
-# HYPER - Left hand
 # -------------------------------------------------------------------------------------------------
+# HYPER
+# -------------------------------------------------------------------------------------------------
+
+# left hand
+
 hyper - 0x18 : ~/.scripts/yabai/layout-default.sh # =
 hyper - 1 : ~/.scripts/yabai/layout-normal.sh
 hyper - 2 : ~/.scripts/yabai/layout-design.sh
@@ -148,15 +135,13 @@ hyper - g :
 # hyper - v :
 # hyper - b :
 
-
-# HYPER - Right hand
-# -------------------------------------------------------------------------------------------------
+# right hand
 
 hyper - 6 : open ~/Desktop/Projects/
 hyper - 7 : ~/.scripts/goto-entertainment.sh
 hyper - 8 : ~/.scripts/goto-design.sh
 # hyper - 9 :
-hyper - 0 : ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet2.html
+# hyper - 0 :
 hyper - 0x1B : open /Applications/MAMP\ PRO.app # -
 
 hyper - y : ~/.scripts/goto-conference.sh
@@ -182,6 +167,8 @@ hyper - 0x27 : ~/.scripts/goto-virtualization.sh # '
 
 
 
-# ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet.html # -
+
+# ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet2.html
+# ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet.html
 
 

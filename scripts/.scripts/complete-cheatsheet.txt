@@ -1,0 +1,391 @@
+( ps | grep vi | grep -v grep ) → check process ignore grep
+doas /etc/rc.d/php56_fpm restart
+sudo systemctl restart mysql
+
+Tmux
+--------------------
+
+( <b>& ) → kill window
+( <b>x ) → kill pane
+( <b>% ) → split horizontal
+( <b>" ) → split vertical
+( <b>arrow ) → move between splits
+( <b>}{ ) → move pane
+( <b>! ) → turn pane into a window
+( list-keys ) → shortcuts
+tmux new -s session-name
+tmux attach -t session-name
+
+NETWORK
+--------------------
+
+netstat -tuplen --- ver ip tables telnet {server} 80 --- ver si es accesible desde afuera el puerto 80 lsof -i -P -n --- list open ports ss -tuln iptables -t {table} -vL --- lista todas las reglas de iptables de la tabla en específico verbose
+( tracert, traceroute, tracepath ) → route packets take to host
+
+( lspci ) → nics
+( doas pkill hiawatha ; doas hiawatha ) → reinicio de hiawatha
+( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
+( lspci | grep -E -i --color 'network|ethernet' ) → ver nics fisicos
+( ip link show, ip a ) → para revisar número de nics, los que importan son los que están como eth y emo y que estén up
+( ip address ) → configuration of network
+( ifconfig ) → configuration of network
+( netstat -rn / route -n ) → manipulating and showing ip routing table
+( /etc/sysconfig/network-scripts/ifcg-{device-name} ) → software interface for network device
+/etc/systemd/system/some_target.target.wants -> autostart files (services) sudo rm /etc/systemd/system/nginx.service remove service unit
+( dig ) → dns lookup
+( ethtool ) → dns lookup
+( nmcli con show ) → show all available connections
+( doas netstat -na -f inet inet | grep LISTEN ) → listenin ports
+( ifup/ifdown) → enable/disable nic
+( systemctl restart NetworkManager.service) → restart web service
+( systemctl {enable/statu/statuss/disable/start/stop/reload/reload-or-restart/is-active/is.failed/is-enabled/list-units/list-unit-files/cat/list-dependencies/show/mask}) →
+( systemctl {enable/statu/statuss/disable/start/stop/reload/reload-or-restart/is-active/is.failed/is-enabled/list-units/list-unit-files/cat/list-dependencies/show/mask/edit --full}) →
+( sudo systemctl restart mysql ) → restart mysql
+( pkg_delete ) → remove installed package
+( /etc/pkg.conf ) → package repository
+
+SYSADMIN
+--------------------
+( ps -ax ) → list all processes
+( ps -ax | grep httpd ) → process using httpd
+( ps -a | grep -i postgres ) → check running process
+( pkill ) → signal process by name
+( lscpu ) → list processors linux
+( lsblk ) → list block volumes linux
+( diskutil list ) → list volumes macos
+( mount ) → mounted volumes
+( lsof ) → list open files macos
+( lsof | grep {volume} ) → process using volume
+( vipw ) → edit group related files locking them
+
+cambiar cosas que se hacen en passwd también en shadow
+añadir /bin/bash al usuario en passwd o en group?
+
+( /etc/{sudoers, passwd, shadow, group, gshadow, *-release} ) → users, groups, distro
+( /proc/{mounts, version, cpuinfo} ) → disks, kernel, cpus bsd linux
+( /home ) → user home folders bsd linux
+( /Users ) → user home folders macos
+( id ) → id user, group
+( uname -a ) → os
+( free -m ) → ram
+( adduser ) → create user higher level script
+( useradd ) →create user linux
+
+( tally files: faillock ) → display/modify authentication failure record files
+pam_tally2 --user=isis --reset faillock --user isis --reset useradd -c "Info detalle Oracle - CONSAR" isis -d /dminftab1/isis -s /bin/bash -u 140 -g 115
+
+( chage --maxdays -1 {username} ) → remove password expiration date
+( user mod -G {group} {user} ) → add user group bsd
+( usermod -a -G {group} {user} ) → add user group linux
+( gpasswd -d {user} {group} ) → remove user from group
+( passwd ) → change password
+( dscl . append /Group/group {group} {user}) → add user group macos
+( lsb_release command ) → distro info linux
+( lsof | grep {volume} ) → process locking the volume macos
+( dmesg ) → system message buffer
+( chflags -h hidden {symlink} ) → hide symling in finder macos bsd
+( openssl {mdf5/sha1/etc} {filename} ) → get checksum of file
+( systemctl restart mysql ) → restart mysql
+( echo 'PermitRootLogin yes' > /etc/ssh/ssh_config ) → permitir login remoto como root
+( echo 'AllowUsers {user-names}' > /etc/ssh/ssh_config ) → permitir ssh únicamente a los user-names específicos
+( launchd ) → system wide daemon manager macos
+( launchctl ) → interface with launchd macos
+( service {service-name} status ) → interface with launchd macos
+( kbd -l ) → list keyboard layouts bsd
+( du -h -d 2 | sort -h ) → dir size
+( exportfs -arv ) → selectively export or unexport directories without restarting the NFS service
+( ln -s /usr/local/bin/{package} /var/www/bin/ ) → make package accessible to www
+( dd if=image.iso of=/dev/{drive} bs=4M status=progres ) → Burn iso image
+
+firewall-cmd
+--------------------
+
+( --get-active-zones) → current zone
+( --zone=public --list-all) → list all rules of zone
+( --zone=public --remove-service=service) → remove service
+( --zone=public --add-source=192.168.240.103) → add ip to zone
+( --zone=public --add-source=192.168.255.0/24) → add ip segment to zone
+( --zone=public --add-rich-rule='rule family=ipv4 service name=ssh log prefix="Dropped SSH" level="notice" limit value=1/m drop') → add ip to zone
+( /var/log/messages) → firewall messages
+
+PERMISSIONS
+--------------------
+
+( chmod, chown )
+- refs:{a}ll, {u}ser, {g}roup, {o}ther
+- modes:{r}ead, {w}rite, e{x}ecute
+- operators:{-}remove, {+}add, {=}clear
+
+( chmod (-R) {ref}{operator}{modes}/{octets} {file/dir} ) → change modes
+( chmod u=rwx,go=u-w ) → readable/executable by everyone and writable by owner only
+( chown (-R) {owner}:{group} {file/dir}) → change owner
+
+BASH
+--------------------
+
+( ln -s {source} {target}) → symlinks
+( tar -xvf {filename} ) → extract
+( tar -czvf {filename} {data} ) → compress
+( fswatch -xr {directory}) → watch directory changes
+( watch ) → exec program periodically fullscreen
+( scp {user}@{host}:{remote-file} {destination} -P {port} )
+( cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat >> ~/.ssh/authorized_keys' )
+( sshfs {user}@{host}:{directory} -o port={port} ) → mount filesystem
+( diff ) → diff -q dir-1/ dir-2/
+( ls -d */ ) → list dirs
+( dd ) → DISK DESTROYER, convert format and copy a file
+( expr ) → calculate math expressions
+( pax, cpio ) → other archive utilty
+( stty ) → sets certain I/O options for the device that is the current standard input
+( tty ) → name of the terminal
+( sync ) → synchronizes cached data to permanent storage.
+( wait4path ) → sleeps until path exists
+( mdfind ) → spotlight
+
+Creación de directorio de usuario
+--------------------
+
+mkhomedir_helper {username}
+ ó
+doas mkdir /home/david.diosdado
+doas cp -r /etc/skel/. /home/david.diosdado
+doas chown -R david.diosdado:david.diosdado /home/david.diosdado
+
+
+SEARCH
+--------------------
+
+( bsd grep )
+grep -irwn 'string' 'absolute-path'
+( grep {flags} {regex} {location pattern}-v ) → inverse
+( grep -r --include \*.php "TEXTO" ) → encuentra archivos con TEXTO (bsd grep)
+( find . -name "*.php" -exec grep "TEXTO" {} \; ) → encuentra archivos con TEXTO (gnu grep)
+( -r ) → recursive directory
+( -i ) → case insensitive
+( -n ) → line number
+( -c ) → count occurrences
+( --include ) → especifica qué archivos revisar, se pone un --include por cada pattern
+
+find
+--------------------
+
+( find {location} -type f/d -name {regex} )
+( -exec ) → execute command
+( {} ) → placeholder for find results
+( \; ) → execute command for each file
+( \+ ) → concatenate all find results and execute command for that resulting line
+{find command} -exec command {}
+( -name ) → type f/d
+( locate ) → find names in internal database without traversing file system
+( fzf --preview="bat --color=always {}) → preview file using program, for example cat or bat
+
+Text processing
+--------------------
+
+( awk -F, '$3 < 50 {print $1, $2}' data.csv ) → show fields 1 and 2 of the rows in which field 3 is smaller than 50
+
+
+Yabai
+--------------------
+
+( ⇧⌥o ) → opacity window
+( ^⌥o ) → opacity focused
+( ⇧⌥v ) → toggle vertical
+( ⇧⌥r ) → rotate layout
+( ^⌥f ) → zoom fullscreen
+( ^⇧{hjkl} ) → resize
+( ⇧⌘{hjkl} ) → move
+( ⇧⌥{hjkl} ) → focus
+( meh{hjkl} ) → move to screen
+( ⇧⌥b ) → balance
+( ⇧⌥↵ ) → make main
+( ⇧⌥f ) → float window
+
+Marks
+--------------------
+
+( :marks )
+( ma ) → mark a
+( `a ) → jump to a
+( y`a ) → yank to a
+( `0 ) → jump to where closed
+( `= ) → jump to last edited
+( `. ) → jump to last change
+( `` ) → jump to last jump
+( `= ) → jump to last edited
+
+( :ju[umps] )
+( ^i ) → jump forward
+( ^o ) → jump backwards
+
+( :changes )
+( g, ) → go to newer changes
+( g; ) → go to older changes
+
+Netrw
+--------------------
+
+( d ) → new dir
+( a ) → hidden files
+( c ) → set current dir
+( gh ) → toggle dot files
+( r ) → reverse sorting
+( s ) → sorting type
+( S ) → sort by suffix/prefix
+( X ) → execute file
+( i ) → tree view
+( mt ) → assign target
+( mf ) → mark file
+( mc ) → copy files in the target
+( mm ) → move files to the target
+( mx ) → run external command
+
+Vim-surround
+--------------------
+
+( cs{sur}{new} ) → change surround to new
+( ds{sur} ) → delete surround
+( ys{i/a}{element} → surround inside or around element (ysiw' ) → 'word')
+( yss{sur} ) → surround line
+( S{sur} ) → surround visual mode
+
+Vim-commentary
+--------------------
+
+( gcc ) → comment line
+( gc{motion} ) → comment motion
+
+Telescope
+--------------------
+
+( ps ) → document symbols
+( pw ) → grep string
+( pr ) → live grep
+( pd ) → all files
+
+Plugins
+--------------------
+
+( :LspInfo ) → info de los servidores de lenguajes
+
+Vim Remaps
+--------------------
+
+( _j ) → quickfix prev
+( _k ) → quickfix next
+
+LSP
+--------------------
+
+( K ) → definition help hover
+( _vws ) → vim.lsp.buf.workspace_symbol()
+( _vd ) → vim.diagnostic.open_float()
+( [d ) → vim.diagnostic.goto_next()
+( ]d ) → vim.diagnostic.goto_prev()
+( _vca ) → vim.lsp.buf.code_action()
+( _vrr ) → vim.lsp.buf.references()
+( _vrn ) → vim.lsp.buf.rename()
+( ^s ) → vim.lsp.buf.signature_help()
+
+Vim Search
+--------------------
+
+( /\v ) → use nonalpha as regex
+( :noh[lsearch] ) → remove highlight
+
+Range:
+( . ) → Current line
+( $ ) → line
+( % ) → Whole file
+( x ) → Line number x
+( .,+x ) → From current until x lines
+( 't ) → position of mark "t"
+( \/ ) → next line previous search matches
+( \? ) → prev line previous search matches
+( \& ) → next line previous substitute matches
+( :vim[grep]/pattern/{`{file}`} ) → find in files
+( :cn[ext] ) → next match
+( :cp[rev] ) → prev match
+( :cope[n] ) → list matches
+( :cll[ose] ) → close quickfix view
+
+Flags:
+( i/I ) → case
+( c ) → confirm each
+
+replace with HI (y/n/a/q/l/^E/^Y)?:
+( a ) → all
+( q ) → quit no substituting not undo
+( l ) → substitute this and exit
+( ^E ) → scroll up
+( ^Y ) → scroll down
+
+Greedy
+( \+ ) → 1 or more
+( \= ) → 0 or 1 more
+( \{n,m} ) → from n to m
+( \{n} ) → exactly n times
+( \{,m} ) → from 0 to m
+( \{n,} ) → at least n
+
+Non-greedy
+
+( \{-} ) → 0 or more
+( \{-n,m} ) → 1 or more
+( \{-n,} ) → at lease or more
+( \{-,m} ) → 1 or more
+
+Grouping & Backreferences
+
+( & ) → whole matched pattern
+( \L ) → following characters are made lowercase
+( \0 ) → whole matched pattern
+( \U ) → following characters are made uppercase
+( \E ) → end of \U and \L
+( \e ) → end of \U and \L
+( \l ) → next character made lowercase
+( ~ ) → previous substitute string
+( \u ) → next character made uppercase
+
+Vim
+--------------------
+
+( _c ) → quickfix open
+( ^[ ) → quickfix next
+( ^] ) → quickfix prev
+( ^q ) → from telescope, send to quickfix list
+( '' ) → move between last two motions
+( m{letter} ) → create a mark
+( m{LETTER} ) → create a global mark
+( '{letter} ) → go to mark
+( :w !sudo tee % ) → save file with sudo
+( ^w ) → windows (s:split, w:switch, q:quit, v:split)
+( :!chmod +w % ) → make file writeable
+( R ) → replace until ESC
+( gd ) → local declaration
+( gD ) → global declaration
+( ge_ ) → last non-blank char
+( gwip ) → paragraph to 1 line
+( :sav ) → save as
+( :reg ) → registers
+
+Insert mode
+( ^w ) → delete word
+( ^t ) → tab
+( ^d ) → de-indent
+
+Visual mode
+
+( o ) → start/end selection
+( ~ ) → switch case
+( ^a ) → increment numbers
+( ^x ) → decrement numbers
+( >i{ ) → Increase inner block indent
+( =2a{ ) → Re-indent '2 blocks'
+( ]p ) → Paste match indent
+( % ) → {} or []
+( p ) → paragraph
+
+
+
+

@@ -17,3 +17,4 @@ if ps aux | grep 'Zoom.app' | grep -v grep; then
     exit 0
 fi
 
+open /Applications/Jitsi\ Meet.app

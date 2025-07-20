@@ -9,7 +9,7 @@ yabai -m space s_design --layout bsp
 yabai -m space s_entertainment --layout stack
 yabai -m space s_conference --layout stack
 yabai -m space s_secondary --layout stack
-yabai -m space s_office --layout stack
+yabai -m space s_third --layout bsp
 yabai -m space s_email --layout bsp
 yabai -m space s_messages --layout bsp
 yabai -m space s_development --layout bsp

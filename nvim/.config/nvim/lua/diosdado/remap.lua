@@ -12,18 +12,12 @@ vim.g.maplocalleader = " "
 --------------------------------------------------------------------------------------------------
 -- latin american iso keyboard accomodations
 --------------------------------------------------------------------------------------------------
-
--- vim.keymap.set("n", "'", "`")
--- vim.keymap.set("n", ",", ";")
--- vim.keymap.set("n", ";", ",")
 vim.keymap.set("n", "<leader>m", ":marks<CR>")
 
 --------------------------------------------------------------------------------------------------
 -- navigation
 --------------------------------------------------------------------------------------------------
-
 -- use $ and 0  to navigate start and end without spaces
-vim.keymap.set("n", "0", "^")
 vim.keymap.set("n", "$", "g_")
 -- move code up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -71,19 +65,19 @@ vim.keymap.set("n", "<leader>]", "viwU")
 -- disable some default shortcuts
 --------------------------------------------------------------------------------------------------
 
--- disable quit with Q
+-- disable quit with Q and ZZ
 vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "ZZ", "<nop>")
 -- disable tab
 vim.keymap.set("n", "<tab>", "<nop>")
 -- select all
 vim.keymap.set("n", "<leader>a", "ggVG")
 
--- vim.keymap.set("v", "u", "<nop>")
 --------------------------------------------------------------------------------------------------
 -- buffers
 --------------------------------------------------------------------------------------------------
 -- use line as filename and open it in a new buffer
-vim.keymap.set("n", "<leader>e", "^v$h\"zy<ESC>:e <C-R>z<CR>")
+-- vim.keymap.set("n", "<leader>e", "^v$h\"zy<ESC>:e <C-R>z<CR>")
 -- close window
 vim.keymap.set("n", "<leader>q", "<cmd>clo<CR>")
 -- close buffer
@@ -94,8 +88,6 @@ vim.keymap.set("n", "<leader>D", ":bd!<CR>")
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- new vsplit
 vim.keymap.set("n", "<leader>v", ":vsplit<CR><C-w>l")
--- netrw left panel
-vim.keymap.set("n", "<leader>t", ":Lexplore<CR>:vertical resize 30<CR>")
 -- toggle wordwrap
 vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
@@ -112,17 +104,9 @@ vim.keymap.set('n', ']e', '<Cmd>try | cnext | catch | cfirst | catch | endtry<CR
 vim.keymap.set('n', '[e', '<Cmd>try | cprevious | catch | clast | catch | endtry<CR>')
 
 
-
-
-
-
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
 --------------------------------------------------------------------------------------------------
 -- yank to clipboard
 --------------------------------------------------------------------------------------------------
-
 -- yank to clipboard
 vim.keymap.set("v", "<leader>y", "\"+y")
 -- copy line to clipboard
@@ -138,16 +122,13 @@ vim.keymap.set("n", "<leader>'", "vi'\"+y")
 -- copy " to clipboard
 vim.keymap.set("n", "<leader>\"", "vi\"\"+y")
 -- -- copy absolute filename
--- vim.keymap.set("n", "<leader>ff", ":let @* = expand(\"%:p\")<CR><CR>")
--- -- copy relative filename
--- vim.keymap.set("n", "<leader>fr", ":let @* = expand(\"%:f\")<CR><CR>")
--- -- copy only filename
--- vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:t\")<CR><CR>")
+vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:p\")<CR>")
+-- open file location
+vim.keymap.set("n", "<leader>F", ":! open \"%:p:h\"<CR><CR>",{ silent = true })
 
 --------------------------------------------------------------------------------------------------
 -- etc
 --------------------------------------------------------------------------------------------------
-
 -- replace in selection
 vim.keymap.set("v", "<leader>r", ':s::g<Left><Left>')
 -- save file, switch to browser and refresh
@@ -156,14 +137,11 @@ vim.keymap.set("n", "<leader>;", "<cmd>w<CR>:!~/.scripts/development-browser.sh 
 -- make the current file executable
 vim.keymap.set("n", "<leader>x", ":! chmod +x %<CR>")
 -- show yabai window objects
-vim.keymap.set("n", "<leader>/", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>",
-    { silent = true })
+vim.keymap.set("n", "<leader>/", ":! yabai -m query --windows > ~/.yabai-output.json<CR><CR>:e ~/.yabai-output.json<CR>", { silent = true })
 -- create new note
 vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.txt<Left><Left><Left><Left>]])
 -- source configuration
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
 
 vim.keymap.set("n", "<leader>i", "<cmd>LspInfo<CR>")
 

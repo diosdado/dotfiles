@@ -38,7 +38,7 @@ meh - l : ~/.scripts/yabai/send-to-display.sh -d east
 
 # Zoom 'size Up'
 cmd + shift - f : yabai -m window --toggle zoom-fullscreen
-alt + shift - f : yabai -m window --toggle zoom-parent
+# alt + shift - f : yabai -m window --toggle zoom-parent
 # cmd + shift - f : yabai -m window --toggle zoom-fullscreen
 
 # rotate layout
@@ -70,9 +70,8 @@ shift + alt - s : ~/.scripts/yabai/toggle-layout.sh -l "stack"
 shift + alt - a : ~/.scripts/yabai/toggle-layout.sh -l "bsp"
 
 # float window
-shift + cmd - d : yabai -m window --toggle float --grid 7:5:1:1:3:5
+shift + alt - f : yabai -m window --toggle float --grid 7:5:1:1:3:5
 
-hyper - 3 : ~/.scripts/yabai/rule-terminal-browser-to-3.sh
 
 
 # MEH - Left hand
@@ -88,7 +87,7 @@ meh - t : open ~/Applications/Brave\ Browser\ Apps.localized/TypingClub.app
 meh - s :  open ~/Applications/Brave\ Browser\ Apps.localized/Spotify.app
 meh - d : open ~/Applications/Brave\ Browser\ Apps.localized/Disney+.app
 # meh - f :
-meh - g : open ~/Applications/Brave\ Browser\ Apps.localized/ChatGPT.app
+meh - g : open /Applications/GIMP.app
 
 # meh - z :
 # meh - x :
@@ -101,19 +100,19 @@ meh - c : open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Wat
 # -------------------------------------------------------------------------------------------------
 
 
-meh - y : open ~/Applications/Brave\ Browser\ Apps.localized/YouTube.app
-meh - u : open /Applications/UTM.app
-meh - i : open /System/Applications/iPhone\ Mirroring.app
+# meh - y :
+meh - u : open /Applications/Inkscape.app
+meh - i : open /Applications/GIMP.app
 meh - o : open /Applications/OBS.app
-meh - p : open ~/Applications/Brave\ Browser\ Apps.localized/Prime\ Video.app
-# meh - 0x2A : # \
+meh - p :
+# meh - 0x2A -> doesn't work
 
 # meh - h :
 # meh - j :
 # meh - k :
 # meh - l :
-# meh - 0x29 : # ;
-# meh - 0x27 : # '
+meh - 0x29 : ~/.scripts/yabai/toggle-hidden.sh -n "Reminders" -p /System/Applications/Reminders.app # ;
+meh - 0x27 : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app # '
 
 # meh - n :
 meh - m : open /System/Applications/Music.app
@@ -125,31 +124,28 @@ meh - m : open /System/Applications/Music.app
 # HYPER - Left hand
 # -------------------------------------------------------------------------------------------------
 hyper - 0x18 : ~/.scripts/yabai/layout-default.sh # =
-hyper - 0x0A : ~/.scripts/yabai/layout-default.sh # =
-hyper - 1 : open /Applications/Inkscape.app
-hyper - 2 : open /Applications/GIMP.app
-# hyper - 1 : ~/.scripts/yabai/rule-1-display.sh
-# hyper - 2 : ~/.scripts/notification-disk-free.sh
-hyper - 3 : ~/.scripts/fast-clipboard-contents.sh
+hyper - 1 : ~/.scripts/yabai/layout-normal.sh
+hyper - 2 : ~/.scripts/yabai/layout-design.sh
+# hyper - 3 :
 # hyper - 4 :
-hyper - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
+# hyper - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
 
-# hyper - q :
+hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 # hyper - w -> color picker (Pika)
 hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
-hyper - r : open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
-hyper - t : open ~/Applications/Microsoft\ Teams.app
+# hyper - r :
+# hyper - t :
 
 # hyper - a :
 hyper - s : open /System/Applications/Stickies.app
-hyper - d : open /Applications/DevToys.app
+# hyper - d :
 hyper - f : open /Applications/FileZilla.app
-hyper - g : open ~/Applications/Brave\ Browser\ Apps.localized/ChatGPT.app
+hyper - g :
 
 # hyper - z :
-hyper - x : open /Applications/Hex\ Fiend.app
-hyper - c : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app
-hyper - v : open /Applications/VSCodium.app
+# hyper - x :
+# hyper - c :
+# hyper - v :
 # hyper - b :
 
 
@@ -159,34 +155,33 @@ hyper - v : open /Applications/VSCodium.app
 hyper - 6 : open ~/Desktop/Projects/
 hyper - 7 : ~/.scripts/goto-entertainment.sh
 hyper - 8 : ~/.scripts/goto-design.sh
-# hyper - 9 : open /Applications/Blender.app
+# hyper - 9 :
 hyper - 0 : ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet2.html
-hyper - 0x1B : ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet.html # -
+hyper - 0x1B : open /Applications/MAMP\ PRO.app # -
 
 hyper - y : ~/.scripts/goto-conference.sh
 hyper - u : open /Applications/kitty.app
 hyper - i : open /Applications/Brave\ Browser.app
-hyper - o : open /System/Applications/Reminders.app ; sleep .2 ; open /Applications/WhatsApp.app
+hyper - o : ~/.scripts/goto-messages.sh
 hyper - p : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-hyper - 0x2A : open /Applications/MAMP\ PRO.app # \
+hyper - 0x2A : ~/.scripts/goto-office.sh # \
 
 # hyper - h -> left arrow (karabiner)
 # hyper - j -> down arrow (karabiner)
 # hyper - k -> up arrow (karabiner)
 # hyper - l -> right arrow (karabiner)
-# hyper - 0x29 : ~/.scripts/development-browser.sh # ;
+# hyper - 0x29 :
 hyper - 0x29 : open /Applications/LibreWolf.app
 hyper - 0x27 : ~/.scripts/goto-virtualization.sh # '
-# hyper - 0x27 :
 
-hyper - m : open /Applications/Jitsi\ Meet.app
-hyper - n : ~/.scripts/goto-office.sh
+# hyper - m -> clicking (homerow)
+# hyper - n -> scrolling (homerow)
 # hyper - 0x2B -> disabled (karabiner) # ,
 # hyper - 0x2F -> disabled (karabiner) # .
 # hyper - 0x2C -> doesn't work # /
 
 
 
-
+# ~/.scripts/toggle-cheatsheet.sh ~/.scripts/cheatsheet.html # -
 
 

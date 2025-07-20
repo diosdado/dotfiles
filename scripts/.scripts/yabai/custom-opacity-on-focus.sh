@@ -28,6 +28,7 @@ query='.[] | select(
     ."app" == "Karabiner-EventViewer" or
     ."app" == "Hex Fiend" or
     ."app" == "Calendar" or
+    ."app" == "Reminders" or
     ."app" == "Font Book" or
     ."app" == "MAMP PRO" or
 	."app" == "OBS Studio" or

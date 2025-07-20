@@ -9,16 +9,16 @@ IFS=$'\n'
 spaces_names=(
     # macbook
     s_secondary
+    s_messages
+    s_email
     s_entertainment
-    s_conference
     # LG
     s_primary
     s_design
     s_development
     # yodoit
-    s_email
-    s_office
-    s_messages
+    s_third
+    s_conference
 )
 
 spaces_numbers=($(yabai -m query --displays | jq 'sort_by(.index)|.[].spaces.[]'))

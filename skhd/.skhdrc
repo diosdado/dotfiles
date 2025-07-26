@@ -49,11 +49,13 @@ shift + alt - b : yabai -m space --balance
 # set primary window
 shift + alt - return : yabai -m window --swap first ; yabai -m space --balance ; yabai -m window first --resize right:400:0
 
-# stack layout
-shift + alt - s : ~/.scripts/yabai/toggle-layout.sh -l "stack"
+# toggle layout
+shift + alt - a : ~/.scripts/yabai/toggle-layout.sh
 
-# bsp layout
-shift + alt - a : ~/.scripts/yabai/toggle-layout.sh -l "bsp"
+
+hyper - 9 : yabai -m rule --apply app="^Finder$"      space=s_primary
+hyper - 0 : yabai -m rule --apply app="^Finder$"      space=s_preview
+
 
 # float window
 shift + alt - f : yabai -m window --toggle float --grid 7:5:1:1:3:5
@@ -85,8 +87,8 @@ meh - c : open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Wat
 # right hand
 
 # meh - y :
-meh - u : open /Applications/Inkscape.app
-meh - i : open /Applications/GIMP.app
+# meh - u :
+# meh - i :
 meh - o : open /Applications/OBS.app
 # meh - p :
 # meh - 0x2A -> doesn't work # \
@@ -95,8 +97,8 @@ meh - o : open /Applications/OBS.app
 # meh - j :
 # meh - k :
 # meh - l :
-meh - 0x29 : ~/.scripts/yabai/toggle-hidden.sh -n "Reminders" -p /System/Applications/Reminders.app # ;
-meh - 0x27 : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app # '
+# meh - 0x29 :
+# meh - 0x27 :
 
 # meh - n :
 # meh - m :
@@ -110,57 +112,59 @@ meh - 0x27 : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applicat
 
 # left hand
 
-hyper - 0x18 : ~/.scripts/yabai/layout-default.sh # =
-hyper - 1 : ~/.scripts/yabai/layout-normal.sh
-hyper - 2 : ~/.scripts/yabai/layout-design.sh
+hyper - 0x18 : ~/.scripts/yabai/set-layout.sh -l default # =
+hyper - 1 : open /Applications/Inkscape.app
+hyper - 2 : open /Applications/GIMP.app
 # hyper - 3 :
 # hyper - 4 :
-# hyper - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
+hyper - 5 : ~/.scripts/kill-music-library-agent-and-eject.sh
 
 hyper - q : open /System/Applications/Utilities/Activity\ Monitor.app
 # hyper - w -> color picker (Pika)
 hyper - e : open /Applications/Karabiner-Elements.app ; open /Applications/Karabiner-EventViewer.app
 # hyper - r :
-# hyper - t :
+hyper - t : open ~/Applications/Brave\ Browser\ Apps.localized/TypingClub.app/
 
 # hyper - a :
 hyper - s : open /System/Applications/Stickies.app
 # hyper - d :
 hyper - f : open /Applications/FileZilla.app
-hyper - g :
+# hyper - g :
 
 # hyper - z :
 # hyper - x :
-# hyper - c :
+hyper - c : ~/.scripts/yabai/toggle-hidden.sh -n "Calendar" -p /System/Applications/Calendar.app # '
 # hyper - v :
 # hyper - b :
 
 # right hand
 
 hyper - 6 : open ~/Desktop/Projects/
-hyper - 7 : ~/.scripts/goto-entertainment.sh
-hyper - 8 : ~/.scripts/goto-design.sh
+hyper - 7 : ~/.scripts/yabai/goto-apps.sh -a entertainment
+hyper - 8 : ~/.scripts/yabai/goto-apps.sh -a design
 # hyper - 9 :
 # hyper - 0 :
 hyper - 0x1B : open /Applications/MAMP\ PRO.app # -
 
-hyper - y : ~/.scripts/goto-conference.sh
+hyper - y : open /System/Applications/Reminders.app
 hyper - u : open /Applications/kitty.app
-hyper - i : open /Applications/Brave\ Browser.app
-hyper - o : ~/.scripts/goto-messages.sh
+hyper - i : ~/.scripts/yabai/goto-apps.sh -a devbrowser -p
+# hyper - i : open /Applications/LibreWolf.app
+hyper - o : open /Applications/WhatsApp.app
 hyper - p : open ~/Applications/Gmail.app ; open /System/Applications/Mail.app
-hyper - 0x2A : ~/.scripts/goto-office.sh # \
+hyper - 0x2A : yabai -m space --focus s_preview
 
 # hyper - h -> left arrow (karabiner)
 # hyper - j -> down arrow (karabiner)
 # hyper - k -> up arrow (karabiner)
 # hyper - l -> right arrow (karabiner)
 # hyper - 0x29 :
-hyper - 0x29 : open /Applications/LibreWolf.app
-hyper - 0x27 : ~/.scripts/goto-virtualization.sh # '
+hyper - 0x29 : open /Applications/Brave\ Browser.app
+hyper - 3 : open /Applications/Brave\ Browser.app
+hyper - 0x27 : ~/.scripts/yabai/goto-apps.sh -a virtualization # '
 
-# hyper - m -> clicking (homerow)
-# hyper - n -> scrolling (homerow)
+hyper - m : ~/.scripts/yabai/goto-apps.sh -a conference
+hyper - n : ~/.scripts/yabai/goto-apps.sh -a office # \
 # hyper - 0x2B -> disabled (karabiner) # ,
 # hyper - 0x2F -> disabled (karabiner) # .
 # hyper - 0x2C -> doesn't work # /

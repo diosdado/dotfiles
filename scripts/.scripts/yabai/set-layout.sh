@@ -1,36 +1,53 @@
 #!/usr/bin/env bash
 
 
+while getopts "l:" flag; do
+    case $flag in
+        l) layout=${OPTARG};;
+    esac
+done
 
-num_displays=$(yabai -m query --spaces | jq length)
 
 
-case $num_displays in
-1)
-    yabai -m space s_main --layout stack
-    yabai -m space s_design --layout stack
-;;
+case $layout in
+    default)
+        # reset default layout
+        ~/.scripts/yabai/set-labels.sh
+        yabai -m rule --apply
+        yabai -m space s_primary --layout bsp
+        yabai -m space s_design --layout bsp
+        yabai -m space s_preview --layout stack
+        yabai -m space s_entertainment --layout stack
+        yabai -m space s_conference --layout stack
+        yabai -m space s_secondary --layout stack
+        yabai -m space s_third --layout bsp
+        yabai -m space s_email --layout bsp
+        yabai -m space s_messages --layout bsp
+        yabai -m space s_development --layout bsp
+    ;;
 
-2)
-;;
+    normal)
+        yabai -m rule --apply app="^kitty$"             space=s_primary
+        sleep .1
+        yabai -m rule --apply app="^Brave\ Browser$"    space=s_primary
+        sleep .1
+        yabai -m rule --apply app="^Inkscape$"          space=s_third
+        sleep .1
+        yabai -m rule --apply app="^GIMP$"              space=s_third
+    ;;
 
-3)
-    yabai -m rule --apply app="^kitty$"             space=s_main
-    yabai -m rule --apply app="^Floorp$"            space=s_secondary
-    yabai -m rule --apply app="^WhatsApp$"          space=s_messages_2
-    yabai -m rule --apply app="‎WhatsApp"      space=s_messages_2
-    yabai -m rule --apply app="^Reminders$"         space=s_messages_2
-    yabai -m rule --apply app="^Stickies$"          space=s_messages_2
-    yabai -m rule --apply app="^Gmail$"             space=s_settings
-    yabai -m rule --apply app="^Mail$"              space=s_settings
-    yabai -m space --focus s_messages_2
-    yabai -m space --focus s_secondary
-    yabai -m space --focus s_main
-;;
+    design)
+        yabai -m rule --apply app="^kitty$"             space=s_third
+        sleep .1
+        yabai -m rule --apply app="^Brave\ Browser$"    space=s_third
+        sleep .1
+        yabai -m rule --apply app="^Inkscape$"          space=s_primary
+        sleep .1
+        yabai -m rule --apply app="^GIMP$"              space=s_primary
+    ;;
 esac
 
-
-open /Applications/kitty.app
+~/.scripts/yabai/reset-borders.sh
 
 
 

@@ -15,10 +15,13 @@ spaces_names=(
     # LG
     s_primary
     s_design
+    s_browser
     s_development
     # yodoit
     s_third
+    s_preview
     s_conference
+    s_reminders
 )
 
 spaces_numbers=($(yabai -m query --displays | jq 'sort_by(.index)|.[].spaces.[]'))

@@ -14,13 +14,15 @@ done
 # sed -i 's/var=.*/var=new_value/' file_name
 # ."app" == "Instagram" or
 # ."app" == "iPhone Mirroring" or
+# ."app" == "DevToys" or
+# ."app" == "Preview" or
+# ."app" == "Reminders" or
 
 query='.[] | select(
 	( ."app" == "Windows App" and ."title" == "" ) or
 	( ."app" == "Windows App" and ."title" == "Devices" ) or
 	( ."app" == "Jitsi Meet" and ."title" == "Screen Sharing Tracker" ) or
-	."app" == "DevToys" or
-	."app" == "Preview" or
+	( ."app" == "Finder" and ."title" != "Quick Look" ) or
     ."app" == "Stickies" or
     ."app" == "System Settings" or
     ."app" == "Transmission" or
@@ -28,11 +30,8 @@ query='.[] | select(
     ."app" == "Karabiner-EventViewer" or
     ."app" == "Hex Fiend" or
     ."app" == "Calendar" or
-    ."app" == "Reminders" or
     ."app" == "Font Book" or
-    ."app" == "MAMP PRO" or
-	."app" == "OBS Studio" or
-    ."app" == "Finder"
+    ."app" == "MAMP PRO"
 ) | .id'
 
 focused=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true) | .id')

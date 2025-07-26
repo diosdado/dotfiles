@@ -23,7 +23,6 @@ if [ -z "$new_layout" ]; then
     case "$layout_type" in
         bsp) new_layout=stack;;
         stack) new_layout=bsp;;
-        float) new_layout=bsp;;
     esac
 fi
 

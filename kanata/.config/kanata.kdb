@@ -1,0 +1,54 @@
+
+;; Global configuration options
+(defcfg
+    process-unmapped-keys yes
+    log-layer-changes no
+    danger-enable-cmd yes
+    concurrent-tap-hold yes
+)
+
+;; Variables
+(defvar
+ tap-time 300
+ hold-time 300
+ chord-time 60
+)
+
+
+;; define keys that will be modified (all keys still processed)
+(defsrc
+    =       1       2       3       4       5       caps            6       7       8       9       0       -
+    tab     q       w       e       r       t                       y       u       i       o       p       \
+    esc     a       s       d       f       g       ins             h       j       k       l       ;       '
+    lsft    z       x       c       v       b                       n       m       ,       .       /       rshft
+    lctl    grv     apps    lalt    lmet                                    rmet    ralt    [       ]       rctl
+
+            ◀       ▶                                                                       ▲       ▼
+    bspc    del     home                                                                    pgup    ret     spc
+                    end                                                                     pgdn
+)
+
+;; default/base layer modifications always active
+(deflayer default
+    _       _       _       _       _       _       _               _       _       _       _       _       _
+    _       _       _       _       _       _                       _       _       _       _       _       _
+    @scam1  _       _       _       _       _       _               _       _       _       _       _       @scam2
+    _       _       _       _       _       _                       _       _       _       _       _       _
+    _       _       _       _       _                                       _       _       _       _       _
+
+            _       _                                                                       _       _
+    _       _       _                                                                       _       _       _
+                    _                                                                       _
+)
+
+
+
+;; remapping between physical keys and functionality
+(defalias
+    scam1 (tap-hold-press $tap-time $hold-time esc (multi lsft lctl lalt lmet))
+    scam2 (tap-hold-press $tap-time $hold-time ' (multi lsft lctl lalt lmet))
+)
+
+
+
+

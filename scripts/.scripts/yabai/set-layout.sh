@@ -26,6 +26,12 @@ case $layout in
         yabai -m space s_development --layout bsp
     ;;
 
+    brave)
+        yabai -m rule --apply app="^Brave\ Browser$"    space=s_primary
+        sleep .1
+        yabai -m rule --apply app="^LibreWolf$"         space=s_browser
+    ;;
+
     normal)
         yabai -m rule --apply app="^kitty$"             space=s_primary
         sleep .1

@@ -16,6 +16,7 @@ done
 # ."app" == "iPhone Mirroring" or
 # ."app" == "DevToys" or
 # ."app" == "Preview" or
+# ."app" == "Calendar" or
 # ."app" == "Reminders" or
 
 query='.[] | select(
@@ -29,7 +30,6 @@ query='.[] | select(
     ."app" == "Karabiner-Elements" or
     ."app" == "Karabiner-EventViewer" or
     ."app" == "Hex Fiend" or
-    ."app" == "Calendar" or
     ."app" == "Font Book" or
     ."app" == "MAMP PRO"
 ) | .id'

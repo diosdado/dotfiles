@@ -132,8 +132,8 @@ vim.keymap.set("n", "<leader>F", ":! open \"%:p:h\"<CR><CR>",{ silent = true })
 -- replace in selection
 vim.keymap.set("v", "<leader>r", ':s::g<Left><Left>')
 -- save file, switch to browser and refresh
-vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/development-browser.sh -r<CR><CR>")
-vim.keymap.set("n", "<leader>;", "<cmd>w<CR>:!~/.scripts/development-browser.sh -r<CR><CR>")
+vim.keymap.set("n", "<leader>ñ", "<cmd>w<CR>:!~/.scripts/yabai/goto-apps.sh -a devbrowser -p 1<CR><CR>")
+vim.keymap.set("n", "<leader>;", "<cmd>w<CR>:!~/.scripts/yabai/goto-apps.sh -a devbrowser -p 1<CR><CR>")
 -- make the current file executable
 vim.keymap.set("n", "<leader>x", ":! chmod +x %<CR>")
 -- show yabai window objects

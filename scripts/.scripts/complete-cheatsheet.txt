@@ -57,6 +57,13 @@ SYSADMIN
 ( lsof ) → list open files macos
 ( lsof | grep {volume} ) → process using volume
 ( vipw ) → edit group related files locking them
+( samba ) → edit samba config
+(
+    vi /etc/samba/smb.conf
+    systemctl restart smb
+    systemctl restart nmb
+)
+
 
 cambiar cosas que se hacen en passwd también en shadow
 añadir /bin/bash al usuario en passwd o en group?

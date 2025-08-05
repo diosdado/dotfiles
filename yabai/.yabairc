@@ -52,7 +52,6 @@ yabai -m rule --add app="^OpenEmu$"                 manage=off
 yabai -m rule --add app="^wine64-preloader$"        manage=off
 yabai -m rule --add app="^Karabiner-Elements$"      manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
-yabai -m rule --add app="^Logi\ Options\+$"         manage=off
 yabai -m rule --add app="^GIMP$"                    manage=off
 yabai -m rule --add app="^Inkscape$"                manage=off
 yabai -m rule --add app="^Only\ Switch$"            manage=off
@@ -60,22 +59,20 @@ yabai -m rule --add app="^Print\ Center$"           manage=off
 yabai -m rule --add app="^Boom\ 3D$"                manage=off
 yabai -m rule --add app="^ownCloud$"                manage=off
 yabai -m rule --add app="^VLC$"                     manage=off
-yabai -m rule --add app="^Mountain\ Duck$"          manage=off
 yabai -m rule --add app="^Homerow$"                 manage=off
 yabai -m rule --add app="^Finder$"                  manage=off
 yabai -m rule --add app="^Disk Utility$"            manage=off
 yabai -m rule --add app="^FortiClient$"             manage=off
-yabai -m rule --add app="^Calendar$"                manage=off
+# yabai -m rule --add app="^Calendar$"                manage=off
 yabai -m rule --add app="^Windows\ App$"            manage=off
 yabai -m rule --add app="^UTM$"                     manage=off
 yabai -m rule --add app="^Screen\ Sharing$"         manage=off
 yabai -m rule --add app="^Crunchyroll$"             manage=off
 yabai -m rule --add app="^QuickTime Player$"        manage=off
-yabai -m rule --add app="^Safari$"                  manage=off
 yabai -m rule --add app="^DevToys$"                 manage=off
 yabai -m rule --add app="^AppCleaner$"              manage=off
-yabai -m rule --add app="^Hex Fiend$"               manage=off
 yabai -m rule --add app="^Font Book$"               manage=off
+yabai -m rule --add app="^Preview$"                 manage=off
 yabai -m rule --add app="^Dictionary$"              manage=off
 yabai -m rule --add app="^remote-viewer$"           manage=off
 yabai -m rule --add app="^Activity\ Monitor$"       manage=off
@@ -85,7 +82,7 @@ yabai -m rule --add app="owncloud"                  manage=off
 yabai -m rule --add app="^VLC$"                     sticky=on
 yabai -m rule --add app="^QuickTime Player$"        sticky=on
 yabai -m rule --add app="^Boom\ 3D$"                sticky=on
-yabai -m rule --add app="^Calendar$"                sticky=on
+# yabai -m rule --add app="^Calendar$"                sticky=on
 yabai -m rule --add app="^Transmission$"            sticky=on
 yabai -m rule --add app="^Karabiner-Elements$"      sticky=on
 yabai -m rule --add app="^MAMP PRO$"                sticky=on
@@ -100,10 +97,10 @@ yabai -m rule --add app="^FileZilla$"               space=s_secondary
 yabai -m rule --add app="^DevToys$"                 space=s_secondary
 yabai -m rule --add app="^LibreWolf$"               space=s_primary
 yabai -m rule --add app="^Reminders$"               space=s_reminders
+yabai -m rule --add app="^Calendar$"                space=s_reminders
 yabai -m rule --add app="^Stickies$"                space=s_reminders
 yabai -m rule --add app="^VSCodium$"                space=s_third
 yabai -m rule --add app="^OBS Studio$"              space=s_third
-yabai -m rule --add app="^Preview$"                 space=s_preview
 yabai -m rule --add app="^Brave\ Browser$"          space=s_browser
 yabai -m rule --add app="^TypingClub$"              space=s_browser
 yabai -m rule --add app="^ONLYOFFICE$"              space=s_primary

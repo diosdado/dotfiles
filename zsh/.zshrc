@@ -76,3 +76,9 @@ setopt hist_verify
 
 autoload -Uz tetriscurses
 
+# source cargo compiler
+. "$HOME/.cargo/env"
+
+
+
+

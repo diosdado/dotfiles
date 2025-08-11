@@ -10,7 +10,6 @@ done
 
 
 
-
 case $apps in
     conference)
         if ps aux | grep 'Jitsi Meet' | grep -v grep; then
@@ -70,6 +69,10 @@ case $apps in
         fi
         ;;
 
+    reminders)
+        open -a "Calendar"
+        open -a "Reminders"
+        ;;
 
     office)
         if ps aux | grep 'Pages' | grep -v grep; then
@@ -80,15 +83,19 @@ case $apps in
             open /Applications/Numbers.app
             exit 0
         fi
-        if ps aux | grep 'ONLYOFFICE' | grep -v grep; then
-            open /Applications/ONLYOFFICE.app
-            exit 0
-        fi
         if ps aux | grep 'Keynote' | grep -v grep; then
             open /Applications/Keynote.app
             exit 0
         fi
+        open /Applications/ONLYOFFICE.app
         ;;
+
+
+    email)
+        open ~/Applications/Gmail.app
+        open /System/Applications/Mail.app
+        ;;
+
 
     devbrowser) # open development browser
         reload="$param"
@@ -112,3 +119,6 @@ case $apps in
         open /Applications/Windows\ App.app
         ;;
 esac
+
+
+/opt/homebrew/bin/terminal-notifier -message "$apps" -title "goto"

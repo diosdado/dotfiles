@@ -16,6 +16,12 @@ Tmux
 tmux new -s session-name
 tmux attach -t session-name
 
+HOMEBREW
+--------------------
+
+brew leaves → only show packages without dependencies
+
+
 NETWORK
 --------------------
 

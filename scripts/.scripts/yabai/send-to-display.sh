@@ -6,9 +6,9 @@ while getopts "d:" flag; do
     esac
 done
 
-window_id=$(yabai -m query --windows | jq ".[] | select(.\"has-focus\" == true)" | jq '.id')
-yabai -m window $window_id --display $direction
-yabai -m window --focus $window_id
+window_id=$(/opt/homebrew/bin/yabai -m query --windows | jq ".[] | select(.\"has-focus\" == true)" | jq '.id')
+/opt/homebrew/bin/yabai -m window $window_id --display $direction
+/opt/homebrew/bin/yabai -m window --focus $window_id
 
 
 

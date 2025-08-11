@@ -9,7 +9,6 @@
                 "rules": [
                     {
                         "description": "Diosdado - Command, Option to Homerow",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -60,7 +59,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "application",
+                                    "key_code": "non_us_backslash",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -248,7 +247,6 @@
                     },
                     {
                         "description": "Diosdado - CapsLock → Hyper(⌃⌥⇧⌘)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {

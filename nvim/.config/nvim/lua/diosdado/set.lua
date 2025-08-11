@@ -6,6 +6,7 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+
 -- Indentation
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -135,6 +136,7 @@ vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 vim.g.netrw_list_hide = '.DS_Store,.git'
 vim.g.netrw_hide = 1
+vim.g.tmux_navigator_disable_netrw_workaround = 1
 
 
 -- vim.api.nvim_create_autocmd("BufWritePost", {

@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-# for this to work you must configure sudo such that it will be able to run the command without password
-# see this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
+
+/opt/homebrew/bin/yabai -m signal --add event=dock_did_restart action="sudo /opt/homebrew/bin/yabai --load-sa"
+sudo /opt/homebrew/bin/yabai --load-sa
 
 # global settings
-yabai -m config                                 \
+/opt/homebrew/bin/yabai -m config                                 \
     external_bar                 off:40:0       \
     menubar_opacity              1.0            \
     mouse_follows_focus          off            \
@@ -40,119 +38,115 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 # floated windows
-yabai -m rule --add app="^System\ Settings$"        manage=off
-yabai -m rule --add app="^Calculator$"              manage=off
-yabai -m rule --add app="^MAMP\ PRO$"               manage=off
-yabai -m rule --add app="^Stickies$"                manage=off
-yabai -m rule --add app="^Transmission$"            manage=off
-yabai -m rule --add app="^Photo\ Booth$"            manage=off
-yabai -m rule --add app="^Whisky$"                  manage=off
-yabai -m rule --add app="^FaceTime$"                manage=off
-yabai -m rule --add app="^OpenEmu$"                 manage=off
-yabai -m rule --add app="^wine64-preloader$"        manage=off
-yabai -m rule --add app="^Karabiner-Elements$"      manage=off
-yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
-yabai -m rule --add app="^GIMP$"                    manage=off
-yabai -m rule --add app="^Inkscape$"                manage=off
-yabai -m rule --add app="^Only\ Switch$"            manage=off
-yabai -m rule --add app="^Print\ Center$"           manage=off
-yabai -m rule --add app="^Boom\ 3D$"                manage=off
-yabai -m rule --add app="^ownCloud$"                manage=off
-yabai -m rule --add app="^VLC$"                     manage=off
-yabai -m rule --add app="^Homerow$"                 manage=off
-yabai -m rule --add app="^Finder$"                  manage=off
-yabai -m rule --add app="^Disk Utility$"            manage=off
-yabai -m rule --add app="^FortiClient$"             manage=off
-# yabai -m rule --add app="^Calendar$"                manage=off
-yabai -m rule --add app="^Windows\ App$"            manage=off
-yabai -m rule --add app="^UTM$"                     manage=off
-yabai -m rule --add app="^Screen\ Sharing$"         manage=off
-yabai -m rule --add app="^Crunchyroll$"             manage=off
-yabai -m rule --add app="^QuickTime Player$"        manage=off
-yabai -m rule --add app="^DevToys$"                 manage=off
-yabai -m rule --add app="^AppCleaner$"              manage=off
-yabai -m rule --add app="^Font Book$"               manage=off
-yabai -m rule --add app="^Preview$"                 manage=off
-yabai -m rule --add app="^Dictionary$"              manage=off
-yabai -m rule --add app="^remote-viewer$"           manage=off
-yabai -m rule --add app="^Activity\ Monitor$"       manage=off
-yabai -m rule --add app="owncloud"                  manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^System\ Settings$"        manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Calculator$"              manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^MAMP\ PRO$"               manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Stickies$"                manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Transmission$"            manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Photo\ Booth$"            manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Whisky$"                  manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^FaceTime$"                manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^OpenEmu$"                 manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^wine64-preloader$"        manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Karabiner-Elements$"      manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^GIMP$"                    manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Inkscape$"                manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Only\ Switch$"            manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Print\ Center$"           manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Boom\ 3D$"                manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^ownCloud$"                manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^VLC$"                     manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Homerow$"                 manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Finder$"                  manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Disk Utility$"            manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^FortiClient$"             manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^zoom.us$"                 manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Windows\ App$"            manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^UTM$"                     manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Screen\ Sharing$"         manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Crunchyroll$"             manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^QuickTime Player$"        manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^DevToys$"                 manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^AppCleaner$"              manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Font Book$"               manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Preview$"                 manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Dictionary$"              manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^remote-viewer$"           manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Activity\ Monitor$"       manage=off
+/opt/homebrew/bin/yabai -m rule --add app="owncloud"                  manage=off
 
 # sticky windows
-yabai -m rule --add app="^VLC$"                     sticky=on
-yabai -m rule --add app="^QuickTime Player$"        sticky=on
-yabai -m rule --add app="^Boom\ 3D$"                sticky=on
-# yabai -m rule --add app="^Calendar$"                sticky=on
-yabai -m rule --add app="^Transmission$"            sticky=on
-yabai -m rule --add app="^Karabiner-Elements$"      sticky=on
-yabai -m rule --add app="^MAMP PRO$"                sticky=on
-yabai -m rule --add app="^Stickies$"                sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^VLC$"                     sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^QuickTime Player$"        sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^Boom\ 3D$"                sticky=on
+# /opt/homebrew/bin/yabai -m rule --add app="^Calendar$"                sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^Transmission$"            sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^Karabiner-Elements$"      sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^MAMP PRO$"                sticky=on
+/opt/homebrew/bin/yabai -m rule --add app="^Stickies$"                sticky=on
 
 
 ~/.scripts/yabai/set-labels.sh
 
 
 # defaul spaces for apps
-yabai -m rule --add app="^FileZilla$"               space=s_secondary
-yabai -m rule --add app="^DevToys$"                 space=s_secondary
-yabai -m rule --add app="^LibreWolf$"               space=s_primary
-yabai -m rule --add app="^Reminders$"               space=s_reminders
-yabai -m rule --add app="^Calendar$"                space=s_reminders
-yabai -m rule --add app="^Stickies$"                space=s_reminders
-yabai -m rule --add app="^VSCodium$"                space=s_third
-yabai -m rule --add app="^OBS Studio$"              space=s_third
-yabai -m rule --add app="^Brave\ Browser$"          space=s_browser
-yabai -m rule --add app="^TypingClub$"              space=s_browser
-yabai -m rule --add app="^ONLYOFFICE$"              space=s_primary
-yabai -m rule --add app="^Pages$"                   space=s_primary
-yabai -m rule --add app="^Numbers$"                 space=s_primary
-yabai -m rule --add app="^Keynote$"                 space=s_primary
-yabai -m rule --add app="^kitty$"                   space=s_primary
-yabai -m rule --add app="^Inkscape$"                space=s_design
-yabai -m rule --add app="^GIMP$"                    space=s_design
-yabai -m rule --add app="^Blender$"                 space=s_design
-yabai -m rule --add app="^draw.io$"                 space=s_design
-yabai -m rule --add app="^Windows\ App$"            space=s_development
-yabai -m rule --add app="^Screen\ Sharing$"         space=s_development
-yabai -m rule --add app="^UTM$"                     space=s_development
-yabai -m rule --add app="^Spotify$"                 space=s_entertainment
-yabai -m rule --add app="^Music$"                   space=s_entertainment
-yabai -m rule --add app="^wine64-preloader$"        space=s_entertainment
-yabai -m rule --add app="^Whisky$"                  space=s_entertainment
-yabai -m rule --add app="^Steam$"                   space=s_entertainment
-yabai -m rule --add app="^OpenEmu$"                 space=s_entertainment
-yabai -m rule --add app="^Crunchyroll.*"            space=s_entertainment
-yabai -m rule --add app="^Disney.*"                 space=s_entertainment
-yabai -m rule --add app="^Prime\ Video$"            space=s_entertainment
-yabai -m rule --add app="^YouTube$"                 space=s_entertainment
-yabai -m rule --add app="^Sandox\ Meet$"            space=s_conference
-yabai -m rule --add app="^Jitsi\ Meet$"             space=s_conference
-yabai -m rule --add app="^Microsoft\ Teams$"        space=s_conference
-yabai -m rule --add app="^Teams$"                   space=s_conference
-yabai -m rule --add app="^zoom.us$"                 space=s_conference
-yabai -m rule --add app="^Gmail$"                   space=s_email
-yabai -m rule --add app="^Mail$"                    space=s_email
-yabai -m rule --add app="^WhatsApp$"                space=s_messages
-yabai -m rule --add app="‎WhatsApp"            space=s_messages
-yabai -m rule --add app="^Instagram$"               space=s_messages
+/opt/homebrew/bin/yabai -m rule --add app="^FileZilla$"               space=s_secondary
+/opt/homebrew/bin/yabai -m rule --add app="^DevToys$"                 space=s_secondary
+/opt/homebrew/bin/yabai -m rule --add app="^LibreWolf$"               space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^Reminders$"               space=s_reminders
+/opt/homebrew/bin/yabai -m rule --add app="^Calendar$"                space=s_reminders
+/opt/homebrew/bin/yabai -m rule --add app="^Stickies$"                space=s_reminders
+/opt/homebrew/bin/yabai -m rule --add app="^VSCodium$"                space=s_third
+/opt/homebrew/bin/yabai -m rule --add app="^OBS Studio$"              space=s_third
+/opt/homebrew/bin/yabai -m rule --add app="^Brave\ Browser$"          space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^TypingClub$"              space=s_browser
+/opt/homebrew/bin/yabai -m rule --add app="^ONLYOFFICE$"              space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^Pages$"                   space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^Numbers$"                 space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^Keynote$"                 space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^kitty$"                   space=s_primary
+/opt/homebrew/bin/yabai -m rule --add app="^Inkscape$"                space=s_design
+/opt/homebrew/bin/yabai -m rule --add app="^GIMP$"                    space=s_design
+/opt/homebrew/bin/yabai -m rule --add app="^Blender$"                 space=s_design
+/opt/homebrew/bin/yabai -m rule --add app="^draw.io$"                 space=s_design
+/opt/homebrew/bin/yabai -m rule --add app="^Windows\ App$"            space=s_development
+/opt/homebrew/bin/yabai -m rule --add app="^Screen\ Sharing$"         space=s_development
+/opt/homebrew/bin/yabai -m rule --add app="^UTM$"                     space=s_development
+/opt/homebrew/bin/yabai -m rule --add app="^Spotify$"                 space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Music$"                   space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^wine64-preloader$"        space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Whisky$"                  space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Steam$"                   space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^OpenEmu$"                 space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Crunchyroll.*"            space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Disney.*"                 space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Prime\ Video$"            space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^YouTube$"                 space=s_entertainment
+/opt/homebrew/bin/yabai -m rule --add app="^Sandox\ Meet$"            space=s_conference
+/opt/homebrew/bin/yabai -m rule --add app="^Jitsi\ Meet$"             space=s_conference
+/opt/homebrew/bin/yabai -m rule --add app="^Microsoft\ Teams$"        space=s_conference
+/opt/homebrew/bin/yabai -m rule --add app="^Teams$"                   space=s_conference
+/opt/homebrew/bin/yabai -m rule --add app="^zoom.us$"                 space=s_conference
+/opt/homebrew/bin/yabai -m rule --add app="^Gmail$"                   space=s_email
+/opt/homebrew/bin/yabai -m rule --add app="^Mail$"                    space=s_email
+/opt/homebrew/bin/yabai -m rule --add app="^WhatsApp$"                space=s_messages
+/opt/homebrew/bin/yabai -m rule --add app="‎WhatsApp"            space=s_messages
+/opt/homebrew/bin/yabai -m rule --add app="^Instagram$"               space=s_messages
 
-# manage new windows for specific programs
-# yabai -m signal --add event=window_created \
-#     label='custom-management-of-new-windows-created' \
-#     action='~/.scripts/yabai/custom-management-of-new-windows.sh'
 
 # change opacity of specific apps when focused
-yabai -m signal --add event=window_focused \
+/opt/homebrew/bin/yabai -m signal --add event=window_focused \
     label='custom-opacity-on-focus' \
     action='~/.scripts/yabai/custom-opacity-on-focus.sh'
 
-yabai -m signal --add event=window_focused \
+/opt/homebrew/bin/yabai -m signal --add event=window_focused \
     label='custom-layout-on-focus' \
     action='~/.scripts/yabai/custom-layout-on-focus.sh'
 
 
 ~/.scripts/yabai/reset-borders.sh
-~/.scripts/yabai/layout-default.sh
+~/.scripts/yabai/set-layout.sh -l default
 ~/.scripts/yabai/custom-layout-on-focus.sh
 
 

@@ -13,9 +13,9 @@ do
 done
 
 
-spaces=$(yabai -m query --spaces)
-space_current=$(echo $spaces | jq '.[] | select(."has-focus" == true)')
-layout_type=$(echo $space_current | jq -r '.type')
+spaces=$(/opt/homebrew/bin/yabai -m query --spaces)
+space_current=$(echo $spaces | /opt/homebrew/bin/jq '.[] | select(."has-focus" == true)')
+layout_type=$(echo $space_current | /opt/homebrew/bin/jq -r '.type')
 
 
 
@@ -29,15 +29,15 @@ fi
 
 if [ -z "$space_index" ]; then
     space="Current Space"
-    yabai -m space --layout $new_layout
+    /opt/homebrew/bin/yabai -m space --layout $new_layout
 else
-    space_data=$(echo $spaces | jq ".[] | select(.\"index\" == $space_index)")
-    space_label=$(echo $space_data | jq -r '.label')
+    space_data=$(echo $spaces | /opt/homebrew/bin/jq ".[] | select(.\"index\" == $space_index)")
+    space_label=$(echo $space_data | /opt/homebrew/bin/jq -r '.label')
     space="Space: $space_index:$space_label"
-    yabai -m space "$space_index" --layout "$new_layout"
+    /opt/homebrew/bin/yabai -m space "$space_index" --layout "$new_layout"
 fi
 
 
-terminal-notifier -message "$space\rLayout: $new_layout" -title "Yabai"
+/opt/homebrew/bin/terminal-notifier -message "$space\rLayout: $new_layout" -title "/opt/homebrew/bin/yabai"
 
 

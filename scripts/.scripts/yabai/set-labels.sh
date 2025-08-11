@@ -24,10 +24,10 @@ spaces_names=(
     s_development
 )
 
-spaces_numbers=($(yabai -m query --displays | jq 'sort_by(.index)|.[].spaces.[]'))
+spaces_numbers=($(/opt/homebrew/bin/yabai -m query --displays | jq 'sort_by(.index)|.[].spaces.[]'))
 
 for i in "${!spaces_names[@]}"; do
-    command="yabai -m space ${spaces_numbers[$i]} --label ${spaces_names[$i]}"
+    command="/opt/homebrew/bin/yabai -m space ${spaces_numbers[$i]} --label ${spaces_names[$i]}"
     eval "$command"
 done
 

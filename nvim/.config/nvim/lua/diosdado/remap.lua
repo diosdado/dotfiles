@@ -93,7 +93,7 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("set wrap!")
 end)
 -- switch between the two last 2 buffers
-vim.keymap.set("n", "<PageDown>", ":b#<CR>")
+-- vim.keymap.set("n", "<PageDown>", ":b#<CR>")
 
 -- vim.keymap.set("n", "<leader>c", "<cmd>copen<CR>")
 -- vim.keymap.set("n", "<C-[>", "<cmd>cnext<CR>zz")

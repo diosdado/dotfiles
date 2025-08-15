@@ -12,16 +12,12 @@ done
 
 case $apps in
     conference)
-        if ps aux | grep 'Jitsi Meet' | grep -v grep; then
-            open /Applications/Jitsi\ Meet.app
-            exit 0
-        fi
         if ps aux | grep 'Teams.app' | grep -v grep; then
-            open ~/Applications/Teams.app
+            open /Applications/Teams.app
             exit 0
         fi
         if ps aux | grep 'Zoom.app' | grep -v grep; then
-            open ~/Applications/Brave\ Browser\ Apps.localized/Zoom.app
+            open /Applications/zoom.us.app
             exit 0
         fi
         open /Applications/Jitsi\ Meet.app
@@ -40,10 +36,7 @@ case $apps in
             open /Applications/GIMP.app
             exit 0
         fi
-        if ps aux | grep 'Inkscape' | grep -v grep; then
-            open /Applications/Inkscape.app
-            exit 0
-        fi
+        open /Applications/Inkscape.app
         ;;
 
     entertainment)
@@ -103,7 +96,7 @@ case $apps in
         open "/Applications/$development_browser.app"
         # send a key combination to delete browser history and refresh the site
         if [[ -n $reload ]]; then
-            sendkeys --application-name "$development_browser" --characters "<c:f9><c:r:command>"
+            /opt/homebrew/bin/sendkeys --application-name "$development_browser" --characters "<c:f9><c:r:command>"
         fi
         ;;
 
@@ -121,4 +114,4 @@ case $apps in
 esac
 
 
-/opt/homebrew/bin/terminal-notifier -message "$apps" -title "goto"
+# /opt/homebrew/bin/terminal-notifier -message "$apps" -title "goto"

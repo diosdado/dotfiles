@@ -84,6 +84,7 @@ añadir /bin/bash al usuario en passwd o en group?
 ( adduser ) → create user higher level script
 ( useradd ) →create user linux
 
+Redhat
 ( tally files: faillock ) → display/modify authentication failure record files
 pam_tally2 --user=isis --reset faillock --user isis --reset useradd -c "Info detalle Oracle - CONSAR" isis -d /dminftab1/isis -s /bin/bash -u 140 -g 115
 

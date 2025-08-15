@@ -34,14 +34,14 @@ query='.[] | select(
     ."app" == "MAMP PRO"
 ) | .id'
 
-focused=$(echo $(yabai -m query --windows) | jq '.[] | select(."has-focus" == true) | .id')
-windows=$(yabai -m query --windows | jq "$query")
+focused=$(echo $(/opt/homebrew/bin/yabai -m query --windows) | /opt/homebrew/bin/jq '.[] | select(."has-focus" == true) | .id')
+windows=$(/opt/homebrew/bin/yabai -m query --windows | /opt/homebrew/bin/jq "$query")
 
 for win_id in $windows; do
     if [[ "$focused" -eq "$win_id" || "$reset" -eq "1" ]]; then
-        yabai -m window "$win_id" --opacity 0.0
+        /opt/homebrew/bin/yabai -m window "$win_id" --opacity 0.0
     else
-        yabai -m window "$win_id" --opacity $focus_opacity
+        /opt/homebrew/bin/yabai -m window "$win_id" --opacity $focus_opacity
     fi
 done
 

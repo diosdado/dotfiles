@@ -37,6 +37,12 @@ sudo /opt/homebrew/bin/yabai --load-sa
     mouse_action2                resize         \
     mouse_drop_action            swap
 
+
+~/.scripts/yabai/set-labels.sh
+
+
+
+
 # floated windows
 /opt/homebrew/bin/yabai -m rule --add app="^System\ Settings$"        manage=off
 /opt/homebrew/bin/yabai -m rule --add app="^Calculator$"              manage=off
@@ -87,7 +93,6 @@ sudo /opt/homebrew/bin/yabai --load-sa
 /opt/homebrew/bin/yabai -m rule --add app="^Stickies$"                sticky=on
 
 
-~/.scripts/yabai/set-labels.sh
 
 
 # defaul spaces for apps
@@ -106,7 +111,7 @@ sudo /opt/homebrew/bin/yabai --load-sa
 /opt/homebrew/bin/yabai -m rule --add app="^Numbers$"                 space=s_primary
 /opt/homebrew/bin/yabai -m rule --add app="^Keynote$"                 space=s_primary
 /opt/homebrew/bin/yabai -m rule --add app="^kitty$"                   space=s_primary
-/opt/homebrew/bin/yabai -m rule --add app="^Inkscape$"                space=s_design
+/opt/homebrew/bin/yabai -m rule --add app="^Inkscape$"                space=s_primary
 /opt/homebrew/bin/yabai -m rule --add app="^GIMP$"                    space=s_design
 /opt/homebrew/bin/yabai -m rule --add app="^Blender$"                 space=s_design
 /opt/homebrew/bin/yabai -m rule --add app="^draw.io$"                 space=s_design
@@ -125,6 +130,7 @@ sudo /opt/homebrew/bin/yabai --load-sa
 /opt/homebrew/bin/yabai -m rule --add app="^YouTube$"                 space=s_entertainment
 /opt/homebrew/bin/yabai -m rule --add app="^Sandox\ Meet$"            space=s_conference
 /opt/homebrew/bin/yabai -m rule --add app="^Jitsi\ Meet$"             space=s_conference
+/opt/homebrew/bin/yabai -m rule --add app="^Google\ Meet$"             space=s_conference
 /opt/homebrew/bin/yabai -m rule --add app="^Microsoft\ Teams$"        space=s_conference
 /opt/homebrew/bin/yabai -m rule --add app="^Teams$"                   space=s_conference
 /opt/homebrew/bin/yabai -m rule --add app="^zoom.us$"                 space=s_conference
@@ -146,7 +152,6 @@ sudo /opt/homebrew/bin/yabai --load-sa
 
 
 ~/.scripts/yabai/reset-borders.sh
-~/.scripts/yabai/set-layout.sh -l default
 ~/.scripts/yabai/custom-layout-on-focus.sh
 
 

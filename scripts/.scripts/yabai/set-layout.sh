@@ -12,7 +12,7 @@ done
 case $layout in
     default)
         # reset default layout
-        ~/.scripts/yabai/set-labels.sh
+        #~/.scripts/yabai/set-labels.sh
         /opt/homebrew/bin/yabai -m rule --apply
         /opt/homebrew/bin/yabai -m space s_primary --layout bsp
         /opt/homebrew/bin/yabai -m space s_design --layout bsp

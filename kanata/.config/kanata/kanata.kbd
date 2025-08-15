@@ -1,8 +1,8 @@
 
 ;; -------------------------------------- global config
 (defcfg
-    ;;process-unmapped-keys yes
-    log-layer-changes no
+    process-unmapped-keys yes
+    log-layer-changes yes
     danger-enable-cmd yes
     concurrent-tap-hold yes
 )
@@ -15,8 +15,8 @@
     hold-time 100
     tap-time-fast 100
     hold-time-fast 100
-    tap-time-slow 400
-    hold-time-slow 400
+    tap-time-slow 200
+    hold-time-slow 200
     chord-time 100
 )
 
@@ -57,8 +57,8 @@
 (deflayer apps
     f1      f2      f3      f4      f5      f6      _               f7      f8      f9      f10     f11     f12
     _       _       _       @app-e  @app-r  @app-t  XX              @app-y  @app-u  @app-i  @app-o  @app-p  @app-\
-    _       @app-a  @app-s  _       @app-f  @app-g  XX              ◀       ▼       ▲       ▶       @yfull  @yfloa
-    _       _       _       _       _       @app-b                  @app-n  @app-m  @clip,  @clip.  @clip/  _
+    _       @app-a  @app-s  _       @app-f  @app-g  XX              ◀       ▼       ▲       ▶       @app-;  @app-'
+    _       @app-z  _       _       _       @app-b                  @app-n  @app-m  @clip1  @clip2  @clip3  _
     _       _       _       _       _                                       _       _       _       _       _
 
             _       _                                                                       _       _
@@ -72,7 +72,7 @@
 ;; -------------------------------------- yabai layer
 (deflayer layer2
     brdn    brup    mctl    S-C-spc lpad    XX      _               prev    pp      next    mute    vold    volu
-    _       _       _       _       _       _       XX              _       _       _       _       _       _
+    _       _       _       _       _       _       XX              _       _       _       @yopct  _       _
     _       _       _       _       _       _       XX              @ydish  @ydisj  @ydisk  @ydisl  _       _
     _       _       _       _       _       _                       _       _       _       _       _       _
     _       _       _       _       _                                       _       _       _       _       _
@@ -95,6 +95,8 @@
     ;; desktop navigation
     dkexp (tap-hold $tap-time-slow $hold-time-slow home mctl)
     dkshw (tap-hold $tap-time-slow $hold-time-slow end S-C-spc)
+
+    ;;ybigr (tap-hold $tap-time-slow $hold-time-slow @yzoom @yfull)
 )
 
 
@@ -125,6 +127,7 @@
 
     ;; layout
     yfull (cmd sudo -u david.diosdado bash -c "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen")
+    yzoom (cmd sudo -u david.diosdado bash -c "/opt/homebrew/bin/yabai -m window --toggle zoom-parent")
     yfloa (cmd sudo -u david.diosdado bash -c "/opt/homebrew/bin/yabai -m window --toggle float --grid 7:5:1:1:3:5 ")
     ylayd (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/yabai/set-layout.sh -l default")
     ybala (cmd sudo -u david.diosdado bash -c "/opt/homebrew/bin/yabai -m space --balance")
@@ -133,7 +136,11 @@
 
     ;; restart
     yrest (cmd sudo -u david.diosdado bash -c "/opt/homebrew/bin/yabai --restart-service")
+    yappl (cmd sudo -u david.diosdado bash -c "/opt/homebrew/bin/yabai -m rule --apply")
+
+    yopct (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/yabai/toggle-custom-opacity-on-focus.sh")
 )
+
 
 
 ;; -------------------------------------- applications
@@ -163,7 +170,7 @@
     app-; (cmd bash -c "/Users/david.diosdado/.scripts/yabai/goto-apps.sh -a devbrowser -p")
     app-' (cmd bash -c "/Users/david.diosdado/.scripts/yabai/goto-apps.sh -a virtualization")
 
-    ;;app-z (cmd sudo -u david.diosdado open -a "")
+    app-z (cmd sudo -u david.diosdado open -a "Google Meet")
     ;;app-x (cmd sudo -u david.diosdado open -a "")
     ;;app-c (cmd sudo -u david.diosdado open -a "")
     ;;app-v (cmd sudo -u david.diosdado open -a "")
@@ -172,30 +179,35 @@
     app-m (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/yabai/goto-apps.sh -a conference")
     ;;app-, (cmd sudo -u david.diosdado open -a "")
     ;;app-. (cmd sudo -u david.diosdado open -a "")
+
+    clip1 (macro (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/clip-paste.sh -n comma") 100 M-v)
+    clip2 (macro (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/clip-paste.sh -n period") 100 M-v)
+    clip3 (macro (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/clip-paste.sh -n slash") 100 M-v)
 )
 
 
-;; -------------------------------------- clipboard
-(defalias
-    clip, (macro (cmd bash -c "cat ~/clipboard/cp_comma.txt | tr -d '\n' | pbcopy") 50 M-v)
-    clip. (macro (cmd bash -c "cat ~/clipboard/cp_period.txt | tr -d '\n' | pbcopy") 50 M-v)
-    clip/ (macro (cmd bash -c "cat ~/clipboard/cp_slash.txt | tr -d '\n' | pbcopy") 50 M-v)
-)
 
 (defchordsv2
-    (7 8 9) S-M-spc $chord-time first-release () ;; homerow nav
+    (7 8 9) (cmd sudo -u david.diosdado open -a "Finder") $chord-time first-release () ;; homerow search
+
     (8 9 0) S-M-/ $chord-time first-release () ;; homerow search
     (7 8 9 0) S-M-j $chord-time first-release () ;; homerow scroll
-    (u i o p) @yfloa $chord-time first-release ()
-    (j k l ;) @yfull $chord-time first-release ()
-    (u i o) @ymovh $chord-time first-release ()
-    (i o p) @ymovl $chord-time first-release ()
-    (j k l) @yfoch $chord-time first-release ()
-    (k l ;) @yfocl $chord-time first-release ()
-    (m , .) @ysizh $chord-time first-release ()
-    (, . /) @ysizl $chord-time first-release ()
-    (h j k) @yrest $chord-time first-release ()
-    (n m ,) @ylayd $chord-time first-release ()
-    (rmet i o) M-tab $chord-time first-release ()
-    (rmet u i) M-S-tab $chord-time first-release ()
+
+    (u i o p) @yfloa $chord-time first-release () ;; float window
+    (j k l ;) @yfull $chord-time first-release () ;; maximize
+
+    (u i o) @ymovh $chord-time first-release () ;; move left
+    (i o p) @ymovl $chord-time first-release () ;; move right
+
+    (j k l) @yfoch $chord-time first-release () ;; select left
+    (k l ;) @yfocl $chord-time first-release () ;; select right
+
+    (m , .) @ysizh $chord-time first-release () ;; smaller primary
+    (, . /) @ysizl $chord-time first-release () ;; bigger primary
+
+    (h j k) @yrest $chord-time first-release () ;; reset yabai
+    (n m ,) @ylayd $chord-time first-release () ;; re-apply yabai rules
+
+    (2 3 4) (cmd sudo -u david.diosdado bash -c "/Users/david.diosdado/.scripts/yabai/goto-apps.sh -a design") $chord-time first-release ()
+
 )

@@ -9,6 +9,6 @@ else
     sed -i '' "s/^focus_opacity=.*/focus_opacity=$default_focus_opacity/" $config_file
 fi
 
-
+~/.scripts/yabai/custom-opacity-on-focus.sh
 
 

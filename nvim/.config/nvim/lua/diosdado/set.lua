@@ -28,7 +28,7 @@ vim.opt.hidden = true
 
 vim.opt.encoding = "UTF-8"
 vim.opt.path:append('**')
-vim.opt.iskeyword:append('-')
+-- vim.opt.iskeywordd('-')
 
 -- Search settings
 vim.opt.hlsearch = false

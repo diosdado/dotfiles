@@ -10,6 +10,9 @@ done
 
 . ~/.scripts/.conf
 
+sleep .1
+
+
 windows=$(
     yabai -m query --windows | \
     jq '.[] | select( .app | contains("Inkscape"))' | \

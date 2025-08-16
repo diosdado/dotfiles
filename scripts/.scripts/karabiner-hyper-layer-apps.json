@@ -1,0 +1,197 @@
+{
+    "description": "Diosdado - HyperLayer Apps",
+    "manipulators": [
+
+
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "5" },
+    "to": [{ "shell_command": "~/.scripts/kill-music-library-agent-and-eject.sh" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "q" },
+    "to": [{ "shell_command": "open -a 'Activity Monitor'" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "w" },
+    "to": [{ "shell_command": "#" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "e" },
+    "to": [{ "shell_command": "open -a 'Karabiner-Elements' ; open -a 'Karabiner-EventViewer'" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "r" },
+    "to": [{ "shell_command": "#" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "t" },
+    "to": [{ "shell_command": "open -a TypingClub" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "y" },
+    "to": [{ "shell_command": "open -a Reminders ; open -a Calendar" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "u" },
+    "to": [{ "shell_command": "open -a kitty" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "i" },
+    "to": [{ "shell_command": "open -a 'Brave Browser'" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "o" },
+    "to": [{ "shell_command": "open -a WhatsApp" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "p" },
+    "to": [{ "shell_command": "open -a Gmail ; open -a Mail" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "backslash" },
+    "to": [{ "shell_command": "open -a 'MAMP PRO" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "a" },
+    "to": [{ "shell_command": "open -a Inkscape" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "s" },
+    "to": [{ "shell_command": "open -a Stickies" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "d" },
+    "to": [{ "shell_command": "open -a DevToys" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "f" },
+    "to": [{ "shell_command": "open -a FileZilla" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "g" },
+    "to": [{ "shell_command": "#" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "semicolon" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a devbrowser -p" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "quote" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a virtualization" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "z" },
+    "to": [{ "shell_command": "open -a GIMP" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "x" },
+    "to": [{ "shell_command": "open -a Instagram" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "c" },
+    "to": [{ "shell_command": "#" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "v" },
+    "to": [{ "shell_command": "#" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "b" },
+    "to": [{ "shell_command": "open -a OBS" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "n" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a office" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "m" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a conference" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "comma" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_comma.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "period" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_period.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "slash" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_slash.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_command" },
+    "to": [{ "shell_command": "open ~/Desktop/Projects/" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_option" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a entertainment" }]
+},
+{
+    "conditions": [ { "name": "hyper_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_shift" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }]
+}
+
+
+
+
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

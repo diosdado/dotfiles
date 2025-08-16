@@ -55,6 +55,8 @@ sudo /opt/homebrew/bin/yabai --load-sa
 /opt/homebrew/bin/yabai -m rule --add app="^OpenEmu$"                 manage=off
 /opt/homebrew/bin/yabai -m rule --add app="^wine64-preloader$"        manage=off
 /opt/homebrew/bin/yabai -m rule --add app="^Karabiner-Elements$"      manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Stream\ Deck$"            manage=off
+/opt/homebrew/bin/yabai -m rule --add app="^Automator$"               manage=off
 /opt/homebrew/bin/yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
 /opt/homebrew/bin/yabai -m rule --add app="^GIMP$"                    manage=off
 /opt/homebrew/bin/yabai -m rule --add app="^Inkscape$"                manage=off

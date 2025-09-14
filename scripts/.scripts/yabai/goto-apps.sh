@@ -39,17 +39,17 @@ case $apps in
         open /Applications/Inkscape.app
         ;;
 
-    entertainment)
-        if ps aux | grep 'Crunchyroll' | grep -v grep; then
-            open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Watch\ Popular\ Anime.app
-            exit 0
-        fi
+    music)
         if ps aux | grep 'Music.app' | grep -v grep; then
             open /System/Applications/Music.app
             exit 0
         fi
-        if ps aux | grep 'Spotify' | grep -v grep; then
-            open ~/Applications/Brave\ Browser\ Apps.localized/Spotify.app
+        open ~/Applications/Brave\ Browser\ Apps.localized/Spotify.app
+        ;;
+
+    tv)
+        if ps aux | grep 'Crunchyroll' | grep -v grep; then
+            open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Watch\ Popular\ Anime.app
             exit 0
         fi
         if ps aux | grep 'Disney' | grep -v grep; then
@@ -61,6 +61,8 @@ case $apps in
             exit 0
         fi
         ;;
+
+
 
     reminders)
         open -a "Calendar"

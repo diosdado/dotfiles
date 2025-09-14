@@ -16,18 +16,35 @@ Tmux
 tmux new -s session-name
 tmux attach -t session-name
 
+
+PACKAGE MANAGERS
+--------------------
+yum install samba samba-client samba-common
+
+
+
+
+
+
 HOMEBREW
 --------------------
 
 brew leaves → only show packages without dependencies
 
+ORACLE
+--------------------
+( /etc/oratab ) → dónde encontrar los archivos en los que se encuentran los connection strings
+    {nombre-db}:{ubicación-config}:{N indica que se monta al inicio del sistema}
+( {ubicación-config}/tnsnames.ora ) → contiene los connections strings
 
 NETWORK
 --------------------
 
-netstat -tuplen --- ver ip tables telnet {server} 80 --- ver si es accesible desde afuera el puerto 80 lsof -i -P -n --- list open ports ss -tuln iptables -t {table} -vL --- lista todas las reglas de iptables de la tabla en específico verbose
+( netstat -tuplen ) → ver ip tables
+( telnet {server} 80 ) → ver si es accesible desde afuera el puerto 80
+( lsof -i -P -n ) → list open ports
+( ss -tuln iptables -t {table} -vL ) → lista todas las reglas de iptables de la tabla en específico verbose
 ( tracert, traceroute, tracepath ) → route packets take to host
-
 ( lspci ) → nics
 ( doas pkill hiawatha ; doas hiawatha ) → reinicio de hiawatha
 ( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
@@ -69,6 +86,11 @@ SYSADMIN
     systemctl restart smb
     systemctl restart nmb
 )
+( /etc/exports ) → indica qué directorios son son accesibles para ser montados desde otra ip
+    {directorio}    {ip 1}(rw,sync) {ip 2}(rw, sync) ...
+( fdisk {punto-de-montaje} ) → particiones
+    (p - permite imprimir la estructura de las particiones del volumen montado)
+    (q - salir)
 
 
 cambiar cosas que se hacen en passwd también en shadow
@@ -89,7 +111,7 @@ Redhat
 pam_tally2 --user=isis --reset faillock --user isis --reset useradd -c "Info detalle Oracle - CONSAR" isis -d /dminftab1/isis -s /bin/bash -u 140 -g 115
 
 ( chage --maxdays -1 {username} ) → remove password expiration date
-( user mod -G {group} {user} ) → add user group bsd
+( user mod -a -G {group} {user} ) → add user group bsd
 ( usermod -a -G {group} {user} ) → add user group linux
 ( gpasswd -d {user} {group} ) → remove user from group
 ( passwd ) → change password
@@ -122,6 +144,14 @@ firewall-cmd
 ( --zone=public --add-rich-rule='rule family=ipv4 service name=ssh log prefix="Dropped SSH" level="notice" limit value=1/m drop') → add ip to zone
 ( /var/log/messages) → firewall messages
 
+
+PROXMOX
+-------
+
+( qm )
+
+
+
 PERMISSIONS
 --------------------
 
@@ -133,6 +163,8 @@ PERMISSIONS
 ( chmod (-R) {ref}{operator}{modes}/{octets} {file/dir} ) → change modes
 ( chmod u=rwx,go=u-w ) → readable/executable by everyone and writable by owner only
 ( chown (-R) {owner}:{group} {file/dir}) → change owner
+ejemplo: chmod -R 777 FSW_NET/
+
 
 BASH
 --------------------

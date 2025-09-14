@@ -12,18 +12,13 @@ done
 . ~/.scripts/.conf
 
 # sed -i 's/var=.*/var=new_value/' file_name
-# ."app" == "Instagram" or
-# ."app" == "iPhone Mirroring" or
-# ."app" == "DevToys" or
-# ."app" == "Preview" or
-# ."app" == "Calendar" or
-# ."app" == "Reminders" or
 
 query='.[] | select(
 	( ."app" == "Windows App" and ."title" == "" ) or
 	( ."app" == "Windows App" and ."title" == "Devices" ) or
 	( ."app" == "Jitsi Meet" and ."title" == "Screen Sharing Tracker" ) or
 	( ."app" == "Finder" and ."title" != "Quick Look" ) or
+    ."app" == "OBS Studio" or
     ."app" == "Stickies" or
     ."app" == "System Settings" or
     ."app" == "Transmission" or

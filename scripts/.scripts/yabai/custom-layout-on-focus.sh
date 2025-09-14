@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+
 while getopts "r" flag
 do
     case $flag in
@@ -24,7 +25,7 @@ for win_id in $windows; do
     floating=$(echo $window | jq 'if ."is-floating" then 1 else 0 end')
 
     if [[ "$floating" -eq "1" ]]; then
-        yabai -m window $window_id --toggle float
+        yabai -m window $win_id --toggle float
     fi
 done
 
@@ -32,19 +33,20 @@ done
 
 
 
-# windows=$(
-#     yabai -m query --windows | \
-#     jq '.[] | select( .app | contains("GIMP"))' | \
-#     jq 'select((."title" | contains(" - GIMP")) or (."title" | contains("GNU Image"))) | .id'
-# )
+windows=$(
+    yabai -m query --windows | \
+    jq '.[] | select( .app | contains("GIMP"))' | \
+    jq 'select((."title" | contains(" - GIMP")) or (."title" | contains("GNU Image"))) | .id'
+)
 
-# for win_id in $windows; do
-#     window=$(yabai -m query --windows --window $win_id)
-#     floating=$(echo $window | jq 'if ."is-floating" then 1 else 0 end')
+for win_id in $windows; do
+    window=$(yabai -m query --windows --window $win_id)
+    floating=$(echo $window | jq 'if ."is-floating" then 1 else 0 end')
 
-#     if [[ "$floating" -eq "1" ]]; then
-#         yabai -m window $window_id --toggle float
-#     fi
-# done
+
+    if [[ "$floating" -eq "1" ]]; then
+        yabai -m window $win_id --toggle float
+    fi
+done
 
 

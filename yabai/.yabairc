@@ -92,15 +92,18 @@ yabai -m rule --add app="^Boom\ 3D$"                sticky=on
 yabai -m rule --add app="^Transmission$"            sticky=on
 yabai -m rule --add app="^Karabiner-Elements$"      sticky=on
 yabai -m rule --add app="^MAMP PRO$"                sticky=on
-yabai -m rule --add app="^Stickies$"                sticky=on
+yabai -m rule --add app="^Stickies$"                sub-layer=above sticky=on
+
+
+
+
+# dynamic space rules based on personal configuration file
+~/.scripts/yabai/set-rules.sh
+
 
 
 # defaul spaces for apps
-
 yabai -m rule --add app="^TypingClub$"              space=s_primary
-
-~/.scripts/yabai/set-rules.sh
-
 yabai -m rule --add app="^OBS Studio$"              space=s_primary
 
 yabai -m rule --add app="^Windows\ App$"            space=s_development
@@ -131,7 +134,6 @@ yabai -m rule --add app="^Prime\ Video$"            space=s_entertainment
 yabai -m rule --add app="^YouTube$"                 space=s_entertainment
 
 yabai -m rule --add app="^Sandox\ Meet$"            space=s_conference
-yabai -m rule --add app="^Jitsi\ Meet$"             space=s_conference
 yabai -m rule --add app="^Google\ Meet$"            space=s_conference
 yabai -m rule --add app="^Microsoft\ Teams$"        space=s_conference
 yabai -m rule --add app="^Teams$"                   space=s_conference
@@ -146,17 +148,17 @@ yabai -m rule --add app="^Instagram$"               space=s_messages
 yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
 
 
-yabai -m space s_secondary --layout bsp
-yabai -m space s_messages --layout bsp
-yabai -m space s_email --layout bsp
-yabai -m space s_third --layout bsp
-yabai -m space s_reminders --layout bsp
-yabai -m space s_primary --layout bsp
-yabai -m space s_design --layout bsp
-yabai -m space s_development --layout bsp
-yabai -m space s_entertainment --layout stack
-yabai -m space s_gaming --layout stack
-yabai -m space s_conference --layout stack
+yabai -m space s_secondary      --layout bsp
+yabai -m space s_messages       --layout bsp
+yabai -m space s_email          --layout bsp
+yabai -m space s_third          --layout bsp
+yabai -m space s_reminders      --layout bsp
+yabai -m space s_primary        --layout bsp
+yabai -m space s_design         --layout bsp
+yabai -m space s_development    --layout bsp
+yabai -m space s_entertainment  --layout stack
+yabai -m space s_gaming         --layout stack
+yabai -m space s_conference     --layout stack
 
 
 # change opacity of specific apps when focused

@@ -23,6 +23,14 @@ yum install samba samba-client samba-common
 
 
 
+PARTITIONS
+----------
+
+p g - espacio disco duro
+a - agregar particion
+w - guaedar cambios
+q - cerrar creación de particiones
+
 
 
 
@@ -149,7 +157,14 @@ PROXMOX
 -------
 
 ( qm )
+------
 
+Consideraciones
+---------------
+- Debian - instar con el cable de red desenchufado
+- La swap debe de ser del doble de la memoria RAM que se le asigne a la VM
+- Un core físico de Proxmox puede soportar 6 cores virtuales
+- Para BSD y Linux usar iSCSI
 
 
 PERMISSIONS

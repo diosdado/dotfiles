@@ -8,481 +8,161 @@
                 },
                 "rules": [
                     {
-                        "description": "Diosdado - MehLayer Yabai",
+                        "description": "Diosdado - HyperLayer",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "n" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/resize-window.sh -h" }],
+                                "from": { "key_code": "equal_sign" },
+                                "to": [{ "key_code": "f1" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "m" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l default" }],
+                                "from": { "key_code": "1" },
+                                "to": [{ "key_code": "f2" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "comma" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l design" }],
+                                "from": { "key_code": "2" },
+                                "to": [{ "key_code": "f3" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "period" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/resize-window.sh -l" }],
+                                "from": { "key_code": "3" },
+                                "to": [{ "key_code": "f4" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "slash" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l office" }],
+                                "from": { "key_code": "4" },
+                                "to": [{ "key_code": "f5" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "h" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }],
+                                "from": { "key_code": "5" },
+                                "to": [{ "key_code": "f6" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "j" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus south" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "k" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus north" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "l" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "y" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "u" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap south" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "i" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap north" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "o" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "6" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/send-to-display.sh -d west" }],
+                                "to": [{ "key_code": "f7" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "7" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/send-to-display.sh -d south" }],
+                                "to": [{ "key_code": "f8" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "8" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/send-to-display.sh -d north" }],
+                                "to": [{ "key_code": "f9" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "9" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/send-to-display.sh -d east" }],
+                                "to": [{ "key_code": "f10" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "0" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }],
+                                "to": [{ "key_code": "f11" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "hyphen" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }],
+                                "to": [{ "key_code": "f12" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "semicolon" },
-                                "to": [{ "shell_command": "#" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "quote" },
-                                "to": [{ "shell_command": "#" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "backslash" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-layout.sh -l default # reset layout" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "p" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/toggle-custom-opacity-on-focus.sh # toggle opacity" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
+                                        "name": "hyper_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "return_or_enter" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 7:5:1:1:3:5 # float window" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "spacebar" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "right_command" },
-                                "to": [{ "key_code": "mission_control" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "right_option" },
-                                "to": [{ "key_code": "f17" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "meh_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "right_shift" },
-                                "to": [{ "key_code": "launchpad" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "available_since": "12.3.0",
-                        "description": "Diosdado - HyperLayer mouser motion to scroll",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "hyper_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "modifiers": { "optional": ["any"] } },
-                                "type": "mouse_motion_to_scroll"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Diosdado - Esc/Caps → HyperLayer, Tab → MehLayer",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 150,
-                                    "basic.to_if_held_down_threshold_milliseconds": 0
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "hyper_layer",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    { "key_code": "vk_none" },
-                                    {
-                                        "set_variable": {
-                                            "name": "hyper_layer",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "vk_none",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "caps_lock" },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 150,
-                                    "basic.to_if_held_down_threshold_milliseconds": 0
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "hyper_layer",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "hyper_layer",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": { "optional": ["left_shift", "left_option", "left_control", "caps_lock"] }
-                                },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 150,
-                                    "basic.to_if_held_down_threshold_milliseconds": 0
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "meh_layer",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "meh_layer",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "tab" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Diosdado - HyperLayer Apps",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "hyper_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "5" },
-                                "to": [{ "shell_command": "~/.scripts/kill-music-library-agent-and-eject.sh" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "hyper_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "6" },
                                 "to": [{ "shell_command": "open ~/Desktop/Projects/" }],
                                 "type": "basic"
                             },
@@ -494,7 +174,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "7" },
+                                "from": { "key_code": "semicolon" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }],
                                 "type": "basic"
                             },
@@ -506,7 +186,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "8" },
+                                "from": { "key_code": "n" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a office" }],
                                 "type": "basic"
                             },
@@ -518,8 +198,8 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "9" },
-                                "to": [{ "shell_command": "#" }],
+                                "from": { "key_code": "slash" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a entertainment" }],
                                 "type": "basic"
                             },
                             {
@@ -530,7 +210,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "0" },
+                                "from": { "key_code": "backslash" },
                                 "to": [{ "shell_command": "open -a OBS" }],
                                 "type": "basic"
                             },
@@ -542,8 +222,32 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "hyphen" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a music" }],
+                                "from": { "key_code": "1" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle mission-control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "2" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "3" },
+                                "to": [{ "key_code": "launchpad" }],
                                 "type": "basic"
                             },
                             {
@@ -591,7 +295,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "r" },
-                                "to": [{ "shell_command": "#" }],
+                                "to": [{ "shell_command": "~/.scripts/kill-music-library-agent-and-eject.sh" }],
                                 "type": "basic"
                             },
                             {
@@ -686,6 +390,18 @@
                                         "value": 1
                                     }
                                 ],
+                                "from": { "key_code": "a" },
+                                "to": [{ "shell_command": "open -a 'iPhone Mirroring'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": { "key_code": "s" },
                                 "to": [{ "shell_command": "open -a 'Stickies'" }],
                                 "type": "basic"
@@ -724,6 +440,71 @@
                                 ],
                                 "from": { "key_code": "g" },
                                 "to": [{ "shell_command": "open -a 'GIMP'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "h" },
+                                "to": [{ "key_code": "left_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "k" },
+                                "to": [{ "key_code": "up_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "j" },
+                                "to": [{ "key_code": "down_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "l" },
+                                "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "spacebar" },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -816,18 +597,6 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "n" },
-                                "to": [{ "shell_command": "#" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "hyper_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": { "key_code": "m" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a conference" }],
                                 "type": "basic"
@@ -889,7 +658,377 @@
                         ]
                     },
                     {
-                        "description": "Diosdado - HyperLayer Arrows",
+                        "available_since": "12.3.0",
+                        "description": "Diosdado - HyperLayer mouser motion to scroll",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "modifiers": { "optional": ["any"] } },
+                                "type": "mouse_motion_to_scroll"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - Esc/Caps → HyperLayer, Tab → MehLayer",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] }
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 0
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_layer",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    { "key_code": "vk_none" },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_layer",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "vk_none",
+                                        "modifiers": []
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "caps_lock" },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 0
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_layer",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_layer",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "optional": ["left_shift", "left_option", "left_control", "caps_lock"] }
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 0
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "meh_layer",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "meh_layer",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "tab" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 0
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "meh_layer",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "meh_layer",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen # fullscreen" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - MehLayer",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "1" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l default" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "2" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l design" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "3" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l office" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "4" },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "5" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -c" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "0" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m rule --apply" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "y" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "u" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "i" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap north" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "o" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "h" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "j" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "k" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus north" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "l" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "b" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "r" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "p" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/toggle-custom-opacity-on-focus.sh # toggle opacity" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "return_or_enter" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 7:5:1:1:3:5 # float window" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "meh_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "spacebar" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Diosdado - HyperLayer + modifiers",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -900,10 +1039,10 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "optional": ["any"] }
+                                    "key_code": "b",
+                                    "modifiers": { "mandatory": ["command"] }
                                 },
-                                "to": [{ "key_code": "left_arrow" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }],
                                 "type": "basic"
                             },
                             {
@@ -915,10 +1054,100 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "optional": ["any"] }
+                                    "key_code": "6",
+                                    "modifiers": { "mandatory": ["command"] }
                                 },
-                                "to": [{ "key_code": "up_arrow" }],
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }],
                                 "type": "basic"
                             },
                             {
@@ -931,9 +1160,24 @@
                                 ],
                                 "from": {
                                     "key_code": "j",
-                                    "modifiers": { "optional": ["any"] }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "key_code": "down_arrow" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap north" }],
                                 "type": "basic"
                             },
                             {
@@ -946,16 +1190,11 @@
                                 ],
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "optional": ["any"] }
+                                    "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "key_code": "right_arrow" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Diosdado - HyperLayer Aliases",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
@@ -964,13 +1203,191 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "spacebar" },
-                                "to": [
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
                                     {
-                                        "key_code": "a",
-                                        "modifiers": ["left_control"]
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus north" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "#" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l default" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l design" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l office" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "~/.scripts/yabai/toggle-custom-opacity-on-focus.sh # toggle opacity" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 7:5:1:1:3:5 # float window" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
                                 "type": "basic"
                             }
                         ]
@@ -981,6 +1398,14 @@
                             {
                                 "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen # fullscreen" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": { "key_code": "left_command" },
                                 "type": "basic"
                             }
                         ]
@@ -1010,7 +1435,7 @@
                             },
                             {
                                 "from": { "key_code": "f17" },
-                                "to": [{ "key_code": "f17" }],
+                                "to": [{ "key_code": "illumination_decrement" }],
                                 "type": "basic"
                             },
                             {
@@ -1046,19 +1471,6 @@
                             {
                                 "from": { "key_code": "f24" },
                                 "to": [{ "key_code": "volume_increment" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Diosdado - Disable unwanted keys",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["command"] }
-                                },
-                                "to": { "key_code": "left_command" },
                                 "type": "basic"
                             }
                         ]

@@ -13,53 +13,54 @@ done
 case $apps in
     conference)
         if ps aux | grep 'Teams.app' | grep -v grep; then
-            open /Applications/Teams.app
+            open -a 'Teams'
             exit 0
         fi
         if ps aux | grep 'Zoom.app' | grep -v grep; then
-            open /Applications/zoom.us.app
+            open -a 'zoom.us'
             exit 0
         fi
-        open /Applications/Jitsi\ Meet.app
+        open -a 'Jitsi Meet'
         ;;
 
     design)
         if ps aux | grep 'draw\.io' | grep -v grep; then
-            open /Applications/draw.io.app
+            open -a 'draw.io'
             exit 0
         fi
         if ps aux | grep 'Blender' | grep -v grep; then
-            open /Applications/Blender.app
+            open -a 'Blender'
             exit 0
         fi
         if ps aux | grep 'GIMP' | grep -v grep; then
-            open /Applications/GIMP.app
+            open -a 'GIMP'
             exit 0
         fi
-        open /Applications/Inkscape.app
+        open -a 'Inkscape'
         ;;
 
-    music)
+    entertainment)
         if ps aux | grep 'Music.app' | grep -v grep; then
-            open /System/Applications/Music.app
-            exit 0
-        fi
-        open ~/Applications/Brave\ Browser\ Apps.localized/Spotify.app
-        ;;
-
-    tv)
-        if ps aux | grep 'Crunchyroll' | grep -v grep; then
-            open ~/Applications/Brave\ Browser\ Apps.localized/Crunchyroll\ -\ Watch\ Popular\ Anime.app
+            open -a 'Music'
             exit 0
         fi
         if ps aux | grep 'Disney' | grep -v grep; then
-            open ~/Applications/Brave\ Browser\ Apps.localized/Disney+.app
+            open -a 'Disney+'
             exit 0
         fi
         if ps aux | grep 'Prime' | grep -v grep; then
-            open ~/Applications/Brave\ Browser\ Apps.localized/Prime\ Video.app
+            open -a 'Prime Video'
             exit 0
         fi
+        if ps aux | grep 'YouTube' | grep -v grep; then
+            open -a 'YouTube'
+            exit 0
+        fi
+        if ps aux | grep 'Crunchyroll' | grep -v grep; then
+            open -a 'Crunchyroll - Watch Popular Anime'
+            exit 0
+        fi
+        open -a 'Spotify'
         ;;
 
 
@@ -71,31 +72,31 @@ case $apps in
 
     office)
         if ps aux | grep 'Pages' | grep -v grep; then
-            open /Applications/Pages.app
+            open -a 'Pages'
             exit 0
         fi
         if ps aux | grep 'Numbers' | grep -v grep; then
-            open /Applications/Numbers.app
+            open -a 'Numbers'
             exit 0
         fi
         if ps aux | grep 'Keynote' | grep -v grep; then
-            open /Applications/Keynote.app
+            open -a 'Keynote'
             exit 0
         fi
-        open /Applications/ONLYOFFICE.app
+        open -a 'ONLYOFFICE'
         ;;
 
 
     email)
-        open ~/Applications/Gmail.app
-        open /System/Applications/Mail.app
+        open -a 'Gmail'
+        open -a 'Mail'
         ;;
 
 
     devbrowser) # open development browser
         reload="$param"
         development_browser="LibreWolf"
-        open "/Applications/$development_browser.app"
+        open -a "$development_browser"
         # send a key combination to delete browser history and refresh the site
         if [[ -n $reload ]]; then
             /opt/homebrew/bin/sendkeys --application-name "$development_browser" --characters "<c:f9><c:r:command>"
@@ -104,14 +105,14 @@ case $apps in
 
     virtualization)
         if ps aux | grep 'UTM' | grep -v grep; then
-            open /Applications/UTM.app
+            open -a 'UTM'
             exit 0
         fi
         if ps aux | grep 'Screen Sharing' | grep -v grep; then
-            open /System/Applications/Utilities/Screen\ Sharing.app
+            open -a 'Screen Sharing'
             exit 0
         fi
-        open /Applications/Windows\ App.app
+        open -a 'Windows App'
         ;;
 esac
 

@@ -1,0 +1,300 @@
+{ "description": "Diosdado-LayerApps", "manipulators": [
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "equal_sign" },
+    "to": [{ "key_code": "f1" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "1" },
+    "to": [{ "key_code": "f2" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "2" },
+    "to": [{ "key_code": "f3" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "3" },
+    "to": [{ "key_code": "f4" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "4" },
+    "to": [{ "key_code": "f5" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "5" },
+    "to": [{ "key_code": "f6" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "6" },
+    "to": [{ "key_code": "f7" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "7" },
+    "to": [{ "key_code": "f8" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "8" },
+    "to": [{ "key_code": "f9" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "9" },
+    "to": [{ "key_code": "f10" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "0" },
+    "to": [{ "key_code": "f11" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "hyphen" },
+    "to": [{ "key_code": "f12" }]
+},
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "q" },
+    "to": [{ "shell_command": "open -a 'Activity Monitor'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "w" },
+    "to": [{ "shell_command": "open -a 'MySQLWorkbench'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "e" },
+    "to": [{ "shell_command": "open -a 'Karabiner-Elements' ; open -a 'Karabiner-EventViewer'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "r" },
+    "to": [{ "shell_command": "~/.scripts/kill-music-library-agent-and-eject.sh" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "t" },
+    "to": [{ "shell_command": "open -a 'TypingClub'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "a" },
+    "to": [{ "shell_command": "open -a 'iPhone Mirroring'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "s" },
+    "to": [{ "shell_command": "open -a 'Stickies'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "d" },
+    "to": [{ "shell_command": "open -a 'Disney+'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "f" },
+    "to": [{ "shell_command": "open -a FileZilla" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "g" },
+    "to": [{ "shell_command": "open -a 'GIMP'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "z" },
+    "to": [{ "shell_command": "open -a 'Finder'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "x" },
+    "to": [{ "shell_command": "open -a Instagram" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "c" },
+    "to": [{ "shell_command": "open -a 'Crunchyroll'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "v" },
+    "to": [{ "shell_command": "open -a 'Prime Video'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "b" },
+    "to": [{ "shell_command": "open -a 'OBS'" }]
+},
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "y" },
+    "to": [{ "shell_command": "open -a Reminders ; open -a Calendar" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "u" },
+    "to": [{ "shell_command": "open -a kitty" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "i" },
+    "to": [{ "shell_command": "open -a 'Brave Browser'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "o" },
+    "to": [{ "shell_command": "open -a WhatsApp" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "p" },
+    "to": [{ "shell_command": "open -a Gmail ; open -a Mail" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "backslash" },
+    "to": [{ "shell_command": "open -a 'MAMP PRO'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "h" },
+    "to": [{ "key_code": "left_arrow" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "j" },
+    "to": [{ "key_code": "down_arrow" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "k" },
+    "to": [{ "key_code": "up_arrow" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "l" },
+    "to": [{ "key_code": "right_arrow" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "semicolon" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "quote" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a virtualization" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "n" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a office" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "m" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a conference" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "comma" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_comma.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "period" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_period.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "slash" },
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a entertainment" }]
+},
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "left_arrow" },
+    "to": [{ "key_code": "home" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_arrow" },
+    "to": [{ "key_code": "end" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "down_arrow" },
+    "to": [{ "key_code": "page_down" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "up_arrow" },
+    "to": [{ "key_code": "page_up" }]
+},
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "left_shift" },
+    "to": [{ "shell_command": "~/.scripts/yabai/toggle-custom-opacity-on-focus.sh # toggle opacity" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "left_option" },
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle mission-control" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "left_command" },
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "left_control" },
+    "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
+},
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "delete_or_backspace" },
+    "to": [{ "shell_command": "open -a 'YouTube'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "return_or_enter" },
+    "to": [{ "shell_command": "open ~/Desktop/Projects/" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "spacebar" },
+    "to": [ { "key_code": "a", "modifiers": ["left_control"] } ]
+}
+
+
+
+] }

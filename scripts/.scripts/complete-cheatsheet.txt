@@ -450,3 +450,27 @@ Visual mode
 
 
 
+IP
+---------
+
+10.0.1.50 prettyhatemachine
+
+
+
+
+Layers
+---------
+
+7 - Application - Humana-computer interaction layer, where applicationscan access the network services
+6 - Presentation - Ensures that data is in an usable format and is where data encryption occurs
+5 - Session - Maintains connections and is responsible for controlling ports and sessions
+4 - Transport - Transmits data using transmission protocols including TCP and UDP
+3 - Network - Decides which physical path the data will take
+2 - Data Link - Defines the format of data on the network
+1 - Physical - Transmits raw bit stream over the physical medium
+
+
+
+
+
+

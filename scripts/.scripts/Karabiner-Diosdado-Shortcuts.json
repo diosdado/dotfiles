@@ -1,0 +1,67 @@
+{ "description": "Diosdado-Shortcuts", "manipulators": [
+
+
+
+{
+    "description": "Insert to Lock Screen",
+    "from": { "key_code": "insert" },
+    "to": [{ "consumer_key_code": "al_terminal_lock_or_screensaver" }],
+    "type": "basic"
+},
+{
+    "description": "Application to Apple FN Layer",
+    "from": { "key_code": "application" },
+    "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }],
+    "type": "basic"
+},
+
+
+
+{
+    "from": { "key_code": "home" },
+    "to": [{ "key_code": "vk_none" }],
+    "type": "basic"
+},
+{
+    "from": { "key_code": "end" },
+    "to": [{ "key_code": "vk_none" }],
+    "type": "basic"
+},
+{
+    "from": { "key_code": "page_up" },
+    "to": [{ "key_code": "vk_none" }],
+    "type": "basic"
+},
+{
+    "from": { "key_code": "page_down" },
+    "to": [{ "key_code": "vk_none" }],
+    "type": "basic"
+},
+
+
+
+{
+    "description": "Yabai Layer",
+    "from": { "key_code": "escape", "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] } },
+    "parameters": { "basic.to_if_alone_timeout_milliseconds": 150, "basic.to_if_held_down_threshold_milliseconds": 0 },
+    "to": [ { "set_variable": { "name": "yabai_layer", "value": 1 } } ],
+    "to_after_key_up": [ { "key_code": "vk_none" }, { "set_variable": { "name": "yabai_layer", "value": 0 } } ],
+    "to_if_alone": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen # fullscreen" }],
+    "to_if_held_down": [ { "key_code": "vk_none", "modifiers": [] } ],
+    "type": "basic"
+},
+{
+    "description": "Applications Layer",
+    "from": { "key_code": "caps_lock", "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] } },
+    "parameters": { "basic.to_if_alone_timeout_milliseconds": 150, "basic.to_if_held_down_threshold_milliseconds": 0 },
+    "to": [ { "set_variable": { "name": "app_layer", "value": 1 } } ],
+    "to_after_key_up": [ { "key_code": "vk_none" }, { "set_variable": { "name": "app_layer", "value": 0 } }
+    ],
+    "to_if_alone": [ { "key_code": "escape" } ],
+    "to_if_held_down": [ { "key_code": "vk_none", "modifiers": [] } ],
+    "type": "basic"
+}
+
+
+
+] }

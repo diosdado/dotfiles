@@ -1,6 +1,6 @@
 
 {
-    "description": "Diosdado - MehLayer",
+    "description": "Diosdado-YabaiLayer",
     "manipulators": [
 
 
@@ -9,34 +9,110 @@
 
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "1" },
+    "from": {   "key_code": "q" },
     "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l default" }]
 },
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "2" },
+    "from": {   "key_code": "w" },
     "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l design" }]
 },
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "3" },
+    "from": {   "key_code": "e" },
     "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l office" }]
 },
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "4" },
-    "to": [{ "shell_command": "#" }]
+    "from": {   "key_code": "r" },
+    "to": [{ "shell_command": "~/.scripts/yabai/browser-and-terminal-to-primary.sh" }]
 },
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "5" },
+    "from": {   "key_code": "t" },
     "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -c" }]
 },
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "0" },
+    "from": {   "key_code": "a" },
     "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m rule --apply" }]
 },
+
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "v" },
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "b" },
+    "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }]
+},
+
+
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "equal_sign" },
+    "to": [{ "key_code": "display_brightness_decrement" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "1" },
+    "to": [{ "key_code": "display_brightness_increment" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "2" },
+    "to": [{ "key_code": "mission_control" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "3" },
+    "to": [{ "key_code": "launchpad" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "4" },
+    "to": [{ "key_code": "illumination_decrement" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "5" },
+    "to": [{ "key_code": "illumination_increment" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "6" },
+    "to": [{ "key_code": "rewind" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "7" },
+    "to": [{ "key_code": "play_or_pause" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "8" },
+    "to": [{ "key_code": "fastforward" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "9" },
+    "to": [{ "key_code": "mute" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "0" },
+    "to": [{ "key_code": "volume_decrement" }]
+},
+{
+    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "hyphen" },
+    "to": [{ "key_code": "volume_increment" }]
+},
+
+
+
 
 
 
@@ -87,26 +163,21 @@
     "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }]
 },
 
-
-
-
-
-
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "b" },
-    "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }]
+    "from": {   "key_code": "n" },
+    "to": [{ "key_code": "spacebar", "modifiers": ["left_shift","left_command"] }]
 },
 {
     "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "r" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }]
+    "from": {   "key_code": "m" },
+    "to": [{ "key_code": "j", "modifiers": ["left_shift","left_command"] }]
 },
-{
-    "conditions": [ { "name": "meh_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": {   "key_code": "p" },
-    "to": [{ "shell_command": "~/.scripts/yabai/toggle-custom-opacity-on-focus.sh # toggle opacity" }]
-},
+
+
+
+
+
 
 
 
@@ -130,28 +201,3 @@
 
     ]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

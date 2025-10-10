@@ -57,7 +57,7 @@ case $apps in
             exit 0
         fi
         if ps aux | grep 'Crunchyroll' | grep -v grep; then
-            open -a 'Crunchyroll - Watch Popular Anime'
+            open -a 'Crunchyroll'
             exit 0
         fi
         open -a 'Spotify'

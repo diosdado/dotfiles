@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# makes semi transparent just specific apps when not on focus
+# makes semi transparent just specific apps or windows when not on focus
 
 while getopts "r" flag
 do

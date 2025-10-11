@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# changes the tiling window layout and restarts yabai
+# changes the layout in the .config file, applies it with the
+# set-rules.sh script and restarts yabai
 
 while getopts "l:c" flag
 do
@@ -37,4 +38,8 @@ fi
 ~/.scripts/yabai/set-rules.sh -a
 sleep .2
 ~/.scripts/yabai/set-rules.sh -a
+
+. $config_file
+
+/opt/homebrew/bin/terminal-notifier -message "L:$yabai_layout, C: $conference_layout" -title "Yabai"
 

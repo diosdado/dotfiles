@@ -271,8 +271,20 @@
                                         "value": 1
                                     }
                                 ],
+                                "from": { "key_code": "tab" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": { "key_code": "q" },
-                                "to": [{ "shell_command": "open -a 'Activity Monitor'" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l default" }],
                                 "type": "basic"
                             },
                             {
@@ -284,7 +296,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "w" },
-                                "to": [{ "shell_command": "open -a 'MySQLWorkbench'" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l design" }],
                                 "type": "basic"
                             },
                             {
@@ -296,7 +308,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "e" },
-                                "to": [{ "shell_command": "open -a 'Karabiner-Elements' ; open -a 'Karabiner-EventViewer'" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l office" }],
                                 "type": "basic"
                             },
                             {
@@ -308,7 +320,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "r" },
-                                "to": [{ "shell_command": "~/.scripts/kill-music-library-agent-and-eject.sh" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }],
                                 "type": "basic"
                             },
                             {
@@ -320,7 +332,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "t" },
-                                "to": [{ "shell_command": "open -a 'TypingClub'" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/browser-and-terminal-to-primary.sh" }],
                                 "type": "basic"
                             },
                             {
@@ -332,7 +344,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "a" },
-                                "to": [{ "shell_command": "open -a 'iPhone Mirroring'" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m rule --apply" }],
                                 "type": "basic"
                             },
                             {
@@ -344,7 +356,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "s" },
-                                "to": [{ "shell_command": "open -a 'Stickies'" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }],
                                 "type": "basic"
                             },
                             {
@@ -356,7 +368,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "d" },
-                                "to": [{ "shell_command": "open -a 'Disney+'" }],
+                                "to": [{ "shell_command": "open -a 'Karabiner-Elements' ; open -a 'Karabiner-EventViewer'" }],
                                 "type": "basic"
                             },
                             {
@@ -404,7 +416,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "x" },
-                                "to": [{ "shell_command": "open -a Instagram" }],
+                                "to": [{ "shell_command": "open ~/Desktop/Projects/" }],
                                 "type": "basic"
                             },
                             {
@@ -416,7 +428,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "c" },
-                                "to": [{ "shell_command": "open -a 'Crunchyroll'" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -c" }],
                                 "type": "basic"
                             },
                             {
@@ -428,7 +440,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "v" },
-                                "to": [{ "shell_command": "open -a 'Prime Video'" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle split" }],
                                 "type": "basic"
                             },
                             {
@@ -763,8 +775,56 @@
                                         "value": 1
                                     }
                                 ],
+                                "from": { "key_code": "right_shift" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/show-current-space.sh" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "right_option" },
+                                "to": [{ "shell_command": "~/.scripts/notification-disk-free.sh" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "grave_accent_and_tilde" },
+                                "to": [{ "shell_command": "~/.scripts/kill-music-library-agent-and-eject.sh" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "close_bracket" },
+                                "to": [{ "shell_command": "~/.scripts/remote-vv.sh" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": { "key_code": "delete_or_backspace" },
-                                "to": [{ "shell_command": "open -a 'YouTube'" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 7:5:1:1:3:5 # float window" }],
                                 "type": "basic"
                             },
                             {
@@ -776,7 +836,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "return_or_enter" },
-                                "to": [{ "shell_command": "open ~/Desktop/Projects/" }],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {
@@ -801,114 +861,6 @@
                     {
                         "description": "Diosdado-LayerYabai",
                         "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "q" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l default" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "w" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l design" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "e" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -l office" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "r" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai --restart-service" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "t" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/browser-and-terminal-to-primary.sh" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "a" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m rule --apply" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "c" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/set-yabai-layout.sh -c" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "v" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle split" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "b" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/reset-borders.sh" }],
-                                "type": "basic"
-                            },
                             {
                                 "conditions": [
                                     {
@@ -1171,30 +1123,6 @@
                                 ],
                                 "from": { "key_code": "m" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/resize-window.sh -l " }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "spacebar" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 7:5:1:1:3:5 # float window" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "return_or_enter" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
                                 "type": "basic"
                             }
                         ]

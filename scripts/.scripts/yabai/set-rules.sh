@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# set default spaces for apps depending on the current layout
+# specified in the configuration file
+
 
 while getopts "a" flag; do
     case $flag in

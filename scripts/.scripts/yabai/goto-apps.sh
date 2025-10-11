@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# application switcher/launcher for groups of apps
 
 while getopts "a:p:" flag; do
     case $flag in

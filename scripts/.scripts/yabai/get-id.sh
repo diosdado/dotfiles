@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# get the id or yabai object of an specific app
 
 while getopts "a:i" flag; do
     case $flag in

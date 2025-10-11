@@ -100,14 +100,11 @@ PACKAGES=(
     jq
     sass/sass/sass
     neovim
-    koekeishiya/formulae/skhd
     koekeishiya/formulae/yabai
     tmux
     tree-sitter
-    trash
     fzf
     fd
-    powerlevel10k
     neofetch
     socsieng/tap/sendkeys
 )
@@ -115,16 +112,13 @@ CASKS=(
     obs
     only-switch
     boom-3d
-    google-drive
     mamp
     wacom-tablet
     contexts
     monitorcontrol
     mysqlworkbench
-    devtoys
     macfuse
     kitty
-    pika
     blender
     gimp
     vscodium
@@ -134,7 +128,6 @@ CASKS=(
     karabiner-elements
     onlyoffice
     owncloud
-    rawtherapee
     transmission
     whisky
     free-ruler
@@ -142,16 +135,18 @@ CASKS=(
     appcleaner
     openemu
     librewolf
-    sequel-ace
-    itsycal
     steam
-    sloth
     qcad
-    microsoft-teams
-    spotify
     homerow
     instantview
+    openvpn-connect
+    windows-app
     jitsi-meet
+    brave-browser
+    zoom
+    bettertouchtool
+    utm
+    onyx
 )
 
 

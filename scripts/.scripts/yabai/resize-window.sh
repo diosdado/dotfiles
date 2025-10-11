@@ -1,5 +1,8 @@
-
 #!/bin/bash -i
+
+# yabai window resizer
+
+
 # resizeWindow.sh, stolen from https://github.com/koekeishiya//opt/homebrew/bin/yabai/discussions/1964
 
 

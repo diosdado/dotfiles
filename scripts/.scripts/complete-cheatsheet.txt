@@ -17,6 +17,13 @@ tmux new -s session-name
 tmux attach -t session-name
 
 
+macOS
+--------------------
+sudo purge → clear system cache
+sysctl -a | grep swap → view current swap usage
+sudo fs_usage | grep swapfile → monitor swap file activity
+
+
 PACKAGE MANAGERS
 --------------------
 yum install samba samba-client samba-common
@@ -31,6 +38,20 @@ a - agregar particion
 w - guaedar cambios
 q - cerrar creación de particiones
 
+Particiones estándar para un esquema de servidor Unix
+
+BSD
+-----
+root        -> /                -> 2GB
+swap        -> ---              -> RAM x 2
+temp        -> /tmp             -> RAM x 2
+programas   -> /usr             -> 28GB (a consideración de la instalación)
+var         -> /var             -> 700GB (a consideración de la instalación)
+logs        -> /var/log         -> 10GB
+hiawatha    -> /var/www/logs    -> 10GB
+home        -> /home            -> Restante
+
+* en linux a veces usan opt en vez de var
 
 
 

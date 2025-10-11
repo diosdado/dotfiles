@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+# only tile main windows of inkscape and gimp,
+# other windows would remain floated
 
 while getopts "r" flag
 do

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# when the Apple Music Library is stored in an external volume, some agents prevent the ejection of said volume
+# when the Apple Music Library is stored in an external volume,
+# some agents prevent the ejection of said volume
 # this script kills these agents and ejects the volume called 'Music'
 
 
@@ -17,5 +18,5 @@ diskutil unmount /Volumes/Diosdado\ WD
 diskutil unmount /Volumes/Diosdado\ SG
 diskutil unmount /Volumes/Diosdado\ SM
 
-terminal-notifier -message "Ejecting external drive 'Music'" -title "Library Agents"
+/opt/homebrew/bin/terminal-notifier -message "Killing Music agents, VLC, Fincer and ejecting external drives." -title "Library Agents"
 

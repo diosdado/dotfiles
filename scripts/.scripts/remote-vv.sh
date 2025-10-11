@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 
-selected=$(find ~/Downloads -mindepth 1 -maxdepth 1 -type f ! -name "*.vv" | fzf)
+selected=$(find ~/Downloads -Art -mindepth 1 -maxdepth 1 -type f ! -name "*.vv" | tail -n 1)
 
-remote-viewer $selected
-
-
-# find ~/Downloads -mindepth 1 -maxdepth 1 -type f ! -name "*.*" -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2- | tail -n 1
-# find /dir/path -type f -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2- | tail -n 1
-
-#  find /dir/path -type f -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2- | tail -n 1
-
-
+/opt/homebrew/bin/remote-viewer $selected
 

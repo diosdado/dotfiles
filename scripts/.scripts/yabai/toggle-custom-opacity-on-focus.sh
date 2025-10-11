@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# turns on and off the opacity on focus for specific apps
+# the configuration of the opacity is defined in custom-opacity-on-focus.sh
+
 config_file=~/.scripts/.conf
 . $config_file
 

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# assign labels to spaces in different displays
+
+
 OIFS="$IFS"
 IFS=$'\n'
 

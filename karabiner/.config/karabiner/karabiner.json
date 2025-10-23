@@ -1243,7 +1243,8 @@
                                             "name": "app_layer",
                                             "value": 1
                                         }
-                                    }
+                                    },
+                                    { "shell_command": "~/.scripts/yabai/switch-layer.sh -l apps" }
                                 ],
                                 "to_after_key_up": [
                                     { "key_code": "vk_none" },
@@ -1252,7 +1253,8 @@
                                             "name": "app_layer",
                                             "value": 0
                                         }
-                                    }
+                                    },
+                                    { "shell_command": "~/.scripts/yabai/switch-layer.sh -l default" }
                                 ],
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [

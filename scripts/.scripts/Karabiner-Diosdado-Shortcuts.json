@@ -55,11 +55,13 @@
     "from": { "key_code": "caps_lock", "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] } },
     "parameters": { "basic.to_if_alone_timeout_milliseconds": 150, "basic.to_if_held_down_threshold_milliseconds": 0 },
     "to": [
-        { "set_variable": { "name": "app_layer", "value": 1 } }
+        { "set_variable": { "name": "app_layer", "value": 1 } },
+        { "shell_command": "~/.scripts/yabai/switch-layer.sh -l apps" }
     ],
     "to_after_key_up": [
         { "key_code": "vk_none" },
-        { "set_variable": { "name": "app_layer", "value": 0 } }
+        { "set_variable": { "name": "app_layer", "value": 0 } },
+        { "shell_command": "~/.scripts/yabai/switch-layer.sh -l default" }
     ],
     "to_if_alone": [
         { "key_code": "escape" }

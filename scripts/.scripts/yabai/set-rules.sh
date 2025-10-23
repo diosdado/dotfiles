@@ -68,7 +68,7 @@ case $yabai_layout in
         ;;
     office)
         /opt/homebrew/bin/yabai -m rule --add app="LibreWolf"         space=s_third         label=librewolf
-        /opt/homebrew/bin/yabai -m rule --add app="Brave\ Browser"    space=s_primary       label=bravebrowser
+        /opt/homebrew/bin/yabai -m rule --add app="Brave\ Browser"    space=s_third         label=bravebrowser
         /opt/homebrew/bin/yabai -m rule --add app="kitty"             space=s_third         label=kitty
         /opt/homebrew/bin/yabai -m rule --add app="Inkscape"          space=s_secondary     label=inkscape
         /opt/homebrew/bin/yabai -m rule --add app="GIMP"              space=s_secondary     label=gimp

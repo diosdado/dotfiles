@@ -72,7 +72,7 @@ case $apps in
         ;;
 
     office)
-        if ps aux | grep 'Pages' | grep -v grep; then
+        if ps aux | grep 'Pages.app' | grep -v grep; then
             open -a 'Pages'
             exit 0
         fi

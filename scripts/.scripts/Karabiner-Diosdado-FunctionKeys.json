@@ -1,0 +1,136 @@
+{ "description": "Diosdado-LayeredFunctionKeys", "manipulators": [
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "equal_sign" },
+    "to": [{ "key_code": "f1" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "1" },
+    "to": [{ "key_code": "f2" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "2" },
+    "to": [{ "key_code": "f3" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "3" },
+    "to": [{ "key_code": "f4" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "4" },
+    "to": [{ "key_code": "f5" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "5" },
+    "to": [{ "key_code": "f6" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "6" },
+    "to": [{ "key_code": "f7" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "7" },
+    "to": [{ "key_code": "f8" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "8" },
+    "to": [{ "key_code": "f9" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "9" },
+    "to": [{ "key_code": "f10" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "0" },
+    "to": [{ "key_code": "f11" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "hyphen" },
+    "to": [{ "key_code": "f12" }]
+},
+
+
+
+
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "equal_sign" },
+    "to": [{ "key_code": "display_brightness_decrement" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "1" },
+    "to": [{ "key_code": "display_brightness_increment" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "2" },
+    "to": [{ "key_code": "mission_control" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "3" },
+    "to": [{ "key_code": "launchpad" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "4" },
+    "to": [{ "key_code": "illumination_decrement" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "5" },
+    "to": [{ "key_code": "illumination_increment" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "6" },
+    "to": [{ "key_code": "rewind" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "7" },
+    "to": [{ "key_code": "play_or_pause" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "8" },
+    "to": [{ "key_code": "fastforward" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "9" },
+    "to": [{ "key_code": "mute" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "0" },
+    "to": [{ "key_code": "volume_decrement" }]
+},
+{
+    "conditions": [ { "name": "yabai_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": {   "key_code": "hyphen" },
+    "to": [{ "key_code": "volume_increment" }]
+}
+
+
+
+
+
+
+
+] }

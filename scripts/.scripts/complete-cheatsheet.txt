@@ -2,6 +2,75 @@
 doas /etc/rc.d/php56_fpm restart
 sudo systemctl restart mysql
 
+
+=   Karabiner
+1
+2   cycle layouts
+3   float window
+4   fullscreen
+5   main window
+
+6   focus left
+7   swap left
+8   swap right
+9   focus right
+0   opacity on focus
+-   mouse focus
+
+tab restart yabai
+q   layout default
+w   layout design
+e   layout office
+r   layout conference
+t   layout terminal
+
+y   reminders
+u   terminal
+i   browser
+o   messenger
+p   mailing
+\
+
+a
+s
+d   mouse 2
+f   mouse 1
+g
+
+h   left
+j   down
+k   up
+l   right
+;   design
+'   windows app
+
+z   projects folder
+x
+c
+v   mission control
+b   show desktop
+
+n   office
+m   conference
+,   clipboard
+.   clipboard
+/   entertainment
+
+
+enter       notes
+spacebar    control+a
+~   eject
+]   remote viewer
+
+
+
+
+open -a FileZilla
+
+
+
+
+
 Tmux
 --------------------
 
@@ -59,6 +128,7 @@ HOMEBREW
 --------------------
 
 brew leaves → only show packages without dependencies
+brew upgrade {package-name} → only show packages without dependencies
 
 ORACLE
 --------------------
@@ -179,6 +249,10 @@ PROXMOX
 
 ( qm )
 ------
+qm unlock es para desbloquear maquina con el id
+qm stop para apagar la máquina
+qm list dice los ids de las máquinas que existen
+vmdiscs los qcow2 son las discos de las  máquinas
 
 Consideraciones
 ---------------

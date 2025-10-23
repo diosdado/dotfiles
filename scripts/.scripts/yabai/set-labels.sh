@@ -35,9 +35,7 @@ spaces_names=(
 
     # LG
     s_primary
-    s_design
     s_development
-    s_gaming
 
 
 )

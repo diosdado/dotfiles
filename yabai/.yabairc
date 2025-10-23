@@ -8,11 +8,9 @@ sudo yabai --load-sa
 yabai -m config                                 \
     external_bar                 off:40:0       \
     menubar_opacity              1.0            \
-    mouse_follows_focus          off            \
-    focus_follows_mouse          on             \
     display_arrangement_order    horizontal     \
     window_origin_display        default        \
-    window_zoom_persist          on             \
+    window_zoom_persist          off            \
     window_shadow                on             \
     window_animation_duration    0.0            \
     window_insertion_point       first          \
@@ -25,13 +23,13 @@ yabai -m config                                 \
     split_ratio                  0.50           \
     split_type                   auto           \
     auto_balance                 on             \
-    top_padding                  04             \
-    bottom_padding               04             \
-    left_padding                 04             \
-    right_padding                04             \
-    window_gap                   04             \
+    top_padding                  06             \
+    bottom_padding               06             \
+    left_padding                 06             \
+    right_padding                06             \
+    window_gap                   06             \
     layout                       bsp            \
-    mouse_modifier               off            \
+    mouse_modifier               fn             \
     mouse_action1                move           \
     mouse_action2                resize         \
     mouse_drop_action            swap
@@ -102,6 +100,10 @@ yabai -m rule --add app="^Stickies$"                sub-layer=above sticky=on
 ~/.scripts/yabai/set-rules.sh
 
 
+yabai -m rule --add app="^Ghostty$"                 scratchpad=ghostty      grid=11:11:3:3:5:5
+# yabai -m rule --add app="^Karabiner-Elements$"      scratchpad=karabiner1   grid=12:12:1:1:5:5
+# yabai -m rule --add app="^Karabiner-EventViewer$"   scratchpad=karabiner2   grid=12:12:6:1:5:5
+
 
 # defaul spaces for apps
 yabai -m rule --add app="^TypingClub$"              space=s_primary
@@ -112,7 +114,7 @@ yabai -m rule --add app="^Screen\ Sharing$"         space=s_development
 yabai -m rule --add app="^UTM$"                     space=s_development
 yabai -m rule --add app="^draw.io$"                 space=s_development
 
-yabai -m rule --add app="^Blender$"                 space=s_design
+yabai -m rule --add app="^Blender$"                 space=s_development
 
 yabai -m rule --add app="^FileZilla$"               space=s_etc
 yabai -m rule --add app="^DevToys$"                 space=s_etc
@@ -122,10 +124,10 @@ yabai -m rule --add app="^Reminders$"               space=s_reminders
 yabai -m rule --add app="^Calendar$"                space=s_reminders
 yabai -m rule --add app="^Stickies$"                space=s_reminders
 
-yabai -m rule --add app="^wine64-preloader$"        space=s_gaming
-yabai -m rule --add app="^Whisky$"                  space=s_gaming
-yabai -m rule --add app="^Steam$"                   space=s_gaming
-yabai -m rule --add app="^OpenEmu$"                 space=s_gaming
+yabai -m rule --add app="^wine64-preloader$"        space=s_development
+yabai -m rule --add app="^Whisky$"                  space=s_development
+yabai -m rule --add app="^Steam$"                   space=s_development
+yabai -m rule --add app="^OpenEmu$"                 space=s_development
 
 yabai -m rule --add app="^Spotify$"                 space=s_entertainment
 yabai -m rule --add app="^Music$"                   space=s_entertainment
@@ -155,10 +157,8 @@ yabai -m space s_email          --layout bsp
 yabai -m space s_third          --layout bsp
 yabai -m space s_reminders      --layout bsp
 yabai -m space s_primary        --layout bsp
-yabai -m space s_design         --layout bsp
 yabai -m space s_development    --layout bsp
 yabai -m space s_entertainment  --layout stack
-yabai -m space s_gaming         --layout stack
 yabai -m space s_conference     --layout stack
 
 
@@ -184,3 +184,4 @@ terminal-notifier -message "Service (re)started" -title "Yabai"
 yabai -m rule --apply
 
 ~/.scripts/yabai/reset-borders.sh
+~/.scripts/yabai/reset-mouse-focus.sh

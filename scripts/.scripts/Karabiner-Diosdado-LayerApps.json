@@ -43,19 +43,26 @@
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "9" },
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }]
+},
+
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "7" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus south" }]
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "8" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus north" }]
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }]
 },
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "9" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }]
-},
+
+
+
 
 
 {

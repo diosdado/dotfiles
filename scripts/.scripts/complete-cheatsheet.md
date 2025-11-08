@@ -1,10 +1,16 @@
 
 
-
-( ps | grep vi | grep -v grep ) → check process ignore grep
+```bash
+# restart php
 doas /etc/rc.d/php56_fpm restart
+
+# restart mysql
 sudo systemctl restart mysql
 
+```
+
+
+# applayer
 
 |key|Action|
 |-|-|
@@ -28,48 +34,43 @@ sudo systemctl restart mysql
 
 
 
-# VIM CONFIG
-| | |
+
+
+
+
+# test
+
+| param | test |
 |-|-|
-|:set all | show configured options (:set! one per line)|
-|:set {option}? | show  value of a setting|
-|:let  | show options set using variables|
-|:set | show only changed options|
-
-
-vim configuration is stored in
-~→/.vimrc
-/etc/vimrc
-
-setting options
-echo 'set number' >> ~/.vimrc
-
-
-:help
-:vimtutor
-:reg → view registers
-:buffers/ls/files → show all open buffers
-
-:(v)ne→w {filename} new window
-:(v)split horizontal split
-
-c → confirm change
-
-
-( vimdiff / vim -d ) → open files and compare them
-( vimtutor ) → ver
+| -b | exists block|
+| -c | exists char|
+| -d | exists dir|
+| -e | exists|
+| -w | writable|
+| -x | executable|
+| -r | readable|
+| -nt | newer|
+| -ot | older|
+| -ef | equal file|
+| -n | string nonzero|
+| -z | string zero|
+| = | string equal|
+| != | string non equal|
+| -eq | equal|
+| -ne | not equal|
+| -gt | greater than|
+| -ge | greater or equal|
+| -lt | lower than|
+| -le | lower or equal|
 
 
 
 
-
-
-
-
-
-
-
-
+# ls
+```bash
+# list only directories
+ls -d */
+```
 
 
 |Symbol|Filetype|
@@ -84,8 +85,6 @@ c → confirm change
 
 
 
-
-inode is the metadata
 
 
 
@@ -143,7 +142,16 @@ word count
 ```bash
 # create user with it's home directory
 useradd -m {username}
+
+# copy skel
+mkhomedir_helper {username}
+
+# copy skel manually
+doas mkdir /home/david.diosdado
+doas cp -r /etc/skel/ /home/david.diosdado
+doas chown -R david.diosdado:david.diosdado /home/david.diosdado
 ```
+
 
 |Params|
 |-|
@@ -167,7 +175,9 @@ useradd -m {username}
 # add user to a secondary group
 usermod -a -G {groupname}
 ```
-|Params| |
+
+
+|Params| description |
 |-|-|
 | -g {group} | change primary group |
 | -G {groups} | change or add suplementary groups|
@@ -178,157 +188,252 @@ usermod -a -G {groupname}
 | -e {date} | expiration date |
 
 
-( userdel )
--r remove user's home directory and mail spool
--f force -r but even if the user is logged in
+# userdel
+```bash
+userdel {username}
+```
 
-( groupadd {groupnaame} )
--g set group id
--r create group id in the system group id range
 
-( groupmod {groupname} )
--g change group id
--n change the name of the group
+|Params| description |
+|-|-|
+| -r | remove user's home directory and mail spool |
+| -f | force -r, even if the user is logged in|
 
-( groupdel {groupname} )
 
-( passwd {username} )
--d → delete account password
--e → expire passwdor immediately
--l → (lock) disable account access using a password
--u → (unlock) enable account access using a password
--w {days} → display a warning {days} before the password expires
+# groupadd
+```bash
+groupadd {groupname}
+```
 
-shadow
-{1}:{2}:{3}:{4}:{5}:{6}:{7}:
-1 username
-2 encrypted password
-3 date of last change
-4 minimum days between changes
-5 days password is valid
-6 grace days
-7 date of expiration (lock)
 
-chage change password dates
--l view password info
--E set expiration date
--I days of inactivity after expiration before locking the account
--m minimum days before a password change
--M maximum days password will be valid
--d change date of last password change
--w set password expiration warning days
+|Params| description |
+|-|-|
+| -g | set group id |
+| -r | create group id in the system group id range |
 
-chage -l {username}
-chage -M {days} {username}
-chage -E -1 {username}
-chage -E {YY-mm-d} {username}
-chage -E {YY-mm-d} {username}
 
-fully lock the account
-chage -M {days} {username}
+# groupmod
+```bash
+groupmod {groupname}
+```
+
+
+|Params| description |
+|-|-|
+| -g | change group id|
+| -n | change the name of the group |
+
+
+# groupdel
+```bash
+groupdel {groupname}
+```
+
+# passwd
+```bash
+passwd {username}
+```
+
+
+|Params| description |
+|-|-|
+| -d | delete account password |
+| -e | expire passwdor immediately|
+| -l | (lock) disable account access using a password|
+| -u | (unlock) enable account access using a password|
+| -w {days} | display a warning {days} before the password expires|
+
+
+## /etc/shadow structure
+```bash
+# {1}:{2}:{3}:{4}:{5}:{6}:{7}:
+```
+|column| description |
+|-|-|
+| 1| username|
+| 2| encrypted password|
+| 3| date of last change|
+| 4| minimum days between changes|
+| 5| days password is valid|
+| 6| grace days|
+| 7| date of expiration (lock)|
+
+
+
+# chage
+```bash
+chage {username}
+
+# fully lock the account:
 usermod -L {username}
-chage -E 0 {username} → expires the account
+chage -E 0 {username}
+```
+
+
+|Params| description |
+|-|-|
+| -l | view password info|
+| -E {YY-mm-d} | set expiration date|
+| -E -1  | disable expiration date|
+| -I {days} | days of inactivity after expiration before locking the account|
+| -m {days}| minimum days before a password change|
+| -M {days}| maximum days password will be valid|
+| -d {YY-mm-d} | change date of last password change|
+| -w {days}| set password expiration warning days|
+
+
+# chmod
+```bash
+chmod (-R) {ref}{operator}{modes}/{octets} {file/dir}
+
+# set all special permissions (setuid, setgid and sticky bit)
+chmod ug+s,+t {file/dir}
+
+# readable/executable by everyone and writable by owner only
+chmod u=rwx,go=u-w
+
+# default permission values: file 666, dir 777
+# umask is set in /etc/login.defs
+```
+
+
+|symbols| description |
+|-|-|
+| a |all|
+| u |user|
+| g |group|
+| o |other (world)|
+| r |read/view|
+| w |write/modify contents|
+| x |execute/search|
+| - |remove|
+| + |add|
+| = |clear|
+| s | suid/sgid |
+| S | suid/sgid (not executable)|
+| t | sticky bit |
+| T | sticky bit (not executable)|
+
+---
+
+| hex | permission|
+|-|-|
+|4|read|
+|2|write|
+|1|execute|
+
+---
+
+|symbol |position|hex|permission| file | directory |
+|-|-|-|-|-|-|
+|s/S| --s------ | 4 | suid |executed has uid of file owner|no effect|
+|s/S| -----s--- | 2 |sgid|executed has gid of owner|file/dir created inherits gid of parent|
+|t/T| --------t | 1 |sticky bit|protects from deletion|protects from deletion|
 
 
 
-directory
-r viewed
-w contents can be modified and deleted
-x enter the directory
-
-order: uid || gid || other
+# chown
+```bash
+chown -R {owner}:{group} {file/dir}
+```
 
 
-Standard ACLs: users, groups, other
-Extended ACLs: individual groups and users (same as the standard (rwx) in addition to the owner
+# ACLs Access Control Lists
 
 
-getfacl and setfacl are in the package 'acl'
+# getfacl
+```bash
+# getfacl and setfacl are in the package 'acl'
+# acl are marked with a +
 
-
-( sudo setfacl -R -m u:{username}:{permissionsbits} {dir} ) → set acl permissions for user for directory recursively
-( sudo setfacl -R -x u:{username} {dir} ) → remove acl permissions recursively for user for directory
-( sudo getfacl {file-or-dir} ) → check acl permissions for file
-
-
-umask - defines dthe default permissions assigned to newly created files and directories
-
-
-
-getfacl
--a displya only the file access control list component
--d display only the default access control list component
--R liste the ACLs of all files and directories recursively
-
-acl are marked with a + beside the standard permissions
-
-acl mask
-- if a permission is specified in the acl mask it is allowed
-- acl mask applies to named users and all groups
-- acl mask is not applied to the file owner and other
-
+# list parameters for the file system (check if acl is allowed)
 tune2fs
-- sets or list s parameters for file system
+```
 
 
-setfacl
--m modify
--x remove
--d default
--b remove all
--R recursive
--n do not reevaluate the mask
-
-getfacl
+|Params| description |
+|-|-|
+| -a | displya only the file access control list component|
+| -d | display only the default access control list component|
+| -R | liste the ACLs of all files and directories recursively|
 
 
+## umask
+- default permissions assigned to newly created files and dirs
+- if permission is specified then is allowed
+- applies to named users and all groups
+- not applied to the file owner and other
 
 
-R running:
-    running - currently receiving cpu cycles
-    runnable - waiting in the queue to receive cpu cycles
-Sleeping
-    waiting for a particular condition, for example a request to acces external resources
-S sleeping interruptible
-    wakes up when a signal is received or something wakes it up
-D sleeping uninterruptible
-    ignore signals
-T stopped
-    from running or runnable
-    stopped and restarted with a signal
-Z zombie
-    terminated and in the process of releasing resources
-    remains a zombie until the parent processs removes it from the process list
+# setfacl
+```bash
+# set acl permissions for user for directory recursively
+sudo setfacl -R -m u:{username}:{permissionsbits} {dir}
+
+# remove acl permissions recursively for group for directory
+sudo setfacl -R -x g:{username} {dir}
+
+# check acl permissions for file
+sudo getfacl {file-or-dir}
+
+```
 
 
-option types
-- unix (grouped, with a dash), bsd (grouped, no dash) and gnu options (double dash)
+|Params| description |
+|-|-|
+| -m | modify|
+| -x | remove|
+| -d | default|
+| -b | remove all|
+| -R | recursive|
+| -n | do not reevaluate the mask|
 
-ps
-- unix
-    -e all processes
-    -f full format
-    -l additional columns
-    -H hierarchy in tree view
-    -L individual threads
-    -o pid,tid,euid,pgrp format (comma separated list of items)
-- bsd
-    a all processes
-    u user orientated format
-    x all precesses owned by the user
-    f process tree
-    o format for the output
-    k sort order of the input
 
-- gnu
-    --format
-    --forest tree
-    --no-headers no header lines
-    --sort specify the sorting order
+# ps, kill, pkill
+```bash
+# check process with string
+ps aux | grep -i {process-name} | grep -v grep
+
+# show proceses formatted
+ps -eo pid,user,cmd
+
+pkill {process-name}
+kill {process-id}
+
+# other commands
 pstree
 pgrep
-top
-system monitor
+```
+
+
+|symbol| type | description |
+|-|-|-|
+|R| running/runnable | receiving or waiting for cpu cycles |
+|S| sleeping interruptible | waiting for signal or something to wake it up |
+|D| sleeping uninterruptible | ignores signals |
+|T| stopped | from R, can be restarted with a signal |
+|Z| zombie | terminated and releasing resources. parent must remove it from process list |
+
+
+
+|Params| description |
+|-|-|
+| -e | all processes|
+| -f | full format|
+| -l | additional columns|
+| -H | hierarchy in tree view|
+| -L | individual threads|
+| -o | pid,tid,euid,pgrp format (comma separated list of items)|
+| a | all processes|
+| u | user orientated format|
+| x | include processes without tty |
+| f | process tree|
+| o | format for the output|
+| k | sort order of the input|
+| --format | format for the output|
+| --forest | tree view|
+| --no-headers | no header lines|
+| --sort | specify the sorting order|
 
 
 
@@ -337,179 +442,192 @@ system monitor
 
 
 
+# special bash variables
+
+|variable| description|
+|-|-|
+|$0|name of the script of shell being executed|
+|$#|number of arguments|
+|$*| all arguments in a single string|
+|$1 - $9| arguments by position|
+|$?| last exit code|
+|$$| pid of current shell|
+|$!| pid of last background command|
+|$_| last argument of previous command|
+|$IFS| internal field separator|
 
 
 
-$? → last exit code
-
-
-
-
-
-Tmux
---------------------
-
-( <b>& ) → kill window
-( <b>x ) → kill pane
-( <b>% ) → split horizontal
-( <b>" ) → split vertical
-( <b>arrow ) → move between splits
-( <b>}{ ) → move pane
-( <b>! ) → turn pane into a window
-( list-keys ) → shortcuts
+# Tmux
+```bash
 tmux new -s session-name
 tmux attach -t session-name
+```
 
 
-macOS
---------------------
-sudo purge → clear system cache
-sysctl -a | grep swap → view current swap usage
-sudo fs_usage | grep swapfile → monitor swap file activity
+|char| action|
+|-|-|
+| & | kill window|
+| x | kill pane|
+| % | split horizontal|
+| ? | show shortcuts|
+| " | split vertical|
+| arrow | navigate between splits|
+| }{ | move pane|
+| ! | turn pane into a window|
 
 
-PACKAGE MANAGERS
---------------------
+---
+
+
+|command| action|
+|-|-|
+|list-keys | show keybindings|
+
+
+
+# BSD
+## Partition commands
+
+|command| action |
+|-|-|
+| p g | disk space|
+| a | add partition|
+| w | write changes|
+| q | quit partition creator|
+
+
+---
+
+
+|description | directory | size|
+|-|-|-|
+|root | / | 2GB|
+|swap | --- | RAM x 2|
+|temp | /tmp | RAM x 2|
+|programs | /usr | 28GB (under consideration)|
+|var | /var | 700GB (under consideration)|
+|logs | /var/log | 10GB|
+|hiawatha | /var/www/logs | 10GB|
+|home | /home | Restante|
+
+\* en linux a veces usan opt en vez de var
+
+
+
+# brew
+
+```bash
+# only show packages without dependencies
+brew leaves
+
+# only update specific package
+brew upgrade {package-name}
+```
+
+
+# oracle
+```bash
+# connection strings
+vi /etc/oratab
+# {nombre-db}:{ubicación-config}:{N indica que se monta al inicio del sistema}
+
+# connection strings
+vi {configuration-path}/tnsnames.ora
+```
+
+
+# Network
+```bash
+
+# show physical nics
+lspci | grep -E -i --color 'network|ethernet'
+
+# show all iptables rules for specific table
+ss -tuln iptables -t {table} -vL
+
+# listenin ports
+doas netstat -na -f inet inet | grep LISTEN
+
+# restart webservice
+systemctl restart NetworkManager.service
+```
+
+
+|command|action|
+|-|-|
+| tracert, traceroute, tracepath | route packets take to host|
+| netstat -tuplen | ver ip tables|
+| netstat -rn / route -n | manipulating and showing ip routing table|
+| telnet {server} 80 | ver si es accesible desde afuera el puerto 80|
+| lsof -i -P -n | list open ports|
+| ifconfig | configuration of network|
+| ip link show, ip a | check nics|
+| dig | dns lookup|
+| ethtool | dns lookup|
+| nmcli con show | show all available connections|
+| ifup/ifdown| enable/disable nic|
+| ip address | configuration of network|
+
+
+
+
+
+
+
+( doas pkill hiawatha ; doas hiawatha ) → reinicio de hiawatha
+( sudo systemctl restart mysql ) → restart mysql
+( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
+( /etc/sysconfig/network-scripts/ifcg-{device-name} ) → software interface for network device
+/etc/systemd/system/some_target.target.wants -> autostart files (services) sudo rm /etc/systemd/system/nginx.service remove service unit
+( pkg_delete ) → remove installed package
+( /etc/pkg.conf ) → package repository
 yum install samba samba-client samba-common
 
 
 
-PARTITIONS
-----------
 
-p g - espacio disco duro
-a - agregar particion
-w - guaedar cambios
-q - cerrar creación de particiones
-
-Particiones estándar para un esquema de servidor Unix
-
-BSD
------
-root        -> /                -> 2GB
-swap        -> ---              -> RAM x 2
-temp        -> /tmp             -> RAM x 2
-programas   -> /usr             -> 28GB (a consideración de la instalación)
-var         -> /var             -> 700GB (a consideración de la instalación)
-logs        -> /var/log         -> 10GB
-hiawatha    -> /var/www/logs    -> 10GB
-home        -> /home            -> Restante
-
-* en linux a veces usan opt en vez de var
+# suse linux enterprise
 
 
 
-HOMEBREW
---------------------
-
-brew leaves → only show packages without dependencies
-brew upgrade {package-name} → only show packages without dependencies
-
-ORACLE
---------------------
-( /etc/oratab ) → dónde encontrar los archivos en los que se encuentran los connection strings
-    {nombre-db}:{ubicación-config}:{N indica que se monta al inicio del sistema}
-( {ubicación-config}/tnsnames.ora ) → contiene los connections strings
-
-NETWORK
---------------------
-
-( netstat -tuplen ) → ver ip tables
-( telnet {server} 80 ) → ver si es accesible desde afuera el puerto 80
-( lsof -i -P -n ) → list open ports
-( ss -tuln iptables -t {table} -vL ) → lista todas las reglas de iptables de la tabla en específico verbose
-( tracert, traceroute, tracepath ) → route packets take to host
-( lspci ) → nics
-( doas pkill hiawatha ; doas hiawatha ) → reinicio de hiawatha
-( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
-( lspci | grep -E -i --color 'network|ethernet' ) → ver nics fisicos
-( ip link show, ip a ) → para revisar número de nics, los que importan son los que están como eth y emo y que estén up
-( ip address ) → configuration of network
-( ifconfig ) → configuration of network
-( netstat -rn / route -n ) → manipulating and showing ip routing table
-( /etc/sysconfig/network-scripts/ifcg-{device-name} ) → software interface for network device
-/etc/systemd/system/some_target.target.wants -> autostart files (services) sudo rm /etc/systemd/system/nginx.service remove service unit
-( dig ) → dns lookup
-( ethtool ) → dns lookup
-( nmcli con show ) → show all available connections
-( doas netstat -na -f inet inet | grep LISTEN ) → listenin ports
-( ifup/ifdown) → enable/disable nic
-( systemctl restart NetworkManager.service) → restart web service
-( systemctl {enable/statu/statuss/disable/start/stop/reload/reload-or-restart/is-active/is.failed/is-enabled/list-units/list-unit-files/cat/list-dependencies/show/mask}) →
-( systemctl {enable/statu/statuss/disable/start/stop/reload/reload-or-restart/is-active/is.failed/is-enabled/list-units/list-unit-files/cat/list-dependencies/show/mask/edit --full}) →
-( sudo systemctl restart mysql ) → restart mysql
-( pkg_delete ) → remove installed package
-( /etc/pkg.conf ) → package repository
-
-
-SUSE LINUX ENTERPRISE
----------------------
-zipper →
-→
-→
-→
-→
-→
-→
-→
-→
-→
-→
-→
-→
-
-
-SCRIPTING
----------
-( test )
-    file
-    -b exists block
-    -c exists char
-    -d exists dir
-    -e exists
-    -w writable
-    -x executable
-    -r readable
-    -nt -ot -ef newer, older, equal
-
-    string
-    -n nonzero
-    -z zero
-    = != < >
-
-    algebraic
-    -eq -ne -gt -ge -lt -le equal,notequal,greater,lower
 
 
 
-SYSADMIN
---------------------
-( lsmod ) → list of current loaded kernel modules
-( man -k {keyword} ) → search manpages and section using keyword
-( apropos {keyword} ) → search manpages using keyword
-( whatis ) → description in one line
-( man {section} {command} ) → view man page section
-( info ) → navigate manpages in tree format (suse, requires emacs)
-( !{history} ) → execute command in history
-( pushd ) →
-( popd ) →
-( pwd -P ) → physical directory
-( ls -R ) → Recursive
-( ls -d ./* ) → Only directories
-( tree -L {level} ) → show directories in tree format
-( tree -f ) → path prefix
 
-( cp )
--p keep permissions, owner and timestamps
--i confirm overwriting
--n do not overwrite
--u copy only if source is newer
+|command|action|
+|-|-|
+| lsmod | list of current loaded kernel modules|
+| man -k {keyword} | search manpages and section using keyword|
+| apropos {keyword} | search manpages using keyword|
+| whatis | description in one line|
+| man {section} {command} | view man page section|
+| info | navigate manpages in tree format (suse, requires emacs)|
+| !{history} | execute command in history|
+| pwd -P | physical directory|
+| tree -L {level} | show directories in tree format|
+| tree -f | path prefix|
+| pushd | |
+| popd | |
 
-( mv )
--i confirm overwriting
--f do not prompt if destination exists
--n do not overwrite
--u copy only if source is newer
+
+# cp
+|param|action|
+|-|-|
+| -p | keep permissions, owner and timestamps|
+| -i | confirm overwriting|
+| -n | do not overwrite|
+| -u | copy only if source is newer|
+
+
+
+# mv
+|param|action|
+|-|-|
+| -i | confirm overwriting|
+| -f | do not prompt if destination exists|
+| -n | do not overwrite|
+| -u | copy only if source is newer|
 
 
 
@@ -525,10 +643,6 @@ stat {filename}  file info
 head -n
 
 
-( ps -ax ) → list all processes
-( ps -ax | grep httpd ) → process using httpd
-( ps -a | grep -i postgres ) → check running process
-( pkill ) → signal process by name
 ( lscpu ) → list processors linux
 ( lsblk ) → list block volumes linux
 ( diskutil list ) → list volumes macos
@@ -619,335 +733,338 @@ Consideraciones
 - Para BSD y Linux usar iSCSI
 
 
-PERMISSIONS
---------------------
+# macos
 
-( chmod, chown )
-- refs:{a}ll, {u}ser, {g}roup, {o}ther
-- modes:{r}ead, {w}rite, e{x}ecute
-- operators:{-}remove, {+}add, {=}clear
-
-( chmod (-R) {ref}{operator}{modes}/{octets} {file/dir} ) → change modes
-( chmod u=rwx,go=u-w ) → readable/executable by everyone and writable by owner only
-ejemplo: chmod -R 777 FSW_NET/
-
-file 666, dir 777
-
-
-umask is set in
-/etc/login.defs
-
-
-( chown )
-( chown -R {owner}:{group} {file/dir}) → change owner recursively
-
-
-special permissions
-not related to user or group
-u+s,g+s,o+t
-
-executed processes have the uid of the person who executed them
-
-set user id (suid) on file
-    → executed file resulting process has the uid of the file owner. it has no effect of directories
-    → x bit on user is changed to an s, or S if x is not set in octal is 4
-
-set group id (sgid) on file
-    → executed file resulting process has the gid of the file owner. it has no effect of directories
-    → x bit on group is changed to an s, or S if x is not set in octal is 2
-
-set group id (sgid) on dir
-    → file or dir created in it will inherit the group ownership of parent dir
-sticky bit
-    → protects files and directories from being accidentaly deleted or renamed
-    → x bit on other is changed to an s, or S if x is not set in octal is 1
+|command | action|
+|-|-|
+|pbcopy | copy to clipboard|
+|mdfind | spotlight|
 
 
 
+```bash
+scp {user}@{host}:{remote-file} {destination} -P {port}
+cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat >> ~/.ssh/authorized_keys'
+sshfs {user}@{host}:{directory} -o port={port}
+```
 
 
+|command|action|
+|-|-|
+| ln -s {source} {target} | symlinks|
+| tar -xvf {filename}  | extract|
+| tar -czvf {filename} {data}  | compress|
+| fswatch -xr {directory} | watch directory changes|
+| watch  | exec program periodically fullscreen|
+| diff  | diff -q dir-1/ dir-2/|
+| expr  | calculate math expressions|
+| tty  | name of the terminal|
+| sync  | synchronizes cached data to permanent storage.|
+| wait4path  | sleeps until path exists|
 
 
-
-rwx
-421
-
-
-BASH
---------------------
-
-( ln -s {source} {target}) → symlinks
-( tar -xvf {filename} ) → extract
-( tar -czvf {filename} {data} ) → compress
-( fswatch -xr {directory}) → watch directory changes
-( watch ) → exec program periodically fullscreen
-( scp {user}@{host}:{remote-file} {destination} -P {port} )
-( cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat >> ~/.ssh/authorized_keys' )
-( sshfs {user}@{host}:{directory} -o port={port} ) → mount filesystem
-( diff ) → diff -q dir-1/ dir-2/
-( ls -d */ ) → list dirs
-( dd ) → DISK DESTROYER, convert format and copy a file
-( expr ) → calculate math expressions
-( pax, cpio ) → other archive utilty
-( stty ) → sets certain I/O options for the device that is the current standard input
-( tty ) → name of the terminal
-( sync ) → synchronizes cached data to permanent storage.
-( wait4path ) → sleeps until path exists
-( mdfind ) → spotlight
-
-Creación de directorio de usuario
---------------------
-
-mkhomedir_helper {username}
- ó
-doas mkdir /home/david.diosdado
-doas cp -r /etc/skel/. /home/david.diosdado
-doas chown -R david.diosdado:david.diosdado /home/david.diosdado
-
-
-SEARCH
---------------------
-
-( bsd grep )
+# grep
+```bash
+# bsd grep
 grep -irwn 'string' 'absolute-path'
-( grep {flags} {regex} {location pattern}-v ) → inverse
-( grep -r --include \*.php "TEXTO" ) → encuentra archivos con TEXTO (bsd grep)
-( find . -name "*.php" -exec grep "TEXTO" {} \; ) → encuentra archivos con TEXTO (gnu grep)
--P never follow symlinks
--L follow symlinks
--D debug
--empty if file is empty (check man for test)
--o or
--a and
+grep {flags} {regex} {location pattern}
+grep -r --include \*.php "TEXTO"
+```
+
+
+|param|description|
+|-|-|
+| -r | recursive directory|
+| -i | case insensitive|
+| -n | line number|
+| -c | count occurrences|
+| --include | especifica qué archivos revisar, se pone un --include por cada pattern|
+
+
+
+# find
+```bash
+find {location} -type f/d -name {regex}
+
+# encuentra archivos con STRING (gnu grep)
+find . -name "*.php" -exec grep "STRING" {} \;
+```
+
+
+|param|description|
+|-|-|
+| -P | never follow symlinks|
+| -L | follow symlinks|
+| -D | debug|
+| -o | or|
+| -a | and|
+| -n | print line number|
+| -empty | if file is empty (check man for test)|
+| -exec | execute command|
+| \; | execute command for each file|
+| \+ | concatenate all find results and execute command for that resulting line|
+| {} | placeholder for find results|
+
+
+
+# fzf
+```bash
+# preview file using program, for example cat or bat
+fzf --preview="bat --color=always {}
+```
+
+
+# awk
+```bash
+#  show fields 1 and 2 of the rows in which field 3 is smaller than 50
+awk -F, '$3 < 50 {print $1, $2}' data.csv
+```
+
+
+# VIM commands
+```bash
+# open files and compare them
+vimdiff / vim -d
+
+# edit user's config file
+nvim ~/.vimrc
+
+# edit global config file
+nvim /etc/vimrc
+```
+
+
+| command | description |
+|-|-|
+|:set all | show configured options (:set! one per line)|
+|:set {option}? | show  value of a setting|
+|:let  | show options set using variables|
+|:set | show only changed options|
+|:help| |
+|:vimtutor| |
+|:reg | view registers|
+|:buffers/ls/files | show all open buffers|
+|:(v)new {filename} | new window  |
+|:(v)split horizontal | split |
+|:marks | |
+|:ju\[mps\] | |
+|:changes | |
+| :sav | save as|
+| :w !sudo tee % | save file with sudo|
+| :!chmod +w % | make file writeable|
+| :LspInfo | info de los servidores de lenguajes|
+
+---
+
+| shortcut | action |
+|-|-|
+| ^w | windows (s:split, w:switch, q:quit, v:split)|
+| gwip | paragraph to 1 line|
+
+---
+
+| shortcut | navigation |
+|-|-|
+| ma | mark a|
+| \`a | jump to a|
+| y\`a | yank to a|
+| \`0 | jump to where closed|
+| \`= | jump to last edited|
+| \`. | jump to last change|
+| \`\` | jump to last jump|
+| \`= | jump to last edited|
+| ^i | jump forward|
+| ^o | jump backwards|
+| g, | go to newer changes|
+| g; | go to older changes|
+| ^\[ | quickfix next|
+| ^\] | quickfix prev|
+| gd | local declaration|
+| gD | global declaration|
+| ge_ | last non-blank char|
+| \_c | quickfix open|
+
+---
+
+|shortcut|action|
+|-|-|
+| d | new dir|
+| a | hidden files|
+| c | set current dir|
+| gh | toggle dot files|
+| r | reverse sorting|
+| s | sorting type|
+| S | sort by suffix/prefix|
+| X | execute file|
+| i | tree view|
+| mt | assign target|
+| mf | mark file|
+| mc | copy files in the target|
+| mm | move files to the target|
+| mx | run external command|
+
+---
+
+|shortcut|vim-surround|
+|-|-|
+| cs{sur}{new} | change surround to new|
+| ds{sur} | delete surround|
+| ys{i/a}{element} | surround inside or around element|
+| yss{sur} | surround line|
+| S{sur} | surround visual mode|
+
+---
+
+|shortcut|telescope|
+|-|-|
+| ^q | from telescope, send to quickfix list|
+| ps | document symbols|
+| pf | project files|
+| pd | project files including hidden|
+| pb | buffers|
+| pw | grep string|
+| pr | live grep|
+| pd | all files|
+| pl | tmuxifier templates|
+
+---
+
+|shortcut|lsp|
+|-|-|
+| K | definition help hover|
+| \_vws | vim.lsp.buf.workspace_symbol()|
+| \_vd | vim.diagnostic.open_float()|
+| \[d | vim.diagnostic.goto_next()|
+| \]d | vim.diagnostic.goto_prev()|
+| \_vca | vim.lsp.buf.code_action()|
+| \_vrr | vim.lsp.buf.references()|
+| \_vrn | vim.lsp.buf.rename()|
+| ^s | vim.lsp.buf.signature_help()|
+
+---
+
+|shortcut|comment|
+|-|-|
+| gcc | comment line|
+| gc{motion} | comment motion|
+
+
+
+# vim search
+
+|symbol|description|
+|-|-|
+| . | Current line|
+| $ | line|
+| % | Whole file|
+| x | Line number x|
+| .,+x | From current until x lines|
+| 't | position of mark "t"|
+| \/ | next line previous search matches|
+| \? | prev line previous search matches|
+| \& | next line previous substitute matches|
+
+---
+
+|command|description|
+|-|-|
+| /\v | use nonalpha as regex|
+| :vim\[grep\]/pattern/{\`{file}\`} | find in files|
+| :cn\[ext\] | next match|
+| :cp\[rev\] | prev match|
+| :cope\[n\] | list matches|
+| :cll\[ose\] | close quickfix view|
+| :noh\[lsearch\] |remove highlight|
+
+---
+
+|symbol|flags|
+|-|-|
+| i/I | case|
+| c | confirm each|
+
+---
+
+|command|replace with HI|
+|-|-|
+|y | yes|
+|n | no|
+| a | all|
+| q | quit no substituting not undo|
+| l | substitute this and exit|
+| ^E | scroll up|
+| ^Y | scroll down|
+
+---
+
+|command|regex|
+|-|-|
+| \\+ | 1 or more|
+| \\= | 0 or 1 more|
+| \\{n,m} | from n to m|
+| \\{n} | exactly n times|
+| \\{,m} | from 0 to m|
+| \\{n,} | at least n|
+| \\{-} | 0 or more (non-greedy)|
+| \\{-n,m} | 1 or more (ng)|
+| \\{-n,} | at lease or more (ng)|
+| \\{-,m} | 1 or more (ng)|
+
+---
+
+|command|grouping & backreferences|
+|-|-|
+| & | whole matched pattern|
+| \\L | following characters are made lowercase|
+| \\0 | whole matched pattern|
+| \\U | following characters are made uppercase|
+| \\E | end of \U and \L|
+| \\e | end of \U and \L|
+| \\l | next character made lowercase|
+| ~ | previous substitute string|
+| \u | next character made uppercase|
+
+---
+
+|shortcut | insert mode|
+|-|-|
+| ^w | delete word|
+| ^t | tab|
+| ^d | de-indent|
+
+---
+
+|shortcut | visual mode|
+|-|-|
+| o | start/end selection|
+| ~ | switch case|
+| ^a | increment numbers|
+| ^x | decrement numbers|
+| >i\{ | Increase inner block indent|
+| =2a\{ | Re-indent '2 blocks'|
+| \]p | Paste match indent|
+| % | \{\} or \[\]|
+| p | paragraph|
+
+
+
+# network layers
+
+| layer | name | description |
+|-|-|-|
+|7 | Application | Human/computer interaction layer, where applicationscan access the network services|
+|6 | Presentation | Ensures that data is in an usable format and is where data encryption occurs|
+|5 | Session | Maintains connections and is responsible for controlling ports and sessions|
+|4 | Transport | Transmits data using transmission protocols including TCP and UDP|
+|3 | Network | Decides which physical path the data will take|
+|2 | Data Link | Defines the format of data on the network|
+|1 | Physical | Transmits raw bit stream over the physical medium|
 
 
 
 
-( -r ) → recursive directory
-( -i ) → case insensitive
-( -n ) → line number
-( -c ) → count occurrences
-( --include ) → especifica qué archivos revisar, se pone un --include por cada pattern
-
-find
---------------------
-
-( find {location} -type f/d -name {regex} )
-( -exec ) → execute command
-( {} ) → placeholder for find results
-( \; ) → execute command for each file
-( \+ ) → concatenate all find results and execute command for that resulting line
-{find command} -exec command {}
-( -name ) → type f/d
-( locate ) → find names in internal database without traversing file system
-( fzf --preview="bat --color=always {}) → preview file using program, for example cat or bat
-
-Text processing
---------------------
-
-( awk -F, '$3 < 50 {print $1, $2}' data.csv ) → show fields 1 and 2 of the rows in which field 3 is smaller than 50
 
 
-Yabai
---------------------
-
-( ⇧⌥o ) → opacity window
-( ^⌥o ) → opacity focused
-( ⇧⌥v ) → toggle vertical
-( ⇧⌥r ) → rotate layout
-( ^⌥f ) → zoom fullscreen
-( ^⇧{hjkl} ) → resize
-( ⇧⌘{hjkl} ) → move
-( ⇧⌥{hjkl} ) → focus
-( meh{hjkl} ) → move to screen
-( ⇧⌥b ) → balance
-( ⇧⌥↵ ) → make main
-( ⇧⌥f ) → float window
-
-Marks
---------------------
-
-( :marks )
-( ma ) → mark a
-( `a ) → jump to a
-( y`a ) → yank to a
-( `0 ) → jump to where closed
-( `= ) → jump to last edited
-( `. ) → jump to last change
-( `` ) → jump to last jump
-( `= ) → jump to last edited
-
-( :ju[umps] )
-( ^i ) → jump forward
-( ^o ) → jump backwards
-
-( :changes )
-( g, ) → go to newer changes
-( g; ) → go to older changes
-
-Netrw
---------------------
-
-( d ) → new dir
-( a ) → hidden files
-( c ) → set current dir
-( gh ) → toggle dot files
-( r ) → reverse sorting
-( s ) → sorting type
-( S ) → sort by suffix/prefix
-( X ) → execute file
-( i ) → tree view
-( mt ) → assign target
-( mf ) → mark file
-( mc ) → copy files in the target
-( mm ) → move files to the target
-( mx ) → run external command
-
-Vim-surround
---------------------
-
-( cs{sur}{new} ) → change surround to new
-( ds{sur} ) → delete surround
-( ys{i/a}{element} → surround inside or around element (ysiw' ) → 'word')
-( yss{sur} ) → surround line
-( S{sur} ) → surround visual mode
-
-Vim-commentary
---------------------
-
-( gcc ) → comment line
-( gc{motion} ) → comment motion
-
-Telescope
---------------------
-
-( ps ) → document symbols
-( pw ) → grep string
-( pr ) → live grep
-( pd ) → all files
-
-Plugins
---------------------
-
-( :LspInfo ) → info de los servidores de lenguajes
-
-Vim Remaps
---------------------
-
-( _j ) → quickfix prev
-( _k ) → quickfix next
-
-LSP
---------------------
-
-( K ) → definition help hover
-( _vws ) → vim.lsp.buf.workspace_symbol()
-( _vd ) → vim.diagnostic.open_float()
-( [d ) → vim.diagnostic.goto_next()
-( ]d ) → vim.diagnostic.goto_prev()
-( _vca ) → vim.lsp.buf.code_action()
-( _vrr ) → vim.lsp.buf.references()
-( _vrn ) → vim.lsp.buf.rename()
-( ^s ) → vim.lsp.buf.signature_help()
-
-Vim Search
---------------------
-
-( /\v ) → use nonalpha as regex
-( :noh[lsearch] ) → remove highlight
-
-Range:
-( . ) → Current line
-( $ ) → line
-( % ) → Whole file
-( x ) → Line number x
-( .,+x ) → From current until x lines
-( 't ) → position of mark "t"
-( \/ ) → next line previous search matches
-( \? ) → prev line previous search matches
-( \& ) → next line previous substitute matches
-( :vim[grep]/pattern/{`{file}`} ) → find in files
-( :cn[ext] ) → next match
-( :cp[rev] ) → prev match
-( :cope[n] ) → list matches
-( :cll[ose] ) → close quickfix view
-
-Flags:
-( i/I ) → case
-( c ) → confirm each
-
-replace with HI (y/n/a/q/l/^E/^Y)?:
-( a ) → all
-( q ) → quit no substituting not undo
-( l ) → substitute this and exit
-( ^E ) → scroll up
-( ^Y ) → scroll down
-
-Greedy
-( \+ ) → 1 or more
-( \= ) → 0 or 1 more
-( \{n,m} ) → from n to m
-( \{n} ) → exactly n times
-( \{,m} ) → from 0 to m
-( \{n,} ) → at least n
-
-Non-greedy
-
-( \{-} ) → 0 or more
-( \{-n,m} ) → 1 or more
-( \{-n,} ) → at lease or more
-( \{-,m} ) → 1 or more
-
-Grouping & Backreferences
-
-( & ) → whole matched pattern
-( \L ) → following characters are made lowercase
-( \0 ) → whole matched pattern
-( \U ) → following characters are made uppercase
-( \E ) → end of \U and \L
-( \e ) → end of \U and \L
-( \l ) → next character made lowercase
-( ~ ) → previous substitute string
-( \u ) → next character made uppercase
-
-Vim
---------------------
-
-( _c ) → quickfix open
-( ^[ ) → quickfix next
-( ^] ) → quickfix prev
-( ^q ) → from telescope, send to quickfix list
-( '' ) → move between last two motions
-( m{letter} ) → create a mark
-( m{LETTER} ) → create a global mark
-( '{letter} ) → go to mark
-( :w !sudo tee % ) → save file with sudo
-( ^w ) → windows (s:split, w:switch, q:quit, v:split)
-( :!chmod +w % ) → make file writeable
-( R ) → replace until ESC
-( gd ) → local declaration
-( gD ) → global declaration
-( ge_ ) → last non-blank char
-( gwip ) → paragraph to 1 line
-( :sav ) → save as
-( :reg ) → registers
-
-Insert mode
-( ^w ) → delete word
-( ^t ) → tab
-( ^d ) → de-indent
-
-Visual mode
-
-( o ) → start/end selection
-( ~ ) → switch case
-( ^a ) → increment numbers
-( ^x ) → decrement numbers
-( >i{ ) → Increase inner block indent
-( =2a{ ) → Re-indent '2 blocks'
-( ]p ) → Paste match indent
-( % ) → {} or []
-( p ) → paragraph
 
 
 
@@ -956,26 +1073,5 @@ IP
 ---------
 
 10.0.1.50 prettyhatemachine
-
-
-
-
-Layers
----------
-
-7 - Application - Humana-computer interaction layer, where applicationscan access the network services
-6 - Presentation - Ensures that data is in an usable format and is where data encryption occurs
-5 - Session - Maintains connections and is responsible for controlling ports and sessions
-4 - Transport - Transmits data using transmission protocols including TCP and UDP
-3 - Network - Decides which physical path the data will take
-2 - Data Link - Defines the format of data on the network
-1 - Physical - Transmits raw bit stream over the physical medium
-
-
-
-
-
-
-
 
 

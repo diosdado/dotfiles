@@ -126,6 +126,12 @@ vim.keymap.set("n", "<leader>f", ":let @* = expand(\"%:p\")<CR>")
 -- open file location
 vim.keymap.set("n", "<leader>F", ":! open \"%:p:h\"<CR><CR>",{ silent = true })
 
+
+
+vim.keymap.set("n", "<leader><right>", "a → ")
+
+
+
 --------------------------------------------------------------------------------------------------
 -- etc
 --------------------------------------------------------------------------------------------------
@@ -146,6 +152,11 @@ vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
 vim.keymap.set("n", "<leader>i", "<cmd>LspInfo<CR>")
 
 
+vim.keymap.set("n", "<leader>d", ":RenderMarkdown toggle<CR>", { silent = true })
+
+
+-- diffthis
+-- diffoff
 
 
 

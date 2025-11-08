@@ -19,7 +19,6 @@ require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-repeat',
     'tpope/vim-fugitive',
-    'ThePrimeagen/vim-be-good',
     'ThePrimeagen/harpoon',
     'christoomey/vim-tmux-navigator',
     'lewis6991/gitsigns.nvim',
@@ -27,6 +26,15 @@ require('lazy').setup({
     'nvim-telescope/telescope-live-grep-args.nvim',
     'mbbill/undotree',
     "catppuccin/nvim",
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
+    },
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }

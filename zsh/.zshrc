@@ -48,6 +48,7 @@ alias rv="~/.scripts/remote-vv.sh"
 # override commands
 alias ls="ls -plah --color=auto"
 alias more="less"
+alias c="clear"
 
 
 # load plugins
@@ -79,5 +80,5 @@ autoload -Uz tetriscurses
 # source cargo compiler
 . "$HOME/.cargo/env"
 
-
-
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/pl10k/.p10k.zsh.
+[[ ! -f ~/dotfiles/pl10k/.p10k.zsh ]] || source ~/dotfiles/pl10k/.p10k.zsh

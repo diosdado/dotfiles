@@ -1,71 +1,346 @@
+
+
+
 ( ps | grep vi | grep -v grep ) → check process ignore grep
 doas /etc/rc.d/php56_fpm restart
 sudo systemctl restart mysql
 
 
-=   Karabiner
-1
-2   cycle layouts
-3   float window
-4   fullscreen
-5   main window
-
-6   focus left
-7   swap left
-8   swap right
-9   focus right
-0   opacity on focus
--   mouse focus
-
-tab restart yabai
-q   layout default
-w   layout design
-e   layout office
-r   layout conference
-t   layout terminal
-
-y   reminders
-u   terminal
-i   browser
-o   messenger
-p   mailing
-\
-
-a
-s
-d   mouse 2
-f   mouse 1
-g
-
-h   left
-j   down
-k   up
-l   right
-;   design
-'   windows app
-
-z   projects folder
-x
-c
-v   mission control
-b   show desktop
-
-n   office
-m   conference
-,   clipboard
-.   clipboard
-/   entertainment
+|key|Action|
+|-|-|
+|=|Karabiner|
+|2|cycle layouts|
+|3|float window|
+|4|fullscreen|
+|5|main window|
+|0|opacity on focus|
+|-|mouse focus|
+|r|layout conference|
+|t|layout terminal|
+|~|eject|
+|1| |
+| \ | |
+|a| |
+|s| |
+|g| |
+|x| |
+|c| |
 
 
-enter       notes
-spacebar    control+a
-~   eject
-]   remote viewer
+
+# VIM CONFIG
+| | |
+|-|-|
+|:set all | show configured options (:set! one per line)|
+|:set {option}? | show  value of a setting|
+|:let  | show options set using variables|
+|:set | show only changed options|
+
+
+vim configuration is stored in
+~→/.vimrc
+/etc/vimrc
+
+setting options
+echo 'set number' >> ~/.vimrc
+
+
+:help
+:vimtutor
+:reg → view registers
+:buffers/ls/files → show all open buffers
+
+:(v)ne→w {filename} new window
+:(v)split horizontal split
+
+c → confirm change
+
+
+( vimdiff / vim -d ) → open files and compare them
+( vimtutor ) → ver
 
 
 
 
-open -a FileZilla
+
+
+
+
+
+
+
+
+
+
+|Symbol|Filetype|
+|-|-|
+|-| regular files (data)|
+|d| directory (metadata)|
+|b| block device|
+|c| character device|
+|p| pipe device|
+|s| socket device|
+|l| symlink|
+
+
+
+
+inode is the metadata
+
+
+
+# find
+
+|Param|Action|
+|-|-|
+| -print0 | don't output results|
+| -iname | case insensitive|
+| -mtime 0 | time rounded to the last 24 hours|
+| -mmin 1 | modified in the last minute|
+| -maxdepth | levels|
+| -type d/f | filetype|
+| -size +1024b | find files bigger than 1024 bytes|
+
+---
+
+# tee
+
+|Param|Action|
+|-|-|
+| -a | append|
+
+
+# trim
+|Param|Action|
+|-|-|
+|-s | squeeze multiple instances of the character to only one instance|
+|-d | delete characters|
+
+
+# cut
+
+|Param|Action|
+|-|-|
+| -d | delimiter (in quotes)|
+| -f | fields separated by commas|
+
+
+# wc
+word count
+
+|Param|Action|
+|-|-|
+|-l | count lines|
+
+
+# grep (gnu)
+|Param|Action|
+|-|-|
+|-i | case insensitive|
+
+
+# useradd
+```bash
+# create user with it's home directory
+useradd -m {username}
+```
+
+|Params|
+|-|
+| -p {password}|
+| -d {directory}|
+| -c {name}|
+| -u {uid}|
+| -g {primary-group}|
+| -g {secondary,groups}|
+
+
+| user defaults | description |
+|-|-|
+|/etc/defaults/useradd | defaults settings for account creation|
+|/ets/login.defs | aging defaults|
+|/ets/skel|directory structure|
+
+
+# usermod
+```bash
+# add user to a secondary group
+usermod -a -G {groupname}
+```
+|Params| |
+|-|-|
+| -g {group} | change primary group |
+| -G {groups} | change or add suplementary groups|
+| -a | add-suplementary-group |
+| -l {name} | change login name |
+| -L  | lock account|
+| -U  | unlock account|
+| -e {date} | expiration date |
+
+
+( userdel )
+-r remove user's home directory and mail spool
+-f force -r but even if the user is logged in
+
+( groupadd {groupnaame} )
+-g set group id
+-r create group id in the system group id range
+
+( groupmod {groupname} )
+-g change group id
+-n change the name of the group
+
+( groupdel {groupname} )
+
+( passwd {username} )
+-d → delete account password
+-e → expire passwdor immediately
+-l → (lock) disable account access using a password
+-u → (unlock) enable account access using a password
+-w {days} → display a warning {days} before the password expires
+
+shadow
+{1}:{2}:{3}:{4}:{5}:{6}:{7}:
+1 username
+2 encrypted password
+3 date of last change
+4 minimum days between changes
+5 days password is valid
+6 grace days
+7 date of expiration (lock)
+
+chage change password dates
+-l view password info
+-E set expiration date
+-I days of inactivity after expiration before locking the account
+-m minimum days before a password change
+-M maximum days password will be valid
+-d change date of last password change
+-w set password expiration warning days
+
+chage -l {username}
+chage -M {days} {username}
+chage -E -1 {username}
+chage -E {YY-mm-d} {username}
+chage -E {YY-mm-d} {username}
+
+fully lock the account
+chage -M {days} {username}
+usermod -L {username}
+chage -E 0 {username} → expires the account
+
+
+
+directory
+r viewed
+w contents can be modified and deleted
+x enter the directory
+
+order: uid || gid || other
+
+
+Standard ACLs: users, groups, other
+Extended ACLs: individual groups and users (same as the standard (rwx) in addition to the owner
+
+
+getfacl and setfacl are in the package 'acl'
+
+
+( sudo setfacl -R -m u:{username}:{permissionsbits} {dir} ) → set acl permissions for user for directory recursively
+( sudo setfacl -R -x u:{username} {dir} ) → remove acl permissions recursively for user for directory
+( sudo getfacl {file-or-dir} ) → check acl permissions for file
+
+
+umask - defines dthe default permissions assigned to newly created files and directories
+
+
+
+getfacl
+-a displya only the file access control list component
+-d display only the default access control list component
+-R liste the ACLs of all files and directories recursively
+
+acl are marked with a + beside the standard permissions
+
+acl mask
+- if a permission is specified in the acl mask it is allowed
+- acl mask applies to named users and all groups
+- acl mask is not applied to the file owner and other
+
+tune2fs
+- sets or list s parameters for file system
+
+
+setfacl
+-m modify
+-x remove
+-d default
+-b remove all
+-R recursive
+-n do not reevaluate the mask
+
+getfacl
+
+
+
+
+R running:
+    running - currently receiving cpu cycles
+    runnable - waiting in the queue to receive cpu cycles
+Sleeping
+    waiting for a particular condition, for example a request to acces external resources
+S sleeping interruptible
+    wakes up when a signal is received or something wakes it up
+D sleeping uninterruptible
+    ignore signals
+T stopped
+    from running or runnable
+    stopped and restarted with a signal
+Z zombie
+    terminated and in the process of releasing resources
+    remains a zombie until the parent processs removes it from the process list
+
+
+option types
+- unix (grouped, with a dash), bsd (grouped, no dash) and gnu options (double dash)
+
+ps
+- unix
+    -e all processes
+    -f full format
+    -l additional columns
+    -H hierarchy in tree view
+    -L individual threads
+    -o pid,tid,euid,pgrp format (comma separated list of items)
+- bsd
+    a all processes
+    u user orientated format
+    x all precesses owned by the user
+    f process tree
+    o format for the output
+    k sort order of the input
+
+- gnu
+    --format
+    --forest tree
+    --no-headers no header lines
+    --sort specify the sorting order
+pstree
+pgrep
+top
+system monitor
+
+
+
+
+
+
+
+
+
+
+
+$? → last exit code
 
 
 
@@ -166,8 +441,90 @@ NETWORK
 ( pkg_delete ) → remove installed package
 ( /etc/pkg.conf ) → package repository
 
+
+SUSE LINUX ENTERPRISE
+---------------------
+zipper →
+→
+→
+→
+→
+→
+→
+→
+→
+→
+→
+→
+→
+
+
+SCRIPTING
+---------
+( test )
+    file
+    -b exists block
+    -c exists char
+    -d exists dir
+    -e exists
+    -w writable
+    -x executable
+    -r readable
+    -nt -ot -ef newer, older, equal
+
+    string
+    -n nonzero
+    -z zero
+    = != < >
+
+    algebraic
+    -eq -ne -gt -ge -lt -le equal,notequal,greater,lower
+
+
+
 SYSADMIN
 --------------------
+( lsmod ) → list of current loaded kernel modules
+( man -k {keyword} ) → search manpages and section using keyword
+( apropos {keyword} ) → search manpages using keyword
+( whatis ) → description in one line
+( man {section} {command} ) → view man page section
+( info ) → navigate manpages in tree format (suse, requires emacs)
+( !{history} ) → execute command in history
+( pushd ) →
+( popd ) →
+( pwd -P ) → physical directory
+( ls -R ) → Recursive
+( ls -d ./* ) → Only directories
+( tree -L {level} ) → show directories in tree format
+( tree -f ) → path prefix
+
+( cp )
+-p keep permissions, owner and timestamps
+-i confirm overwriting
+-n do not overwrite
+-u copy only if source is newer
+
+( mv )
+-i confirm overwriting
+-f do not prompt if destination exists
+-n do not overwrite
+-u copy only if source is newer
+
+
+
+mkdir -p - create parent directories
+rm -i force confirmation for deletion
+rm -f force no confirmation
+
+stat {filename}  file info
+
+
+
+
+head -n
+
+
 ( ps -ax ) → list all processes
 ( ps -ax | grep httpd ) → process using httpd
 ( ps -a | grep -i postgres ) → check running process
@@ -272,8 +629,48 @@ PERMISSIONS
 
 ( chmod (-R) {ref}{operator}{modes}/{octets} {file/dir} ) → change modes
 ( chmod u=rwx,go=u-w ) → readable/executable by everyone and writable by owner only
-( chown (-R) {owner}:{group} {file/dir}) → change owner
 ejemplo: chmod -R 777 FSW_NET/
+
+file 666, dir 777
+
+
+umask is set in
+/etc/login.defs
+
+
+( chown )
+( chown -R {owner}:{group} {file/dir}) → change owner recursively
+
+
+special permissions
+not related to user or group
+u+s,g+s,o+t
+
+executed processes have the uid of the person who executed them
+
+set user id (suid) on file
+    → executed file resulting process has the uid of the file owner. it has no effect of directories
+    → x bit on user is changed to an s, or S if x is not set in octal is 4
+
+set group id (sgid) on file
+    → executed file resulting process has the gid of the file owner. it has no effect of directories
+    → x bit on group is changed to an s, or S if x is not set in octal is 2
+
+set group id (sgid) on dir
+    → file or dir created in it will inherit the group ownership of parent dir
+sticky bit
+    → protects files and directories from being accidentaly deleted or renamed
+    → x bit on other is changed to an s, or S if x is not set in octal is 1
+
+
+
+
+
+
+
+
+rwx
+421
 
 
 BASH
@@ -316,6 +713,16 @@ grep -irwn 'string' 'absolute-path'
 ( grep {flags} {regex} {location pattern}-v ) → inverse
 ( grep -r --include \*.php "TEXTO" ) → encuentra archivos con TEXTO (bsd grep)
 ( find . -name "*.php" -exec grep "TEXTO" {} \; ) → encuentra archivos con TEXTO (gnu grep)
+-P never follow symlinks
+-L follow symlinks
+-D debug
+-empty if file is empty (check man for test)
+-o or
+-a and
+
+
+
+
 ( -r ) → recursive directory
 ( -i ) → case insensitive
 ( -n ) → line number
@@ -563,6 +970,9 @@ Layers
 3 - Network - Decides which physical path the data will take
 2 - Data Link - Defines the format of data on the network
 1 - Physical - Transmits raw bit stream over the physical medium
+
+
+
 
 
 

@@ -62,9 +62,11 @@ brew install gnu-indent
 brew install gnu-which
 brew install findutils
 brew install inetutils
+brew install grep
 
 brew install socat
 brew install htop
+brew install tree
 # brew install inetutils
 
 # -------------------------------------------------------------------------------------------------

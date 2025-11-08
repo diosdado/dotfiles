@@ -17,7 +17,7 @@ case $apps in
             open -a 'Teams'
             exit 0
         fi
-        if ps aux | grep 'Zoom.app' | grep -v grep; then
+        if ps aux | grep 'zoom.us.app' | grep -v grep; then
             open -a 'zoom.us'
             exit 0
         fi
@@ -61,7 +61,12 @@ case $apps in
             open -a 'Crunchyroll'
             exit 0
         fi
-        open -a 'Spotify'
+        if ps aux | grep 'Spotify' | grep -v grep; then
+            open -a 'Spotify'
+            exit 0
+        fi
+        open -a 'Crunchyroll'
+        # open -a 'Spotify'
         ;;
 
 

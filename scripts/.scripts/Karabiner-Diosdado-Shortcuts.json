@@ -18,28 +18,6 @@
 
 
 {
-    "from": { "key_code": "home" },
-    "to": [{ "key_code": "vk_none" }],
-    "type": "basic"
-},
-{
-    "from": { "key_code": "end" },
-    "to": [{ "key_code": "vk_none" }],
-    "type": "basic"
-},
-{
-    "from": { "key_code": "page_up" },
-    "to": [{ "key_code": "vk_none" }],
-    "type": "basic"
-},
-{
-    "from": { "key_code": "page_down" },
-    "to": [{ "key_code": "vk_none" }],
-    "type": "basic"
-},
-
-
-{
     "description": "Disable hide window",
     "from": { "key_code": "h", "modifiers": { "mandatory":["command"]} },
     "to": [{ "key_code": "vk_none" }],

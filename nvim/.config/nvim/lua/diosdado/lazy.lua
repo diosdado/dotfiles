@@ -20,6 +20,7 @@ require('lazy').setup({
     'tpope/vim-repeat',
     'tpope/vim-fugitive',
     'ThePrimeagen/harpoon',
+    'ThePrimeagen/vim-be-good',
     'christoomey/vim-tmux-navigator',
     'lewis6991/gitsigns.nvim',
     "nvim-telescope/telescope-file-browser.nvim",

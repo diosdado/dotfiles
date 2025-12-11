@@ -69,11 +69,16 @@ case $apps in
         # open -a 'Spotify'
         ;;
 
-
+    messages)
+        # open -a "Instagram"
+        open -a "WhatsApp"
+        open -a "Reminders"
+        ;;
 
     reminders)
         open -a "Calendar"
-        open -a "Reminders"
+        open -a "Instagram"
+        open -a "Stickies"
         ;;
 
     office)

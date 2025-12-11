@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>$title$</title>
+    <link rel="stylesheet" href=".scripts/markdown/github-markdown-dark.css">
+    $for(header-includes)$
+        $header-includes$
+    $endfor$
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .main-container {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+            }
+
+        @media (max-width: 767px) {
+            .main-container {
+                padding: 15px;
+            }
+        }
+    </style>
+
+</head>
+<body class="markdown-body">
+    <div class="main-container">
+        $body$
+    </div>
+</body>
+</html>

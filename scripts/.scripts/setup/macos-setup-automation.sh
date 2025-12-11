@@ -50,6 +50,7 @@ if [[ ! -z "$PROD" ]]; then
     softwareupdate -i "$PROD" --verbose
 fi
 
+sleep 2
 
 # -------------------------------------------------------------------------------------------------
 # GNU Core Tools and utilities
@@ -62,12 +63,14 @@ brew install gnu-indent
 brew install gnu-which
 brew install findutils
 brew install inetutils
+brew install gawk
 brew install grep
-
 brew install socat
 brew install htop
 brew install tree
-# brew install inetutils
+brew install pstree
+
+sleep 2
 
 # -------------------------------------------------------------------------------------------------
 # ZSH Tools
@@ -80,11 +83,13 @@ brew install zsh-history-substring-search
 brew install zsh-interactive-cd
 brew install zsh-navigation-tools
 
+sleep 2
 
 # -------------------------------------------------------------------------------------------------
 # PACKAGES
 # -------------------------------------------------------------------------------------------------
 PACKAGES=(
+    pandoc
     node
     npm
     nvm
@@ -109,8 +114,12 @@ PACKAGES=(
     fd
     neofetch
     socsieng/tap/sendkeys
+    switchaudio-osx
 )
 CASKS=(
+    bettertouchtool
+    brave-browser
+    blender
     obs
     only-switch
     boom-3d
@@ -119,9 +128,10 @@ CASKS=(
     contexts
     monitorcontrol
     mysqlworkbench
+    ghostty
+    michaelvillar-timer
     macfuse
     kitty
-    blender
     gimp
     vscodium
     whatsapp
@@ -144,9 +154,7 @@ CASKS=(
     openvpn-connect
     windows-app
     jitsi-meet
-    brave-browser
     zoom
-    bettertouchtool
     utm
     onyx
 )
@@ -161,7 +169,7 @@ PYTHON_PACKAGES=(
     virtualenv
     virtualenvwrapper
 )
-brew install --cask kkk
+
 # -------------------------------------------------------------------------------------------------
 # Installing packages
 # -------------------------------------------------------------------------------------------------

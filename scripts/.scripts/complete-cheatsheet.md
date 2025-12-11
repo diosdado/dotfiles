@@ -1,39 +1,69 @@
 
 
+
 ```bash
+# like who but more detailed
+w
+
+
 # restart php
 doas /etc/rc.d/php56_fpm restart
 
 # restart mysql
 sudo systemctl restart mysql
-
 ```
 
 
 # applayer
 
-|key|Action|
-|-|-|
-|=|Karabiner|
-|2|cycle layouts|
-|3|float window|
-|4|fullscreen|
-|5|main window|
-|0|opacity on focus|
-|-|mouse focus|
-|r|layout conference|
-|t|layout terminal|
-|~|eject|
-|1| |
-| \ | |
-|a| |
-|s| |
-|g| |
-|x| |
-|c| |
 
-
-
+|key|action|key|action|
+|-|-|-|-|
+|=|karabiner|6 |focus left |
+|1|stickies to third display |7|swap left |
+|2|cycle layouts |8|swap right |
+|3|float window |9|focus right |
+|4|fullscreen |0|opacity on focus|
+|5|main window |-|mouse focus|
+| | &nbsp | | |
+| | &nbsp | | |
+|tab| restart yabai  |y| reminders |
+|q| yabai default  |u| terminal |
+|w| yabai design  |i| browser |
+|e| yabai office  |o| whatsapp |
+|r| yabai conference  |p| email |
+|t| yabai terminal |  \ | mamp |
+| | &nbsp | | |
+| | &nbsp | | |
+| esc | layer app  |h| left |
+|a|mission control  |j| down |
+|s|show desktop | k| up |
+|d| left click | l| right |
+|f| ftp| ;| design |
+|g| | '| windows app |
+| | &nbsp | | |
+| | &nbsp | | |
+| left_shift  | eyedropper |n| office |
+|z| finder | m| conference |
+|x|   |,| clipboard |
+|c|   |.| clipboard |
+|v|   |/| entertainment |
+|b| obs  | right_shift |SUSE Learning Center  |
+| | &nbsp | | |
+| | &nbsp | | |
+|left_ctrl | free ruler |right_cmd| |
+|~|eject |  right_option | |
+|fn| |[|ctrl + shift + tab |
+|left_alt | |  ]|ctrl + tab |
+|left_cmd | |right_ctrl| |
+| | &nbsp | | |
+| | &nbsp | | |
+|left|home|home | |
+|right |end|end | |
+|up |page up|page up | |
+|down |page down|page down | |
+|backspace | |space | ctrl + a |
+|delete (spacebar) | | return| |
 
 
 
@@ -150,6 +180,9 @@ mkhomedir_helper {username}
 doas mkdir /home/david.diosdado
 doas cp -r /etc/skel/ /home/david.diosdado
 doas chown -R david.diosdado:david.diosdado /home/david.diosdado
+
+# edit group related files locking them#
+vipw
 ```
 
 
@@ -365,6 +398,597 @@ tune2fs
 - not applied to the file owner and other
 
 
+# systemd
+```bash
+    man systemctl.special
+    systemctl list-units --type=target
+    systemctl isolate multiuser.target # change the current target to test only multiuser.target
+    systemctl get-default
+    systemctl set-default {multi-user.target}
+    systemctl default # switch to the default target
+    systemctl # list all commands
+    systemctl -t help # list unit types
+    systemctl -t service # list units of type service
+    systemctl enable {unit/path}
+    systemctl enable --now {unit/path} # enable and start the service
+    systemctl is-enabled {unit/path}
+    systemctl disable {unit/path}
+    systemctl disable --now {unit/path} # disable and stop the service
+    systemctl restart {pattern}
+    systemctl reload {pattern}  # ask all units listed to reload the configuration of the service they manage
+    systemctl mask --now {pattern}
+    systemctl unmask --now {pattern}
+
+```
+- enabling a service creates a symllink in /etc/systemd/system
+
+## masking a unit
+- ensures the service cannot run
+- the symlinks point to /dev/null instead of the real service unit
+
+
+## commands
+
+
+
+
+## units
+- organhize boot process
+- initialize hardware
+- mount file-system
+- manage services
+- maintain tasks and processes
+
+## unitfile
+|directory|priority|description|
+|-|-|-|
+|/usr/lib/systemd/system|1|default location|
+|/run/systemd/system|2|unit files created at runtime|
+|/etc/systemd/system|3|unit files created by administrators<br>they modify unit behavior|
+
+|Section|description|directives|
+|-|-|-|
+|[Unit]|metadata and configuration|Description, After, Before, Requires|
+|[{unit-type-section}]|configuration specific for the type| -|
+|Service|configuratin for the servidce|Type (startup type, tipically simple), ExcecStart (commands to start the service), ExcecStop (commands to stop the service), ExecReload, Restart|
+
+
+### Unit
+
+|type| description|
+|-|-|
+|Description| A short humanly readable title for the unit|
+|After| This unit will be started after the named unit|
+|Before| This unit must be started before the named unit|
+|Requieres|Declares a dependency of the named unit|
+
+### Service
+
+|type| description|
+|-|-|
+|ExcecStart|commands and arguments excecuted to start the service|
+|ExcecStop|commands and arguments excecuted to stop the service|
+|ExcecReload|commands to excecute to trigger a configuration reload in the service|
+|Restart|Configures whether the service's main process should be restarted when it exits, is killed or a timeout reached|
+
+### Targets
+- define a state the system can be in
+
+
+
+
+
+|type| description|
+|-|-|
+|multi-user.target |includes networking and multiuser support |
+|graphical.target|adds a graphical environment |
+|emergency.target|provides an emergency shell providing a minimal system |
+|halt.target|shuts down the system but does not power it off|
+|reboot.target|reboots the system and should not be called directly. use systemctl reboot|
+
+
+### Install
+|type| description|
+|-|-|
+|WantedBy| Specifies the dependencies to configure when a unit is enabled|
+|RequiredBy|Specifies the rewquired dependencies which if not met cause a failure|
+|Alias| Allows the unit to be enabled using other names|
+|Also| Specifies addicioinal units to be enabled or disabled whtn this unit is enabled or disabled|
+
+
+# cron jobs
+
+# crontab
+```text
+# crontab structure
+
+# cron jobs are checked every minute
+
+# system crontab format
+* * * * *   user-context   script
+
+# user crontab format
+* * * * *   script
+
+# run the script backup.sh at 9:05am the 1st and 28th day of the month and every friday
+5 9 1,28 * 5  /home/tux/bin/backup.sh
+
+# run the script backup.sh at 8pm on weekdays
+0 20 * * 1-5  /home/tux/bin/backup.sh
+
+# run the script backup.sh at 8:15am every monday in the month of january
+5 8 * JAN MON  /home/tux/bin/backup.sh
+```
+
+### /etc/cron.allow
+- doesn't exits
+- if exists, and empty, no user is allowed to use cron service
+- if exists, only users listed can use the cron service
+- takes precedence above cron.deny
+
+### directories
+- /etc/cron.daily
+- /etc/cron.hourly
+- /etc/cron.monthly
+- /etc/cron.weekly
+- /etc/cron.d
+
+
+### nicknames
+- @annually     0 0 1 1 *
+- @yearly       0 0 1 1 *
+- @monthly      0 0 1 * *
+- @weekly       0 0 * * 0
+- @daily        0 0 * * *
+- @hourly       0 * * * *
+- @reboot
+
+
+|min|hour|day|month|day-of-week|
+|-|-|-|-|-|
+|0-59|0-23|1-31|1-12,jan-dec|0-6,mon-sat|
+
+
+
+|Params| description |
+|-|-|
+| -e|edit|
+| -r|remove|
+| -l|list|
+| -u|modify crontab of specific user|
+| -V|print version|
+
+
+
+
+
+# at
+```bash
+# atd service is not enabled by default, you enable it with this
+systemctl enable --now atd.service
+
+
+
+# start the at prompt in wich you write your script
+at noon tomorrow
+at 13:06
+# ctrl+d to save the job and end the at prompt
+
+# list all the at jobs
+atq
+at -l
+
+# list current user scheduled jobs. user jobs are disabled for root
+atq -V # more info
+atq -q <x> # display jobs only in the specified queue
+
+atrm {job-number} # remove a job from a qeue
+
+```
+- one time jobs
+
+
+|Params| description |
+|-|-|
+| -f| specify file with job details|
+| -m| send email when completed|
+| -u| send emaail to specified user|
+| -q <x>| place job in the specified queue valid queues are a-z and A-Z. Default is a|
+
+
+
+# systemd-timer
+```bash
+# timers are managed like services with start/stop/restart/enable/disable --now
+systemctl start check-battery.timer --all
+
+# show timers
+systemctl list-timers
+
+# view contents of the timer
+systemctl cat logrotate.timer
+
+# check status of a timer
+systemctl status logrotate.timer
+```
+
+
+
+## service units
+- the service unit is called by the timer unit
+- composed by 2 files, the timer which defines the time, and the service which defines the action
+## timer units
+Files with the .timer suffix in the /etc/systemd/system directory
+## timer types
+- Real Time:
+    - OnCalendar: day, date and time
+- Monotonic:
+    - OnActiveSec: time after unit activation
+    - OnBootSec: time after system boot
+    - OnStartupSec: time after service manager starts
+    - OnUnitActiveSec: time after the service was last started
+    - OnUnitInactiveSec: time after the service was last deactivated
+
+
+
+``` hello.timer
+
+[Unit]
+Description="Run hello.service every Monday at 10AM"
+
+[Timer]
+OnCalendar=Mon *-*-* 10:00:00
+Unit=hello.service
+```
+
+``` hello.service
+
+[Unit]
+Description="Hello World Script from SUSE"
+
+[Service]
+ExcecStart=/bin/sh -c 'date >> /home/tux/timer_file'
+```
+
+``` boot_msg.timer
+
+[Unit]
+Description="Run hello.servide 5min after boot"
+
+[Timer]
+OnBootSec=5min
+Unit=hello.service
+```
+
+``` boot
+
+[Unit]
+Description="Run hello.servide once in the future"
+
+[Timer]
+OnCalendar=2025-01-15 10:00:00
+Unit=hello.service
+```
+
+
+
+# sudo
+```bash
+# using a single dash reintilizes the shell
+newgrp {group}
+sg {group} -c {command}
+```
+
+
+
+
+|file|contents|
+|-|-|
+|/etc/sudo.conf | plugins, debug flags|
+|/etc/sudoers| config that affects users|
+
+
+sudoers
+- Defaults: default behavior, shell environtment, paths to use, logging
+    - setting home directory
+    - resetting the shell environment
+    - environment variables to keep when resetting the shell environment
+    - setting a different secure path to locate commands
+    - don't insult users on wrong password
+- Aliases: for group users, commands and hosts to simplify configuration
+    - Host_Alias
+    - User_Alias
+    - Cmnd_Alias
+    - Runas_Alias (user or group that a command can be run as
+- Privileges: which user can run a specified command and option on which host
+
+``` sudoers
+
+# SLES15 has these 2 lines to make sudo act like su
+Defaults targetpw   # ask for password
+ALL ALL=(ALL) ALL   # allow any user on any host to run any command
+
+Defaults always_set_home
+Defaults env_reset
+Defaults env_keep ="LANG LC_ADDRESS ..."
+Defaults source_path="usr/sbin:/usr/bin:/sbin:/bin"
+Defaults !insults
+Defaults timestamp_timeout=0
+
+Host_Alias WEBSERVERS = www1, www2, www3
+User_Alias ADMINS = millert, dowdy, mikef
+Cmnd_Alias PROCESSES = /usr/bin/nice, /bin/kill \
+                       /usr/bin/renice, /usr/bin/pkill \
+                       /usr/bin/top
+
+# WHO WHERE = (AS_USER:AS_GROUP) WHAT
+root ALL=(ALL:ALL) ALL
+
+ADMINS WEBSERVERS=PROCESSES
+
+# tux on all hosts can run lspci
+tux ALL = /sbin/lspci
+
+# members of wheel on all hosts as any user or group without entering password can run any command
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+
+|Params| description |
+|-|-|
+| -h| help|
+| -l| list config options apply to the current user along with commands|
+| -Ul {user}| list privileges for the specified user|
+| -i| lauch configured shell of the target user with its env|
+| -u {user}| run as a user other than root|
+
+
+
+# ssh
+
+
+
+```bash
+
+# system wide
+vi /etc/ssh/sshd_config
+
+# user specific
+vi ~/.ssh/config
+
+sudo systemctl status sshd.service
+sudo systemctl status firewalld.service
+ip a s
+
+# verify fingerprint
+ssh-keyscan -t ecda {host} >> ~/.ssh/known_hosts
+
+# fingerprints are stored in ~/.ssh/known_hosts
+# can be added manually or using system management like SUSE Manager
+```
+
+
+|param| description|
+|-|-|
+| -C | compress|
+| -E {loggfile} | append errors to this log file instead of stderr|
+| -p | port|
+| -q | supress warnings|
+| -v | verbose|
+| -X | X11 forwarding|
+
+
+
+
+
+``` sshd_config
+
+# disable password authentication on ssh
+PasswordAuthentication no
+UsePAM no
+```
+
+```bash
+# restart the ssh daemon
+sudo systemctl restart sshd
+
+# generate ssh key
+# ssh-keygen -t {type} [options]
+ssh-keygen -r rsa -b 4096
+
+# transfer public key
+# ssh-copy-id -i {public-key-file} {server}
+ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.201.12
+
+# ssh agent monitors all ssh requests and provides the requires the private key
+
+# check ssh agent
+ps aux | grep ssh-agent
+
+# start ssh-agent
+eval $(ssh-agent -s)
+ssh-add .ssh/id_rsa
+
+
+
+```
+
+
+
+|option|description|
+|-|-|
+|AllowUsers|users allowed to login using ssh|
+|DenyUsers|denies sssh login to the users listed|
+|Port| port number thah sshd linsnes on (defuault: 22)|
+|ListenAddress| local ip address that ssh listents on , IP_Addres:Port|
+|PassworAuthentication|specifies if password authentication is allowed|
+|UsePAM| enables pam authentication|
+
+
+## ssh tunneling
+- redirect traffic from a port in one system to another
+    - local forwarding: from local to remote
+        - send local vnc to a remote server
+    - remote forwarding: from remote to local
+        - remote server sends data through port 9000, local receives on port 80
+- add encryption
+- access to a service on a port that is not open through a firewall
+
+```bash
+# ssh -L {local_port}:{local_host}:{remote_port} {user}@{server}
+ssh -L 5901:localhost:5901 tux@server2
+```
+
+
+# scp
+```bash
+scp {options} {source} {destination} -P {port}
+scp {options} {user}@{host}:{path} {user}@{host}:{path} -P {port}
+```
+
+
+|Params| description |
+|-|-|
+| -r|recursive|
+| -v|verbose|
+| -q|quiet, disables progress meter, warnings, etc|
+| -P|port|
+
+
+# sftp
+
+
+|Params| description |
+|-|-|
+| -r|recursive|
+| -v|verbose|
+| -q|quiet|
+
+
+# vnc
+```bash
+# tigervnc
+vncviwer {options} {host}:{display-number}
+vncviewer 192.168.201.11:1
+```
+
+- virtual network computing
+- client (initiates conection), server (receives connection and produces output)
+- not secure
+- yast > remote services > remote administration
+    - of necessary open port on firewall
+        - to restrict opening ports on interface use Firewall Details
+        - by default tcp ports 5801 and 5901 are open in the firewall
+    - restart to restart the Display Manager
+- options
+    - allow remote management with session management
+        - multiple concurrent sessions
+        - all applications run regardless of client connections
+        - if a connections is disconnected it will reconnect to the same session
+    - allow remote management without session management
+        - only one concurrent session
+        - session is terminated when client disconnects
+    - do not allow remote management
+- default port 5901
+- default port for browser connection 5801
+
+
+
+# rdp
+```bash
+# rdp is not installed by default in suse
+zypper in xrdp yast2-rdp
+```
+
+- yast > remote administration (rdp)
+
+
+# storage
+- physical
+- disk access (sata (serial advanced technology attachment), scsi (small computer system interface), fc, iscsi, nvme(non-volatile memory express)
+- block device (block device files created for storage devices and partitions, enable os to interact)
+- logical storage layer (md, dm-raid, lvm, mpio, device-mapper *btrfs)
+
+## device naming
+- disks: storage devices (spinning, ssd, san)
+- udev manages the creation and removing of dev files when detected or removed
+
+### Naming Conventions
+
+- raw sd: sd{device-letter}: /dev/sda, /dev/sdb
+- raw nvme: nvme{controller}n{device}: /dev/nvme0n1, /dev/nvme1n1
+- partition sd: sd{device-letter}{partition-number}: /dev/sda1, /dev/sda2
+- partition nvme: nvme{controller}n{device}p{partition-number}: /dev/nvme0n1p1, /dev/nvme0n1p2
+
+### persistent device names
+
+are symlinks located in /dev/disk/ and are based on identifiers, for example uuid
+
+based on:
+
+- /dev/disk/by-id/ : disk type, bus and address
+- /dev/disk/by-label/ : file system labels
+- /dev/disk/by-partuuid/ : partition uuid
+- /dev/disk/by-path/ : based on bus and device address
+- /dev/disk/by-uuid/ : file system uuid
+
+
+
+# parted
+```bash
+
+# display information for a given device
+parted /dev/sda print
+
+# create gpt partition table
+parted /dev/sdd mklabel gpt
+
+# list available block devices
+parted -l
+lsblk
+
+# create partition
+parted /dev/sdd mkpart primary 0% 100%
+
+# remove partition (the partition number is obtained with the print command
+parted /dev/sdd rm 1
+
+# to delete the partition table we need to delete the first block of the device
+# copies an unlimited number of zeros into the output file 'of'
+dd if=/dev/zero of=/dev/sdd count=1
+
+# show disks by uuid
+ls -l /dev/disk/by-partuuid/
+
+```
+
+
+
+
+
+
+|Params| description |
+|-|-|
+| -l| list partition layout|
+| -s, --script| do not prompt user for input|
+
+
+
+|command| description |
+|-|-|
+|unit {unit}|set the unit used when displaying sizes|
+|select {device}|interactively select a device to work with|
+|print|display the partition table for a device|
+|mklabel {label-type}|create a new partition table (label). {label-type} is typically gpt (GUID partition table)|
+|mkpart {partition-type} {start} {end}|create partition at start and end|
+|rm {partition-number}| delete partition|
+|quit|exit from parted|
+
+
+# fdisk
+
+
+
 # setfacl
 ```bash
 # set acl permissions for user for directory recursively
@@ -389,13 +1013,25 @@ sudo getfacl {file-or-dir}
 | -n | do not reevaluate the mask|
 
 
-# ps, kill, pkill
+# ps pgrep
+
 ```bash
 # check process with string
 ps aux | grep -i {process-name} | grep -v grep
 
+# print processes with (n)ice value, (p)id and (c)ommand
+ps -o %n\ %p\ %c
+
+
+
 # show proceses formatted
 ps -eo pid,user,cmd
+
+# grep processes but adding a table header
+ps aux | head -n 1 ; ps aux | grep vi
+ps -fea
+
+
 
 pkill {process-name}
 kill {process-id}
@@ -420,7 +1056,7 @@ pgrep
 |-|-|
 | -e | all processes|
 | -f | full format|
-| -l | additional columns|
+| -l | long listing (additional columns)|
 | -H | hierarchy in tree view|
 | -L | individual threads|
 | -o | pid,tid,euid,pgrp format (comma separated list of items)|
@@ -436,13 +1072,147 @@ pgrep
 | --sort | specify the sorting order|
 
 
+# kill
+
+- sends a signal to a process by PID
+- without arguments it sends a SIGTERM by default
+
+
+|Params| description |
+|-|-|
+| -s <signame>|send signal|
+| -<signumber>|send signal|
+| -l|list available signals|
 
 
 
+# killall
+
+- sends a signal to processes with specific name
+- without number it sends a SIGTERM by default
+
+
+|Params| description |
+|-|-|
+| -<signumber>|send signal|
+| -I|case insensitive|
+| -i|interactive, asks for confirmation|
+| -u <username>|signal only processes that the usere owns|
+| -w|wait for processes to die, (may be forever if the process does not respond|
+
+
+
+# pkill
+
+- is like pgrep
+- sends a signal to each process by name
+- without arguments it sends a SIGTERM by default
+
+
+|Params| description |
+|-|-|
+| -<signumber>|send signal|
+| -r <run-state>|match only processes in the specified runstate (D,R,S,Z)|
+| -i|case insesitive|
+
+
+
+
+## signals
+
+```bash
+kill
+killall
+pkill
+```
+
+- another process
+- root process
+- owner
+
+
+|signal|name|description|
+|-|-|-|
+|1|SIGHUP|reload config|
+|2|SIGNINT|interrupt from keyboard ctrl+c|
+|9|SIGKILL|kill the process immediately|
+|15|SIGTERM|request process to terminate|
+|18|SIGCNT|move stopped process to running (continue)|
+|19|SIGSTOP|stop a process|
+
+
+
+
+# pstree
+
+|Params| description |
+|-|-|
+| -a|show command arguments of the process|
+| -g|show process group identifiers|
+| -h|highlight current process and ancestors|
+| -n|sort by PID instead of name|
+| -p|display PID|
+| -c| disable compactation of identical branches|
+
+
+# pgrep
+
+
+|Params| description |
+|-|-|
+| -u|specific effective users|
+| -U|specific actual users|
+| -l|list names along with PID|
+| -a|show command arguments|
+| -r|list with state (D,R,S,Z,etc)|
+| -i|case insensitive|
+| -o|oldest|
+
+
+# nice
+- run command with nice value
+
+```bash
+nice -n +5 firefox &
+```
+
+
+|Params| description |
+|-|-|
+| -n increment|20 to -19 value|
+
+
+# renice
+- change nice value
+
+|Params| description |
+|-|-|
+| -n <increment>|20 to -19 value|
+| -p <PID>|process|
+| -u <username/UID>|user|
+
+
+# jobs
+- the + sign indicates that is the default job for fg
+- [id]{+|-} {status} {command-with-arguments}
+
+|Params| description |
+|-|-|
+| -l| include PIDs|
+| -p| only PIDs|
+| -r| only running|
+| -s| only stopped|
+
+
+# bg
+- starts a background job that is currently stopped
 
 
 
 # special bash variables
+
+
+
 
 |variable| description|
 |-|-|
@@ -568,6 +1338,7 @@ systemctl restart NetworkManager.service
 | nmcli con show | show all available connections|
 | ifup/ifdown| enable/disable nic|
 | ip address | configuration of network|
+| nslookop | check if domain resolves to a ip address|
 
 
 
@@ -589,6 +1360,8 @@ yum install samba samba-client samba-common
 
 # suse linux enterprise
 
+- System monitor
+-
 
 
 
@@ -638,29 +1411,53 @@ rm -f force no confirmation
 stat {filename}  file info
 
 
+# samba
+```bash
+# edit samba config
+vi /etc/samba/smb.conf
 
+# restart samba services
+systemctl restart smb
+systemctl restart nmb
+```
 
 head -n
 
+diskutil list ) → list volumes macos
 
-( lscpu ) → list processors linux
-( lsblk ) → list block volumes linux
-( diskutil list ) → list volumes macos
-( mount ) → mounted volumes
-( lsof ) → list open files macos
-( lsof | grep {volume} ) → process using volume
-( vipw ) → edit group related files locking them
-( samba ) → edit samba config
-(
-    vi /etc/samba/smb.conf
-    systemctl restart smb
-    systemctl restart nmb
-)
-( /etc/exports ) → indica qué directorios son son accesibles para ser montados desde otra ip
-    {directorio}    {ip 1}(rw,sync) {ip 2}(rw, sync) ...
-( fdisk {punto-de-montaje} ) → particiones
-    (p - permite imprimir la estructura de las particiones del volumen montado)
-    (q - salir)
+# system info
+```bash
+lscpu       # list processors linux
+lsblk       # list block volumes linux
+lsof        # list open files
+lsof | grep {volume}    # list processes using volume
+```
+
+# filesystem
+```bash
+# view mounted volumes
+mount
+
+# directories available for mounting from another ip
+/etc/exports ) → indica qué directorios son son accesibles para ser montados desde otra ip
+
+# exports table estructure:
+# {directorio}    {ip 1}(rw,sync) {ip 2}(rw, sync) ...
+
+# view partitions of mounted volume
+fdisk {mount-point}
+
+# fdisk commands
+# p - print dir structure
+# q - quit
+```
+
+
+
+
+
+
+
 
 
 cambiar cosas que se hacen en passwd también en shadow
@@ -836,6 +1633,8 @@ nvim /etc/vimrc
 
 | command | description |
 |-|-|
+|:diffthis| diff two current buffers|
+|:diffoff| stop diffthis|
 |:set all | show configured options (:set! one per line)|
 |:set {option}? | show  value of a setting|
 |:let  | show options set using variables|
@@ -915,9 +1714,28 @@ nvim /etc/vimrc
 
 ---
 
-|shortcut|telescope|
+# custom nvim
+
+|shortcut|description|
 |-|-|
-| ^q | from telescope, send to quickfix list|
+|alt+[ | quickfix prev |
+|alt+] | quickfix next |
+|alt+j | buffer prev |
+|alt+k | buffer next |
+|alt+l | buffer toggle |
+| leader+i | lsp info|
+| leader+m | toggle marks|
+| leader+c | toggle quickfix|
+| leader+u | toggle undo |
+| leader+D | force buffer delete |
+| leader+d | toggle markdown rendering|
+| leader+9 | code folding |
+| leader+z | remove ^M newline chars |
+| leader+) | clear quickfix |
+| ctrl+q | send contents from telescope to quickfix|
+| zi | zoom in nvim panel |
+| zo | zoom out nvim panel |
+| zx | swap panels |
 | ps | document symbols|
 | pf | project files|
 | pd | project files including hidden|
@@ -927,6 +1745,21 @@ nvim /etc/vimrc
 | pd | all files|
 | pl | tmuxifier templates|
 
+
+# custom tmux
+
+|shortcut|telescope|
+|-|-|
+|q | pane numbers|
+|y | sync panes|
+|h | layout horizontal|
+|v | layout vertical|
+|f1-f4 | switch windows|
+|f11 | show cheatsheet|
+|cmd+j | session prev |
+|cmd+k | session next |
+|cmd+l | session toggle |
+|cmd+z | zoom pane|
 ---
 
 |shortcut|lsp|
@@ -1075,3 +1908,16 @@ IP
 10.0.1.50 prettyhatemachine
 
 
+
+# ports
+
+|number|service|
+|-|-|
+|22| ssh|
+
+
+
+
+
+
+zabbix-agent

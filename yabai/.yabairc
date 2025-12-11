@@ -121,7 +121,7 @@ yabai -m rule --add app="^Transmit$"                space=s_etc
 yabai -m rule --add app="^DevToys$"                 space=s_etc
 yabai -m rule --add app="^VSCodium$"                space=s_etc
 
-yabai -m rule --add app="^Reminders$"               space=s_reminders
+yabai -m rule --add app="^Reminders$"               space=s_messages
 yabai -m rule --add app="^Calendar$"                space=s_reminders
 yabai -m rule --add app="^Stickies$"                space=s_reminders
 
@@ -148,7 +148,7 @@ yabai -m rule --add app="^Mail$"                    space=s_email
 
 yabai -m rule --add app="^WhatsApp$"                space=s_messages
 yabai -m rule --add app="‎WhatsApp"            space=s_messages
-yabai -m rule --add app="^Instagram$"               space=s_messages
+yabai -m rule --add app="^Instagram$"               space=s_reminders
 yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
 
 

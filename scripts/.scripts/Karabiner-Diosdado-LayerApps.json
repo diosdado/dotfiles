@@ -31,7 +31,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "5" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }]
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle zoom-parent # parent" }]
 },
 
 
@@ -65,70 +65,6 @@
 
 
 
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "6", "modifiers": { "mandatory":[ "command" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "7" , "modifiers": { "mandatory":[ "command" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap south " }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "8" , "modifiers": { "mandatory":[ "command" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap north" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "9" , "modifiers": { "mandatory":[ "command" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }]
-},
-
-
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "6", "modifiers": { "mandatory":[ "shift" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus west" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "7" , "modifiers": { "mandatory":[ "shift" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus south " }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "8" , "modifiers": { "mandatory":[ "shift" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus north" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "9" , "modifiers": { "mandatory":[ "shift" ] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m display --focus east" }]
-},
-
-
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "6", "modifiers": { "mandatory":[ "option" ] } },
-    "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d west" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "7" , "modifiers": { "mandatory":[ "option" ] } },
-    "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d south " }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "8" , "modifiers": { "mandatory":[ "option" ] } },
-    "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d north" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "9" , "modifiers": { "mandatory":[ "option" ] } },
-    "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d east" }]
-},
 
 
 
@@ -178,12 +114,12 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "a" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle mission-control" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "s" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -193,12 +129,12 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "f" },
-    "to": [{ "pointing_button": "button1" }]
+    "to": [{ "shell_command": "open -a Transmit" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "g" },
-    "to": [{ "shell_command": "open -a Transmit" }]
+    "to": [{ "shell_command": "open -a 'MAMP PRO'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -207,30 +143,25 @@
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "x" },
-    "to": [{  "apple_vendor_keyboard_key_code": "launchpad" }]
+    "from": { "key_code": "b" },
+    "to": [{ "shell_command": "open -a OBS" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "c" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle mission-control" }]
+    "to": [{ "shell_command": "" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "v" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "b" },
-    "to": [{ "shell_command": "open -a OBS" }]
+    "to": [{ "shell_command": "" }]
 },
 
 
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "y" },
-    "to": [{ "shell_command": "open -a Reminders ; open -a Calendar" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a reminders" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -245,7 +176,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "o" },
-    "to": [{ "shell_command": "open -a WhatsApp" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a messages" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -255,7 +186,12 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "backslash" },
-    "to": [{ "shell_command": "open -a 'MAMP PRO'" }]
+    "to": [{ "shell_command": "open -a TypingClub" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_shift" },
+    "to": [{ "shell_command": "open -a 'SUSE Learning Center'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -340,12 +276,6 @@
 
 
 
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "y", "modifiers": { "mandatory": ["command"] } },
-    "to": [{ "shell_command": "" }]
-},
-
 
 
 {
@@ -358,14 +288,15 @@
 
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "close_bracket" },
-    "to": [{ "shell_command": "" }]
+    "from": { "key_code": "left_shift" },
+    "to": [{ "shell_command": "/Applications/BetterTouchTool.app/Contents/SharedSupport/bin/bttcli trigger_named 'color-picker'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "open_bracket" },
-    "to": [{ "shell_command": "" }]
+    "from": { "key_code": "left_control" },
+    "to": [{ "shell_command": "open -a 'Free Ruler'" }]
 },
+
 
 
 
@@ -383,6 +314,67 @@
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "spacebar" },
     "to": [ { "key_code": "a", "modifiers": ["left_control"] } ]
+},
+
+
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "home" },
+    "to": [{ "shell_command": "" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "end" },
+    "to": [{ "shell_command": "" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "page_up" },
+    "to": [{ "shell_command": "" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "page_down" },
+    "to": [{ "shell_command": "" }]
+},
+
+
+
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_command" },
+    "to": [ { "key_code": "spacebar", "modifiers": ["shift","command"] } ]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_option" },
+    "to": [ { "key_code": "j", "modifiers": ["shift","command"] } ]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "open_bracket" },
+    "to": [{ "key_code": "tab", "modifiers":["control","shift"] }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "close_bracket" },
+    "to": [{ "key_code": "tab", "modifiers":["control"] }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_shift" },
+    "to": [ { "key_code": "t", "modifiers":["command","shift"] } ]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "right_control" },
+    "to": [ { "key_code": "w", "modifiers":["command"] } ]
 }
 
 

@@ -5,9 +5,11 @@
 spaces_json=$(/opt/homebrew/bin/yabai -m query --spaces)
 s_third=$(echo $spaces_json | /opt/homebrew/bin/jq '.[] | select(."label" == "s_third") | .index')
 s_primary=$(echo $spaces_json | /opt/homebrew/bin/jq '.[] | select(."label" == "s_primary") | .index')
-kitty_space=$(/opt/homebrew/bin/yabai -m query --windows | /opt/homebrew/bin/jq '.[] | select( .app | contains("kitty")) | .space')
+kitty_space=$(/opt/homebrew/bin/yabai -m query --windows | /opt/homebrew/bin/jq '[ .[] | select( .app | contains("kitty")) ] | first | .space')
+
 
 sleep .3
+
 
 if [[ "$kitty_space" -eq "$s_primary" ]]; then
     /opt/homebrew/bin/yabai -m rule --apply app="LibreWolf"         space=s_third

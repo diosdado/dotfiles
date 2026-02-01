@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # start helper app to show borders around focused window
 # https://github.com/FelixKratz/JankyBorders
 
@@ -12,7 +11,7 @@ active_color=$border_active     \
 inactive_color=$border_inactive \
 width=10.0                      \
 hidpi=on                        \
-blacklist="Stickies,remote-viewer,Free\ Ruler,wine64\-preloader,steamwebhelper.exe,iPhone\ Mirroring"
+blacklist="Free Ruler,Stickies,remote-viewer,Free\ Ruler,wine64\-preloader,steamwebhelper.exe,iPhone\ Mirroring"
 
 
 

@@ -41,8 +41,8 @@ case $apps in
         ;;
 
     entertainment)
-        if ps aux | grep 'Music.app' | grep -v grep; then
-            open -a 'Music'
+        if ps aux | grep 'Netflix.app' | grep -v grep; then
+            open -a 'Netflix'
             exit 0
         fi
         if ps aux | grep 'Disney' | grep -v grep; then
@@ -65,20 +65,19 @@ case $apps in
             open -a 'Spotify'
             exit 0
         fi
-        open -a 'Crunchyroll'
+        open -a 'Music'
         # open -a 'Spotify'
         ;;
 
     messages)
-        # open -a "Instagram"
+        open -a "Instagram"
         open -a "WhatsApp"
-        open -a "Reminders"
         ;;
 
     reminders)
-        open -a "Calendar"
-        open -a "Instagram"
         open -a "Stickies"
+        open -a "Reminders"
+        open -a "Calendar"
         ;;
 
     office)
@@ -124,6 +123,10 @@ case $apps in
             exit 0
         fi
         open -a 'Windows App'
+        ;;
+    suse)
+        open -a 'SUSE Learning Center'
+        open -a 'SUSE Labs'
         ;;
 esac
 

@@ -23,15 +23,15 @@ spaces_names=(
 
     # macbook
     s_secondary
-    s_messages
-    s_email
     s_entertainment
+    s_etc
+    s_conference
 
     # yodoit
-    s_third
-    s_conference
+    s_messages
+    s_email
     s_reminders
-    s_etc
+    s_third
 
     # LG
     s_primary

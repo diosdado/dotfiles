@@ -143,6 +143,11 @@
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "x" },
+    "to": [{ "shell_command": "open -a 'SUSE Learning Center'" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "b" },
     "to": [{ "shell_command": "open -a OBS" }]
 },
@@ -186,12 +191,12 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "backslash" },
-    "to": [{ "shell_command": "open -a TypingClub" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "right_shift" },
-    "to": [{ "shell_command": "open -a 'SUSE Learning Center'" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a suse" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -216,7 +221,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "semicolon" },
-    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a devbrowser" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",

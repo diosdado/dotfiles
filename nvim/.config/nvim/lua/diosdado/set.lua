@@ -38,6 +38,8 @@ vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+vim.api.nvim_set_hl(0, "Cursor", { fg = "#252535", bg = "#ffb86c" })
+
 vim.opt.number = true
 vim.opt.wrap = false
 vim.opt.mouse = "a"

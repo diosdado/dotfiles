@@ -3,15 +3,55 @@
 
 ```bash
 # like who but more detailed
-w
 
+# apagado linux
+shutdown -hp now
+
+# iniciar agentes de zabbix en openbsd
+doas rcctl enable zabbix_agentd
+doas rcctl start zabbix_agentd
+
+w
 
 # restart php
 doas /etc/rc.d/php56_fpm restart
 
 # restart mysql
 sudo systemctl restart mysql
+
+
+ssh-copy-id {server-ip}
+
+ssh-keygen -t ed25519 -C "david.diosdado@.sandox.com.mx"
+
+
+
+
+
 ```
+# tmux and nvim navigation
+
+
+|combo|action|
+|-|-|
+|alt+j|previous nvim buffer |
+|alt+k|next nvim buffer|
+|alt+l|toggle nvim buffer|
+|cmd+j|previous tmux session|
+|cmd+k|next tmux session|
+|cmd+l|toggle tmux sessions|
+
+
+# ffmpeg
+```bash
+# trim without re-encoding
+ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:v copy -c:a copy output.mov
+# trim with re-encoding
+ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:a copy output2.mov
+
+```
+
+
 
 
 # applayer
@@ -40,12 +80,12 @@ sudo systemctl restart mysql
 |s|show desktop | k| up |
 |d| left click | l| right |
 |f| ftp| ;| design |
-|g| | '| windows app |
+|g|MAMP | '| windows app |
 | | &nbsp | | |
 | | &nbsp | | |
 | left_shift  | eyedropper |n| office |
 |z| finder | m| conference |
-|x|   |,| clipboard |
+|x|SUSE Learning Center   |,| clipboard |
 |c|   |.| clipboard |
 |v|   |/| entertainment |
 |b| obs  | right_shift |SUSE Learning Center  |
@@ -64,6 +104,17 @@ sudo systemctl restart mysql
 |down |page down|page down | |
 |backspace | |space | ctrl + a |
 |delete (spacebar) | | return| |
+
+
+
+# dns servers
+
+- OpenDNS
+    - 208.67.222.222
+    - 208.67.220.220
+    - Yandex
+    - 77.88.8.8
+    - 77.88.8.1
 
 
 
@@ -166,6 +217,13 @@ word count
 |Param|Action|
 |-|-|
 |-i | case insensitive|
+
+
+# touch
+```bash
+touch -d "1 day ago" {filename}
+```
+
 
 
 # useradd
@@ -934,6 +992,20 @@ based on:
 
 
 
+
+
+
+# lsblk
+
+
+|Params| description |
+|-|-|
+| -a, --all|include empty and ram devices|
+| -f, --fs|display file system information|
+| -o, --output|columns to display (comma separated list)|
+| -O|show all available columns|
+
+
 # parted
 ```bash
 
@@ -983,6 +1055,2005 @@ ls -l /dev/disk/by-partuuid/
 |mkpart {partition-type} {start} {end}|create partition at start and end|
 |rm {partition-number}| delete partition|
 |quit|exit from parted|
+
+# filesystems
+```bash
+# create filesystem in the first partition of the device sdc, with the label data1
+mkfs.ext4 -L data1 /dev/sdc1
+
+# add label to file system
+e2label /dev/sdc1 data1
+tune2fs -L data1 /dev/sdc1
+
+# add label to xfs file system
+xfs_admin -L data1 /dev/sdc1
+
+# add label to btrfs
+btrfs filesystem label {device/mountpoint} {new-label}
+btrfs filesystem label /dev/sdc1 data1
+
+# read label from xfs file system
+xfs_admin -l /dev/sdc1
+
+# check and repair filesystems
+fsck.ext2 /dev/sdc1
+
+# display all mouned filesystems
+mount
+
+# list all block devices of type file system
+lsblk -f
+
+# mount table, not all ara filesystems
+cat /proc/mounts    # kernel keeps track of the mounted filesystems here
+cat /etc/mtab       # updated from the contens /proc/mounts. could be out of sync if the root / is mounted as read only
+```
+
+
+|filesystem|creation command| description|
+|-|-|-|
+|ext2 |mke2fs -t ext2, mkfs.ext2 |not jounal|
+|ext3 |mke2fs -t ext3, mkfs.ext3 |ext2 with journal|
+|ext4 |mke2fs -t ext4, mkfs.ext4 |ext3 increased file and volume sizes|
+|xfs  |mke2fs -t xfs, mkfs.xfs  |high performanece and extremely large files and volume sizes|
+|btrfs|mke2fs -t btrfs, mkfs.btrfs|single file system spanning multiple storage devices and snapshots|
+|swap |mkswap    |swap|
+
+
+VFS Virtual file system switch -> Abstraction to file system
+
+# mount
+```bash
+# mount {mode} {options} {device} {mount-point}
+mount -t ext4 /dev/sda1 /data
+mount -t ext4 -o ro /dev/sda1 /data
+```
+
+
+|Params| description |
+|-|-|
+| -t {fs-type}| type |
+| -a| mount all file systems listed on fstab|
+| -o {options}| specify options such as mount as read only|
+
+
+
+|options|description|mount|fstab|
+|-|-|-|-|
+|remount|can be mounted more than once | x| x|
+|rw, ro|write or read only|x|x|
+|sync, async|synchronous or asynchronous input and output |x|x|
+|atime, noatime|access time updated or not|x|x|
+|nodev, dev|interpreted as device files or not|x|x|
+|noexec, execk|prohibit excecution of programs or not|x|x|
+|nosuid, suid|ignore suid and sguid or not|x|x|
+|noauto, auto|mount automatically or not| |x|
+|nouser, user|allow user to mount or not| |x|
+|defaults|rw,suid,exec,auto,nouse and sync| |x|
+|relatime|update inode access time relative to modify or change time| | |
+
+
+# fstab
+```bash
+
+# check for syntax errors in the fstab
+mount -a
+
+
+
+```
+
+{1} {2} {3} {4} {5} {6}
+
+|field|description|
+|-|-|
+|1|block device containing the filesystem (path or UUID)|
+|2|directory to mount the block device onto|
+|3|filesystem type|
+|4|mount options|
+|5,6|whether to use the dump backup utility and the file system check order|
+
+
+# umount
+```bash
+# umount {options} {device/mount-point}
+
+# check processes with open files from mount point
+lsof | grep /mnt
+
+# get info about open file
+lsof {file-name}
+
+```
+
+
+|Params| description |
+|-|-|
+| -a, --all|unmount all mounted file systems|
+| -f, --force| force unmount even if there are open files|
+
+
+# df
+
+- info for entire file system
+
+|Params| description |
+|-|-|
+| -h|human readable|
+| -H|human readable in powers of 10|
+
+
+# du
+
+- individual named files
+- files in a directory and subdirectories
+
+|Params| description |
+|-|-|
+| -h|human readable|
+| -s|total size directory|
+
+
+
+
+
+
+# lvm (logical volume manager
+- on line volume creation and resizin
+- copy-on-write snapshots
+- front end to the Device Mapper (used to manage logical storage)
+- generic storage abstraction engine built into the kernel
+- volume group (VG) is comprised of many physical volumes (pv) physical disks/partitions/hardware raid arrays. VGs can be devided into logical volumes (lv) and are created from logical extents (le)
+- when a pv is added to a vg it is subdivided into physical extents (pe) (basic unit or storage allocated)
+- le are mapped 1:1 to pe, are of the same size and
+- in a mirror lv the mapping would be 1:2
+- types
+    - linear: blocks allocated from any pv in the vg
+    - striped: blocks equally distributed across multiple vg (additional performance)
+    - mirrored: blocks mapped in different pvs to provide redundancy
+
+
+```bash
+
+# configuration
+vi /etc/lvm/lvm.conf
+
+# DISPLAY INFO
+# cols for pvs, vgs and lvs configured in vgs_cols in lvm.conf
+
+# pv
+pvscan
+pvs
+pvdisplay
+
+# vg
+vgscan
+vgs
+vgdisplay
+
+# lv
+lvscan
+lvs
+lvdisplay
+
+
+# STEPS FOR CREATING AND PREPARING LOGICAL VOLUMES
+
+# create physical volume
+dd if=/dev/zero of=/dev/sdb bs=512 count=2     # remove partition table from volume
+pvcreate /dev/sdb /dev/sdc /dev/sdd
+
+# create volume group using pvs
+# vgcreate {vg-name} {devices}
+vgcreate vg1 /dev/sdb /dev/sdc /dev/sdd
+
+# create logical volumes
+# lvcreate -L {size} {options} {vg-name}
+
+lvcreate -L 20G -n linear_lv vg1 # linear
+lvcreate -L 10G -i 3 -n striped_lv vg1
+
+# add filesystem to the new lv
+mkfs.ext4 /dev/vg1/linear_lv
+
+# view the created logical volume
+lsblk -f
+lvdisplay striped_lv
+
+# create mirrored lvm
+lvcreate -L 10G -m 1 -n mirrored_lv vg1
+
+lvdisplay -m
+
+# extend volume group
+vgextend vg1 /dev/sdd
+
+# extend logical volume (doesn't extend the file system automatically)
+# number of physical extends is found via vgdisplay {vg-name}
+# lvextend -l +{number-of-physical-extends} {device}
+# lvextend -L +{size} {device}
+lvextend -L 30G vg1/linear_lv
+resize2fs /dev/vg1/linear_lv
+mount /dev/vg1/linear_lv /mnt
+df -h /mnt # view size of extended volume
+
+# view logical volume properties
+lvs vg1/linear_lv
+
+# re mount volume
+mount /dev/vg1/linear_lv
+
+
+
+# extend file system, may need unmounting of the filesystem
+resize2fs # ext
+xfs_growfs # xfs
+btrfs filesystem resize # btrfs
+
+# print partition info
+parted /dev/sde print
+
+
+
+
+# LVM SNAPSHOTS
+# the param -s stands for 'snapshot'
+lvcreate -s -L {size} -n {name} {source-logical-volume}
+
+
+# merge snapshot
+# lvconvert --mergesnapshot -i {progress-interval} {snapshot-volume}
+# --merge alternative to --mergesnapshot
+lvconvert --mergesnapshot -i 1 vg1/snap_lv
+
+
+# to check the status of the volume (if is active)
+lvdisplay /dev/vg1/linear_lv
+
+
+# completing a delayed snapshot merge
+# unmount both source and snapshot
+# deactivate and reactivate the lv source using the -a[ctivate] param
+# mount again the volume
+lvchange -a n /vg1/linear_lv
+lvchange -a y /vg1/linear_lv
+
+
+
+
+
+
+```
+
+
+
+lvm2-lvmetad.service
+- executes vgchange --monitor y
+- starts monitoring a mirroredor snapshot logical volume using the dmeventd service
+lvm2-monitor.service
+- metadata caching for lvm
+- receives notifications from udev
+- maintiais a current and consistent image of the available voulume groups
+
+
+## lvm snapshots
+- snapshots work at block level, and are not aware of file sistems
+- snapshots contain only changed blocks after the snapshot was taken
+- metadata references unchanged blocks and changed blocks
+- a rollback merges the blocks found in the snapshot to the logical volume
+- both the volume and it's snapshot must not have any files open to be performed immediately
+- once the roll back is completed, the snapshot volume is removed
+
+
+- thin pool means space is assigned on demand
+
+
+# lvcreate
+```bash
+# lvcreate -L {size} {options} {vg-name}
+lvcreate -L 10G -n linear_lv vg1
+
+```
+
+|Params| description |
+|-|-|
+| -L| size|
+| -n| name|
+| -i| number of stripes|
+| -m| number of mirrors|
+
+
+
+
+# btrfs (b-tree filesystem)
+
+```bash
+
+# create filesystem
+mkfs.btrfs /dev/sdd
+
+# mount btrfs
+mount -t btrfs /dev/sdc /mnt
+
+# display btrfs attached to the system
+btrfs filesystem show
+btrfs filesystem show {device}
+
+# storage use
+# btrfs filesystem df {path}
+btrfs filesystem df /mnt
+
+# check btrfs --readonly, --repair
+btrfs check /dev/sdc
+
+# list subvolumes in the btrfs volume and get ids
+btrfs subvolume list /data5
+btrfs subvolume list -p /data5  # show parent ids
+
+# create subvolumes
+btrfs subvolumem create /data5/subvol1
+btrfs subvolumem create /data5/subvol1/nestsv1
+
+
+
+# mount subvolume
+mount -t btrfs -o subvolid=260 /dev/sdd /data5
+
+# configure default subvolume
+btrfs subvolume get-default /data5
+btrfs subvolume set-default 260 /data5
+
+
+```
+
+
+- 16EiB maximum file size
+- snapshots roll back and forward (uses copy on write technology)
+    - new changes are not commited until the last write is successful
+- subvolumes
+    - minimum of one subvolume
+    - root is known as FS_TREE with ID=5
+    - all subvolumes use the same pool of data blocks
+    - mounted in the same way other file systems are
+    - multiple nested and with different options, features and quotas  than the parent,
+    - key component to snapshots
+    - rm -r will remove the subvolume
+- data compression
+- awearness of ssd and nvme storage
+- storage quoatas
+
+
+## btrfs commands
+
+|command| description |
+|-|-|
+|subvolume|tasks related with subvolumes|
+|check|verify integrity and repair if requested|
+|filesystem|tasks at file system level (resizing etc.)|
+|quota|manage global status of quotas|
+|rescue|attemp to recover a damaged btrfs filesystem|
+
+
+## mkfs.btrfs
+
+|Params| description |
+|-|-|
+| -b {size}|filesystem size, if not provided the entire device is used|
+| -L {label}|label|
+| -f|force overwrite if an existing filesystem is detected|
+| -q|print only error or warning messages|
+
+
+## snapper
+
+- provides the ability to perform rollbacks on single files or whole snapshots
+- requires btrfs (recommended) or filesystem on top of LVM thint provisioned LVs
+- to boot from snapshots is required SLE or newer
+- each subvolume requieres a snapshot configuration
+    - stored in /etc/snapper/configs/
+- when sles is deployed and btrf is used for root a config is created in /etc/snapper/configs/root
+- snapshot data is stored at the root of the btrfs filesystem in .snapshots/{snapshot-number}
+- yast automatically creates pre and post snapshots when running it
+- NOT included directories:
+    - /boot/grub2/i386-pc, /boot/grub2/x86_64-efi
+    - /opt
+    - /srv
+    - /tmp
+    - /usr/local
+    - /var/crash
+    - /var/lib/mailman, /var/lib/named, /var/lib/pgsql
+    - /var/log
+    - /var/opt
+    - /var/spool
+- Types of snapshots
+    - Timeline (turn off for root)
+        - Taken Hourly
+        - Last 10 daily/monthly/yearly are kept (disabled by default)
+    - Whenever software is installed/updated/deleted involving libzypp (such as snapper command), creates a pre/post pair
+    - Administration also creates a pre/post pair
+    - Manual snapshots
+
+
+
+
+
+```bash
+
+
+# view mounted snapshots
+mount | grep snapshot
+
+# view all snapshot directories
+ls -plah /.snapshots
+
+snapper create -c timeline
+
+
+
+# syntax
+snapper {global-options} {command} {command-options} {command-arguments}
+snapper create -d {description} -t {single/pre/post} --pre-number {no} --command {command}
+
+snapper -c srv create -d "Description" -c timeline
+
+
+# list snapshots, the one with an asterisk is the default subvolume and currently mounted
+snapper list
+snapper list --columns number,type,pre-number,description
+
+# crete snapshots
+# snapper create  -t {type} {options}
+# snapper create --pre-number {number} # links post a pre snapshot
+# snapper create -d {description} # snapshot description
+snapper create -t pre -d "before change"
+# get the number of the created snapshot
+sudo snapper list # the number is 11
+# <-- apply the change here
+# create the post snapshot
+snapper create -t post --pre-number 11 -d "after change"
+
+# modify the description of a snapshot
+snapper modify -d "New description" 11
+
+
+
+# VIEW DIFFERENCES
+snapper diff 10..11 # prints the modified files
+
+
+
+
+
+# delete snapshot
+# cannot delete snapshot 0, nor the default snapshot
+# snapper delete {number}
+# snapper delete {number-begin}-{number-end}
+snapper delete 10-11
+
+
+
+
+# list of files that are different between snapshots
+snapper status num1..num2
+
+# difference in the content of files between snapshots
+snapper diff 26..0 # compare snapshot 26 with current snapshot (0)
+snapper diff num1..num2 {files}
+
+# show which files were changed
+less /.snapshots/30/filelist-29.txt
+
+
+
+# undo a change
+snapper undochange num1..num2 {files}
+
+# delete a snapshot
+snapper -c config delete num|num1..num2
+
+# view configuration
+snapper get-config
+
+# change configuration
+snapper -c config set-config key1=value1 key2=value2
+
+# create configuration
+snapper -c config create-config directory
+
+
+# ------------------------------------
+
+# CREATE VOLUME FOR SNAPSHOTS
+# in YaST partition volume for BtrFS, name it's mounting point, and use role 'data and ISV applications'
+
+# create snapper configuration for specific volume
+snapper -c data1 create-config /data1
+
+# view created config
+less /etc/snapper/configs/data1 # view config by name
+snapper list-configs # print list of all configurations
+
+
+
+
+
+```
+
+
+``` diractory-layout
+/.snapshots/
+    |-1/                            // single snapshot
+    |   |-snapshot/
+    |   |   |-files and directories
+    |   |-info.xml                  // snapshot description
+    |-2/                            // pre snapshot
+    |   |-snapshot/
+    |   |   |-files and directories
+    |   |-info.xml
+    |-3/                            // post snapshot
+    |   |-snapshot/
+    |   |   |-files and directories
+    |   |-info.xml
+    |   |-filelist-2.txt            // list of changes
+    |
+    |-...
+```
+
+
+
+
+
+|command| description |
+|-|-|
+|list {options}|list snapshots|
+|create {options}|create new snapshot|
+|modify {options} {number}|modify, including the description|
+|delete number{-number}|delete snapshots|
+|status {options} number1..number2|compare|
+|diff {options} number1..number2|show differences|
+| | &nbsp|
+|create-config {path}| |
+|list-configs| |
+
+
+### global params
+
+
+|param| description |
+|-|-|
+| -c | use specified configuration|
+
+
+
+
+
+|types| description |
+|-|-|
+|single|standalone|
+|pre|state before changes are made|
+|post|state after changes are made, is linked to a pre snapshot number|
+
+
+
+|file| description |
+|-|-|
+| /etc/snapper/configs/ | stored configurations |
+| /etc/sysconfig/snapper| list of snapper configurations |
+| /etc/snapper/filters/*.txt | not included files (ignore) |
+
+
+
+### create
+
+|param| description |
+|-|-|
+| -c --cleanup |cleanup algorythm <br>-timeline: keeps a number of hourly, daily, monthly, weekly and yearly snapshots <br>-number: deletes old snapshots when a certain number is reached<br>-empty-pre-post: deletes pre/posts pairs with empty diffs|
+
+
+
+
+
+
+``` /etc/snapper/{file}
+
+# SUBVOLUME TO SNAPSHOT ----------------------------------
+
+# subvolume to snapshot
+SUBVOLUME-"/"
+
+# filesystem type
+FSTYPE-"btrfs"
+
+# USER PERMISSIONS ---------------------------------------
+
+# users and groups allowed to work with config
+ALLOW_USERS-""
+ALLOW_GROUPS-""
+
+# sync users and groups from ALLOW_USERS and ALLOW_GROUPS to .snapshots directory
+SYNC_ACL-"no"
+
+# SNAPSHOT PARAMETERS ------------------------------------
+
+# run daily number cleanup
+NUMBER_CLEANUP-"yes"
+# limit for number cleanup
+NUMBER_MIN_AGE-"1800"
+NUMBER_LIMIT-"10"
+NUMBER_LIMIT_IMPORTANT'"10"
+
+# TIME BASED SNAPSHOT CONFIGURATION
+
+# create hourly snapshots
+TIMELINE_CREATE-"no"
+
+# cleanup hourly snapshots after some time
+TIMELINE_CLEANUP-"yes"
+
+# limits for timeline cleanup
+TIMELINE_MIN_AGE-"1800"
+TIMELINE_LIMIT_HOURLY-"10"
+TIMELINE_LIMIT_DAILY-"10"
+TIMELINE_LIMIT_MONTHLY-"10"
+TIMELINE_LIMIT_YEARLY-"10"
+
+# PRE/POST SNAPSHOT CONFIGURATION
+
+# cleanup empty pre/post-pairs
+EMPTY_PRE_POST_CLEANUP-"yes"
+# limits for empty pre/post/pairs cleanup
+EMPTY_PRE_POST_MIN_AGE-"1800"
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## rolling back
+
+```bash
+
+
+
+# list snapshots
+snapper list
+
+# rollback to the currently loaded snapshot
+# creates 2 new snapshots and sets the default subvolume
+# per default the system boots from the default subvolume of the root filesystem
+# rollback is only supported with btrfs
+snapper rollback
+
+# if you do not provide a number first a read-only snapshot of the default subvolume is created
+# a second read-write snapshot of the current systems is created to preserve your current location and the system is set to boot from that snashot
+# if
+
+
+# rollback to the snapshot with id
+snapper rollback {number}
+
+# shoould reboot after
+reboot
+
+
+
+
+
+
+
+```
+
+
+
+
+- a new read-only snapshot of the previos default snapshot (marked with \+) is created
+- a new read-write snapshot of the current loaded snapshot (marked with \-) is created and marked as default
+- in snapper list:
+    - ( \* ) default snapshot booted and mounted
+    - ( \- ) currently mounted non default snapshot
+    - ( \+ ) default snapshot to be booted on the next boot
+
+
+
+
+
+# system libraries
+
+- locations
+    - /lib: 32 bit libraries
+    - /lib64: 64 bit libraries
+- types
+    - statically linked: contain all the library functions that they need to execute (complete programs)
+    - dynamically linked: requiere functions from external shared libraries
+- dynamic library configuration
+    - /etc/ld.so.conf
+    - /etc/ld.so.cache
+- set other paths for executables in the environment variables:
+    - $PATH
+    - $LD_LIBRATY_PATH
+
+
+## ldconfig
+
+```bash
+sudo ldconfig # process ld.so.conf file
+ldconfig -p # display contents of ld.so.cache
+```
+
+
+- processes the ld.so.conf file
+- creates the necessary links and cache to recently used shared libraries in ld.so.cache
+- dynamic loader uses ld.so.cache to locate files that are to be dynamically loades and linked
+
+
+## ldd
+
+- check which libraries a program is using
+
+## file
+
+- check the type of a file
+
+
+# monitoring
+
+```bash
+
+
+
+
+
+```
+
+
+- create a baseline
+    - bood log information
+    - hardware information (/proc, /sys, command line utils)
+    - system and process information
+    - hard drive usage
+- monitor:
+    - boot process
+    - cpu
+    - memory ram
+    - storage
+    - network
+- monitoring boot process
+    - press esc during boot
+    - view the content of the kernel ring buffer with dmesg
+    - viee logs with journalctl -b
+    - view /var/log/boot.log
+- cpu
+    - view configuration: cat /proc/cpuinfo
+    - view host and kernel: uname -a
+    - current load, users, time running
+    - top
+- memory
+    - free
+    - top
+    - vmstat: virtual memory statistics
+        - si and so: swap in, swap out, per second, since last boot and since last interval
+        - bi and bo: blocks in, blocks out: read and write per second
+- disks
+    - smartctl: individual disks
+    - mdadm: raid
+    - iostat: io statistics
+- network
+    - `ip -s link show`: network and ip addresses definition
+    - `ethtool -S inteface`: hardware specific settings, duplexing, frame size
+    - `iptraf`: 'what's going on'
+    - `ss`: replacement for netstat, more organized
+- supportconfig:
+    - resolve support calls faster
+    - collect 95% of needed info in one place
+    - shows which commands where used to create the report teach troubleshooting commands
+    - organize info
+
+### system optimization
+
+- tools
+    - used for:
+        - gather information (monitoring tools)
+        - digest information (tracing, analysis, and baseline tools)
+        - act on the results (tuning and optimization tools)
+    - varieties
+        - system supplied (tools that came with the operating system)
+        - homemade (scripts, mining /proc or /sys)
+
+- tasks to apply:
+    - monitoring (gathering system information)
+        - hardware specifications (max realistic hardware capabilities)
+    - analysis
+        - using a systematic approach following known processes and practices
+        - using a sugested system of investigation steps
+        - knowing the tools and how to use them
+        - understanding each subsystem and the effect of subsystem interactions
+        - tips
+            - take notes, organize them and save everything
+            - automate performance tool and application tests so they can be reliably repeated after a change
+            - choose tools with low impact
+            - trust the tools
+            - use the knowledge base of other people's experiences
+            - reference the internet for information and tips (validate source if posible)
+        - investigation process
+            - determine the current performance baseline
+            - determine the general problem
+            - research the problem and what others have done befor spending a lot of time
+            - start your own investigation
+            - document immediately
+        - tuning
+            - changes system configuration toaffect performance in a positive way
+            - starts with monitoring and analysis
+            - is an art form as much as a science
+            - is an aiterative process
+            - requires ongoing monitoring and analysis
+            - requiere attention in multiple areas
+            - weakest link dictates performance that can be achieved
+            - balanced tuning is critical to optimum performance
+            - there is no way to tune for every workload on a single system
+            - where to focus your attention first
+                - disable any daemons you do not need
+                - shutdown the gui if it is running
+
+        - kernel tuning
+            - the linux kernel allows boot-time and live tuning of its parameters
+            - suse labs developers created a balanced set of default kernel configuration parameters pre tuned for general linux server workloads
+            - methods of tuning:
+                - /proc file system
+                - the sysctl command line utility
+        - performance
+            - find the baseline oof normal performance under specific workloads and over different time periods
+
+    - tuning
+
+- applied to:
+    - general system optimization
+    - application specifics
+    - system
+        - applications
+        - os
+            - cpu
+            - memory
+            - storage
+            - network
+
+
+# sysstat utilities
+
+install tools
+
+- in YaST2 add-ons > add > dvd >
+    - Development-Tools-Module
+    - Legacy-Module
+ - in YaST2 add-ons > Run software manager
+    - View > Patterns
+    - In Patterns tab select Base Development
+    - click Accept
+    - In Changed Packages click Continue
+    - close all YaST instances
+- install packages:
+    - `zypper --non-interactive in bc kernel-source`
+
+
+
+
+
+
+fsck -a
+
+
+
+
+
+- `sar`: (system activity recorder) collects and saves system activity information, records ac
+- `sadc`: (system activity data collector) acts as the system activity data collector
+- `sa1`: collects and stores binary data in the system activity daily data file and is the front end to sadc
+- `sa2`: writes a summarized daily activity report
+- `sadf`: (system activity display format) displays the collected data in multiple formats for database loading or graphing
+- `iostat`: reports cpu statistis and i/o statistics for devices, partitions and network file systems
+- `mpstat`: reports indivifual or combined processor related statistics, how the cpu is functioning
+- `isag`: (interactive system activity grapher) graphically displays the system activity data stored by sar
+
+# sysctl
+
+- changes tunable kernel parameters at runtime
+- configuration:
+    - dynamic: lost at next reboot
+    - static: saved and applied at each reboot
+- iotop: disk usage by processes, match processes to disk i/o
+- iftop: network i/o by network connection, choose which nic to monitor
+- strace: traces all system call from an application (reads, writes, memory allocations, frees, task forks)
+    - the `-c` option shows a summary of count time, errors and calls
+    - `-p {pid}`
+    - use verbose mode to record which parameters are being passed to strace along with the results
+-
+
+
+
+
+
+# networking
+
+```bash
+lspci -D | grep Ethernet
+```
+### configuration files
+
+- hostname: /etc/hostname
+- hosts: /etc/hosts
+- nameservers and search: /etc/resolv.conf
+- network configuration: /etc/sysconfig/network/config
+- routing: /etc/sysctl.d/70-yast.conf
+- persistent nic names: /etc/udev/rules/d/70-persistent-net.rules
+- nics config files: /etc/sysconfig/network/ifcfg-{interface-name}
+
+
+
+### general
+
+- basic network interface: physical with single nic (eth0)
+- bond: logical with two of more physical (bond0)
+    - fault tolerance
+    - performance
+    - load balancing
+- vlan: one or many using a single nic (vlan1)
+    - traffic from one is isolated from the other vlans on the same nic
+- bridge: logical, above physical (layer 2)
+    - allow communication betweeen
+        - each virtual network interface connected to it
+        - the underlying physical network interface
+        - the lan
+
+- pci bus: 0000:01:00.0 -> {pci-domain}:{pci-bus-number}:{slot-number-on-bus}.{function-number}
+- physical network naming
+    - traditionl (default, and defined in persistent)
+        - eth# (ethernet)
+        - wlan# (wifi)
+    - predictable (based on type and connection to the system. not enabled by default in SLES)
+        - en{p} (ethernet)
+        - wl (wifi)
+        - if (infiniband)
+        - enabled by passing kernel parameter at boot time:
+            - net.ifnames=1
+- persistent names based on
+    - bus id
+    - mac address
+    - configured in /etc/udev/rules/d/70-persistent-net.rules
+
+
+# ip (linux)
+```bash
+# ALL MODIFICATIONS MADE WITH COMMANDS ARE NOT PERSISTANT BETWEEN BOOTS
+
+# add address
+ip addr add 172.16.201.11/24 dev eth1
+
+# show
+ip addr show
+ip a s
+ip a s eth1 # show status only of specific ip address
+
+# change status
+ip link set up eth1
+
+ip link show
+
+```
+
+
+|command| description |
+|-|-|
+|link, l|manage link level configuration|
+|address, a|manage address level configuration|
+|route, r|manage routing configuration|
+
+## flags
+
+|flag|meaning|
+|-|-|
+|BROADCAST|can send a data packet to all devices on the same network|
+|MULTICAST|single device can send to specific group of devices simultaneously, more efficient than broadcasting|
+|LOWER_UP|status UP and a connection to another devices has been stablished (such as a switch or router)|
+|LOOPBACK|only for internal system communication, packets never leave the localhost|
+|PROMISC|passes all traffic it receives to the CPU, even traffic not addressed to it (packet sniffing or network monitoring)|
+|NOARP|won't send/respond ARP requests to map IP to MAC addresses|
+|ALLMULTI|is in all-multicast mode: receives all multicast packets on the network, not just for groups it has joined|
+|POINTOPOINT|direct connection between two nodes (VPN tunnel, PPP link) where broadcast capabilities are unnecesary|
+|NO-CARRIER|hardware does not detect a physical signal or connection (unplugged or other powered-off)|
+|DORMANT|physically UP but waiting for event (like 802 authentication)|
+|MASTER/SLAVE|in bonded or bridged interfaces|
+
+
+
+
+## link
+```bash
+ip link show eth0
+ip link set eth0 up
+ip l set eth0 up
+```
+
+
+|command| description |
+|-|-|
+|show|display link config|
+|set|change link config|
+
+
+## address
+```bash
+ip address show
+ip address show eth0
+ip a s eth0
+```
+
+
+|command| description |
+|-|-|
+|show, s|display info|
+|add, a|add addesses|
+|delete, d| delete addresses|
+
+
+
+
+## route
+```bash
+# ip link {command} {device} {options}
+ip route show
+ip route add default via 192.168.201.1
+```
+
+
+|command| description |
+|-|-|
+|show, s|display info|
+|add, a|add routes|
+|delete, d| delete route|
+
+
+# ethtool
+```bash
+ethtool {device}
+
+```
+
+# network
+```bash
+
+ping {address} # usese ICMP
+# one file for each physical interface and one for each logical
+/etc/sysconfig/network/ifcfg-{interface-name}
+```
+
+
+
+|option| description |
+|-|-|
+|IPADDR|static ip address including subnet mask length|
+|BOOTPROTO|boot protocol (dhcp or static)|
+|STARTMODE|start automátically at boot|
+|ZONE|name of the firewall zone the interface is in|
+
+
+
+# ping
+
+- uses ICMP to send an echo request
+
+
+|param| description |
+|-|-|
+| -c {count}| specify number|
+| -i {interval}| interval between packets|
+| -D|print timestamp|
+| -I {interface}|use specified interface (ip address or name can be specid)|
+| -4|use only pv4|
+| -6|use only pvt|
+
+
+# traceroute
+
+- uses time to live ttl in the ip packet
+- attemps to elicit an icmp TIME_EXCEDED response from each router in the path to the host
+- a packet is sent to the specified host with the ttl value of 1
+- first system decrements the ttl to 0 and sends an ICMP error message to the source
+- udp default, but can use ICMP and TCP
+
+
+|param| description |
+|-|-|
+| -m {ttl}| maximum hops (ttl)|
+| -n| do not try to resolve host names (only returns IPs, faster)|
+| -4, -6| force IPv4 or IPv6|
+| -I| specify ICMP|
+| -T| specify TCP|
+
+
+# wicked
+
+- framework for managing network configuration (default in SLES15)
+- comprised of systemd services that manage different aspects of the network
+- supports ethernet, wifi
+- stored in plain text files (translated internally to XML syntax)
+
+
+|service|description|
+|-|-|
+|wickedd| main wicked service, spawns additional supplicant services<br> when enabled, the alias systemd unit network.service is created and points to wicked.service, allowing systemd to manage wicked services|
+|wicked| service that manages the network interfaces|
+|wicked-dhcp4, wicked-dhcp6|services that provide IPv4 and IPv6 DHCP clients|
+|wicked-nanny|service that automatically bring up configured interfaces as soon as they become available|
+
+
+## commands
+
+
+|command|description|
+|-|-|
+|ifstatus {device} -o {options}|status of the current network|
+|ifdown {device} -o force|stop an interface even if it is in use|
+|ifup {device} -o {options}|activate preconfigured interface|
+
+
+## config files
+
+- stored in: /etc/sysconfig/network/
+- nic: ifcfg-{name-of-nic}: ifcfg-eth0
+- routes: ifroute-{route-name}
+
+
+## routes
+
+``` ifroute-{name}
+# {1} {2} {3} {4}
+default 192.168.201.1 - -
+10.0.0.0/24 192.168.202.1 - -
+```
+
+
+|field|description|
+|-|-|
+|1|destination|
+|2|gateway|
+|3|gateway interface. A \'-\' character results in the interface with the address in field {2} being used|
+|4|additional options|
+
+
+
+## basic interfaces
+
+``` ifcfg-eth0
+IPADDR='192.168.201.11/24'
+BOOTPROTO='static'
+STARTMODE='auto
+```
+
+``` ifcfg-eth0 netmask
+IPADDR='192.168.201.11'
+NETMASK='255.255.255.0'
+BOOTPROTO='dhcp'
+STARTMODE='auto
+```
+
+``` ifcfg-eth0 dhcp
+BOOTPROTO='dhcp'
+STARTMODE='auto
+```
+
+
+## bond configuration
+
+``` ifcfg-bond0
+IPADDR='192.168.202.11/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+BONDING_MASTER='yes'
+BONDING_SLAVE0='eth1'
+BONDING_SLAVE1='eth2'
+BONDING_MODULE_OPTS='mode=active-backup miimon=0'
+```
+
+``` ifcfg-eth1/ifcfg-eth2
+BOOTPROTO='none'
+STARTMODE='hotplug
+```
+
+## name resolution
+
+```bash
+# display hostname and ip address mapping
+host {host} [{nameserver}]
+nslookup {host} [{nameserver}]
+# display detailed hostname to ip address mapping and dns name server information
+# options: +[no]all toggles display flags, +[no]answer toggles answer section
+dig {@nameserver} {options} {host} {type} {class} {query-option}
+dig google.com +noall +answer
+# check only for mail records
+dig google.com MX
+
+```
+
+- common mechanisms are file (/etc/hosts) and dns
+- mechanisms order is stored in /etc/nsswitch.conf
+- dns servers are defined in /etc/resolv.conf
+- resolv.conf can be configured with text editor or with netconfig
+- hostname and ip address mapping can be displayed with
+
+
+``` resolv.conf
+search example.com
+nameserver 192.168.201.1
+```
+
+# linux logging
+
+```bash
+
+# edit global configuration file
+vi /etc/rsyslog.conf
+
+# edit configuration file for daemon
+vi /etc/sysconfig/syslog # options for when rsysdaemon is launched
+
+# configuration file directory
+cd /etc/rsyslog.d/
+vi /etc/rsyslog.d/firewall.frule
+
+
+# view binary logs
+last -x {file-name}
+utmpdump {file-name}
+lastlog
+
+# kernel buffer ring
+dmesg -x --time-format iso | less
+
+
+```
+
+
+
+- rsyslog daemon: receiving, processing and storing log messages
+    - modules gather info from various sources
+    - inputs sources defined by inpur configuration directives $ModLoad {module-name}
+    - can include configurations from other files with $IncludeConfig /run/rsyslog/additional-log-sockets.conf
+- systemd-journald: maintains structured and indexed journals
+- logrotate utility automates the archiving and deleting of the log
+- supportconfig: generates an archive of all the important files for troubleshooting
+- sources can be in local or remote systems
+- messages can be stored in local files or forwarded to centralized system
+
+
+### facilities
+
+|keyword|definition|
+|-|-|
+|kern| kernel|
+|user| user-level|
+|mail| mail subsystem|
+|daemon| system daemon|
+|auth| security/authorization|
+|syslog| generated by syslog|
+|lpr| printer subsystem|
+|news| network news|
+|uucp| uucp|
+|cron| cron|
+|authpriv| security/authorization|
+|ftp| ftp daemon|
+|12-15| old/archaic facilities|
+|local0-7| custom facilities|
+
+
+### priorities
+
+|level|keyword|definition|
+|-|-|-|
+|0|emerg|emergency: system unusable|
+|1|alert|alert: check immediately|
+|2|crit|critical conditions|
+|3|err|error conditions|
+|4|warn|warning conditions|
+|5|notice|normal but significant|
+|6|info|informational messages|
+|7|debug|debug-level messages|
+
+
+### rsyslog rules
+
+configure to perform an action based on a filter
+
+#### selectors
+
+- syntax: FACILITY.PRIORITY  ACTION
+- example: mail.info  /var/log/maillog
+
+#### properties
+
+- syntax: PROPERTY, COMPARE_OPERATION, VALUE ACTION
+- example: msg, contains, "error" /var/log/errlog
+
+#### expressions
+
+- syntax: if EXPR then ACTION
+- example: if $msg contains 'error' then /var/log/errlog
+
+
+### rsyslog configuration syntax
+
+basic: simple filter and action
+
+```txt
+mail.info  /var/log/maillog
+```
+
+advanced: allows more complex filters and actions
+
+```txt
+if prifilt("mail.info") then {
+    action(type="omfile" file="/var/log/maillog")
+}
+```
+
+
+
+
+``` /etc/rsyslog.conf
+
+# since rsyslog V3: load input modules
+# If you do not load inputs, nothing happens!
+# provides --MARK-- message capability (every 1 hour)
+$ModLoad immark.so $MarkMessagePeriod
+3600
+# provides support for local system logging (e.g. via logger
+command)
+$ModLoad imuxsock.so
+# reduce dupplicate log messages (last message repeated n
+times)
+$RepeatedMsgReduction
+on
+# kernel logging (may be also provided by /sbin/klogd)
+$ModLoad imklog.so
+# Set the default permissions for all log files.
+$FileOwner root $FileGroup root
+$FileCreateMode 0640
+$DirCreateMode 0750
+$Umask 0022
+# Include config generated by /etc/init.d/syslog script
+$IncludeConfig /run/rsyslog/additional-log-sockets.conf
+```
+
+
+``` mail.frule
+# emergency messages to everyone logged on (wall)
+*.emerg             :omusrmsg:*
+
+# meil messages
+mail.*                      -/var/log/mail
+mail.info                   -/var/log/mail.info
+mail.warning                -/var/log/mail.warning
+mail.err                     /var/log/mail.err
+
+# warnings in one file
+*.=warning;*.err            -/var/log/warn
+*.crit                       /var/log/warn
+
+# the rest in one file
+*.*;mail.none;news.none     -/var/log/messages
+
+# enable this if you want to keep all messages in one file
+# *.*                       -/var/log/messages
+```
+
+
+## logger
+```bash
+# restart rsyslog service
+systemctl restart rsyslog.service
+
+# start monitoring the log file
+tail -f /var/log/messages
+tail -f /var/log/warn
+
+# log a message from another terminal
+logger "this is a test message 1"
+logger -p user.crit "this is a test of user.critical message 1" # this message is written to the file indicated in an .frules file that defines rules for priorities
+```
+
+
+- saves a log message
+
+
+|param|definition|
+|-|-|
+| -p {priority}| use didfferent priority than default|
+| -s , --stderr | output the error message to standard error as well as input file|
+
+
+
+
+## logrotate
+
+```bash
+# edit global configuration file for log ratation
+vi /etc/logrotate.conf
+
+# edit additional confifuration files
+cd /etc/logrotate.d/
+
+# rotate log file
+logrotate -f -v /etc/logrotate.d/user_messages | less
+```
+
+- a systemd service and timer is created that runs logrotate daily
+
+
+|param|definition|
+|-|-|
+| -v, --verose| show what is being done during the rotation|
+| -f, --force| force the rotation even though it is not necessary|
+
+
+
+
+``` /etc/logrotate.conf
+
+# rotate dotfiles weekly
+weekly
+
+# keep 4 weeks worth of backlogs
+rotate 4
+
+# create new empty logfiles after rotating old ones
+create
+
+# use date as a suffix of the rotated file
+dateext
+
+# compress log files
+compress
+
+# compression scheme
+compresscmd /usr/bin/xz
+uncompresscmd /usr/bin/xzdec
+```
+
+``` /etc/logrotate.d/user_messages
+/var/log/user_messages {
+    compress
+    daily
+    rotate 7
+    dateext
+    missingok
+    notifempty
+    create
+}
+```
+
+
+
+
+
+## files
+
+- /var/log/
+- messages from the current boot: /var/log/boot.msg
+- messages from the boot before: /var/log/boot.omsg
+- messages after kerenel initialization: /var/log/boot.log
+- historical data about logins and logouts: /var/log/wtmp (view with last or utmpdump)
+- failed login attemps: /var/log/btmp (view with last or utmpdump)
+- details about when users last logged in: /var/log/lastlog (view with lastlog)
+
+
+
+
+
+## rsyslog
+
+- categorizes the data according by facility (source of the log message), and priority (severity of the log message)
+- kernel buffer ring: stores log messages for the kernel and kernel modules. Has a fixed size (older messages get overwritten when it's full)
+
+### dmesg
+
+```bash
+# show messages humand readable with dates in iso
+dmesg -x --time-format iso
+
+
+
+```
+
+
+|param| description |
+|-|-|
+| -C, --clear| clear the ring buffer|
+| -c, --read-clear| print the contents of the ring buffer and clear it|
+| -w, --follow| print new messages as they are created|
+| -x, --decode| human readable|
+| --time-format {format}| specify different time format for the timestamp|
+| --since| display messages starting at the specific time|
+| --until| dispaly messages before the specific time|
+
+
+
+
+
+
+# journalctl
+
+```bash
+# show all messages
+journalctl
+
+# show messages for specific units
+journalctl -u sshd
+journalctl -u s*
+
+# list all systemctl list-units
+systemctl list-units
+
+# list messages of priority 'err'
+journalctl -p err
+journalctl -p crit
+journalctl -p 1..4
+
+```
+
+
+- systemd-journald: stores and collects logging data in structured and indexed journals
+- stores temporarily in /run/log/journal but can be configure to be persistent
+- stored in binary format
+
+
+|param| description |
+|-|-|
+| -u, --unit={unit,pattern}| show messages for specific unit|
+| --facility={facility}| messagges for specific facilities (comma separated, indicated by name or number)|
+| -p, --priority={priority}| messages with specified priority number (or range)|
+| -f, --follow| acts like the tail command and prints additional entries as they appear|
+| -k, --dmesg| show only kernel messages|
+| -S, --since={date}| show messages since time and date|
+| -U, --until ={date}| show messages until time and date|
+
+
+### Configuring persistent storage for journalctl
+
+```bash
+vi /etc/systemd/journald.conf
+# ... edit file ...
+mkdir /var/log/journal
+chown .systemd-journal /var/log/journal
+chmod 2775 /var/log/journal
+systemctl restart systemd-journald
+```
+
+- edit /etc/ systemd/journald.conf
+- create dir /var/log/journal and give it permissions
+- restart systemd journal
+
+``` /etc/systemd/journald.conf
+[Journal]
+Storage=auto
+#Compress=yes
+#Seal=yes
+```
+
+
+# supportconfig
+
+```bash
+# create consolidated report
+supportconfig
+
+# unpacking the created report tarfile
+tar -xJf scc_server1_240121_2047.txz
+```
+
+
+
+- is a bash script owned by the supportutils package that collects consolidated info info in a file under /var/log/, named scc_{hostname}\_{date}\_{time}
+- server not familiar having issues
+- a ticket with suse support is required
+- a server you don't have direct access to is experiencing issues
+
+
+|param| description |
+|-|-|
+| -F| display the available keywords used with -i and -x|
+| -i {keyword}| comma separated list of feeature keywords to include|
+| -x {keyword}| comma separated list of feeature keywords to exclude|
+| -A| activate all functions with additional logging and full rpm verification|
+| -u {uri}| upload archive to the suse support server specified in the uri|
+| -r {sr_number}| include the service request number in the archive name|
+
+
+
+# suse
+
+- automatic handling of dependencies
+- ensuring version compatibility
+- verifying software integrity
+
+## RPM
+
+- rpm database (contains metatadata, keeps track of any files that have been changed or created since the package was installed), command line utility and .rpm packages
+- informs the adminjistrator if requiered software is missing
+- rpm tools can verigy that software is installed correctly
+- software installation using scripts
+- packages can be signed using digital signatures to verify integrity
+- packages consist of:
+    - compiled binaries, configuration, documentation contained in a CPIO archive
+    - metadata
+    - scripts to be executed during the installation and removal of the package
+    - a gpg signature used to verify a package source and integrity
+- compiledd rpm packages naming convention:
+    - {name}-{version}-{release}.{architecture}.rpm
+    - wget-1.11.8-1.1.x86_64.rpm
+
+
+```bash
+rpm {option} {package}
+
+rpm -q {options} {package}
+rpm -q {package-file.rpm}
+
+# check if wget is installed
+rpm -q wget
+
+# check files owned by wget package
+rpm -ql wget
+
+# show which package owns a file
+rpm -qf /usr/bin/wget
+
+# list all files owned by an rpm package that's not installed
+rpm -qpl {package-name.rpm}
+
+# info about installed packaged
+rpm -qi {package-name}
+
+# info about NOT installed packaged
+rpm -qpi {package-name.rpm}
+
+# install package
+rpm -q cdrecord
+
+# update a package from a file
+rpm -Fvh ~/Downloads/package-name.rpm
+
+# uninstall package
+rpm -evh cdrecord
+```
+
+
+### general options
+
+|param| description |
+|-|-|
+| -q| query package metadatea in either the rpm databas or a package file|
+| -i| install package|
+| -U| upgrade a package (or install if it's not installed)|
+| -F| upgrade (freshen) an installed package (won't install not installed)|
+| -V| verify installed package (file changes) against rpm database|
+| --reinstall| reinstall installed package|
+| -e| erase a package|
+| -v| verbose|
+| -h| human (progress bar)|
+
+
+### -q specific options
+
+|param| description |
+|-|-|
+| -a| list all installed packages|
+| -i| list package info|
+| -l {package}| display list of files installed with the package|
+| -f {file}| display the package name that owns the {file}|
+| -p| query a package instead of the rpm database|
+
+
+
+
+
+
+## Zypper
+
+- wrapper for rpm
+- keeps a history
+- enables rpm caching in a local directory
+- supports rollback
+- supports local and remote repositories
+- zipper command line, yast, package kit
+- patterns are groups of packages dedicated to certain purupose, for example apache2 web server
+- products containt 1 or more patterns, represent a specific release with it's own features and support life cycle
+- gpg check verifies integrity of packages
+
+
+
+
+
+```bash
+
+# edit repositories
+# repos contain name, enabled, autorefresh and baseurl
+cd /etc/zypp/repos.d
+cat /etc/zypp/repos.d/{file.repo}
+
+# add repositories
+zypper ar {options} {uri} {alias}
+zypper addrepo {options} {uri} {alias}
+zypper ar http://192.168.201.2/sles17/CD1\ sles15
+
+# list repositories
+zypper lr
+
+# remove repo
+zypper rr {options} {alias/name/#/uri}
+
+# enable repo
+zypper mr -e SLES15-SP5-15.5
+
+# search packages from repository
+zypper se -r 5
+zypper se wget
+zypper se -t pattern {search-string}
+
+# rename alias
+zypper nr Python Python3_Module
+
+# rename name
+#zypper mr --name {new-repo-name} {repo-number}
+zypper mr --name SLE-Module-Python3 5
+
+# remove repo
+zypper rr 5
+zypper clean
+
+# view status
+zypper if wget
+zypper info -t pattern mail_server
+
+# install package
+zypper in apache2
+zypper in -t pattern games
+
+# install package
+zypper up vim
+
+# remove package zipper
+zypper rm -tD pattern games # dry run remo
+
+
+```
+
+### subcommands
+
+|param| description |
+|-|-|
+| lr| list repositories|
+| ar, addrepo| add repo|
+| rr, removerepo| remove repo|
+| mr, modifyrepo| modify repo|
+| ref {repo-number}| refresh repository|
+| se, search| search repo|
+| nr| rename repo alias|
+| mr| rename repo name|
+| if, info| info about packages|
+| in, install| install|
+| lu, list-updates| display available software updates|
+| up, update| update newest available version|
+| rm, remove| remove package|
+
+
+
+
+### general parameters
+
+|param| description |
+|-|-|
+| -h| help|
+| -v| verbose|
+| -n| non-interactive mode|
+| -q| suppress normal output|
+| -y| non-interactive mode|
+| -D| dry run|
+
+### rm parameters
+
+|param| description |
+|-|-|
+
+
+
+
+
+### up parameters
+
+|param| description |
+|-|-|
+| -r {alias/name/#/uri}| only from specified repo|
+
+
+### lu parameters
+
+
+|param| description |
+|-|-|
+| -r {alias/name/#/uri}| only display updates in the specified repository|
+| -a| display all update, even for not installed packages|
+
+
+### in parameters
+
+|param| description |
+|-|-|
+| -f| force. reinstall or downgrade package|
+| --oldpackage| replace newer item with older one|
+| -d| download packages to local cache but don't install them|
+
+
+### ar parameters
+
+|param| description |
+|-|-|
+| -d| add repo and disable it|
+| -f| enable auto refresh (disable by default)|
+| -p| set priority or repo|
+
+
+### mr parameters
+
+
+|param| description |
+|-|-|
+| -e| enable repo|
+| -d| disable repo|
+| -f| enable autorefresh|
+| -F| disable autorefresh|
+| -a| apply to all repos|
+| -l| apply to local repos|
+| -r| apply to all remote repos (http, https, ftp)|
+
+
+### se parameters
+
+
+|param| description |
+|-|-|
+| -r {alias/name/#/uri}| search specified repos|
+| -C| case sensitive|
+| -x| exact match|
+| -i| show only installed|
+| -u| show only packages not installed|
+
+
+# yast
+```bash
+# partitioner
+yast2 disk
+# network settings
+
+```
+
+
+hiperconvergencia: significa que hay muchos caminos para llegar a un solo punto, tener hasta 2 puntos de fallo en todos los componentes
+
+zil cache de lectura, guarda los 1000 archivos más demanadados del arreglo
+
+
+JBOD y IT-MODE son lo mismo
+
+JBOD (lenovo)
+just a bunch of disk drives
+
+IT MODE
+initiator-target mode
+pass through, permite al sistema operativo
+
+"ve los discos de manera directa, sin arreglo
+
+
+
+
+
+
+
+en el caso de las san en proxmox todo se tiene que hacer por línea de comandos,
+se requiere multipath, grupo de volumenes, se usan wwns
+
+
+iscsi es scsi pero por ethernet (y alternativa a FC)
+
+switches san implica que tienes un millon de pesos
+
+
+
+$
+
+
+almacenamiento
+
+
+
+
+según el tipo de storage se usa para cosas distintas
+
+
+snippet:
+
+lvm es default para sans
+
+
+
+
+
+
+
+ext4 es más rápido que el zfs si tienes una controladora
+
+
+revisar arreglo tipo 0 o modo mirror
+
+zfs raid1 es modo mirror
+
+
+2 maneras de instalar:
+- controladora física del servidor haciendo el mirror, usando el filesystem ext4
+- si no hay controladora raid2
+
+
+single disk: cuando
+
+
+
+ext3 como ntfs 1 de windows, sin journaling
+ext4 journaling de 3 o 4 movimientos
+
+
+un giga un millon de archivos, pero si se hace journaling se multiplique, hasta 10 veces más grande
+
+
+
+xfs NO RECOMENDADO
+
+journaling es una bitácora de movimientos de los archivos
+de tal fecha a tal fecha el archivo ocupaba de tal bit a tal bit, pero cambiós
+
+
+zfs es un journaling con esteroides
+
+raid0 solo junta el espacio de los discos duros (no los está respaldando)
+raid1 mirror de un disco en el otro al instante
+raid10 suma del 1 y el 0 4 discos mínimo
+
+
+a partir de 4 discos duros sean sólidos o mecánicos
+
+por ejemplo 4 discos de 20TB,
+
+
+
+
+80
+
+z1 60
+z2 40 (quedaría como 35TB si se tuvieran 4 discos duros de 18)
+z3 20 (a menos que tengas arreglos de muchísimos discos duros como 12), mucha paranoia
+
+
+dos discos duros dedicados al systema operativo para que no afecte al performance del pool de la máquinas
+
 
 
 # fdisk
@@ -1360,9 +3431,7 @@ yum install samba samba-client samba-common
 
 # suse linux enterprise
 
-- System monitor
--
-
+- press e on boot screen in the snapshots menu to view more info about the snapshot
 
 
 
@@ -1512,8 +3581,26 @@ firewall-cmd
 ( /var/log/messages) → firewall messages
 
 
-PROXMOX
--------
+# PROXMOX
+
+```bash
+# ingresar a contenedor
+pct enter {id-container}
+```
+
+
+## Add free repository
+
+- access the proxmox server via terminal
+- navigate to the apt repositories directory
+    - `cd /etc/apt/sources.list.d`
+- edit the `pmg-enterprise.sources` file and comment the url inside it
+- create another repository file called `proxmox.sources` and add a source from the manual
+    - [manual](https://pmg.proxmox.com/pmg-docs/pmg-admin-guide.html#pmg_package_repositories)
+
+
+
+
 
 ( qm )
 ------
@@ -1528,6 +3615,11 @@ Consideraciones
 - La swap debe de ser del doble de la memoria RAM que se le asigne a la VM
 - Un core físico de Proxmox puede soportar 6 cores virtuales
 - Para BSD y Linux usar iSCSI
+
+
+
+
+
 
 
 # macos
@@ -1902,7 +3994,7 @@ nvim /etc/vimrc
 
 
 
-IP
+sandoxIP
 ---------
 
 10.0.1.50 prettyhatemachine
@@ -1920,4 +4012,52 @@ IP
 
 
 
+
+
+# Linux Enterprise server
+
+## YaST security hardening module
+
+YaST Control Center > Security and Users > Security Center and Hardening
+
+- Login procedure
+- Password creation
+- Boot permissions
+- User creation
+- Defaault file permission
+
+```bash
+
+# view entries for YaST adjustments
+ls /etc/systemd/system
+
+```
+
+
+
+
+
+
+
 zabbix-agent
+
+
+
+
+pbs 10.0.1.19:8007
+
+
+# Pulse Proxmox
+
+usr:sandox
+729
+
+
+10.0.1.45:7655
+https://github.com/rcourtman/Pulse
+
+
+
+
+
+

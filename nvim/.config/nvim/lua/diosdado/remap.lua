@@ -99,9 +99,9 @@ vim.keymap.set('n', '<leader>)', '<Cmd>:cexpr []<CR>')
 
 
 -- Cycle through buffers
-vim.keymap.set('n', '∆', '<Cmd>bp<CR>')
-vim.keymap.set('n', '˚', '<Cmd>bn<CR>')
-vim.keymap.set("n", "¬", ":b#<CR>")
+vim.keymap.set('n', '∆', '<Cmd>bp<CR>') -- Alt+j
+vim.keymap.set('n', '˚', '<Cmd>bn<CR>') -- Alt+k
+vim.keymap.set("n", "¬", ":b#<CR>") -- Alt+l
 
 --------------------------------------------------------------------------------------------------
 -- yank to clipboard

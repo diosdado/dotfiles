@@ -13,15 +13,17 @@ done
 
 case $apps in
     conference)
-        if ps aux | grep 'Teams.app' | grep -v grep; then
-            open -a 'Teams'
+        open -a 'Jitsi Meet'
+        exit 0
+
+        if ps aux | grep 'Microsoft Teams.app' | grep -v grep; then
+            open -a 'Microsoft Teams'
             exit 0
         fi
         if ps aux | grep 'zoom.us.app' | grep -v grep; then
             open -a 'zoom.us'
             exit 0
         fi
-        open -a 'Jitsi Meet'
         ;;
 
     design)
@@ -61,16 +63,12 @@ case $apps in
             open -a 'Crunchyroll'
             exit 0
         fi
-        if ps aux | grep 'Spotify' | grep -v grep; then
-            open -a 'Spotify'
-            exit 0
-        fi
         open -a 'Music'
-        # open -a 'Spotify'
         ;;
 
     messages)
         open -a "Instagram"
+        open -a "Stickies"
         open -a "WhatsApp"
         ;;
 
@@ -124,6 +122,7 @@ case $apps in
         fi
         open -a 'Windows App'
         ;;
+
     suse)
         open -a 'SUSE Learning Center'
         open -a 'SUSE Labs'

@@ -91,7 +91,6 @@ yabai -m rule --add app="^Transmission$"            sticky=on
 yabai -m rule --add app="^Karabiner-Elements$"      sticky=on
 yabai -m rule --add app="^Karabiner-EventViewer$"   sticky=on
 yabai -m rule --add app="^MAMP PRO$"                sticky=on
-yabai -m rule --add app="^Stickies$"                sticky=on
 
 
 
@@ -130,8 +129,8 @@ yabai -m rule --add app="^Whisky$"                  space=s_development
 yabai -m rule --add app="^Steam$"                   space=s_development
 yabai -m rule --add app="^OpenEmu$"                 space=s_development
 
-yabai -m rule --add app="^Spotify$"                 space=s_entertainment
 yabai -m rule --add app="^Music$"                   space=s_entertainment
+yabai -m rule --add app="^YouTube$"                 space=s_entertainment
 yabai -m rule --add app="^Crunchyroll.*"            space=s_entertainment
 yabai -m rule --add app="^Disney.*"                 space=s_entertainment
 yabai -m rule --add app="^Prime\ Video$"            space=s_entertainment
@@ -147,15 +146,22 @@ yabai -m rule --add app="^Gmail$"                   space=s_email
 yabai -m rule --add app="^Mail$"                    space=s_email
 
 yabai -m rule --add app="^WhatsApp$"                space=s_messages
+yabai -m rule --add app="^Stickies$"                space=s_messages
 yabai -m rule --add app="‎WhatsApp"            space=s_messages
 yabai -m rule --add app="^Instagram$"               space=s_messages
 yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
+
+yabai -m rule --add app="^SUSE\ Learning\ Center$"  space=s_primary
+yabai -m rule --add app="^SUSE\ Labs$"              space=s_secondary
+
+
+
 
 
 yabai -m space s_secondary      --layout bsp
 yabai -m space s_messages       --layout bsp
 yabai -m space s_email          --layout bsp
-yabai -m space s_third          --layout bsp
+yabai -m space s_third          --layout stack
 yabai -m space s_reminders      --layout bsp
 yabai -m space s_primary        --layout bsp
 yabai -m space s_development    --layout bsp

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+
+killall TeamsWidgetExtension
+
+
+
+
+
+
+
+
+

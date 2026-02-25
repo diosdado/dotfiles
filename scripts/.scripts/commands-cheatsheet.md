@@ -1,127 +1,105 @@
 
 
 
+
+
+# services
+
+## openbsd
+
 ```bash
-# like who but more detailed
-
-# apagado linux
-shutdown -hp now
-
-# iniciar agentes de zabbix en openbsd
 doas rcctl enable zabbix_agentd
 doas rcctl start zabbix_agentd
+```
 
-# who is logged in and what they are doing
-w
+## linux
 
+```bash
+sudo systemctl enable mysql
+sudo systemctl start mysql
+```
+
+## by service
+
+```bash
 # restart php
 doas /etc/rc.d/php56_fpm restart
-
-# restart mysql
-sudo systemctl restart mysql
-
-
-ssh-copy-id {server-ip}
-
-ssh-keygen -t ed25519 -C "david.diosdado@.sandox.com.mx"
-
-
-
-fsck -a
-
-
 ```
-# tmux and nvim navigation
+
+<br>
 
 
-|combo|action|
-|-|-|
-|alt+j|previous nvim buffer |
-|alt+k|next nvim buffer|
-|alt+l|toggle nvim buffer|
-|cmd+j|previous tmux session|
-|cmd+k|next tmux session|
-|cmd+l|toggle tmux sessions|
+# fsck
 
+Check and repair filesystem integrity
+
+```bash
+# try to check all the filesystems in /etc/fstab
+fsck -A
+```
+
+
+<br>
+
+# restart, power off
+
+## linux
+
+```bash
+# power off
+shutdown -hp now
+init 0
+
+# restart
+shutdown -r now
+reboot
+systemctl reboot
+init 6
+```
+
+## bsd
+
+```bash
+# power off
+shutdown -p now
+poweroff
+halt -p
+
+# restart
+shutdown -r now
+reboot
+```
+
+<br>
+
+# w
+
+Who is logged in and what they are doing, like `who` but more detailed
+
+<br>
 
 # ffmpeg
+
+Video encoder
+
 ```bash
 # trim without re-encoding
 ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:v copy -c:a copy output.mov
 # trim with re-encoding
 ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:a copy output2.mov
-
 ```
 
-
-
-
-# applayer
-
-
-|key|action|key|action|
-|-|-|-|-|
-|=|karabiner|6 |focus left |
-|1|stickies to third display |7|swap left |
-|2|cycle layouts |8|swap right |
-|3|float window |9|focus right |
-|4|fullscreen |0|opacity on focus|
-|5|main window |-|mouse focus|
-| | &nbsp | | |
-| | &nbsp | | |
-|tab| restart yabai  |y| reminders |
-|q| yabai default  |u| terminal |
-|w| yabai design  |i| browser |
-|e| yabai office  |o| whatsapp |
-|r| yabai conference  |p| email |
-|t| yabai terminal |  \ | mamp |
-| | &nbsp | | |
-| | &nbsp | | |
-| esc | layer app  |h| left |
-|a|mission control  |j| down |
-|s|show desktop | k| up |
-|d| left click | l| right |
-|f| ftp| ;| design |
-|g|MAMP | '| windows app |
-| | &nbsp | | |
-| | &nbsp | | |
-| left_shift  | eyedropper |n| office |
-|z| finder | m| conference |
-|x|SUSE Learning Center   |,| clipboard |
-|c|   |.| clipboard |
-|v|   |/| entertainment |
-|b| obs  | right_shift |SUSE Learning Center  |
-| | &nbsp | | |
-| | &nbsp | | |
-|left_ctrl | free ruler |right_cmd| |
-|~|eject |  right_option | |
-|fn| |[|ctrl + shift + tab |
-|left_alt | |  ]|ctrl + tab |
-|left_cmd | |right_ctrl| |
-| | &nbsp | | |
-| | &nbsp | | |
-|left|home|home | |
-|right |end|end | |
-|up |page up|page up | |
-|down |page down|page down | |
-|backspace | |space | ctrl + a |
-|delete (spacebar) | | return| |
-
-
-
-# dns servers
-
-- OpenDNS
-    - 208.67.222.222
-    - 208.67.220.220
-- Yandex
-    - 77.88.8.8
-    - 77.88.8.1
-
-
-
+<br>
 
 # test
+
+Evaluate conditional expressions
+
+```bash
+# check if file.txt exists
+test -f "file.txt"
+```
+
 
 | param | test |
 |-|-|
@@ -147,9 +125,12 @@ ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:a copy output2.mov
 | -le | lower or equal|
 
 
-
+<br>
 
 # ls
+
+List files and directories
+
 ```bash
 # list only directories
 ls -d */
@@ -165,7 +146,7 @@ ls -d */
 | -l| long format (columns)|
 
 
-## symbols
+## symbols beside the file permissions
 
 
 |Symbol|Filetype|
@@ -179,7 +160,7 @@ ls -d */
 |l| symlink|
 
 
----
+<br>
 
 # tee
 
@@ -195,6 +176,8 @@ ls | tee filename.txt filename2.txt
 | -a | append, do not overwrite file|
 | -i | ignore interrupts|
 
+
+<br>
 
 # tr
 
@@ -212,6 +195,8 @@ echo "palabra1  palabra2     ....palabra3" | tr -s '[:space:]' | tr . _
 |-s | squeeze multiple instances of the character to only one instance|
 |-d | delete characters|
 
+
+<br>
 
 # cut
 
@@ -238,6 +223,9 @@ cut -d ',' -f 2,4 MOCK_DATA.csv
 | -f | fields separated by commas|
 
 
+<br>
+
+
 # wc
 
 Count lines, words or bytes from a file or standard input
@@ -258,6 +246,9 @@ wc -m MOCK_DATA.csv
 |-c | bytes |
 |-m | characters (some characters are multi-byte)|
 |-L | length of longest line|
+
+
+<br>
 
 
 # grep
@@ -285,6 +276,9 @@ grep -r --include \*.php "TEXTO"
 | --include, -include=pattern | search only files that match the filename pattern|
 
 
+
+<br>
+
 # touch
 
 Change file access and modification files. Also used for the creation of empty files.
@@ -292,6 +286,9 @@ Change file access and modification files. Also used for the creation of empty f
 ```bash
 touch -d "1 day ago" filename.txt
 ```
+
+<br>
+
 
 # useradd
 
@@ -331,6 +328,15 @@ vipw
 |/ets/skel|directory structure|
 
 
+<br>
+
+# adduser
+
+Higher level interactive script to create users (BSD)
+
+<br>
+
+
 # usermod
 
 Modify user permissions, groups, expiration or locking
@@ -352,6 +358,9 @@ usermod -a -G {groupname}
 | -e {date} | expiration date |
 
 
+
+<br>
+
 # userdel
 
 Destroy a user
@@ -366,6 +375,9 @@ userdel {username}
 | -r | remove user's home directory and mail spool (local mail for user) |
 | -f | force -r, even if the user is logged in|
 
+
+
+<br>
 
 # groupadd
 
@@ -385,12 +397,16 @@ groupadd anothergroup -g 4987
 | -r | create group id in the system group id range |
 
 
+
+<br>
+
 # groupmod
 
 Modify group name or id
 
 ```bash
-groupmod {groupname}
+groupmod -n new_group_name old_group_name
+groupmod -g new_group_id group_name
 ```
 
 
@@ -400,6 +416,9 @@ groupmod {groupname}
 | -n | change the name of the group |
 
 
+
+<br>
+
 # groupdel
 
 Destroy group
@@ -407,6 +426,9 @@ Destroy group
 ```bash
 groupdel groupname
 ```
+
+<br>
+
 
 # passwd
 
@@ -430,24 +452,26 @@ passwd -e cosmefulanito
 | -w {days} | set the number of days of warning before a password change is required|
 
 
+## /etc/passwd structure
+
+{user}:{pass}:{uid}:{gid}:{comment}:{home-dir}:{shell}
+
 ## /etc/shadow structure
 
-{1}:{2}:{3}:{4}:{5}:{6}:{7}:
+{user}:{pass}:{last-change-days}:{min-age}:{max-age}:{warning-days}:{grace-days}:{expiration-date}:
 
+## /etc/group structure
 
-|column| description |
-|-|-|
-| 1| username|
-| 2| encrypted password|
-| 3| date of last change|
-| 4| minimum days between changes|
-| 5| days password is valid|
-| 6| grace days|
-| 7| date of expiration (lock)|
+{group}:{pass}:{gid}:{members}
+
+<br>
 
 
 
 # chage
+
+Manage password expirations
+
 ```bash
 chage {username}
 
@@ -469,7 +493,13 @@ chage -E 0 {username}
 | -w {days}| set password expiration warning days|
 
 
+<br>
+
+
 # chmod
+
+Change file permissions
+
 ```bash
 chmod (-R) {ref}{operator}{modes}/{octets} {file/dir}
 
@@ -478,6 +508,10 @@ chmod ug+s,+t {file/dir}
 
 # readable/executable by everyone and writable by owner only
 chmod u=rwx,go=u-w
+
+# rw-rw--wx
+chmod 663
+
 
 # default permission values: file 666, dir 777
 # umask is set in /etc/login.defs
@@ -501,7 +535,6 @@ chmod u=rwx,go=u-w
 | t | sticky bit |
 | T | sticky bit (not executable)|
 
----
 
 | hex | permission|
 |-|-|
@@ -509,7 +542,6 @@ chmod u=rwx,go=u-w
 |2|write|
 |1|execute|
 
----
 
 |symbol |position|hex|permission| file | directory |
 |-|-|-|-|-|-|
@@ -519,120 +551,306 @@ chmod u=rwx,go=u-w
 
 
 
+<br>
+
+
 # chown
+
+Change the ownership of a file or directory
+
 ```bash
-chown -R {owner}:{group} {file/dir}
-```
+# change the ownership of the directory including all of it's contents
+chown -R new_user:new_group /path/to/directory
 
-
-# ACLs Access Control Lists
-
-
-# getfacl
-```bash
-# getfacl and setfacl are in the package 'acl'
-# acl are marked with a +
-
-# list parameters for the file system (check if acl is allowed)
-tune2fs
+# change only the group of the file
+chown :new_group file.txt
 ```
 
 
 |Params| description |
 |-|-|
-| -a | displya only the file access control list component|
-| -d | display only the default access control list component|
-| -R | liste the ACLs of all files and directories recursively|
+| -R| recursive (change all the files inside a directory)|
 
 
-## umask
-- default permissions assigned to newly created files and dirs
+
+<br>
+<br>
+
+
+
+
+
+# ACLs Access Control Lists
+
+Commands for **Access Control** Lists are in the `acl` package
+
+<br>
+
+# tune2fs
+
+You can check if ACL is enabled with this command
+
+The purpose of this command is to list or adjusts tunable parameters for ext2, ext3 and ext4 filesystems
+
+```bash
+tune2fs
+```
+
+
+<br>
+
+
+# umask
+
+Show or modify the umask (user file-creation mode mask), which defines the default permissions for newly created files and directories
+
 - if permission is specified then is allowed
 - applies to named users and all groups
 - not applied to the file owner and other
 
-
-# systemd
-```bash
-    man systemctl.special
-    systemctl list-units --type=target
-    systemctl isolate multiuser.target # change the current target to test only multiuser.target
-    systemctl get-default
-    systemctl set-default {multi-user.target}
-    systemctl default # switch to the default target
-    systemctl # list all commands
-    systemctl -t help # list unit types
-    systemctl -t service # list units of type service
-    systemctl enable {unit/path}
-    systemctl enable --now {unit/path} # enable and start the service
-    systemctl is-enabled {unit/path}
-    systemctl disable {unit/path}
-    systemctl disable --now {unit/path} # disable and stop the service
-    systemctl restart {pattern}
-    systemctl reload {pattern}  # ask all units listed to reload the configuration of the service they manage
-    systemctl mask --now {pattern}
-    systemctl unmask --now {pattern}
+The final permissions are calculated by substracting the umask value from the system's base permissions (666 for files, 777 for directories) e.g.:
 
 ```
-- enabling a service creates a symllink in /etc/systemd/system
-
-## masking a unit
-- ensures the service cannot run
-- the symlinks point to /dev/null instead of the real service unit
-
-
-## commands
+base permission for files:  666
+umask:                      022
+-------------------------------
+resulting permissions:      644
+```
 
 
+```bash
+# show umask
+umask
 
+# set umask for the current session
+umask 022
+```
+
+<br>
+
+# getfacl
+
+Display ACLs for the file
+
+```bash
+# acl are marked with a +
+getfacl filename.txt
+```
+
+
+|Params| description |
+|-|-|
+| -a | display only the file access control list component|
+| -d | display only the default access control list component|
+| -R | list the ACLs of all files and directories recursively|
+
+
+
+# setfacl
+
+Set ACLs for the file or directory
+
+```bash
+# set acl permissions for user for directory recursively
+# syntax:
+# setfacl -R -m u:{username}:{permissionsbits} {dir}
+
+# grant read, write and execute permissions to a user over file.txt
+sudo setfacl -m u:username:rwx file.txt
+
+# remove permissions to a directory and it's contents for the group group_name
+sudo setfacl -R -x g:group_name /path/to/directory
+
+# add read permissions to group_name on the file file.txt
+setfacl -m g:group_name:r file.txt
+```
+
+
+|Params| description |
+|-|-|
+| -m | modify|
+| -x | remove|
+| -d | default|
+| -b | remove all|
+| -R | recursive|
+| -n | do not reevaluate the mask|
+
+
+<br>
+
+
+# systemd
+
+System and service manager for Linux:
+
+- First process to be executed (is assigned `PID=1`) and
+- Logs all systemd messages from kernel, boot process and services
+- Manages:
+    - The startup of the rest of the system
+    - Resources like CPU and memory
+    - Services (processes that provide a service are called deamons)
+    - shutdown
 
 ## units
-- organhize boot process
-- initialize hardware
-- mount file-system
-- manage services
-- maintain tasks and processes
 
-## unitfile
-|directory|priority|description|
+Object (resource) that can be operated and managed by systemd tools. Are defined in a configuration file called **unit file**.
+
+Unit files names, contain the type of unit in the suffix (e.g. `sshd.service`)
+
+There are units for:
+
+- Organize boot process
+- Initialize hardware
+- Mounting file system
+- Manage services
+- Maintain tasks and processes (like reestart a service that stopped)
+
+
+|location|priority|description|
 |-|-|-|
 |/usr/lib/systemd/system|1|default location|
 |/run/systemd/system|2|unit files created at runtime|
 |/etc/systemd/system|3|unit files created by administrators<br>they modify unit behavior|
 
-|Section|description|directives|
-|-|-|-|
-|[Unit]|metadata and configuration|Description, After, Before, Requires|
-|[{unit-type-section}]|configuration specific for the type| -|
-|Service|configuratin for the servidce|Type (startup type, tipically simple), ExcecStart (commands to start the service), ExcecStop (commands to stop the service), ExecReload, Restart|
+
+### Unit types
+
+- **Service**: defines how a service or application is managed (e.g. which binary is launched to start a service)
+- **Target**: synchronization point (e.g. which units should be active when a system is in rescue mode)
 
 
-### Unit
+### Unit sections
 
-|type| description|
+- `[Unit]`: defines metadata and configuration
+    - `Description`: human readable title
+    - `After`: the unit estarted after
+    - `before`: the unit estarted before
+    - `Requires`: dependency
+- `[Service]`: configuration for the services
+    - `Type`: startup type (typically `simple`)
+    - `ExecStart`: commands to start the service
+    - `ExecStop`: commands to stop the service
+    - `ExecReload`: commands to trigger a configuration reload in the service
+    - `Restart`: configures whether the service's main process should be restarted when it exits, is killed or a timeout reached
+- `[Install]`: provides info used when a unit is enabled or installed
+    - `WantedBy`: other units wanting this unit to be available
+    - `RequiredBy`: dependencies required by this unit (if not present will cause a failure)
+    - `Alias`: will allow this unit to be managed using other names
+    - `Also`: other units that should be enabled at the same time
+
+
+### Unit file example
+
+```ini
+[Unit]
+Description=OpenSSH Daemon
+After=network.target
+
+[Service]
+Type=notify
+EnvironmentFile=-/etc/sysconfig/ssh
+```
+
+## systemctl
+
+View and control the state of systemd system and service manager
+
+- Enabling/disabling a service consists of creating or removing a symbolic link in the directory `/etc/systemd/system`
+- The destination of the link is a unit file in either:
+    - `/usr/lib/systemd/system`
+    - `/etc/systemd/system`
+- 'Blocking' (masking) a service works by pointing the symbolic link to `/dev/null`
+
+
+```bash
+systemctl [options-specific-to-command] {command} [unit-name]
+```
+
+
+|Params| description |
 |-|-|
-|Description| A short humanly readable title for the unit|
-|After| This unit will be started after the named unit|
-|Before| This unit must be started before the named unit|
-|Requieres|Declares a dependency of the named unit|
-
-### Service
-
-|type| description|
-|-|-|
-|ExcecStart|commands and arguments excecuted to start the service|
-|ExcecStop|commands and arguments excecuted to stop the service|
-|ExcecReload|commands to excecute to trigger a configuration reload in the service|
-|Restart|Configures whether the service's main process should be restarted when it exits, is killed or a timeout reached|
-
-### Targets
-- define a state the system can be in
+| start {unit}| start the units listed|
+| stop {unit}| stop the units listed|
+| status {pattern-or-pid}| view status of all or selected units|
+| disable {unit}| disables the listed units|
+|enable {unit-or-path}| enable one or more units|
+|is-enabled {unit}| check if the units are enabled|
+| restart {pattern}| starts or restarts the units listed|
+|reload {pattern}| ask alll the units listed to reload the configuration of the service|
+|mask {pattern}| 'block' a service. Prevent it to run even by accident|
+|unmask {pattern}| 'unblock' the service |
+|cat {unit}| prints the contents of the unit file|
 
 
+### systemctl help
+
+```bash
+# info on special systemd units
+man systemd.special
+
+# list all available unit types
+systemctl -t help
+
+# list only units of type service
+systemctl -t service
+
+# list only units of type target
+systemctl -t target
+systemctl list-units --type=target
+
+# view systemd directory structure
+cd /usr/lib/systemd/system
+ls -l | less
+```
+
+
+### systemctl service management
+
+```bash
+# enable the sshd service to start with the system boot
+systemctl enable sshd
+
+# enable and start immediately the sshd service
+systemctl enable --now sshd
+
+# disable and stop immediately the sshd service
+systemctl enable --now sshd
+
+# block and stop a service
+systemctl mask --now {pattern}
+
+# unblock a service
+systemctl unmask {pattern}
+```
+
+### systemd targets
+
+A target defines a state the system can be in (which components are active). An example of a target could be maintenance mode.
+
+Consists of a collection of units that are used toghether to provide a particular set of services.
+
+The target in which the system boots normally is defined by making a symlink from `/usr/lib/systemd/system/default.target` to the desired default state (e.g. `graphical.target`)
+
+```bash
+# switch to the  multi-user target (would close the graphical interface and switch to a text only mode)
+systemctl isolate multi-user.target
+
+# return to the graphical mode
+systemctl isolate graphical.target
+
+# show the name of the current target
+systemclt get-default
+
+# switch to the default target
+systemctl default
+
+# set the default target
+systemctl set-default multi-user.target
+```
 
 
 
-|type| description|
+|target| description|
 |-|-|
 |multi-user.target |includes networking and multiuser support |
 |graphical.target|adds a graphical environment |
@@ -641,23 +859,33 @@ tune2fs
 |reboot.target|reboots the system and should not be called directly. use systemctl reboot|
 
 
-### Install
-|type| description|
-|-|-|
-|WantedBy| Specifies the dependencies to configure when a unit is enabled|
-|RequiredBy|Specifies the rewquired dependencies which if not met cause a failure|
-|Alias| Allows the unit to be enabled using other names|
-|Also| Specifies addicioinal units to be enabled or disabled whtn this unit is enabled or disabled|
 
-
-# cron jobs
+<br>
 
 # crontab
-```text
-# crontab structure
 
-# cron jobs are checked every minute
+Table for scheduling the execution of jobs
 
+Cron jobs are checked every minute
+
+```bash
+# edit the crontab file
+crontab -e
+```
+
+
+|Params| description |
+|-|-|
+| -e|edit|
+| -r|remove|
+| -l|list|
+| -u|modify crontab of specific user|
+| -V|print version|
+
+
+## crontab file example
+
+```
 # system crontab format
 * * * * *   user-context   script
 
@@ -674,13 +902,35 @@ tune2fs
 5 8 * JAN MON  /home/tux/bin/backup.sh
 ```
 
+### date rules format
+
+|min|hour|day|month|day-of-week|
+|-|-|-|-|-|
+|0-59|0-23|1-31|1-12,jan-dec|0-6,mon-sat|
+
+### crontab aliases
+
+|alias|meaning|
+|-|-|
+|@annually|0 0 1 1 *|
+|@yearly|0 0 1 1 *|
+|@monthly|0 0 1 * *|
+|@weekly|0 0 * * 0|
+|@daily|0 0 * * *|
+|@hourly|0 * * * *|
+|@reboot| |
+
+## crontab files
+
 ### /etc/cron.allow
+
 - doesn't exits
 - if exists, and empty, no user is allowed to use cron service
 - if exists, only users listed can use the cron service
 - takes precedence above cron.deny
 
-### directories
+### crontab directories
+
 - /etc/cron.daily
 - /etc/cron.hourly
 - /etc/cron.monthly
@@ -688,45 +938,23 @@ tune2fs
 - /etc/cron.d
 
 
-### nicknames
-- @annually     0 0 1 1 *
-- @yearly       0 0 1 1 *
-- @monthly      0 0 1 * *
-- @weekly       0 0 * * 0
-- @daily        0 0 * * *
-- @hourly       0 * * * *
-- @reboot
-
-
-|min|hour|day|month|day-of-week|
-|-|-|-|-|-|
-|0-59|0-23|1-31|1-12,jan-dec|0-6,mon-sat|
-
-
-
-|Params| description |
-|-|-|
-| -e|edit|
-| -r|remove|
-| -l|list|
-| -u|modify crontab of specific user|
-| -V|print version|
-
-
-
+<br>
 
 
 # at
+
+Schedules one time commands for later execution. It opens a prompt in which you enter your script.
+
+To use the `at` command you must start the atd service with `systemctl enable --now atd.service`
+
 ```bash
-# atd service is not enabled by default, you enable it with this
-systemctl enable --now atd.service
-
-
-
-# start the at prompt in wich you write your script
+# schedule a command for tomorrow noon
 at noon tomorrow
+
+# schedule a command for 1:06 pm
 at 13:06
-# ctrl+d to save the job and end the at prompt
+
+# To save the job and close the prompt use ctrl+d
 
 # list all the at jobs
 atq
@@ -737,9 +965,7 @@ atq -V # more info
 atq -q <x> # display jobs only in the specified queue
 
 atrm {job-number} # remove a job from a qeue
-
 ```
-- one time jobs
 
 
 |Params| description |
@@ -751,9 +977,21 @@ atrm {job-number} # remove a job from a qeue
 
 
 
+<br>
+
+
 # systemd-timer
+
+Like crontabs but schedules jobs using systemd
+
+- Timers are composed by 2 files:
+    - The `.timer` unit which defines the scheduled time
+    - The `.service` unit which defines the action to perform
+- The `.service` unit is called by the `.timer` unit
+- Timers are managed like services with `start`/`stop`/`restart`/`enable`/`disable`
+- Units are located in `/etc/systemd/system`
+
 ```bash
-# timers are managed like services with start/stop/restart/enable/disable --now
 systemctl start check-battery.timer --all
 
 # show timers
@@ -766,14 +1004,33 @@ systemctl cat logrotate.timer
 systemctl status logrotate.timer
 ```
 
+## unit examples
 
 
-## service units
-- the service unit is called by the timer unit
-- composed by 2 files, the timer which defines the time, and the service which defines the action
-## timer units
-Files with the .timer suffix in the /etc/systemd/system directory
+### service unit example (`hello.service`)
+
+```ini
+[Unit]
+Description="Hello world Script from SUSE"
+
+[Service]
+ExecStart=/bin/sh -c 'date >> /home/tux/timer_file'
+```
+
+### timer unit example (`hello.timer`)
+
+```ini
+[Unit]
+Description="Run hello.service every Monday at 10AM"
+
+[Timer]
+OnCalendar=Mon *-*-* 10:00:00
+Unit=hello.service
+```
+
+
 ## timer types
+
 - Real Time:
     - OnCalendar: day, date and time
 - Monotonic:
@@ -784,38 +1041,20 @@ Files with the .timer suffix in the /etc/systemd/system directory
     - OnUnitInactiveSec: time after the service was last deactivated
 
 
+### boot timer example (boot-hello-5min.timer)
 
-``` hello.timer
-
+```ini
 [Unit]
-Description="Run hello.service every Monday at 10AM"
-
-[Timer]
-OnCalendar=Mon *-*-* 10:00:00
-Unit=hello.service
-```
-
-``` hello.service
-
-[Unit]
-Description="Hello World Script from SUSE"
-
-[Service]
-ExcecStart=/bin/sh -c 'date >> /home/tux/timer_file'
-```
-
-``` boot_msg.timer
-
-[Unit]
-Description="Run hello.servide 5min after boot"
+Description="Run hello.service 5min after boot"
 
 [Timer]
 OnBootSec=5min
 Unit=hello.service
 ```
 
-``` boot
+### boot timer example (boot-hello.timer)
 
+```ini
 [Unit]
 Description="Run hello.servide once in the future"
 
@@ -824,25 +1063,72 @@ OnCalendar=2025-01-15 10:00:00
 Unit=hello.service
 ```
 
+<br>
+
+
+# su
+
+Change the current ID to that of another user
+
+|Params| description |
+|-|-|
+| -| starts the shell as a login shell, similar to a real login|
+
+<br>
+
+# newgrp
+
+Changes the current user's real group id for the duration of a new shell session
+
+```bash
+# temporarily change your primary group to the developers group
+newgrp developers
+
+# the same but also reinitilize the environment (simulating a full login)
+newgrp - developers
+```
+
+<br>
+
+
+# sg
+
+Execute a comman with a different id (gid)
+
+```bash
+# executes the ls command in the directory /etc/other_stuff but with the privileges of the group other_group
+sg other_group -c 'ls /etc/other_stuff'
+```
+
+<br>
 
 
 # sudo
+
+Allows a permitted user to execute a command as another user
+
+- Permissions are defined in the `/etc/sudoers` file
+- Configuration (plugins, debug flags) are defined in `/etc/sudo.conf`
+
 ```bash
-# using a single dash reintilizes the shell
-newgrp {group}
-sg {group} -c {command}
+# executes the cat command on the file file.txt but as the user other_user
+sudo -u other_user cat file.txt
 ```
 
 
-
-
-|file|contents|
+|Params| description |
 |-|-|
-|/etc/sudo.conf | plugins, debug flags|
-|/etc/sudoers| config that affects users|
+| -h| help|
+| -l| list config options apply to the current user along with commands|
+| -Ul {user}| list privileges for the specified user|
+| -i| lauch configured shell of the target user with its env|
+| -u {user}| run as a user other than root|
 
 
-sudoers
+## sudoers file
+
+Contains the following
+
 - Defaults: default behavior, shell environtment, paths to use, logging
     - setting home directory
     - resetting the shell environment
@@ -856,8 +1142,10 @@ sudoers
     - Runas_Alias (user or group that a command can be run as
 - Privileges: which user can run a specified command and option on which host
 
-``` sudoers
 
+### Example `/etc/sudoers` file
+
+```
 # SLES15 has these 2 lines to make sudo act like su
 Defaults targetpw   # ask for password
 ALL ALL=(ALL) ALL   # allow any user on any host to run any command
@@ -888,37 +1176,33 @@ tux ALL = /sbin/lspci
 ```
 
 
-|Params| description |
-|-|-|
-| -h| help|
-| -l| list config options apply to the current user along with commands|
-| -Ul {user}| list privileges for the specified user|
-| -i| lauch configured shell of the target user with its env|
-| -u {user}| run as a user other than root|
-
+<br>
 
 
 # ssh
 
+Connect securely to a remote server and execute commands over an encrypted channel
 
+## ssh configuration directories
+
+|Description|Location|
+|-|-|
+| Global configuration | `/etc/ssh/sshd_config`|
+| User specific configuration |`/home/user_name/.ssh/config`|
+| Fingerprints[^1] | `/home/user_name/.ssh/known_hosts`|
+
+
+[^1]: Fingerprints can be added manually or using a sistem management tool like **SUSE Manager**
 
 ```bash
+# connect to remotehost.com as the user user_name using the port 2222
+ssh -p 2222 user_name@remotehost.com
 
-# system wide
-vi /etc/ssh/sshd_config
+# run a single command in otherhost.com as the user user_name
+ssh user_name@otherhost.com "ls -l /var/log"
 
-# user specific
-vi ~/.ssh/config
-
-sudo systemctl status sshd.service
-sudo systemctl status firewalld.service
-ip a s
-
-# verify fingerprint
-ssh-keyscan -t ecda {host} >> ~/.ssh/known_hosts
-
-# fingerprints are stored in ~/.ssh/known_hosts
-# can be added manually or using system management like SUSE Manager
+# connect to server1.com and, from there, connect to server2.com
+ssh user_name@server1.com -t \"ssh user_name@server2.com\"
 ```
 
 
@@ -930,44 +1214,29 @@ ssh-keyscan -t ecda {host} >> ~/.ssh/known_hosts
 | -q | supress warnings|
 | -v | verbose|
 | -X | X11 forwarding|
+| -f | force pseudo terminal allocation. typically for running applications in the remote server that require a terminal to function properly |
 
 
-
-
-
-``` sshd_config
-
-# disable password authentication on ssh
-PasswordAuthentication no
-UsePAM no
-```
+### check sshd service status
 
 ```bash
+sudo systemctl status sshd.service
+sudo systemctl status firewalld.service
+ip a s
+
 # restart the ssh daemon
 sudo systemctl restart sshd
+```
 
-# generate ssh key
-# ssh-keygen -t {type} [options]
-ssh-keygen -r rsa -b 4096
+### verify fingerprint
 
-# transfer public key
-# ssh-copy-id -i {public-key-file} {server}
-ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.201.12
-
-# ssh agent monitors all ssh requests and provides the requires the private key
-
-# check ssh agent
-ps aux | grep ssh-agent
-
-# start ssh-agent
-eval $(ssh-agent -s)
-ssh-add .ssh/id_rsa
-
-
-
+```bash
+# verify fingerprint
+ssh-keyscan -t ecda {host} >> ~/.ssh/known_hosts
 ```
 
 
+### sshd_config options
 
 |option|description|
 |-|-|
@@ -978,15 +1247,48 @@ ssh-add .ssh/id_rsa
 |PassworAuthentication|specifies if password authentication is allowed|
 |UsePAM| enables pam authentication|
 
+### Example `sshd_config`
+
+```
+# disable password authentication on ssh
+PasswordAuthentication no
+UsePAM no
+```
+
+### Working with ssh keys
+
+ssh keys allow to connect (authenticate) to another server without using a password
+
+`ssh-agent` holds your decrypted private ssh keys in memory, so you only have to enter the keys' passphrase once per login session
+
+```bash
+# generate ssh key
+# ssh-keygen -t {type} [options]
+ssh-keygen -r rsa -b 4096
+ssh-keygen -t ed25519 -C "david.diosdado@.sandox.com.mx" # recommended
+
+# transfer public key
+# ssh-copy-id -i {public-key-file} {server}
+ssh-copy-id -i ~/.ssh/id_rsa.pub user_name@remoteserver.com
+
+# check ssh agent
+ps aux | grep ssh-agent
+
+# start ssh-agent
+eval $(ssh-agent -s)
+ssh-add .ssh/id_rsa
+```
+
+
+
+<br>
 
 ## ssh tunneling
-- redirect traffic from a port in one system to another
-    - local forwarding: from local to remote
-        - send local vnc to a remote server
-    - remote forwarding: from remote to local
-        - remote server sends data through port 9000, local receives on port 80
-- add encryption
-- access to a service on a port that is not open through a firewall
+
+Redirects (forwards) traffic from a port in one system to another adding encryption. Allows acces to a service on a port that is not open through a firewall
+
+- **local forwarding**: from local to remote. <br>e.g.: send local vnc to a remote server
+- **remote forwarding**: from remote to local. <br>e.g.: remote server sends data through port 9000, local receives on port 80
 
 ```bash
 # ssh -L {local_port}:{local_host}:{remote_port} {user}@{server}
@@ -994,10 +1296,22 @@ ssh -L 5901:localhost:5901 tux@server2
 ```
 
 
+<br>
+
+
 # scp
+
+Copy files between local and remote systems using ssh protocol for authentication and encryption
+
 ```bash
-scp {options} {source} {destination} -P {port}
-scp {options} {user}@{host}:{path} {user}@{host}:{path} -P {port}
+# scp {options} {source} {destination} -P {port}
+# scp {options} {user}@{host}:{path} {user}@{host}:{path} -P {port}
+
+# copy the local file file.txt to the directory /remote/directory/ in the remotehost.com
+scp file.txt user_name@remotehost.com:/remote/directory/
+
+# copy the remote file file.txt from the directory /remote/directory/ in the remotehost.com to the local directory (.)
+scp user_name@remotehost.com:/remote/directory/file.txt .
 ```
 
 
@@ -1009,89 +1323,176 @@ scp {options} {user}@{host}:{path} {user}@{host}:{path} -P {port}
 | -P|port|
 
 
+
+<br>
+
 # sftp
 
+Connects to a remote server using sftp. It starts an sftp prompt to manage files in the remote server
+
+```bash
+sftp -P 2222 user_name@remoteserver.com
+```
 
 |Params| description |
 |-|-|
 | -r|recursive|
 | -v|verbose|
 | -q|quiet|
+| -P|port|
 
+
+## sftp commands
+
+|command|description|example|
+|-|-|-|
+|ls|Lists files/directories on the remote server.|ls -l|
+|lls|Lists files/directories on the local machine.|lls|
+|pwd|Shows the remote current working directory.|pwd|
+|lpwd|Shows the local current working directory.|lpwd|
+|cd|Changes the remote directory.|cd /home/user/docs|
+|lcd|Changes the local directory.|lcd /opt/downloads|
+|get|Downloads a file from the remote to the local system.|get remote_file.txt|
+|put|Uploads a file from the local to the remote system.|put local_file.txt|
+|mkdir|Creates a directory on the remote server.|mkdir new_folder|
+|rm|Deletes a file on the remote server.|rm file_to_delete.txt|
+|rename|Renames a file on the remote server.|rename oldname.txt newname.txt|
+|help|Displays a list of all available commands.|help|
+|quit or bye|Exits the SFTP session.|quit|
+
+
+<br>
 
 # vnc
+
+Allows to connect to a remote system usign a graphical interface. VNC stands for 'virtual network computing'. It's not secure
+
 ```bash
 # tigervnc
 vncviwer {options} {host}:{display-number}
 vncviewer 192.168.201.11:1
 ```
 
-- virtual network computing
-- client (initiates conection), server (receives connection and produces output)
-- not secure
-- yast > remote services > remote administration
-    - of necessary open port on firewall
-        - to restrict opening ports on interface use Firewall Details
-        - by default tcp ports 5801 and 5901 are open in the firewall
-    - restart to restart the Display Manager
-- options
-    - allow remote management with session management
-        - multiple concurrent sessions
-        - all applications run regardless of client connections
-        - if a connections is disconnected it will reconnect to the same session
-    - allow remote management without session management
-        - only one concurrent session
-        - session is terminated when client disconnects
-    - do not allow remote management
-- default port 5901
-- default port for browser connection 5801
+## using vnc with suse
+
+### To allow vnc on the machine
+
+- Open yast > remote services > remote administration
+- if necessary, open port on firewall
+    - to restrict opening ports on interface use **Firewall Details**
+    - by default tcp ports 5801 and 5901 are open in the firewall
+- The default port for browser connection is 5801
+
+### Options explanations:
+
+- 'Allow remote management with session management'
+    - multiple concurrent sessions
+    - all applications run regardless of client connections
+    - if a connections is disconnected it will reconnect to the same session
+- 'allow remote management without session management'
+    - only one concurrent session
+    - session is terminated when client disconnects
 
 
 
-# rdp
+<br>
+
+
+# xrdp
+
+Allows to connect to a remote system using rdp. Not installed by default
+
+It's managed using yast > remote administration (rdp)
+
 ```bash
 # rdp is not installed by default in suse
 zypper in xrdp yast2-rdp
 ```
 
-- yast > remote administration (rdp)
 
+<br>
 
 # storage
-- physical
-- disk access (sata (serial advanced technology attachment), scsi (small computer system interface), fc, iscsi, nvme(non-volatile memory express)
-- block device (block device files created for storage devices and partitions, enable os to interact)
-- logical storage layer (md, dm-raid, lvm, mpio, device-mapper *btrfs)
+
+### storage types
+
+
+
+|type|contains|
+|-|-|
+|file system mount layer | fhs[^fhs] (files and directories)|
+|file system layer |cluster file systems, traditional file systems, btrfs[^btrfs]|
+|logical storage layer |md[^md], dm-raid, lvm, mpio, device-mapper|
+|block device layer |attached storage devices (block devices represented by files which offer interaction with devices), for devices and partitions|
+|disk access protocol layer |sata[^sata], scsi[^scsi], fc[^fc], iscsi[^iscsi], nvme[^nvme]|
+|physical layer| spinning, ssd, san|
+
+
+[^sata]: serial advanced technology attachment
+[^scsi]: small computer system interface
+[^iscsi]: internet small computer system interface
+[^fc]: fibre channel
+[^nvme]: non-volatile memory express
+[^md]: multiple device
+[^dmraid]: device mapper raid
+[^lvm]: logical volume manager
+[^mpio]: multipath input/output
+[^btrfs]: b-tree filesystem
+[^fhs]: filesystem hierarchy standard
+
+
+<br>
 
 ## device naming
-- disks: storage devices (spinning, ssd, san)
-- udev manages the creation and removing of dev files when detected or removed
 
-### Naming Conventions
+Storage devices (spinning, ssd, san) are called disks
 
-- raw sd: sd{device-letter}: /dev/sda, /dev/sdb
-- raw nvme: nvme{controller}n{device}: /dev/nvme0n1, /dev/nvme1n1
-- partition sd: sd{device-letter}{partition-number}: /dev/sda1, /dev/sda2
-- partition nvme: nvme{controller}n{device}p{partition-number}: /dev/nvme0n1p1, /dev/nvme0n1p2
+`udev`[^udev] manages the creation and removing of dev files when detected or removed
+
+[^udev]: userspace /dev
+
+
+|type|naming convention|examples|
+|-|-|-|
+|raw sd| sd{device-letter}| /dev/sda, /dev/sdb|
+|raw nvme| nvme{controller}n{device}| /dev/nvme0n1, /dev/nvme1n1|
+|partition sd| sd{device-letter}{partition-number}| /dev/sda1, /dev/sda2|
+|partition nvme| nvme{controller}n{device}p{partition-number}| /dev/nvme0n1p1, /dev/nvme0n1p2|
+
+
+<br>
+
+<br>
 
 ### persistent device names
 
-are symlinks located in /dev/disk/ and are based on identifiers, for example uuid
-
-based on:
-
-- /dev/disk/by-id/ : disk type, bus and address
-- /dev/disk/by-label/ : file system labels
-- /dev/disk/by-partuuid/ : partition uuid
-- /dev/disk/by-path/ : based on bus and device address
-- /dev/disk/by-uuid/ : file system uuid
+Are symlinks located in `/dev/disk/` and are based on identifiers, for example the `uuid`
 
 
+|location|identifiers|
+|-|-|
+|/dev/disk/by-id/ | disk type, bus and address|
+|/dev/disk/by-label/ | file system labels|
+|/dev/disk/by-partuuid/ | partition uuid|
+|/dev/disk/by-path/ | based on bus and device address|
+|/dev/disk/by-uuid/ | file system uuid|
+
+
+
+
+<br>
 
 
 
 
 # lsblk
+
+List informations about all available block devices
+
+```bash
+lsblk
+```
+
 
 
 |Params| description |
@@ -1102,9 +1503,14 @@ based on:
 | -O|show all available columns|
 
 
-# parted
-```bash
+<br>
 
+
+# parted
+
+Command line utility for managing hard disk partitions
+
+```bash
 # display information for a given device
 parted /dev/sda print
 
@@ -1131,15 +1537,13 @@ ls -l /dev/disk/by-partuuid/
 ```
 
 
-
-
-
-
 |Params| description |
 |-|-|
 | -l| list partition layout|
 | -s, --script| do not prompt user for input|
 
+
+## parted prompt commands
 
 
 |command| description |
@@ -1152,7 +1556,11 @@ ls -l /dev/disk/by-partuuid/
 |rm {partition-number}| delete partition|
 |quit|exit from parted|
 
-# filesystems
+
+<br>
+
+# filesystems creation and management
+
 ```bash
 # create filesystem in the first partition of the device sdc, with the label data1
 mkfs.ext4 -L data1 /dev/sdc1
@@ -1198,11 +1606,17 @@ cat /etc/mtab       # updated from the contens /proc/mounts. could be out of syn
 
 VFS Virtual file system switch -> Abstraction to file system
 
+
+<br>
+
 # mount
+
+Makes a file system on a storage device accessible at a specified location called a mount point, within the directory hierarchy
+
 ```bash
 # mount {mode} {options} {device} {mount-point}
-mount -t ext4 /dev/sda1 /data
-mount -t ext4 -o ro /dev/sda1 /data
+mount -t ext4 /dev/sda1 /mnt/data
+mount -t ext4 -o ro /dev/sda1 /mnt/data
 ```
 
 
@@ -1212,6 +1626,8 @@ mount -t ext4 -o ro /dev/sda1 /data
 | -a| mount all file systems listed on fstab|
 | -o {options}| specify options such as mount as read only|
 
+
+## mount command options
 
 
 |options|description|mount|fstab|
@@ -1229,15 +1645,44 @@ mount -t ext4 -o ro /dev/sda1 /data
 |relatime|update inode access time relative to modify or change time| | |
 
 
-# fstab
-```bash
+# umount
 
+Unmounts mounted device
+
+```bash
+# umount {options} {device/mount-point}
+
+# unmount the device that is mounted in /mnt/data
+umont /mnt/data
+
+# check processes with open files from mount point
+lsof | grep /mnt
+
+# get info about open file
+lsof {file-name}
+```
+
+
+|Params| description |
+|-|-|
+| -a, --all|unmount all mounted file systems|
+| -f, --force| force unmount even if there are open files|
+
+
+<br>
+
+
+
+# fstab
+
+Table that defines how storage devices, partitions and network shares are automatically mounted at boot
+
+```bash
 # check for syntax errors in the fstab
 mount -a
-
-
-
 ```
+
+## fstab row structure
 
 {1} {2} {3} {4} {5} {6}
 
@@ -1250,28 +1695,15 @@ mount -a
 |5,6|whether to use the dump backup utility and the file system check order|
 
 
-# umount
-```bash
-# umount {options} {device/mount-point}
-
-# check processes with open files from mount point
-lsof | grep /mnt
-
-# get info about open file
-lsof {file-name}
-
-```
+<br>
 
 
-|Params| description |
-|-|-|
-| -a, --all|unmount all mounted file systems|
-| -f, --force| force unmount even if there are open files|
 
 
 # df
 
-- info for entire file system
+info for entire file system
+
 
 |Params| description |
 |-|-|
@@ -1279,10 +1711,14 @@ lsof {file-name}
 | -H|human readable in powers of 10|
 
 
+<br>
+
+
 # du
 
 - individual named files
 - files in a directory and subdirectories
+
 
 |Params| description |
 |-|-|
@@ -1290,6 +1726,9 @@ lsof {file-name}
 | -s|total size directory|
 
 
+
+
+<br>
 
 
 
@@ -1444,6 +1883,9 @@ lvm2-monitor.service
 - thin pool means space is assigned on demand
 
 
+<br>
+
+
 # lvcreate
 ```bash
 # lvcreate -L {size} {options} {vg-name}
@@ -1459,6 +1901,9 @@ lvcreate -L 10G -n linear_lv vg1
 | -m| number of mirrors|
 
 
+
+
+<br>
 
 
 # btrfs (b-tree filesystem)
@@ -1864,6 +2309,9 @@ reboot
 
 
 
+<br>
+
+
 
 # system libraries
 
@@ -1901,6 +2349,9 @@ ldconfig -p # display contents of ld.so.cache
 ## file
 
 - check the type of a file
+
+
+<br>
 
 
 # monitoring
@@ -2025,6 +2476,9 @@ ldconfig -p # display contents of ld.so.cache
             - network
 
 
+<br>
+
+
 # sysstat utilities
 
 install tools
@@ -2144,6 +2598,9 @@ ss -paun
 
 
 ```
+
+
+<br>
 
 
 
@@ -2333,6 +2790,9 @@ systemctl set-property system.slice DeviceAllow="/dev/sdv1 r"
 
 
 
+<br>
+
+
 # sysctl
 
 - changes tunable kernel parameters at runtime
@@ -2349,6 +2809,9 @@ systemctl set-property system.slice DeviceAllow="/dev/sdv1 r"
 
 
 
+<br>
+
+
 # public key cryptography
 
 - sender encrypts with public key of recipient, recipient decrypts its private key
@@ -2362,6 +2825,9 @@ systemctl set-property system.slice DeviceAllow="/dev/sdv1 r"
     - web browser verifies the key of the server with the public key of the CS that signed the key
     - if key is valid, web browesr and web server stablish a secure connection
 
+
+
+<br>
 
 # openssl
 ```bash
@@ -2379,6 +2845,9 @@ vi /etc/ssl/openssl.cnf
 ```
 
 
+
+
+<br>
 
 
 
@@ -2431,6 +2900,9 @@ lspci -D | grep Ethernet
     - mac address
     - configured in /etc/udev/rules/d/70-persistent-net.rules
 
+
+
+<br>
 
 # ip (linux)
 ```bash
@@ -2523,11 +2995,17 @@ ip route add default via 192.168.201.1
 |delete, d| delete route|
 
 
+
+<br>
+
 # ethtool
 ```bash
 ethtool {device}
 
 ```
+
+
+<br>
 
 # network
 ```bash
@@ -2548,6 +3026,9 @@ ping {address} # usese ICMP
 
 
 
+<br>
+
+
 # ping
 
 - uses ICMP to send an echo request
@@ -2562,6 +3043,9 @@ ping {address} # usese ICMP
 | -4|use only pv4|
 | -6|use only pvt|
 
+
+
+<br>
 
 # traceroute
 
@@ -2579,6 +3063,9 @@ ping {address} # usese ICMP
 | -4, -6| force IPv4 or IPv6|
 | -I| specify ICMP|
 | -T| specify TCP|
+
+
+<br>
 
 
 # wicked
@@ -2696,6 +3183,9 @@ dig google.com MX
 search example.com
 nameserver 192.168.201.1
 ```
+
+<br>
+
 
 # linux logging
 
@@ -2989,6 +3479,9 @@ dmesg -x --time-format iso
 
 
 
+<br>
+
+
 
 # journalctl
 
@@ -3050,6 +3543,9 @@ Storage=auto
 ```
 
 
+<br>
+
+
 # supportconfig
 
 ```bash
@@ -3076,6 +3572,9 @@ tar -xJf scc_server1_240121_2047.txz
 | -A| activate all functions with additional logging and full rpm verification|
 | -u {uri}| upload archive to the suse support server specified in the uri|
 | -r {sr_number}| include the service request number in the archive name|
+
+
+<br>
 
 
 
@@ -3338,6 +3837,9 @@ zypper rm -tD pattern games # dry run remo
 | -u| show only packages not installed|
 
 
+
+<br>
+
 # yast
 ```bash
 # partitioner
@@ -3459,29 +3961,9 @@ dos discos duros dedicados al systema operativo para que no afecte al performanc
 # fdisk
 
 
-
-# setfacl
-```bash
-# set acl permissions for user for directory recursively
-sudo setfacl -R -m u:{username}:{permissionsbits} {dir}
-
-# remove acl permissions recursively for group for directory
-sudo setfacl -R -x g:{username} {dir}
-
-# check acl permissions for file
-sudo getfacl {file-or-dir}
-
-```
+<br>
 
 
-|Params| description |
-|-|-|
-| -m | modify|
-| -x | remove|
-| -d | default|
-| -b | remove all|
-| -R | recursive|
-| -n | do not reevaluate the mask|
 
 
 # ps pgrep
@@ -3615,6 +4097,9 @@ pkill
 
 
 # pstree
+
+Show process tree
+
 
 |Params| description |
 |-|-|

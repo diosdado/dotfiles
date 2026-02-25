@@ -52,111 +52,141 @@ fi
 
 sleep 2
 
-# -------------------------------------------------------------------------------------------------
-# GNU Core Tools and utilities
-# -------------------------------------------------------------------------------------------------
-echo "Installing GNU Tools and utilities..."
-brew install coreutils
-brew install gnu-sed
-brew install gnu-tar
-brew install gnu-indent
-brew install gnu-which
-brew install findutils
-brew install inetutils
-brew install gawk
-brew install grep
-brew install socat
-brew install htop
-brew install tree
-brew install pstree
-
-sleep 2
-
-# -------------------------------------------------------------------------------------------------
-# ZSH Tools
-# -------------------------------------------------------------------------------------------------
-echo "Installing ZSH Tools..."
-brew install zsh-autosuggestions
-brew install zsh-syntax-highlighting
-brew install zsh-completions
-brew install zsh-history-substring-search
-brew install zsh-interactive-cd
-brew install zsh-navigation-tools
-
-sleep 2
 
 # -------------------------------------------------------------------------------------------------
 # PACKAGES
 # -------------------------------------------------------------------------------------------------
 PACKAGES=(
-    pandoc
-    node
-    npm
-    nvm
-    wget
-    terminal-notifier
-    postgresql
+    git
     bash
-    imagemagick
+    dart-lang/dart/dart
+    meson # buildsystem
+    pypy
     python
     python3
-    pypy
-    git
-    stow
-    fswatsh
-    jq
+    pipx # execute python binares
+    node
+    nvm # manage multiple node versions
+    yarn # js package manager
+    pnpm # node package manager
+    tree-sitter # language parser
+
+    coreutils # gnu core utilities
+    findutils # gfind, glocate, gupdatedb, gxargs
+    gnu-indent
+    gnu-sed
+    gnu-tar
+    gnu-which
+    gawk # gnu awk
+    grep
+    inetutils # network utilities
+    wget
+
+    clamav # antivirus
+    socat # sockets
+    buf # work with protocol buffers
+    pstree # ps in a tree
+    ncdu # disk usage
+    fzf # fuzzy finder
+    fd # alternative to find
+    jq # process json
+    tree # tree view of directories
+    ripgrep # rg, like grep
+
+    postgresql
     sass/sass/sass
+    composer
+
     neovim
-    koekeishiya/formulae/yabai
+    yazi
+    stow
     tmux
-    tree-sitter
-    fzf
-    fd
-    neofetch
-    socsieng/tap/sendkeys
-    switchaudio-osx
+    bat
+    cmatrix
+    fastfetch
+    htop
+    cava # mic preview
+    switchaudio-osx # togge mute mic
+    socsieng/tap/sendkeys # send keystrokes in mac
+    pv # pipe viewer
+    watch # executes a program periodically
+    watchexec # execute commands when watched files change
+    fswatch # monitor changes in files or directories
+    gh # github
+    lynx # web browser
+    yt-dlp # youtube downloader
+
+    pandoc # render to different file types
+    glow # render markdown in terminal
+    imagemagick
+    sevenzip
+    poppler
+    resvg
+    ffmpeg
+
+    powerlevel10k
+    zsh-autosuggestions
+    zsh-completions
+    zsh-history-substring-search
+    zsh-navigation-tools
+    zsh-syntax-highlighting
+    zsh-interactive-cd
+
+    koekeishiya/formulae/yabai
+    jeffreywildman/virt-manager/virt-viewer
+    felixkratz/formulae/borders
+    terminal-notifier
 )
+
+
 CASKS=(
-    bettertouchtool
-    brave-browser
-    blender
-    obs
-    only-switch
-    boom-3d
-    mamp
-    wacom-tablet
     contexts
-    monitorcontrol
-    mysqlworkbench
-    ghostty
-    michaelvillar-timer
-    macfuse
-    kitty
-    gimp
-    vscodium
-    whatsapp
-    inkscape
-    vlc
     karabiner-elements
-    onlyoffice
+    bettertouchtool
+    only-switch
+    monitorcontrol
+    wacom-tablet
+    macfuse
     owncloud
-    transmission
-    whisky
     free-ruler
-    hex-fiend
-    appcleaner
-    openemu
-    librewolf
-    steam
-    qcad
     homerow
     instantview
+    onyx
+    boom-3d
+    appcleaner
+
+    librewolf
+    brave-browser
+    vscodium
+    kitty
+    blender
+    gimp
+    inkscape
+    drawio
+    affinity
+    rawtherapee
+    qcad
+    onlyoffice
+    mysqlworkbench
+    obs
+    mamp
+    michaelvillar-timer
+    vlc
+    transmit
+    transmission
+    hex-fiend
     openvpn-connect
     windows-app
+    utm
+
+    whatsapp
     jitsi-meet
     zoom
-    utm
-    onyx
+    microsoft-teams
+
+    whisky
+    openemu
+    steam
 )
 
 
@@ -189,10 +219,9 @@ sudo -u $SUDO_USER npm install marked -g
 
 
 # -------------------------------------------------------------------------------------------------
-# Yabai and skhd
+# Yabai
 # -------------------------------------------------------------------------------------------------
-echo "Starting Yabai and skhd services..."
-skhd --start-service
+echo "Starting Yabai..."
 yabai --start-service
 
 echo "Adding Git configuration..."

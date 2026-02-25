@@ -43,15 +43,6 @@
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "9" },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }]
-},
-
-
-
-
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "7" },
     "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }]
 },
@@ -59,6 +50,11 @@
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "8" },
     "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "9" },
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }]
 },
 
 
@@ -109,7 +105,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "t" },
-    "to": [{ "shell_command": "~/.scripts/yabai/browser-and-terminal-to-primary.sh" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/terminal-to-primary.sh" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -154,13 +150,16 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "c" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "/Applications/BetterTouchTool.app/Contents/SharedSupport/bin/bttcli trigger_named 'color-picker'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "v" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "open -a 'Free Ruler'" }]
 },
+
+
+
 
 
 {
@@ -231,7 +230,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "n" },
-    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a office" }]
+    "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -291,16 +290,6 @@
 
 
 
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "left_shift" },
-    "to": [{ "shell_command": "/Applications/BetterTouchTool.app/Contents/SharedSupport/bin/bttcli trigger_named 'color-picker'" }]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "left_control" },
-    "to": [{ "shell_command": "open -a 'Free Ruler'" }]
-},
 
 
 
@@ -313,7 +302,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "return_or_enter" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "open -a 'TypingClub'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
@@ -328,22 +317,22 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "home" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "open -a 'Music'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "end" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "open -a 'Crunchyroll'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "page_up" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "open -a 'Netflix'" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "page_down" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "open -a 'Prime Video'" }]
 },
 
 
@@ -351,16 +340,6 @@
 
 
 
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "right_command" },
-    "to": [ { "key_code": "spacebar", "modifiers": ["shift","command"] } ]
-},
-{
-    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "right_option" },
-    "to": [ { "key_code": "j", "modifiers": ["shift","command"] } ]
-},
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "open_bracket" },
@@ -379,6 +358,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "right_control" },
+    "to": [ { "shell_command": "" } ]
     "to": [ { "key_code": "w", "modifiers":["command"] } ]
 }
 

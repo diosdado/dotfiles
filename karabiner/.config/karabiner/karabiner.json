@@ -9,156 +9,155 @@
                 "rules": [
                     {
                         "description": "Diosdado-LayeredFunctionKeys",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "equal_sign" },
+                                "from": { "key_code": "tab" },
                                 "to": [{ "key_code": "f1" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "1" },
+                                "from": { "key_code": "q" },
                                 "to": [{ "key_code": "f2" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "2" },
+                                "from": { "key_code": "w" },
                                 "to": [{ "key_code": "f3" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "3" },
+                                "from": { "key_code": "e" },
                                 "to": [{ "key_code": "f4" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "4" },
+                                "from": { "key_code": "r" },
                                 "to": [{ "key_code": "f5" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "5" },
+                                "from": { "key_code": "t" },
                                 "to": [{ "key_code": "f6" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "6" },
+                                "from": { "key_code": "y" },
                                 "to": [{ "key_code": "f7" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "7" },
+                                "from": { "key_code": "u" },
                                 "to": [{ "key_code": "f8" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "8" },
+                                "from": { "key_code": "i" },
                                 "to": [{ "key_code": "f9" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "9" },
+                                "from": { "key_code": "o" },
                                 "to": [{ "key_code": "f10" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "0" },
+                                "from": { "key_code": "p" },
                                 "to": [{ "key_code": "f11" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "app_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "hyphen" },
+                                "from": { "key_code": "backslash" },
                                 "to": [{ "key_code": "f12" }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -170,7 +169,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -182,7 +181,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -194,7 +193,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -206,7 +205,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -218,7 +217,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -230,7 +229,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -242,7 +241,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -254,7 +253,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -266,7 +265,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -278,7 +277,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -290,13 +289,61 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "yabai_layer",
+                                        "name": "function_layer",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": { "key_code": "hyphen" },
                                 "to": [{ "key_code": "volume_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "h" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "j" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "k" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d north" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "l" },
+                                "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d east" }],
                                 "type": "basic"
                             }
                         ]
@@ -461,18 +508,6 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "9" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "app_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": { "key_code": "7" },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }],
                                 "type": "basic"
@@ -487,6 +522,18 @@
                                 ],
                                 "from": { "key_code": "8" },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "9" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
                                 "type": "basic"
                             },
                             {
@@ -582,7 +629,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "t" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/browser-and-terminal-to-primary.sh" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/terminal-to-primary.sh" }],
                                 "type": "basic"
                             },
                             {
@@ -870,7 +917,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "n" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a office" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }],
                                 "type": "basic"
                             },
                             {
@@ -1038,7 +1085,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "return_or_enter" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "open -a 'TypingClub'" }],
                                 "type": "basic"
                             },
                             {
@@ -1067,7 +1114,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "home" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "open -a 'Music'" }],
                                 "type": "basic"
                             },
                             {
@@ -1079,7 +1126,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "end" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "open -a 'Crunchyroll'" }],
                                 "type": "basic"
                             },
                             {
@@ -1091,7 +1138,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "page_up" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "open -a 'Netflix'" }],
                                 "type": "basic"
                             },
                             {
@@ -1103,7 +1150,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "page_down" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "open -a 'Prime Video'" }],
                                 "type": "basic"
                             },
                             {
@@ -1115,12 +1162,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "right_command" },
-                                "to": [
-                                    {
-                                        "key_code": "spacebar",
-                                        "modifiers": ["shift", "command"]
-                                    }
-                                ],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {
@@ -1132,12 +1174,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "right_option" },
-                                "to": [
-                                    {
-                                        "key_code": "j",
-                                        "modifiers": ["shift", "command"]
-                                    }
-                                ],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {

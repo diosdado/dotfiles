@@ -23,6 +23,7 @@ config_file=~/.scripts/.conf
 /opt/homebrew/bin/yabai -m rule --remove  numbers
 /opt/homebrew/bin/yabai -m rule --remove  keynote
 /opt/homebrew/bin/yabai -m rule --remove  onlyoffice
+/opt/homebrew/bin/yabai -m rule --remove  typingclub
 
 
 case $conference_layout in
@@ -51,6 +52,7 @@ case $yabai_layout in
         /opt/homebrew/bin/yabai -m rule --add app="Numbers"           space=s_secondary     label=numbers
         /opt/homebrew/bin/yabai -m rule --add app="Keynote"           space=s_secondary     label=keynote
         /opt/homebrew/bin/yabai -m rule --add app="ONLYOFFICE"        space=s_secondary     label=onlyoffice
+        /opt/homebrew/bin/yabai -m rule --add app="TypingClub"        space=s_secondary     label=typingclub
         ;;
     design)
         /opt/homebrew/bin/yabai -m rule --add app="LibreWolf"         space=s_third         label=librewolf
@@ -65,6 +67,7 @@ case $yabai_layout in
         /opt/homebrew/bin/yabai -m rule --add app="Numbers"           space=s_secondary     label=numbers
         /opt/homebrew/bin/yabai -m rule --add app="Keynote"           space=s_secondary     label=keynote
         /opt/homebrew/bin/yabai -m rule --add app="ONLYOFFICE"        space=s_secondary     label=onlyoffice
+        /opt/homebrew/bin/yabai -m rule --add app="TypingClub"        space=s_secondary     label=typingclub
         ;;
     office)
         /opt/homebrew/bin/yabai -m rule --add app="LibreWolf"         space=s_third         label=librewolf
@@ -79,6 +82,7 @@ case $yabai_layout in
         /opt/homebrew/bin/yabai -m rule --add app="Numbers"           space=s_primary       label=numbers
         /opt/homebrew/bin/yabai -m rule --add app="Keynote"           space=s_primary       label=keynote
         /opt/homebrew/bin/yabai -m rule --add app="ONLYOFFICE"        space=s_primary       label=onlyoffice
+        /opt/homebrew/bin/yabai -m rule --add app="TypingClub"        space=s_primary       label=typingclub
         ;;
 esac
 
@@ -100,6 +104,7 @@ case "$apply" in
         /opt/homebrew/bin/yabai -m rule --apply  numbers
         /opt/homebrew/bin/yabai -m rule --apply  keynote
         /opt/homebrew/bin/yabai -m rule --apply  onlyoffice
+        /opt/homebrew/bin/yabai -m rule --apply  typingclub
     ;;
 esac
 

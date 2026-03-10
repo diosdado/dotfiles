@@ -154,6 +154,7 @@ CASKS=(
     onyx
     boom-3d
     appcleaner
+    anybar
 
     librewolf
     brave-browser

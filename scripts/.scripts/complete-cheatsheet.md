@@ -70,24 +70,24 @@ ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:a copy output2.mov
 | | &nbsp | | |
 | | &nbsp | | |
 |tab| restart yabai  |y| reminders |
-|q| yabai default  |u| terminal |
-|w| yabai design  |i| browser |
-|e| yabai office  |o| whatsapp |
-|r| yabai conference  |p| email |
-|t| yabai terminal |  \ | mamp |
+|q|  default layout |u| terminal |
+|w|  design layout  |i| browser |
+|e|  office layout  |o| whatsapp |
+|r|  conference to primary  |p| email |
+|t| terminal to primary |  \ | SUSE Learning Center  |
 | | &nbsp | | |
 | | &nbsp | | |
 | esc | layer app  |h| left |
 |a|mission control  |j| down |
 |s|show desktop | k| up |
 |d| left click | l| right |
-|f| ftp| ;| design |
-|g|MAMP | '| windows app |
+|f| right click     | ;| design |
+|g|FTP | '| windows app |
 | | &nbsp | | |
 | | &nbsp | | |
 | left_shift  | eyedropper |n| office |
 |z| finder | m| conference |
-|x|SUSE Learning Center   |,| clipboard |
+|x| |,| clipboard |
 |c|   |.| clipboard |
 |v|   |/| entertainment |
 |b| obs  | right_shift |SUSE Learning Center  |

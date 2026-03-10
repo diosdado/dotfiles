@@ -18,5 +18,5 @@ diskutil unmount /Volumes/Diosdado\ WD
 diskutil unmount /Volumes/Diosdado\ SG
 diskutil unmount /Volumes/Diosdado\ SM
 
-/opt/homebrew/bin/terminal-notifier -message "Killing Music agents, VLC, Fincer and ejecting external drives." -title "Library Agents"
+/opt/homebrew/bin/terminal-notifier -message "Killing Music agents, VLC, Finder and ejecting external drives." -title "Library Agents"
 

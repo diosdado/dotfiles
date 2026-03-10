@@ -8,7 +8,7 @@ display_frame=$(/opt/homebrew/bin/yabai -m query --displays | /opt/homebrew/bin/
 display_left=$(echo $display_frame | /opt/homebrew/bin/jq ".x" | cut -d'.' -f1)
 display_top=$(echo $display_frame | /opt/homebrew/bin/jq ".y" | cut -d'.' -f1)
 position_left=$(( $display_left + 40 ))
-position_top=$(( $display_top + 60 ))
+position_top=$(( $display_top + 800 ))
 position_increment=10
 window_width=200
 query='.[] | select( ."app" == "Stickies") | .id'

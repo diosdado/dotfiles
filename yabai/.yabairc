@@ -105,13 +105,12 @@ yabai -m rule --add app="^Ghostty$"                 scratchpad=ghostty      grid
 
 
 # defaul spaces for apps
-yabai -m rule --add app="^TypingClub$"              space=s_primary
 yabai -m rule --add app="^OBS Studio$"              space=s_primary
 
 yabai -m rule --add app="^Windows\ App$"            space=s_development
 yabai -m rule --add app="^Screen\ Sharing$"         space=s_development
 yabai -m rule --add app="^UTM$"                     space=s_development
-yabai -m rule --add app="^draw.io$"                 space=s_development
+yabai -m rule --add app="^draw.io$"                 space=s_primary
 
 yabai -m rule --add app="^Blender$"                 space=s_development
 
@@ -154,7 +153,11 @@ yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
 yabai -m rule --add app="^SUSE\ Learning\ Center$"  space=s_primary
 yabai -m rule --add app="^SUSE\ Labs$"              space=s_secondary
 
-
+# yabai -m rule --add app="^ONLYOFFICE$"              space=s_office
+# yabai -m rule --add app="^Pages$"                   space=s_office
+# yabai -m rule --add app="^Keynote$"                 space=s_office
+# yabai -m rule --add app="^Numbers$"                 space=s_office
+# yabai -m rule --add app="^TypingClub$"              space=s_office
 
 
 

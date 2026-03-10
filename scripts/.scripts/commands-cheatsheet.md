@@ -1189,10 +1189,10 @@ Connect securely to a remote server and execute commands over an encrypted chann
 |-|-|
 | Global configuration | `/etc/ssh/sshd_config`|
 | User specific configuration |`/home/user_name/.ssh/config`|
-| Fingerprints[^1] | `/home/user_name/.ssh/known_hosts`|
+| Fingerprints[^ssh-fingerprints] | `/home/user_name/.ssh/known_hosts`|
 
 
-[^1]: Fingerprints can be added manually or using a sistem management tool like **SUSE Manager**
+[^ssh-fingerprints]: Fingerprints can be added manually or using a sistem management tool like **SUSE Manager**
 
 ```bash
 # connect to remotehost.com as the user user_name using the port 2222
@@ -1421,9 +1421,9 @@ zypper in xrdp yast2-rdp
 |type|contains|
 |-|-|
 |file system mount layer | fhs[^fhs] (files and directories)|
-|file system layer |cluster file systems, traditional file systems, btrfs[^btrfs]|
+|file system layer |where filesystems[^filesystems] live. cluster file systems, traditional file systems, btrfs[^btrfs]|
 |logical storage layer |md[^md], dm-raid, lvm, mpio, device-mapper|
-|block device layer |attached storage devices (block devices represented by files which offer interaction with devices), for devices and partitions|
+|block device layer |attached storage devices[^attached-storage-devices], for devices and partitions|
 |disk access protocol layer |sata[^sata], scsi[^scsi], fc[^fc], iscsi[^iscsi], nvme[^nvme]|
 |physical layer| spinning, ssd, san|
 
@@ -1439,7 +1439,8 @@ zypper in xrdp yast2-rdp
 [^mpio]: multipath input/output
 [^btrfs]: b-tree filesystem
 [^fhs]: filesystem hierarchy standard
-
+[^attached storage devices]: attached storage devices are represented by a device file
+[^filesystems]: filesystems are where the data is stored. They maintain metadata entries that reference storage blocks corresponding to files and directories
 
 <br>
 
@@ -1447,7 +1448,7 @@ zypper in xrdp yast2-rdp
 
 Storage devices (spinning, ssd, san) are called disks
 
-`udev`[^udev] manages the creation and removing of dev files when detected or removed
+The `udev`[^udev] subsystem creates device files for partitions in the `/dev` directory and also creates persistent device names with symlinks under the `/dev/disk/` directory
 
 [^udev]: userspace /dev
 
@@ -1460,7 +1461,6 @@ Storage devices (spinning, ssd, san) are called disks
 |partition nvme| nvme{controller}n{device}p{partition-number}| /dev/nvme0n1p1, /dev/nvme0n1p2|
 
 
-<br>
 
 <br>
 
@@ -1487,18 +1487,24 @@ Are symlinks located in `/dev/disk/` and are based on identifiers, for example t
 
 # lsblk
 
-List informations about all available block devices
+List information about all available block devices
 
 ```bash
 lsblk
-```
 
+# also show filesystems information
+lsblk -f
+
+# list information about and specific block device
+lsblk /dev/sda
+
+```
 
 
 |Params| description |
 |-|-|
 | -a, --all|include empty and ram devices|
-| -f, --fs|display file system information|
+| -f, --fs|display file system information, equivalent to `-o NAME,FSTYPE,LABEL,UUID,FSAVAIL,MOUNTPOINT`|
 | -o, --output|columns to display (comma separated list)|
 | -O|show all available columns|
 
@@ -1508,9 +1514,14 @@ lsblk
 
 # parted
 
-Command line utility for managing hard disk partitions
+View, create, delete, and modify the partition table and partitions on a disk
+
+`parted` can be used at the command line or interactively
 
 ```bash
+# syntax
+# parted [options][device [command [options...]]]
+
 # display information for a given device
 parted /dev/sda print
 
@@ -1522,7 +1533,8 @@ parted -l
 lsblk
 
 # create partition
-parted /dev/sdd mkpart primary 0% 100%
+parted /dev/sdd mkpart primary 0% 50%
+parted /dev/sdd mkpart primary 50% 100%
 
 # remove partition (the partition number is obtained with the print command
 parted /dev/sdd rm 1
@@ -1533,7 +1545,6 @@ dd if=/dev/zero of=/dev/sdd count=1
 
 # show disks by uuid
 ls -l /dev/disk/by-partuuid/
-
 ```
 
 
@@ -1541,6 +1552,14 @@ ls -l /dev/disk/by-partuuid/
 |-|-|
 | -l| list partition layout|
 | -s, --script| do not prompt user for input|
+
+
+## partition tables
+
+|type|meaning|caracteristics|
+|-|-|-|
+|gpt| GUID partition table| modern standard, nearly unlimiter partition sizes and up to 128 partitions|
+|mbr| Master boot record|legacy 32 bit standard, limited to <2TB and up to 4 primary partitions|
 
 
 ## parted prompt commands
@@ -1551,6 +1570,7 @@ ls -l /dev/disk/by-partuuid/
 |unit {unit}|set the unit used when displaying sizes|
 |select {device}|interactively select a device to work with|
 |print|display the partition table for a device|
+|print devices| display all devices when at the (parted) prompt|
 |mklabel {label-type}|create a new partition table (label). {label-type} is typically gpt (GUID partition table)|
 |mkpart {partition-type} {start} {end}|create partition at start and end|
 |rm {partition-number}| delete partition|
@@ -1559,7 +1579,78 @@ ls -l /dev/disk/by-partuuid/
 
 <br>
 
-# filesystems creation and management
+
+# lsof
+
+List open files
+
+```bash
+# list all open files
+lsof
+
+# determine the user and processes using the file
+```
+
+
+<br>
+
+# dd
+
+Low level copying and conversion of data. Useful to copy an ISO image to an USB drive or to delete a partition table
+
+This command is potencilly dangerous. Often is jokingly refered to as 'disk destroyer'
+
+```bash
+# create an usb drive in /dev/sdb with the iso distro.iso
+sudo dd if=/path/to/distro.iso of=/dev/sdb bs=1M status=progress
+
+# delete a partition table on a device
+# copies an unlimited number of zeros into only the first block of the output file
+dd if=/dev/zero of=/dev/sdd count=1
+```
+
+
+|parameters|description|
+|-|-|
+|if={file}| input file, read from this file|
+|of={file}| output file, write to this file|
+|bs={bytes}| read and write up to {bytes} bytes at a time}|
+|count={number}| copy only {number} of blocks|
+|status={progress}| display real-time progres of the tranfer|
+
+
+
+
+<br>
+
+
+
+
+# fdisk
+
+Manipulate disk partition table
+
+<br>
+
+# fsck
+
+Check, repair and maintaint consistency in filesystems
+
+<br>
+
+
+
+# virtual filesystem switch (vfs)
+
+- Provides a standard interface for interacting with a filesystem (including opening and reading a file)
+- Abstracts the filesystem type used to store data from the OS
+- Windows filesystems (vfat, ntfs) can be accessed in SLES through the vfs
+
+
+
+# Linux filesystems
+
+Commands for filesystem creation and management
 
 ```bash
 # create filesystem in the first partition of the device sdc, with the label data1
@@ -1614,9 +1705,19 @@ VFS Virtual file system switch -> Abstraction to file system
 Makes a file system on a storage device accessible at a specified location called a mount point, within the directory hierarchy
 
 ```bash
-# mount {mode} {options} {device} {mount-point}
+# show all mounted filesystems
+mount
+
+# mount all filesystems listed in /etc/fstab
+mount -a
+
+# syntax: mount {mode} {options} {device} {mount-point}
+
+# mount the ext4 filesystem located in /dev/sda1 on the mount point /data
 mount -t ext4 /dev/sda1 /mnt/data
-mount -t ext4 -o ro /dev/sda1 /mnt/data
+
+# mount the ext4 filesystem located on /dev/sda2 as read-only on mount point /data2
+mount -t ext4 -o ro /dev/sda2 /mnt/data2
 ```
 
 
@@ -1672,13 +1773,26 @@ lsof {file-name}
 <br>
 
 
+# /etc/mtab
 
-# fstab
+Contains the current mounted filesystems. Must be identical to `/proc/mounts` (in some systems it's a symlink to it)
+
+`/etc/mtab` and `/proc/mounts` can become out of sync if `/` is mounted as read only for some reason
+
+<br>
+
+
+# /etc/mtab
+
+Contains the current mounted filesystems. Must be identical to `/proc/mounts` (in some systems it's a symlink to it)
+
+
+# /etc/fstab
 
 Table that defines how storage devices, partitions and network shares are automatically mounted at boot
 
 ```bash
-# check for syntax errors in the fstab
+# mount all filesystems defined in the fstab. It also checks for syntax errors in the fstab
 mount -a
 ```
 
@@ -1688,7 +1802,7 @@ mount -a
 
 |field|description|
 |-|-|
-|1|block device containing the filesystem (path or UUID)|
+|1|block device containing the filesystem (path or UUID={uuid})|
 |2|directory to mount the block device onto|
 |3|filesystem type|
 |4|mount options|
@@ -1702,19 +1816,47 @@ mount -a
 
 # df
 
-info for entire file system
+Usage information for an entire file system
+
+```bash
+# display usage information
+df -h
+
+# display usage information only for root
+df -h /
+```
+
 
 
 |Params| description |
 |-|-|
-| -h|human readable|
-| -H|human readable in powers of 10|
+| -a|all|
+| -i|inodes info instead of block usage|
+| -h|human readable, powers of 1024|
+| -H|human readable, powers of 10|
+| -l|only list local filesystems|
+| -T|print fs type|
+| -t {type}, --type={type}| only print file systems of {type}|
+| --total|print totals|
 
 
 <br>
 
 
 # du
+
+Usage information for individual files and files in a directory and subdirectories
+
+```bash
+# print the size of the hosts file
+du -h /etc/hosts
+
+# print the size of files and directories in the /etc directory
+du -h /etc
+
+# print the total size of a directory
+du -s ~/Documents
+```
 
 - individual named files
 - files in a directory and subdirectories
@@ -1723,7 +1865,7 @@ info for entire file system
 |Params| description |
 |-|-|
 | -h|human readable|
-| -s|total size directory|
+| -s|'summary': total size directory |
 
 
 
@@ -1733,165 +1875,25 @@ info for entire file system
 
 
 
-# lvm (logical volume manager
-- on line volume creation and resizin
-- copy-on-write snapshots
-- front end to the Device Mapper (used to manage logical storage)
-- generic storage abstraction engine built into the kernel
-- volume group (VG) is comprised of many physical volumes (pv) physical disks/partitions/hardware raid arrays. VGs can be devided into logical volumes (lv) and are created from logical extents (le)
-- when a pv is added to a vg it is subdivided into physical extents (pe) (basic unit or storage allocated)
-- le are mapped 1:1 to pe, are of the same size and
-- in a mirror lv the mapping would be 1:2
-- types
-    - linear: blocks allocated from any pv in the vg
-    - striped: blocks equally distributed across multiple vg (additional performance)
-    - mirrored: blocks mapped in different pvs to provide redundancy
+# Logical Volume Manager (LVM)
 
+Is a generic storage abstraction engine built into the kernel. Is part of the Logical storage layer. It supports:
 
-```bash
-
-# configuration
-vi /etc/lvm/lvm.conf
-
-# DISPLAY INFO
-# cols for pvs, vgs and lvs configured in vgs_cols in lvm.conf
-
-# pv
-pvscan
-pvs
-pvdisplay
-
-# vg
-vgscan
-vgs
-vgdisplay
-
-# lv
-lvscan
-lvs
-lvdisplay
-
-
-# STEPS FOR CREATING AND PREPARING LOGICAL VOLUMES
-
-# create physical volume
-dd if=/dev/zero of=/dev/sdb bs=512 count=2     # remove partition table from volume
-pvcreate /dev/sdb /dev/sdc /dev/sdd
-
-# create volume group using pvs
-# vgcreate {vg-name} {devices}
-vgcreate vg1 /dev/sdb /dev/sdc /dev/sdd
-
-# create logical volumes
-# lvcreate -L {size} {options} {vg-name}
-
-lvcreate -L 20G -n linear_lv vg1 # linear
-lvcreate -L 10G -i 3 -n striped_lv vg1
-
-# add filesystem to the new lv
-mkfs.ext4 /dev/vg1/linear_lv
-
-# view the created logical volume
-lsblk -f
-lvdisplay striped_lv
-
-# create mirrored lvm
-lvcreate -L 10G -m 1 -n mirrored_lv vg1
-
-lvdisplay -m
-
-# extend volume group
-vgextend vg1 /dev/sdd
-
-# extend logical volume (doesn't extend the file system automatically)
-# number of physical extends is found via vgdisplay {vg-name}
-# lvextend -l +{number-of-physical-extends} {device}
-# lvextend -L +{size} {device}
-lvextend -L 30G vg1/linear_lv
-resize2fs /dev/vg1/linear_lv
-mount /dev/vg1/linear_lv /mnt
-df -h /mnt # view size of extended volume
-
-# view logical volume properties
-lvs vg1/linear_lv
-
-# re mount volume
-mount /dev/vg1/linear_lv
-
-
-
-# extend file system, may need unmounting of the filesystem
-resize2fs # ext
-xfs_growfs # xfs
-btrfs filesystem resize # btrfs
-
-# print partition info
-parted /dev/sde print
-
-
-
-
-# LVM SNAPSHOTS
-# the param -s stands for 'snapshot'
-lvcreate -s -L {size} -n {name} {source-logical-volume}
-
-
-# merge snapshot
-# lvconvert --mergesnapshot -i {progress-interval} {snapshot-volume}
-# --merge alternative to --mergesnapshot
-lvconvert --mergesnapshot -i 1 vg1/snap_lv
-
-
-# to check the status of the volume (if is active)
-lvdisplay /dev/vg1/linear_lv
-
-
-# completing a delayed snapshot merge
-# unmount both source and snapshot
-# deactivate and reactivate the lv source using the -a[ctivate] param
-# mount again the volume
-lvchange -a n /vg1/linear_lv
-lvchange -a y /vg1/linear_lv
-
-
-
-
-
-
-```
-
-
-
-lvm2-lvmetad.service
-- executes vgchange --monitor y
-- starts monitoring a mirroredor snapshot logical volume using the dmeventd service
-lvm2-monitor.service
-- metadata caching for lvm
-- receives notifications from udev
-- maintiais a current and consistent image of the available voulume groups
-
-
-## lvm snapshots
-- snapshots work at block level, and are not aware of file sistems
-- snapshots contain only changed blocks after the snapshot was taken
-- metadata references unchanged blocks and changed blocks
-- a rollback merges the blocks found in the snapshot to the logical volume
-- both the volume and it's snapshot must not have any files open to be performed immediately
-- once the roll back is completed, the snapshot volume is removed
-
-
-- thin pool means space is assigned on demand
-
+- On line volume creation and resizing
+- Copy-on-write snapshots
+- Front end to the Device Mapper (used to manage logical storage)
 
 <br>
-
 
 # lvcreate
+
+Creates a logical volume
+
 ```bash
 # lvcreate -L {size} {options} {vg-name}
 lvcreate -L 10G -n linear_lv vg1
-
 ```
+
 
 |Params| description |
 |-|-|
@@ -1901,31 +1903,414 @@ lvcreate -L 10G -n linear_lv vg1
 | -m| number of mirrors|
 
 
+<br>
 
+
+# lvconvert
+
+Is used to change a Logical Volumes layout (not only for snapshots)
+
+To complete a delayed snapshot merge just umount both source and snapshot and deactivate and reactivate the source
+
+```bash
+lvconvert --mergesnapshot -i 1 vg1/snap_lv
+````
+
+
+|Params| description |
+|-|-|
+| -i {interval}| Display the progress interval |
+| --mergesnapshot| Merge the specified snapshot with it's source|
+| --merge| The type of merge is automatically detected based on the Logical Volume type supplied as an argument (an alternative to --mergesnapshot|
+
+
+# lvchange
+
+Changes the attributes of a logical volume
+
+```bash
+# deactivate the lv source
+lvchange -a n /vg1/linear_lv
+
+# deactivate the lv source
+lvchange -a y /vg1/linear_lv
+```
 
 <br>
 
 
-# btrfs (b-tree filesystem)
+
+
+## Logical Volumes
+
+- **Volume groups (VG)** are comprised of many **Physical Volumes (PV)** (entire disks, individual partitions on disk, NAS).
+- **Volume Groups** can be devided into **Logical Volumes (LV)** and are created from **Logical Extents (LE)** (uniform-sized unit of data. Is the basic unit of storage allocated)
+- When a **Physical Volumes** is added to a **Volume Group** it is subdivided into **Physical Extents**
+- **Logical Extents** are mapped 1:1 to **Physical Extents**, are of the same size and in a mirror **Logical Volume** the mapping would be 1:2
+- **Logical Volumes** can be resizes or a snapshot taken while on-line
+
+### Logical volume types
+
+- Linear: blocks allocated from any pv in the vg
+- Striped: blocks equally distributed across multiple vg (additional performance)
+- Mirrored: blocks mapped in different pvs to provide redundancy
+
+
+## LVM Configuration file: /etc/lvm/lvm.conf
+
+- Loaded in initialization phase of LVM
+- Comprised of a series of sections, each one containing one or more directives
+- Directives control aspects of LVM as:
+    - Which storage devices use when creating LVM devices
+    - Default behavior of LVM tools
+
+### LVM Boot Time Initialization
+
+1. Disks attached to the system are scanned for LVM metadata based on the configuration in the lvm.conf file
+1. Volume Groups are activated
+1. Logical Volumes flagged as active are activated
+1. Filesystems on these logical Volumes can then be mounted via the mount command or `/etc/fstab`
+    - The root (/) can be mounted and therefore be hosted on LVM storage
+
+## LVM Services
+
+Additional LVM services that manage and monnitor LVM devices
+
+- lvm2-monitor.service
+    - Executes `vgchange --monitor y`:
+        - Starts monitoring a mirrored snapshot logical volume using the dmeventd service
+- lvm2-lmvetad.service
+    - performs metadata chaching for lvm
+    - receives notifications from udev
+    - maintains a current and consistent image of the available volume groups
+
+## Creating and preparing Logical Volumes
+
+1. Create one or more PV
+1. Create a VG using one or more PVs
+1. Create LVs
+1. A filesystem can be added to the LVs
+1. The filesystem can be mounted
+
+Creating a PV on a block device installs LVM metadata structures required
+
+## Configuration file
+
+Columns of tables for the commands `pvs`, `vgs` and `lvs` are defined in this file
 
 ```bash
+# configuration
+vi /etc/lvm/lvm.conf
+```
 
+## Displaying information
+
+```bash
+# physical volumes
+pvscan      # scan all suported LVM block devices for PVS and displays the volume groups found
+pvs         # table
+pvdisplay   # display details about PVs (name, id, format, size, etc.)
+
+# volume groups
+vgscan      # scan all block devices for VGs, rebuild the LVM cache and display the VGs
+vgs         # table
+vgdisplay   # details (vg name, format, access, PE size, VG size, etc)
+
+# logical volumes
+lvscan      # list all LVs in all VGs
+lvs         # table
+lvdisplay   # display details (path, name, uuud, write access, etc.)
+```
+
+
+## Steps for creating and preparing Logical Volumes
+
+Create a **Physical Volume**
+
+```bash
+# check if the block device has a partition in it
+parted /dev/sdb print
+
+# if it has a partition, remove the partition table from volume
+dd if=/dev/zero of=/dev/sdb bs=512 count=2
+pvcreate /dev/sdb /dev/sdc /dev/sdd
+```
+
+Create a **Volume Group** adding **Physical Volumes** to it
+
+```bash
+# vgcreate {vg-name} {devices}
+vgcreate vg1 /dev/sdb /dev/sdc /dev/sdd
+```
+
+Create **Logical Volume** using the created **Volume Group**. In this example 3 logical volumes are created, one **linear**, one **stripped**, and one **mirrored**
+
+```bash
+# lvcreate -L {size} {options} {vg-name}
+# lvcreate -L {size} -n {name} {vg-name}
+lvcreate -L 20G -n linear_lv vg1
+lvcreate -L 10G -i 3 -n striped_lv vg1
+lvcreate -L 10G -m 1 -n mirrored_lv vg1
+```
+
+View the created **Logical Volumes**
+
+```bash
+# view the created logical volumes
+lsblk -f
+lvdisplay striped_lv
+
+# display the mapping of logical extents to PVs and physical extents
+lvdisplay -m
+```
+
+You can add a filesystem to the created **Logical Volumes**
+
+```bash
+mkfs.ext4 /dev/vg1/linear_lv
+```
+
+
+Add **Physical Volumes** to the **Volume Group**
+
+```bash
+vgextend vg1 /dev/sde
+```
+
+## Expanding LVM Storage
+
+Steps (take advantage of additional storage:
+
+1. Add Storage
+1. Add Physical Volume
+1. Expand a Volume Group
+1. Add or Expand a Logical Volume
+1. Expand the filesystem
+
+Steps (utilize snapshots)
+
+1. Add Storage
+1. Add Physical Volume
+1. Expand a Volume Group
+1. Snapshot Logical Volume
+
+Extend **Logical Volume**. The filesystem must be resized manually using `resize2fs`. The size can be expressed in **Physical Extents** or in storage size
+
+```bash
+# review the initial Logical volume size before the LV extension
+lvdisplay # get the initial number of Physical Extents
+
+# use vgdisplay to get the Free PE / Size (this number is needed in the lvextend command
+vgdisplay vg1 # returns 12799 Free PE available
+
+# extend the logical volume by the total free PE
+# lvextend -l +{number-of-physical-extends} {device}
+# lvextend -L +{size} {device}
+lvextend -l +12799 /dev/vg1/linear_lv
+
+# review the final Logical Volume size
+lvdisplay # the final number of Physical Extents must be bigger
+
+# resize the file system on the volume to match the available space in the Logical Volume
+# some filesystems need to be unmounted before the resize of the filesystem
+resize2fs /dev/vg1/linear_lv
+
+
+# mount the volume and check its new size
+mount /dev/vg1/linear_lv /mnt
+df -h /mnt # view size of extended volume
+```
+
+Each filesystem type requires its own command to expand it
+
+```bash
+resize2fs       # ext
+xfs_growfs      # xfs
+btrfs filesystem resize # btrfs
+```
+
+## Steps for removing one of the devices in a volume group
+
+```bash
+# check if there is data in the device
+pvdisplay /dev/sdc # if the Total PE is bigger than the Free PE, the volume is in use
+
+# check to which VG the volume is part of
+pvs
+
+# stop the volume from being used, disabling the allocation in it
+# -xn disables allocation, -xy enables allocation
+pvchange -xn /dev/sdc
+
+# check if the volume is allocatable
+pvdisplay /dev/sdc # must return Allocatable NO
+
+# free the volume by moving the allocated extends to the other volumes
+pvmove /dev/sdc
+
+# finally remove the volume from the volume group
+vgreduce vg1 /dev/sdc
+```
+
+
+## Extend a logical volume by storage size (not by PE)
+
+```bash
+# extend the volume group size
+lvextend -L 30G vg1/linear_lv
+
+# the size returned now must be 30G
+lvs vg1/linear_lv
+
+# to ckeck the filesystem on the logical volume we mount it temporarily to /mnt
+mount /dev/vg1/linear_lv /mnt
+
+# check if it's mounted
+mount | grep mnt # must return the device vg1-linear_lv on mount
+
+# check the size of the filesystem before the expansion
+df -h /mnt # must be lower than 30G
+
+# unmount the device to check its filesystem and expand it
+umount /mnt
+
+# before the expansion of a filesystem it must be checked and repaired for errors
+# e2fsck is used to check ext2,ext3,ext4 filesystems
+e2fsck -f /dev/vg1/linear_lv
+
+# resize the filesystem to fill the full block device
+resize2fs /dev/vg1/linear_lv
+
+# mount again the filesystem to check its new size
+mount /dev/vg1/linear_lv /mnt
+df -h /mnt # must be 30G
+```
+
+
+## LVM Snapshots
+
+
+
+# LVM SNAPSHOTS
+
+```bash
+# the param -s stands for 'snapshot'
+lvcreate -s -L {size} -n {name} {source-logical-volume}
+```
+
+- It uses the same command `lvcreate` but it only receives the size of the source, the size of the new volume and the `-s` parameter
+- Snapshots work at block level, and are not aware of file sistems
+- Snapshots contain only changed blocks after the snapshot was taken
+- Metadata references unchanged blocks and changed blocks
+- After the creation, the snapshot volume is not mounted and not directly accesible by the users
+- A rollback merges the blocks found in the snapshot to the logical volume
+- Both the volume and it's snapshot must not have any files open to be performed immediately
+- If files are open the merge is flagged to happen but not performed
+- Once the roll back is completed, the snapshot volume is removed
+
+### Copy-on-Write (COW)
+
+- Before existing data blocks on the source are updated the original block is copied to the snapshot volume and the metadata in the snapshot is updated
+- The snapshot volume doesn't need to be mounted for the COW process
+
+
+# Snapshot example
+
+Creation of snapshot
+
+```bash
+# check in which Volume Group is the Logical Volume and if there is available space in it
+vgdisplay vg1
+
+# create snapshot volume
+lvcreate -s -L 15G -n snap_lv vg1/linear_lv
+
+# view if the snapshot volume was created, it will show that its origin is linear_lv
+lvs
+
+# mount the snapshot volume just to check
+mkdir /snap_lv_mnt # temporary directory to mount the volume
+mount /dev/vg1/snap_lv /snap_lv_mnt
+
+# list all files on the mounted volume, which are the same files in linear_lv
+ls -l /snap_lv_mnt
+
+# check differences in a file between the linear_lv and its snapshot snap_lv
+vimdiff /mnt/file1.txt /snap_lv_mnt/file1.txt
+```
+
+Rollback to snapshot
+
+```bash
+# try to rollback. It will say that it is delayed because the two logical volumes are still mounted
+lvconvert --mergesnapshot -i 1 vg1/snap_lv
+
+# unmount the two volumes
+umount /mnt /snap_lv_mnt
+
+# check the lv status of the linear_lv volume, it should still be 'available'
+lvdisplay /dev/vg1/linear_lv
+
+# deactivate and activate the lv status of the linear_lv volume, it will trigger the merge
+lvchange -a n vg1/linear_lv
+lvchange -a y vg1/linear_lv
+# ...the merge occurs here silently...
+
+# the contents of the snapshot are now moved to linear_lv,
+# and the snapshot itself is deleted automatically
+```
+
+
+---
+
+
+# Btrfs filesystem
+
+Btrfs stands for binary tree filesystem. Is the filesystem used by default in SUSE Linux, which allows snapshot support with roll back and forward
+
+With COW, if the content of a block changes, a new block is allocated and the old block is unchanged. The filesystem metadata is updated to reference the new block
+
+- Supports 16EiB maximum file size
+- Snapshots roll back and forward (uses COW[^cow])
+- Subvolumes
+- Data compression
+- Awearness of ssd and nvme storage
+- Storage quoatas
+
+[^cow]: copy-on-write technology
+
+
+Btrfs Subvolumes
+
+- All Btrfs filesystems consist of a minimum of one subvolume
+- The tree root volume is a subvolume and is known as `FS_TREE` with `ID=5`
+- All subvolumes in a Btrfs filesystem use the same pool of data blocks
+- The subvolumes are mounted in the same way other file systems are
+- A subvolume can be mounted with different options, features and quotas than the parent,
+- Subvolumes are a key component of Btrfs snapshots
+- Since subvolumes are directories, an `rm -r` will remove the subvolume
+
+## Create and maintain Btrfs filesystems
+
+```bash
 # create filesystem
 mkfs.btrfs /dev/sdd
 
-# mount btrfs
-mount -t btrfs /dev/sdc /mnt
-
 # display btrfs attached to the system
+# btrfs filesystem show {device}
 btrfs filesystem show
-btrfs filesystem show {device}
+btrfs filesystem show /dev/sdc
 
-# storage use
+
+# Check the filesystem storage usage
 # btrfs filesystem df {path}
 btrfs filesystem df /mnt
 
 # check btrfs --readonly, --repair
+# btrfs check {options} {device}
 btrfs check /dev/sdc
+btrfs check --readonly /dev/sdc # default mode
+btrfs check --repair /dev/sdc # tries to repair the filesystem
 
 # list subvolumes in the btrfs volume and get ids
 btrfs subvolume list /data5
@@ -1935,33 +2320,18 @@ btrfs subvolume list -p /data5  # show parent ids
 btrfs subvolumem create /data5/subvol1
 btrfs subvolumem create /data5/subvol1/nestsv1
 
-
-
 # mount subvolume
 mount -t btrfs -o subvolid=260 /dev/sdd /data5
+
+# mount default subvolume
+mount -t btrfs /dev/sdc /mnt
 
 # configure default subvolume
 btrfs subvolume get-default /data5
 btrfs subvolume set-default 260 /data5
-
-
 ```
 
 
-- 16EiB maximum file size
-- snapshots roll back and forward (uses copy on write technology)
-    - new changes are not commited until the last write is successful
-- subvolumes
-    - minimum of one subvolume
-    - root is known as FS_TREE with ID=5
-    - all subvolumes use the same pool of data blocks
-    - mounted in the same way other file systems are
-    - multiple nested and with different options, features and quotas  than the parent,
-    - key component to snapshots
-    - rm -r will remove the subvolume
-- data compression
-- awearness of ssd and nvme storage
-- storage quoatas
 
 
 ## btrfs commands
@@ -1987,110 +2357,59 @@ btrfs subvolume set-default 260 /data5
 
 ## snapper
 
-- provides the ability to perform rollbacks on single files or whole snapshots
-- requires btrfs (recommended) or filesystem on top of LVM thint provisioned LVs
-- to boot from snapshots is required SLE or newer
-- each subvolume requieres a snapshot configuration
-    - stored in /etc/snapper/configs/
-- when sles is deployed and btrf is used for root a config is created in /etc/snapper/configs/root
-- snapshot data is stored at the root of the btrfs filesystem in .snapshots/{snapshot-number}
-- yast automatically creates pre and post snapshots when running it
-- NOT included directories:
-    - /boot/grub2/i386-pc, /boot/grub2/x86_64-efi
-    - /opt
-    - /srv
-    - /tmp
-    - /usr/local
-    - /var/crash
-    - /var/lib/mailman, /var/lib/named, /var/lib/pgsql
-    - /var/log
-    - /var/opt
-    - /var/spool
-- Types of snapshots
-    - Timeline (turn off for root)
-        - Taken Hourly
-        - Last 10 daily/monthly/yearly are kept (disabled by default)
-    - Whenever software is installed/updated/deleted involving libzypp (such as snapper command), creates a pre/post pair
-    - Administration also creates a pre/post pair
-    - Manual snapshots
-
-
-
-
+- allows to perform rollbacks on single files or whole snapshots
+- when rolling back:
+    - a new read only snapshot of the previous default snapshot is created
+    - a new read/write snapshot of the current snapshot is created and marked as default
+    - user must do a reboot
+- requires btrfs (recommended) or filesystem on top of LVM thin provisioned LVs
+- Timeline (turn off for root)
+    - Taken Hourly
+    - Last 10 daily/monthly/yearly are kept (disabled by default)
 
 ```bash
+mount | grep snapshot # view mounted snapshots
+ls -plah /.snapshots # view all snapshot directories
 
-
-# view mounted snapshots
-mount | grep snapshot
-
-# view all snapshot directories
-ls -plah /.snapshots
-
-snapper create -c timeline
-
-
-
-# syntax
+# general syntax
 snapper {global-options} {command} {command-options} {command-arguments}
-snapper create -d {description} -t {single/pre/post} --pre-number {no} --command {command}
 
-snapper -c srv create -d "Description" -c timeline
-
-
-# list snapshots, the one with an asterisk is the default subvolume and currently mounted
+# list snapshots
+# (*) currently mounted and default
+# (+) default not mounted
+# (-) monted and not default
+# the number 0 is the current snapshot
 snapper list
 snapper list --columns number,type,pre-number,description
 
-# crete snapshots
-# snapper create  -t {type} {options}
-# snapper create --pre-number {number} # links post a pre snapshot
-# snapper create -d {description} # snapshot description
+# create syntax
+# snapper create -d {description} -t {single/pre/post} --pre-number {no} --command {command}
 snapper create -t pre -d "before change"
-# get the number of the created snapshot
-sudo snapper list # the number is 11
-# <-- apply the change here
-# create the post snapshot
 snapper create -t post --pre-number 11 -d "after change"
+snapper create -c timeline
+snapper -c srv create -d "Description" -c timeline
 
-# modify the description of a snapshot
-snapper modify -d "New description" 11
-
-
-
-# VIEW DIFFERENCES
-snapper diff 10..11 # prints the modified files
-
-
-
-
-
-# delete snapshot
-# cannot delete snapshot 0, nor the default snapshot
-# snapper delete {number}
-# snapper delete {number-begin}-{number-end}
+# delete snapshot (cannot delete snapshot 0, nor the default snapshot)
+# snapper -c config delete num|num1..num2
 snapper delete 10-11
 
+# modify the description
+snapper modify -d "New description" 11
 
-
+# view differences in content of files between snapshots
+snapper diff 10..11 # prints the modified files
+snapper diff num1..num2 {files}
 
 # list of files that are different between snapshots
 snapper status num1..num2
 
-# difference in the content of files between snapshots
-snapper diff 26..0 # compare snapshot 26 with current snapshot (0)
-snapper diff num1..num2 {files}
-
 # show which files were changed
 less /.snapshots/30/filelist-29.txt
-
-
 
 # undo a change
 snapper undochange num1..num2 {files}
 
 # delete a snapshot
-snapper -c config delete num|num1..num2
 
 # view configuration
 snapper get-config
@@ -2100,25 +2419,53 @@ snapper -c config set-config key1=value1 key2=value2
 
 # create configuration
 snapper -c config create-config directory
-
-
-# ------------------------------------
-
-# CREATE VOLUME FOR SNAPSHOTS
-# in YaST partition volume for BtrFS, name it's mounting point, and use role 'data and ISV applications'
-
-# create snapper configuration for specific volume
-snapper -c data1 create-config /data1
-
-# view created config
-less /etc/snapper/configs/data1 # view config by name
-snapper list-configs # print list of all configurations
-
-
-
-
-
 ```
+
+
+
+
+|command| description |
+|-|-|
+|list {options}|list snapshots|
+|create {options}|create new snapshot|
+|modify {options} {number}|modify, including the description|
+|delete number{-number}|delete snapshots|
+|status {options} number1..number2|compare|
+|diff {options} number1..number2|show differences|
+| | &nbsp|
+|create-config {path}| |
+|list-configs| |
+
+
+### global options
+
+
+|param| description |
+|-|-|
+| -c | use specified configuration|
+
+
+### snapshot types
+
+
+|types| description |
+|-|-|
+|single|standalone|
+|pre|state before changes are made|
+|post|state after changes are made, is linked to a pre snapshot number|
+
+
+### snapper configuration files
+
+
+|file| description |
+|-|-|
+| /etc/snapper/configs/ | stored configurations (each volume requires one) |
+| /etc/sysconfig/snapper| list of snapper configurations |
+| /etc/snapper/filters/*.txt | not included files (ignore) |
+| /etc/snapper/configs/root | default root configuration in sles when using btrfs|
+| .snapshots/{snapshot-number} | snapshot data is stored (root of the btrfs filesystem)|
+
 
 
 ``` diractory-layout
@@ -2139,57 +2486,6 @@ snapper list-configs # print list of all configurations
     |
     |-...
 ```
-
-
-
-
-
-|command| description |
-|-|-|
-|list {options}|list snapshots|
-|create {options}|create new snapshot|
-|modify {options} {number}|modify, including the description|
-|delete number{-number}|delete snapshots|
-|status {options} number1..number2|compare|
-|diff {options} number1..number2|show differences|
-| | &nbsp|
-|create-config {path}| |
-|list-configs| |
-
-
-### global params
-
-
-|param| description |
-|-|-|
-| -c | use specified configuration|
-
-
-
-
-
-|types| description |
-|-|-|
-|single|standalone|
-|pre|state before changes are made|
-|post|state after changes are made, is linked to a pre snapshot number|
-
-
-
-|file| description |
-|-|-|
-| /etc/snapper/configs/ | stored configurations |
-| /etc/sysconfig/snapper| list of snapper configurations |
-| /etc/snapper/filters/*.txt | not included files (ignore) |
-
-
-
-### create
-
-|param| description |
-|-|-|
-| -c --cleanup |cleanup algorythm <br>-timeline: keeps a number of hourly, daily, monthly, weekly and yearly snapshots <br>-number: deletes old snapshots when a certain number is reached<br>-empty-pre-post: deletes pre/posts pairs with empty diffs|
-
 
 
 
@@ -2244,30 +2540,18 @@ TIMELINE_LIMIT_YEARLY-"10"
 EMPTY_PRE_POST_CLEANUP-"yes"
 # limits for empty pre/post/pairs cleanup
 EMPTY_PRE_POST_MIN_AGE-"1800"
-
-
-
-
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## rolling back
 
+- a new read-only snapshot of the previos default snapshot (marked with \+) is created
+- a new read-write snapshot of the current loaded snapshot (marked with \-) is created and marked as default
+- in snapper list:
+    - ( \* ) default snapshot booted and mounted
+    - ( \- ) currently mounted non default snapshot
+    - ( \+ ) default snapshot to be booted on the next boot
+
 ```bash
-
-
-
 # list snapshots
 snapper list
 
@@ -2279,32 +2563,251 @@ snapper rollback
 
 # if you do not provide a number first a read-only snapshot of the default subvolume is created
 # a second read-write snapshot of the current systems is created to preserve your current location and the system is set to boot from that snashot
-# if
-
 
 # rollback to the snapshot with id
 snapper rollback {number}
 
 # shoould reboot after
 reboot
+```
+
+<br>
+
+# networking
+
+A nic connects a system to a network. In Linux is a software interface to allow system comunicate over network:
+
+- Physical: basic network interface, 1 to 1 asociation with a card, with single nic (eth0)
+- Logical: many to 1, 1 to many, 1 to none
+    - bond: logical with two of more physical (bond0)
+        - fault tolerance
+        - performance
+        - load balancing
+    - vlan: one or many using a single nic (vlan1)
+        - To isolate traffic, such as separating guest Wi-Fi traffic from internal company traffic, or for creating secure, segmented networks.
+        - take one switch and break it into multiple logical and isolated networks
+        - traffic from one is isolated from the other vlans on the same nic
+    - bridge: works with mac addresses. logical, above physical (layer 2)
+        - To connect different physical network segments, such as bridging Wi-Fi and Ethernet interfaces into the same network.
+        - connect different segments into a single broadcast domain
+        - allow communication betweeen
+            - each virtual network interface connected to it
+            - the underlying physical network interface
+            - the lan
+
+### naming
+
+
+
+
+- physical network interface name is linked to the pci bus of the nic:
+    - 0000:01:00.0 -> {pci-domain}:{pci-bus-number}:{slot-number-on-bus}.{function-number}
+    - enp1s0: {ethernet device}{pci bus number 1}{slot 0}
+- physical network naming
+    - traditionl (default, and defined in persistent)
+        - eth# (ethernet)
+        - wlan# (wifi)
+    - predictable (as long as the physical network interface is connected to the system in the same way), is based on type and connection to the system. not enabled by default in SLES
+        - en{p} (ethernet)
+        - wl (wifi)
+        - if (infiniband)
+        - enabled by passing kernel parameter at boot time:
+            - net.ifnames=1
+- persistent names assigend using udev based on:
+    - bus id
+    - mac address
+    - configured in `/etc/udev/rules/d/70-persistent-net.rules`
+
+```bash
+lspci -D | grep Ethernet
+```
+### configuration files
+
+- hostname: /etc/hostname
+- hosts: /etc/hosts
+- nameservers and search: /etc/resolv.conf
+- network configuration: /etc/sysconfig/network/config
+- routing: /etc/sysctl.d/70-yast.conf
+- persistent nic names: /etc/udev/rules/d/70-persistent-net.rules
+- nics config files: /etc/sysconfig/network/ifcfg-{interface-name}
 
 
 
 
 
 
+<br>
+
+# ip (linux)
+
+Changes made with this command do not persist across reboots
+
+- Link: the nic
+- Address: ip address that identifies the nic on a network
+- Route: path used to send packets from a source device to a destination address
+
+## link
+
+- Syntax: `ip link {command} {device} {options}`
+- Commands:
+    - `show`: displya link configuration
+    - `set`: change link configuration
+- Options:
+    - `up`: bring the link up
+    - `down`: bring the link down
+
+```bash
+ip link show eth0
+ip link set eth0 down
+```
+
+## address
+
+- Syntax: `ip address {command} {device} {options}`
+- Commands:
+    - `show`(`s`): display address information
+    - `add`(`a`): add address
+    - `delete`(`d`): delete address
+
+```bash
+# show
+ip addr show
+ip a s
+ip a s eth1 # show status only of specific ip address
+
+# add
+ip addr add 172.16.201.11/24 dev eth1
+```
+
+## route
+
+- Syntax: `ip route {command {device} {options}`
+- Commands:
+    - `show`(`s`): display route information
+    - `add`(`a`): add routes
+    - `delete`(`d`): delete routes
+
+```bash
+ip route show
+ip route add default via 192.160.201.1
+ip r s
+```
+
+
+
+# ethtool
+
+```bash
 
 ```
 
 
 
 
-- a new read-only snapshot of the previos default snapshot (marked with \+) is created
-- a new read-write snapshot of the current loaded snapshot (marked with \-) is created and marked as default
-- in snapper list:
-    - ( \* ) default snapshot booted and mounted
-    - ( \- ) currently mounted non default snapshot
-    - ( \+ ) default snapshot to be booted on the next boot
+
+## flags
+
+|flag|meaning|
+|-|-|
+|BROADCAST|can send a data packet to all devices on the same network|
+|MULTICAST|single device can send to specific group of devices simultaneously, more efficient than broadcasting|
+|LOWER_UP|status UP and a connection to another devices has been stablished (such as a switch or router)|
+|LOOPBACK|only for internal system communication, packets never leave the localhost|
+|PROMISC|passes all traffic it receives to the CPU, even traffic not addressed to it (packet sniffing or network monitoring)|
+|NOARP|won't send/respond ARP requests to map IP to MAC addresses|
+|ALLMULTI|is in all-multicast mode: receives all multicast packets on the network, not just for groups it has joined|
+|POINTOPOINT|direct connection between two nodes (VPN tunnel, PPP link) where broadcast capabilities are unnecesary|
+|NO-CARRIER|hardware does not detect a physical signal or connection (unplugged or other powered-off)|
+|DORMANT|physically UP but waiting for event (like 802 authentication)|
+|MASTER/SLAVE|in bonded or bridged interfaces|
+
+
+
+
+<br>
+
+# ethtool
+
+Query and manage ethernet level configuration of network interfaces. Settings that can be viewed and changed are **speed**, **auto-negotiation**, **wake on lan**
+
+```bash
+ethtool {device}
+```
+
+<br>
+
+# network
+```bash
+
+ping {address} # usese ICMP
+# one file for each physical interface and one for each logical
+/etc/sysconfig/network/ifcfg-{interface-name}
+```
+
+
+
+|option| description |
+|-|-|
+|IPADDR|static ip address including subnet mask length|
+|BOOTPROTO|boot protocol (dhcp or static)|
+|STARTMODE|start automátically at boot|
+|ZONE|name of the firewall zone the interface is in|
+
+
+
+<br>
+
+
+# ping
+
+- uses ICMP to send an echo request
+
+
+|param| description |
+|-|-|
+| -c {count}| specify number|
+| -i {interval}| interval between packets|
+| -D|print timestamp|
+| -I {interface}|use specified interface (ip address or name can be specid)|
+| -4|use only pv4|
+| -6|use only pvt|
+
+
+
+<br>
+
+# traceroute
+
+- uses time to live ttl in the ip packet
+- attemps to elicit an icmp TIME_EXCEDED response from each router in the path to the host
+- a packet is sent to the specified host with the ttl value of 1
+- first system decrements the ttl to 0 and sends an ICMP error message to the source
+- udp default, but can use ICMP and TCP
+
+
+|param| description |
+|-|-|
+| -m {ttl}| maximum hops (ttl)|
+| -n| do not try to resolve host names (only returns IPs, faster)|
+| -4, -6| force IPv4 or IPv6|
+| -I| specify ICMP|
+| -T| specify TCP|
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2535,7 +3038,7 @@ make -j 3 bzImage
 # check top to view load average
 
 # cleanup unused compiled stuff
-make clean
+    make clean
 
 # check if systat is installed
 zypper se sysstat
@@ -2852,220 +3355,6 @@ vi /etc/ssl/openssl.cnf
 
 
 
-# networking
-
-```bash
-lspci -D | grep Ethernet
-```
-### configuration files
-
-- hostname: /etc/hostname
-- hosts: /etc/hosts
-- nameservers and search: /etc/resolv.conf
-- network configuration: /etc/sysconfig/network/config
-- routing: /etc/sysctl.d/70-yast.conf
-- persistent nic names: /etc/udev/rules/d/70-persistent-net.rules
-- nics config files: /etc/sysconfig/network/ifcfg-{interface-name}
-
-
-
-### general
-
-- basic network interface: physical with single nic (eth0)
-- bond: logical with two of more physical (bond0)
-    - fault tolerance
-    - performance
-    - load balancing
-- vlan: one or many using a single nic (vlan1)
-    - traffic from one is isolated from the other vlans on the same nic
-- bridge: logical, above physical (layer 2)
-    - allow communication betweeen
-        - each virtual network interface connected to it
-        - the underlying physical network interface
-        - the lan
-
-- pci bus: 0000:01:00.0 -> {pci-domain}:{pci-bus-number}:{slot-number-on-bus}.{function-number}
-- physical network naming
-    - traditionl (default, and defined in persistent)
-        - eth# (ethernet)
-        - wlan# (wifi)
-    - predictable (based on type and connection to the system. not enabled by default in SLES)
-        - en{p} (ethernet)
-        - wl (wifi)
-        - if (infiniband)
-        - enabled by passing kernel parameter at boot time:
-            - net.ifnames=1
-- persistent names based on
-    - bus id
-    - mac address
-    - configured in /etc/udev/rules/d/70-persistent-net.rules
-
-
-
-<br>
-
-# ip (linux)
-```bash
-# ALL MODIFICATIONS MADE WITH COMMANDS ARE NOT PERSISTANT BETWEEN BOOTS
-
-# add address
-ip addr add 172.16.201.11/24 dev eth1
-
-# show
-ip addr show
-ip a s
-ip a s eth1 # show status only of specific ip address
-
-# change status
-ip link set up eth1
-
-ip link show
-
-```
-
-
-|command| description |
-|-|-|
-|link, l|manage link level configuration|
-|address, a|manage address level configuration|
-|route, r|manage routing configuration|
-
-## flags
-
-|flag|meaning|
-|-|-|
-|BROADCAST|can send a data packet to all devices on the same network|
-|MULTICAST|single device can send to specific group of devices simultaneously, more efficient than broadcasting|
-|LOWER_UP|status UP and a connection to another devices has been stablished (such as a switch or router)|
-|LOOPBACK|only for internal system communication, packets never leave the localhost|
-|PROMISC|passes all traffic it receives to the CPU, even traffic not addressed to it (packet sniffing or network monitoring)|
-|NOARP|won't send/respond ARP requests to map IP to MAC addresses|
-|ALLMULTI|is in all-multicast mode: receives all multicast packets on the network, not just for groups it has joined|
-|POINTOPOINT|direct connection between two nodes (VPN tunnel, PPP link) where broadcast capabilities are unnecesary|
-|NO-CARRIER|hardware does not detect a physical signal or connection (unplugged or other powered-off)|
-|DORMANT|physically UP but waiting for event (like 802 authentication)|
-|MASTER/SLAVE|in bonded or bridged interfaces|
-
-
-
-
-## link
-```bash
-ip link show eth0
-ip link set eth0 up
-ip l set eth0 up
-```
-
-
-|command| description |
-|-|-|
-|show|display link config|
-|set|change link config|
-
-
-## address
-```bash
-ip address show
-ip address show eth0
-ip a s eth0
-```
-
-
-|command| description |
-|-|-|
-|show, s|display info|
-|add, a|add addesses|
-|delete, d| delete addresses|
-
-
-
-
-## route
-```bash
-# ip link {command} {device} {options}
-ip route show
-ip route add default via 192.168.201.1
-```
-
-
-|command| description |
-|-|-|
-|show, s|display info|
-|add, a|add routes|
-|delete, d| delete route|
-
-
-
-<br>
-
-# ethtool
-```bash
-ethtool {device}
-
-```
-
-
-<br>
-
-# network
-```bash
-
-ping {address} # usese ICMP
-# one file for each physical interface and one for each logical
-/etc/sysconfig/network/ifcfg-{interface-name}
-```
-
-
-
-|option| description |
-|-|-|
-|IPADDR|static ip address including subnet mask length|
-|BOOTPROTO|boot protocol (dhcp or static)|
-|STARTMODE|start automátically at boot|
-|ZONE|name of the firewall zone the interface is in|
-
-
-
-<br>
-
-
-# ping
-
-- uses ICMP to send an echo request
-
-
-|param| description |
-|-|-|
-| -c {count}| specify number|
-| -i {interval}| interval between packets|
-| -D|print timestamp|
-| -I {interface}|use specified interface (ip address or name can be specid)|
-| -4|use only pv4|
-| -6|use only pvt|
-
-
-
-<br>
-
-# traceroute
-
-- uses time to live ttl in the ip packet
-- attemps to elicit an icmp TIME_EXCEDED response from each router in the path to the host
-- a packet is sent to the specified host with the ttl value of 1
-- first system decrements the ttl to 0 and sends an ICMP error message to the source
-- udp default, but can use ICMP and TCP
-
-
-|param| description |
-|-|-|
-| -m {ttl}| maximum hops (ttl)|
-| -n| do not try to resolve host names (only returns IPs, faster)|
-| -4, -6| force IPv4 or IPv6|
-| -I| specify ICMP|
-| -T| specify TCP|
-
-
-<br>
 
 
 # wicked
@@ -3957,11 +4246,6 @@ z3 20 (a menos que tengas arreglos de muchísimos discos duros como 12), mucha p
 dos discos duros dedicados al systema operativo para que no afecte al performance del pool de la máquinas
 
 
-
-# fdisk
-
-
-<br>
 
 
 

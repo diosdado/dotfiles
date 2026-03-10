@@ -89,12 +89,12 @@
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": {   "key_code": "4" },
-    "to": [{ "key_code": "illumination_decrement" }]
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }]
 },
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": {   "key_code": "5" },
-    "to": [{ "key_code": "illumination_increment" }]
+    "to": [{ "consumer_key_code": "al_terminal_lock_or_screensaver" }]
 },
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",

@@ -18,6 +18,7 @@ query='.[] | select(
 	( ."app" == "Windows App" and ."title" == "Devices" ) or
 	( ."app" == "Jitsi Meet" and ."title" == "Screen Sharing Tracker" ) or
 	( ."app" == "Finder" and ."title" != "Quick Look" ) or
+    ."app" == "iPhone Mirroring" or
     ."app" == "OBS Studio" or
     ."app" == "Preview" or
     ."app" == "Stickies" or

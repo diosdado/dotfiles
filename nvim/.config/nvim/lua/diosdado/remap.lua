@@ -113,10 +113,6 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>o", "^v$h\"+y")
 -- word to clipboard
 vim.keymap.set("n", "<leader>w", "viw\"+y")
--- parenthesis to clipboard
-vim.keymap.set("n", "<leader>b", "vib\"+y")
--- block to clipboard
-vim.keymap.set("n", "<leader>%", "vi%\"+y")
 -- ' to clipboard
 vim.keymap.set("n", "<leader>'", "vi'\"+y")
 -- " to clipboard

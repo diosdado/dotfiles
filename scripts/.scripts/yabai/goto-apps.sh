@@ -27,10 +27,6 @@ case $apps in
         ;;
 
     design)
-        if ps aux | grep 'draw\.io' | grep -v grep; then
-            open -a 'draw.io'
-            exit 0
-        fi
         if ps aux | grep 'Blender' | grep -v grep; then
             open -a 'Blender'
             exit 0
@@ -67,8 +63,7 @@ case $apps in
         ;;
 
     messages)
-        open -a "Instagram"
-        open -a "Stickies"
+        # open -a "Instagram"
         open -a "WhatsApp"
         ;;
 
@@ -125,6 +120,9 @@ case $apps in
 
     suse)
         open -a 'SUSE Learning Center'
+        ;;
+
+    suse2)
         open -a 'SUSE Labs'
         ;;
 esac

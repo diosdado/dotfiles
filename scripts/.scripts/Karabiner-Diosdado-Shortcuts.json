@@ -3,53 +3,37 @@
 
 
 {
-    "description": "Insert to Lock Screen",
+    "description": "Application to Apple FN Layer", "type": "basic",
     "from": { "key_code": "application" },
-    "to": [{ "pointing_button": "button2" }],
-    "type": "basic"
+    "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
 },
 {
-    "description": "Application to Apple FN Layer",
-    "from": { "key_code": "insert" },
-    "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }],
-    "type": "basic"
-},
-{
-    "description": "Delete to spacebar",
+    "description": "Delete to spacebar", "type": "basic",
     "from": { "key_code": "delete_forward" },
-    "to": [{ "key_code": "spacebar" }],
-    "type": "basic"
+    "to": [{ "key_code": "spacebar" }]
+},
+{
+    "description": "Insert to left click", "type": "basic",
+    "from": { "key_code": "insert" },
+    "to": [{ "key_code": "equal_sign", "modifiers": ["shift"] }]
 },
 
 
 {
-    "description": "Home to suspend",
-    "from": { "key_code": "home" },
-    "to": [{ "consumer_key_code": "al_terminal_lock_or_screensaver" }],
-    "type": "basic"
-},
-
-
-
-
-
-{
-    "description": "Disable hide window",
+    "description": "Disable hide window","type": "basic",
     "from": { "key_code": "h", "modifiers": { "mandatory":["command"]} },
-    "to": [{ "key_code": "vk_none" }],
-    "type": "basic"
+    "to": [{ "key_code": "vk_none" }]
 },
 {
-    "description": "Disable minimize window",
+    "description": "Disable minimize window","type": "basic",
     "from": { "key_code": "m", "modifiers": { "mandatory":["command"]} },
-    "to": [{ "key_code": "vk_none" }],
-    "type": "basic"
+    "to": [{ "key_code": "vk_none" }]
 },
 
 
 
 {
-    "description": "Escape to Applications Layer",
+    "description": "Escape to Applications Layer","type": "basic",
     "from": { "key_code": "escape", "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] } },
     "parameters": { "basic.to_if_alone_timeout_milliseconds": 150, "basic.to_if_held_down_threshold_milliseconds": 0 },
     "to": [
@@ -61,15 +45,12 @@
         { "set_variable": { "name": "app_layer", "value": 0 } },
         { "shell_command": "~/.scripts/yabai/switch-layer.sh -l default" }
     ],
-    "to_if_alone": [
-        { "key_code": "escape" }
-    ],
-    "to_if_held_down": [ { "key_code": "vk_none", "modifiers": [] } ],
-    "type": "basic"
+    "to_if_alone": [ { "key_code": "escape" } ],
+    "to_if_held_down": [ { "key_code": "vk_none", "modifiers": [] } ]
 },
 
 {
-    "description": "Caps to Applications Layer",
+    "description": "Caps to Applications Layer","type": "basic",
     "from": { "key_code": "caps_lock", "modifiers": { "optional": ["left_command", "left_shift", "left_option", "left_control", "caps_lock"] } },
     "parameters": { "basic.to_if_alone_timeout_milliseconds": 150, "basic.to_if_held_down_threshold_milliseconds": 0 },
     "to": [
@@ -81,76 +62,61 @@
         { "set_variable": { "name": "app_layer", "value": 0 } },
         { "shell_command": "~/.scripts/yabai/switch-layer.sh -l default" }
     ],
-    "to_if_alone": [
-        { "key_code": "escape" }
-    ],
-    "to_if_held_down": [ { "key_code": "vk_none", "modifiers": [] } ],
-    "type": "basic"
+    "to_if_alone": [ { "key_code": "escape" } ],
+    "to_if_held_down": [ { "key_code": "vk_none", "modifiers": [] } ]
 },
 
 
+{
+    "description": "shift two times to cava","type": "basic",
+    "conditions": [ { "name": "right_shift pressed", "type": "variable_if", "value": 1 } ],
+    "from": { "key_code": "right_shift", "modifiers": { "optional": ["any"] } },
+    "to": [{ "shell_command": "/opt/homebrew/bin/alacritty -e /opt/homebrew/bin/cava" }]
+},
+{
+    "from": { "key_code": "right_shift", "modifiers": { "optional": ["any"] } },
+    "to": [ { "set_variable": { "name": "right_shift pressed", "value": 1 } }, { "key_code": "right_shift" } ],
+    "to_delayed_action": {
+        "to_if_canceled": [ { "set_variable": { "name": "right_shift pressed", "value": 0 } } ],
+        "to_if_invoked": [ { "set_variable": { "name": "right_shift pressed", "value": 0 } } ]
+    }, "type": "basic"
+},
 
 
 {
+    "description": "Command two times to Show Desktop","type": "basic",
     "conditions": [ { "name": "left_command pressed", "type": "variable_if", "value": 1 } ],
     "from": { "key_code": "left_command", "modifiers": { "optional": ["any"] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }],
-    "type": "basic"
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }]
 },
 {
     "from": { "key_code": "left_command", "modifiers": { "optional": ["any"] } },
-    "to": [
-        { "set_variable": { "name": "left_command pressed", "value": 1 } },
-        { "key_code": "left_command" }
-    ],
+    "to": [ { "set_variable": { "name": "left_command pressed", "value": 1 } }, { "key_code": "left_command" } ],
     "to_delayed_action": {
         "to_if_canceled": [ { "set_variable": { "name": "left_command pressed", "value": 0 } } ],
         "to_if_invoked": [ { "set_variable": { "name": "left_command pressed", "value": 0 } } ]
-    },
-    "type": "basic"
+    }, "type": "basic"
 },
 
 
 
 {
+    "description": "Option two times to Mission Control","type": "basic",
     "conditions": [ { "name": "left_option pressed", "type": "variable_if", "value": 1 } ],
     "from": { "key_code": "left_option", "modifiers": { "optional": ["any"] } },
-    "to": [{ "key_code": "mission_control" }],
-    "type": "basic"
+    "to": [{ "key_code": "mission_control" }]
 },
 {
     "from": { "key_code": "left_option", "modifiers": { "optional": ["any"] } },
-    "to": [
-        { "set_variable": { "name": "left_option pressed", "value": 1 } },
-        { "key_code": "left_option" }
-    ],
+    "to": [ { "set_variable": { "name": "left_option pressed", "value": 1 } }, { "key_code": "left_option" } ],
     "to_delayed_action": {
         "to_if_canceled": [ { "set_variable": { "name": "left_option pressed", "value": 0 } } ],
         "to_if_invoked": [ { "set_variable": { "name": "left_option pressed", "value": 0 } } ]
-    },
-    "type": "basic"
-},
-
-
-
-{
-    "conditions": [ { "name": "left_shift pressed", "type": "variable_if", "value": 1 } ],
-    "from": { "key_code": "left_shift", "modifiers": { "optional": ["any"] } },
-    "to": [{ "key_code": "launchpad" }],
-    "type": "basic"
-},
-{
-    "from": { "key_code": "left_shift", "modifiers": { "optional": ["any"] } },
-    "to": [
-        { "set_variable": { "name": "left_shift pressed", "value": 1 } },
-        { "key_code": "left_shift" }
-    ],
-    "to_delayed_action": {
-        "to_if_canceled": [ { "set_variable": { "name": "left_shift pressed", "value": 0 } } ],
-        "to_if_invoked": [ { "set_variable": { "name": "left_shift pressed", "value": 0 } } ]
-    },
-    "type": "basic"
+    }, "type": "basic"
 }
+
+
+
 
 
 

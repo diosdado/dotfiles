@@ -132,26 +132,46 @@
 
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "h"},
+    "from": { "key_code": "n"},
     "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d west" }]
 },
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "j"},
+    "from": { "key_code": "m"},
     "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d south" }]
 },
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "k"},
+    "from": { "key_code": "comma"},
     "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d north" }]
 },
 {
     "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
-    "from": { "key_code": "l"},
+    "from": { "key_code": "period"},
     "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d east" }]
+},
+
+
+{
+    "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "h"},
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }]
+},
+{
+    "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "j"},
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }]
+},
+{
+    "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "k"},
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }]
+},
+{
+    "conditions": [ { "name": "function_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "l"},
+    "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }]
 }
-
-
 
 
 

@@ -57,12 +57,14 @@ alias th="ts -d ~/"
 alias td="ts -d ~/dotfiles"
 alias tk="ts -d  ~/ownCloud/Bases-conocimiento"
 alias rv="~/.scripts/remote-vv.sh"
+alias ll="ls -plah --color=auto"
+alias lo="find . -maxdepth 1 -exec gstat -c '%a %n' {} \\;"
+
+alias brewout="brew outdated --formulae | grep -f <(brew leaves)"
 
 # override commands
-alias ls="ls -plah --color=auto"
 alias more="less"
 alias c="clear"
-
 
 # load plugins
 if type brew &>/dev/null; then

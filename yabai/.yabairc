@@ -49,10 +49,8 @@ yabai -m rule --add app="^Whisky$"                  manage=off
 yabai -m rule --add app="^FaceTime$"                manage=off
 yabai -m rule --add app="^OpenEmu$"                 manage=off
 yabai -m rule --add app="^wine64-preloader$"        manage=off
-yabai -m rule --add app="^Karabiner-Elements$"      manage=off
 yabai -m rule --add app="^Stream\ Deck$"            manage=off
 yabai -m rule --add app="^Automator$"               manage=off
-yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
 yabai -m rule --add app="^GIMP$"                    manage=off
 yabai -m rule --add app="^Inkscape$"                manage=off
 yabai -m rule --add app="^Only\ Switch$"            manage=off
@@ -82,14 +80,15 @@ yabai -m rule --add title="Picture in Picture"      manage=off
 yabai -m rule --add app="^OBS Studio$"              manage=off
 yabai -m rule --add app="^iPhone Mirroring$"        manage=off
 
+# patch for the windows of Affinity that are created with the wrong subrole
+yabai -m rule --add title="^Affinity$"              manage=on
+yabai -m rule --add app="^Affinity$" title="^Open$" manage=off
+
 # sticky windows
 yabai -m rule --add app="^VLC$"                     sticky=on
 yabai -m rule --add app="^QuickTime Player$"        sticky=on
 yabai -m rule --add app="^Boom\ 3D$"                sticky=on
-# yabai -m rule --add app="^Calendar$"                sticky=on
 yabai -m rule --add app="^Transmission$"            sticky=on
-yabai -m rule --add app="^Karabiner-Elements$"      sticky=on
-yabai -m rule --add app="^Karabiner-EventViewer$"   sticky=on
 yabai -m rule --add app="^MAMP PRO$"                sticky=on
 
 
@@ -99,7 +98,7 @@ yabai -m rule --add app="^MAMP PRO$"                sticky=on
 ~/.scripts/yabai/set-rules.sh
 
 
-yabai -m rule --add app="^Ghostty$"                 scratchpad=ghostty      grid=11:11:3:3:5:5
+yabai -m rule --add app="^alacritty$" scratchpad=alacritty      grid=11:11:3:3:5:5
 # yabai -m rule --add app="^Karabiner-Elements$"      scratchpad=karabiner1   grid=12:12:1:1:5:5
 # yabai -m rule --add app="^Karabiner-EventViewer$"   scratchpad=karabiner2   grid=12:12:6:1:5:5
 
@@ -138,7 +137,6 @@ yabai -m rule --add app="^YouTube$"                 space=s_entertainment
 yabai -m rule --add app="^Sandox\ Meet$"            space=s_conference
 yabai -m rule --add app="^Google\ Meet$"            space=s_conference
 yabai -m rule --add app="^Microsoft\ Teams$"        space=s_conference
-yabai -m rule --add app="^Teams$"                   space=s_conference
 yabai -m rule --add app="^zoom.us$"                 space=s_conference
 
 yabai -m rule --add app="^Gmail$"                   space=s_email
@@ -153,12 +151,8 @@ yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
 yabai -m rule --add app="^SUSE\ Learning\ Center$"  space=s_primary
 yabai -m rule --add app="^SUSE\ Labs$"              space=s_secondary
 
-# yabai -m rule --add app="^ONLYOFFICE$"              space=s_office
-# yabai -m rule --add app="^Pages$"                   space=s_office
-# yabai -m rule --add app="^Keynote$"                 space=s_office
-# yabai -m rule --add app="^Numbers$"                 space=s_office
-# yabai -m rule --add app="^TypingClub$"              space=s_office
-
+yabai -m rule --add app="^Karabiner-Elements$"      space=s_development
+yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_development
 
 
 yabai -m space s_secondary      --layout bsp

@@ -306,7 +306,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "h" },
+                                "from": { "key_code": "n" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d west" }],
                                 "type": "basic"
                             },
@@ -318,7 +318,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "j" },
+                                "from": { "key_code": "m" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d south" }],
                                 "type": "basic"
                             },
@@ -330,7 +330,7 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "k" },
+                                "from": { "key_code": "comma" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d north" }],
                                 "type": "basic"
                             },
@@ -342,8 +342,56 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "l" },
+                                "from": { "key_code": "period" },
                                 "to": [{ "shell_command": "~/.scripts/yabai/move-to-display.sh -d east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "h" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "j" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "k" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "function_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "l" },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
                                 "type": "basic"
                             }
                         ]
@@ -653,7 +701,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "a" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle mission-control" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a design" }],
                                 "type": "basic"
                             },
                             {
@@ -665,7 +713,12 @@
                                     }
                                 ],
                                 "from": { "key_code": "s" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --toggle show-desktop" }],
+                                "to": [
+                                    {
+                                        "key_code": "f5",
+                                        "modifiers": ["command", "option"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -677,7 +730,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "d" },
-                                "to": [{ "pointing_button": "button2" }],
+                                "to": [{ "shell_command": "/Applications/BetterTouchTool.app/Contents/SharedSupport/bin/bttcli trigger_named 'color-picker'" }],
                                 "type": "basic"
                             },
                             {
@@ -689,7 +742,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "f" },
-                                "to": [{ "shell_command": "open -a Transmit" }],
+                                "to": [{ "pointing_button": "button2" }],
                                 "type": "basic"
                             },
                             {
@@ -701,7 +754,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "g" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "open -a Transmit" }],
                                 "type": "basic"
                             },
                             {
@@ -713,18 +766,6 @@
                                     }
                                 ],
                                 "from": { "key_code": "z" },
-                                "to": [{ "shell_command": "open ~/Desktop/Projects/" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "app_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "x" },
                                 "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
@@ -736,8 +777,20 @@
                                         "value": 1
                                     }
                                 ],
+                                "from": { "key_code": "x" },
+                                "to": [{ "shell_command": "open ~/Desktop/Projects/" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": { "key_code": "c" },
-                                "to": [{ "shell_command": "/Applications/BetterTouchTool.app/Contents/SharedSupport/bin/bttcli trigger_named 'color-picker'" }],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {
@@ -833,7 +886,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "backslash" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a suse" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a learning" }],
                                 "type": "basic"
                             },
                             {
@@ -988,6 +1041,18 @@
                                         "value": 1
                                     }
                                 ],
+                                "from": { "key_code": "right_shift" },
+                                "to": [{ "shell_command": "open -a 'iPhone Mirroring'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "app_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": { "key_code": "left_arrow" },
                                 "to": [{ "key_code": "home" }],
                                 "type": "basic"
@@ -1048,20 +1113,8 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "delete_or_backspace" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "app_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": { "key_code": "return_or_enter" },
-                                "to": [{ "shell_command": "" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap first ; /opt/homebrew/bin/yabai -m space --balance ; /opt/homebrew/bin/yabai -m window first --resize right:400:0 # set primary window" }],
                                 "type": "basic"
                             },
                             {
@@ -1090,7 +1143,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "home" },
-                                "to": [{ "shell_command": "open -a 'Music'" }],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {
@@ -1102,7 +1155,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "end" },
-                                "to": [{ "shell_command": "open -a 'Crunchyroll'" }],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {
@@ -1114,7 +1167,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "page_up" },
-                                "to": [{ "shell_command": "open -a 'Netflix'" }],
+                                "to": [{ "shell_command": "" }],
                                 "type": "basic"
                             },
                             {
@@ -1171,23 +1224,11 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "right_shift" },
-                                "to": [{ "shell_command": "" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "app_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "left_control" },
+                                "from": { "key_code": "right_control" },
                                 "to": [
                                     {
-                                        "key_code": "0",
-                                        "modifiers": ["control", "shift", "command"]
+                                        "key_code": "w",
+                                        "modifiers": ["command"]
                                     }
                                 ],
                                 "type": "basic"
@@ -1198,14 +1239,8 @@
                         "description": "Diosdado-Shortcuts",
                         "manipulators": [
                             {
-                                "description": "Insert to Lock Screen",
-                                "from": { "key_code": "application" },
-                                "to": [{ "pointing_button": "button2" }],
-                                "type": "basic"
-                            },
-                            {
                                 "description": "Application to Apple FN Layer",
-                                "from": { "key_code": "insert" },
+                                "from": { "key_code": "application" },
                                 "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }],
                                 "type": "basic"
                             },
@@ -1216,9 +1251,14 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Home to suspend",
-                                "from": { "key_code": "home" },
-                                "to": [{ "consumer_key_code": "al_terminal_lock_or_screensaver" }],
+                                "description": "Insert to left click",
+                                "from": { "key_code": "insert" },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": ["shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -1318,11 +1358,62 @@
                             {
                                 "conditions": [
                                     {
+                                        "name": "right_shift pressed",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "shift two times to cava",
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/alacritty -e /opt/homebrew/bin/cava" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "right_shift pressed",
+                                            "value": 1
+                                        }
+                                    },
+                                    { "key_code": "right_shift" }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "right_shift pressed",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "right_shift pressed",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
                                         "name": "left_command pressed",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
+                                "description": "Command two times to Show Desktop",
                                 "from": {
                                     "key_code": "left_command",
                                     "modifiers": { "optional": ["any"] }
@@ -1372,6 +1463,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Option two times to Mission Control",
                                 "from": {
                                     "key_code": "left_option",
                                     "modifiers": { "optional": ["any"] }
@@ -1412,69 +1504,12 @@
                                     ]
                                 },
                                 "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "left_shift pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "launchpad" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "left_shift pressed",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "key_code": "left_shift" }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "left_shift pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "left_shift pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
-                                "type": "basic"
                             }
                         ]
                     }
                 ]
             },
             "devices": [
-                {
-                    "identifiers": {
-                        "is_pointing_device": true,
-                        "product_id": 184,
-                        "vendor_id": 1386
-                    },
-                    "ignore_vendor_events": true
-                },
                 {
                     "identifiers": {
                         "is_keyboard": true,

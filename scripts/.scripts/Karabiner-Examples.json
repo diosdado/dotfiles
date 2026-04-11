@@ -1,0 +1,24 @@
+{
+
+"description": "F12 to F12 for Cursor app",
+
+"manipulators": [
+    {
+        "conditions": [
+            {
+                "bundle_identifiers": [
+                    "com.todesktop.230313mzl4w4u92"
+                ],
+                "file_paths": ["/Applications/Cursor.app/Contents/MacOS/Cursor"],
+                "type": "frontmost_application_if"
+            }
+
+        ]
+        "from": { "key_code": "f12" },
+        "to": [{ "key_code": "f12" }],
+        "type": "basic"
+    }
+
+]
+
+}

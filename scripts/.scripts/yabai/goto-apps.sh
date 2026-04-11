@@ -13,10 +13,8 @@ done
 
 case $apps in
     conference)
-        open -a 'Jitsi Meet'
-        exit 0
 
-        if ps aux | grep 'Microsoft Teams.app' | grep -v grep; then
+        if ps aux | grep 'Microsoft Teams.app' | grep -v 'PlugIns' | grep -v grep; then
             open -a 'Microsoft Teams'
             exit 0
         fi
@@ -24,6 +22,8 @@ case $apps in
             open -a 'zoom.us'
             exit 0
         fi
+        open -a 'Jitsi Meet'
+        exit 0
         ;;
 
     design)
@@ -31,8 +31,16 @@ case $apps in
             open -a 'Blender'
             exit 0
         fi
+        if ps aux | grep 'draw\.io' | grep -v grep; then
+            open -a 'draw.io'
+            exit 0
+        fi
         if ps aux | grep 'GIMP' | grep -v grep; then
             open -a 'GIMP'
+            exit 0
+        fi
+        if ps aux | grep 'Affinity' | grep -v 'PlugIns' | grep -v grep; then
+            open -a 'Affinity'
             exit 0
         fi
         open -a 'Inkscape'
@@ -86,6 +94,10 @@ case $apps in
             open -a 'Keynote'
             exit 0
         fi
+        if ps aux | grep 'LibreOffice' | grep -v grep; then
+            open -a 'LibreOffice'
+            exit 0
+        fi
         open -a 'ONLYOFFICE'
         ;;
 
@@ -107,6 +119,10 @@ case $apps in
         ;;
 
     virtualization)
+        if ps aux | grep 'SUSE Labs' | grep -v grep; then
+            open -a 'SUSE Labs'
+            exit 0
+        fi
         if ps aux | grep 'UTM' | grep -v grep; then
             open -a 'UTM'
             exit 0
@@ -118,12 +134,12 @@ case $apps in
         open -a 'Windows App'
         ;;
 
-    suse)
+    learning)
+        if ps aux | grep 'TypingClub' | grep -v grep; then
+            open -a 'TypingClub'
+            exit 0
+        fi
         open -a 'SUSE Learning Center'
-        ;;
-
-    suse2)
-        open -a 'SUSE Labs'
         ;;
 esac
 

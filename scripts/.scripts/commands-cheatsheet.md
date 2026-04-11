@@ -1,6 +1,298 @@
 
 
+# linux file system structure
 
+|directory|description|
+|-|-|
+| `/bin`| user binaries, executables required when no other filesystems are mounted (booting, working with files and configuration)|
+| `/dev`| device files|
+| `/etc`| configuration files, no executables here according to the FHS, but subdirectories can contain scripts|
+| `/lib`| libraries (shared objects, with the `.so` extension). Used by programs in `/bin` and `/sbin`|
+| `/lib/modules`| kernel modules|
+| `/lib64`| some systems support different binary formats, and keep versions of the same shared library|
+| `/sbin`| system binaries, important for system administration, typically intended to be run by the root user (not in the regular users path)|
+| `/etc/SuSE-release`| version of current system|
+| `/etc/DIR_COLORS`| colors for the ls command |
+| `/etc/profile`| shell login script|
+| `/etc/cups/*`| for the CUPS printing system|
+| `/etc/motd`| message after login|
+| `/etc/issue`| message before login|
+| `/etc/sysconfig/*`| system configuration files|
+| `/usr/X11R6/`| x window system files|
+| `/usr/bin/`| almost all executables|
+| `/usr/lib/`| libraries and application directories|
+| `/usr/local/`| locally installed programs (i.e. on local system if `/usr` is mounted from the network). Not overwritten by system updates|
+| `/usr/sbin`| system administration programs|
+| `/usr/share/doc/`| documentation|
+| `/usr/src/`| source code of kernel and programs|
+| `/usr/share/man/`| manual pages|
+| `/opt`| optional application (not part of the distro) directory. Third party apps store here their static files), i.e. `/opt/google`|
+| `/boot`| static boot loader files for GRUB2 (GRUB[^GRUB]), kernel and initrd[^initrd] file identified with the links in vmlinuz[^vmlinuz] |
+| `/root`| administrator boot directory. Needs to be in the root partition, so that root can always log in with his configuration environment|
+| `~/.profile`| private user login script|
+| `/run/media/{user}/*`| mount point for removable media|
+| `/run/media/media_name`| created if labeled media is inserted|
+| `/run/media/cdrom\|dvd\|usbdisk/`| mounting points for different kinds of media|
+| `/mnt`| temporary mounted file systems using the mount command|
+| `/var`| files that can be modified while the system is running|
+| `/var/lib`| variable libraries, like databases|
+| `/var/log`| services log files|
+| `/var/run`| information on running processes|
+| `/var/spool`| queues (printers, email)|
+| `/var/lock`| lock files[^lockfiles] for multiuser access|
+| `/srv`| service data directories, contains subdirectories for various services|
+| `/srv/www`| for the Apache Web Server|
+| `/srv/ftp`| for an FTP server|
+| `/tmp`| used for programs that require temporary storage files. settings for this in `/etc/tmpfiles.d/tmp.conf`|
+| `/sys`| system information directory[^sysinfo], virtual filesystem that exists only in memory|
+| `/proc`| process files. display the current state of processes running on a system|
+
+
+
+[^initrd]:Temporary root filesystem loaded into memory during the Linux boot process, enabling the kernel to mount the actual foot filesystem from storage
+[^vmlinuz]:Actual Linux kernel executable file that the computer loads into memory when it boots up. Brain of the OS, managing hardware, memory and running processes
+[^lockfiles]:Synchronization mechanism, used by processes to coordinate acces to shared resources, such as files, devices, or database sonnectios, to prevent data corruption or conflicts that arise from simultaneous access (race conditions)
+[^sysinfo]: takes no space in memory and provides info on hardware buses, hardware devices, active devices and drivers
+
+# device files
+
+Applications read and write to this files to address hardware components. Device files can be:
+
+- *character-oriented*: sequential devices like printer, tape and mouse
+- *block-oriented*: hard disks and dvds
+
+
+|device|location|purpose|
+|-|-|-|
+|null device|`/dev/null`| black hole. instantly discards any data written to it while returning EOF on reads|
+|zero device|`/dev/zero`| provides an infinite stream of null charactes|
+|system console|`/dev/console`|primary terminal[^tty1] for displaying critical system messages during startup and shutdown|
+|virtual terminal| `/dev/tty1`|full-screen text-mode interface virtual console|
+|serial ports| `/dev/ttyS0`[^ttyS0]| -|
+|parallel ports| `/dev/lp0`|-|
+|floppy disk drive| `/dev/fd0`|-|
+|hard drive| `/dev/sda`|-|
+|hard disk partition| `/dev/sda1`|-|
+|cd-rom drive| `/dev/scd0`|-|
+
+
+[^tty1]: also used for interaction in sigle user mode, often points to `/dev/tty0`
+[^ttyS0]:for historical reasons is named as a tty (most common use of a tty was to connect to a termial
+
+<br>
+
+# process files
+
+Directories containing information about individual processes are named according to the pid number of the process.
+
+Some values can be modified to modified to change how things are running in real time, but any changes are los at reboot
+
+
+|directory|contents|
+|-|-|
+| `/proc/cpuinfo/`| processor information|
+| `/proc/dma/`| use of dma ports|
+| `/proc/interrupts/`| use of interrupts|
+| `/proc/ioports/`| use of i/o ports|
+| `/proc/filesystems/`| filesystem formats the kernel knows|
+| `/proc/modules/`| active modules|
+| `/proc/mounts/`| mounted filesystems|
+| `/proc/net/*`| network information and statistics|
+| `/proc/partitions/`| existing partitions|
+| `/proc/bus/pci/`| connected pci services|
+| `/proc/scsi/`| connected scsi devices|
+| `/proc/sys/`| system and kernel information|
+| `/proc/version`| kernel version|
+
+
+
+<br>
+
+
+# shell configuration
+
+- `~/.bashrc`: for individual user
+- `/etc/bash.bashrc`: system wide
+- componenents of the prompt are in the variable `$PS`
+- `~/.alias`: aliases for individual users
+
+<br>
+
+# control characters
+
+- *ctrl + c*: terminate foreground job
+- *crtl + d*: logout from shell, similar to `exit` command
+
+<br>
+
+# shell prompt escape codes
+
+Set with the variable `$PS`, there are secondary prompts stored in `$PS2` - `$PS4`
+
+```bash
+echo $PS1 # \[$(ppwd)\]\u@\h:\w>
+```
+
+
+- `\[$(ppwd)\]`: present working directory
+- `\u\`: username
+- `@`: the character @
+- `\h`: the hostname up to the first period (.)
+- `:`: the character :
+- `\w`: the current working directory
+- `>`: the character >
+
+<br>
+
+# file types
+
+```bash
+# make a simple pipe device
+mkfifo my_pipe_device
+
+# read the contents of a symlink
+readlink {symlink}
+```
+
+
+Unix treats everything as a file, and file objects can:
+
+- Contain data (regular data and metadata)
+- Facilitate interprocess communication (pipes and sockets)
+- Point to a device (block and character device files)
+
+Except network interfaces, those act more like a bus (pci, usb) than an endpoint device
+
+- All files have a file name and an inode
+- An inode is a data structure that contains metadata related to a file
+- Metadata:
+    - permissios
+    - owner and group ids
+    - size of the file
+    - timestamps (creation, modification, last access)
+    - file type
+    - pointers to the actual data blocks on the disk that hold the file's content
+- The file name is stored whithin the directory entry of its parent directory
+
+## symbols for file types
+
+
+|Symbol|Filetype|
+|-|-|
+|-| regular files (data)|
+|d| directory (metadata)|
+|b| block device|
+|c| character device|
+|p| pipe device|
+|s| socket device|
+|l| symlink|
+
+
+
+# user accounts
+
+UID ranges
+
+
+|UID range| type of user|
+|-|-|
+|0| root|
+|1-499| system accounts|
+|500-999| unused in SLE|
+|1000+| regular user accounts|
+|65534| "nobody" user (overflow UID for unauthorized access)|
+
+
+GUID ranges
+
+
+|GUID range| type of group|
+|-|-|
+|0| root|
+|1-499| fixed and dynamically allocated system groups|
+|500-999| unused in SLE|
+|1000+| regular|
+
+
+- sometimes the statically allocated UIDs and GUIDs are in the range 1-99
+- is SLES the primary group for every newly created user is named *users* with a GUID of 100
+
+
+
+# man
+
+
+```bash
+# view available man page sections
+# man -k {command}|{config-file}
+man -k ls
+
+# view section of man page
+man 3 history
+
+
+```
+
+|section|description|
+|-|-|
+|0|header files (usually found in `/usr/include`)|
+|1|executable programs or shell commands|
+|2|system calls(functions provided by the kernel)|
+|3|library calls(functions within program libraries)|
+|4|special files(usually found in `/dev`)|
+|5|file formats and conventions e.g. `/etc/passwd`|
+|6|games|
+|7|misc(including macro packages and conventions), e.g. man(7), groff(7)|
+|8|system administration commands (usually only for root)|
+|9|kernel routines (non standard)|
+
+
+
+
+<br>
+
+
+
+# stdin, stdout, stderr
+
+## example
+
+Copy all files inside the `/etc/hosts` directory to the home of the current user and create a log file with all the successful created copies and error messages
+
+`&1` points the stdout curren location (most of the time is the screen, but in this case is the `cp_result.log` file
+
+```bash
+cp -v /etc/hosts/* ~/ >> cp_result.log 2>&1
+```
+
+
+
+
+
+<br>
+
+# history
+
+.bash_history, .zsh_history
+
+
+
+# memcached
+
+
+```bash
+
+telnet 127
+
+
+
+stats items
+
+
+# connections
+stats conns
+
+```
 
 
 # services
@@ -10,6 +302,9 @@
 ```bash
 doas rcctl enable zabbix_agentd
 doas rcctl start zabbix_agentd
+
+# check services
+rcctl ls
 ```
 
 ## linux
@@ -61,7 +356,7 @@ init 6
 
 ```bash
 # power off
-shutdown -p now
+shutdown -hp now
 poweroff
 halt -p
 
@@ -71,6 +366,52 @@ reboot
 ```
 
 <br>
+
+
+
+# reboot reason
+
+```bash
+who -b  # last system reboot
+last -x | head | tac    # last loggings with more info
+cd /var/log/messages    # logs rhel/centos
+cd /var/log/syslog      # logs debian
+
+# filter only restart and boot logs
+sudo grep -iv ': starting\|kernel: .*: Power Button\|watching system buttons\|Stopped Cleaning Up\|Started Crash recovery kernel' \
+  /var/log/messages /var/log/syslog /var/log/apcupsd* \
+  | grep -iw 'recover[a-z]*\|power[a-z]*\|shut[a-z ]*down\|rsyslogd\|ups'
+
+# audit daemon
+# -i interpret numeric entities into text
+# -m message types
+sudo ausearch -i -m system_boot,system_shutdown | tail -4
+# type=SYSTEM_BOOT msg=audit(Saturday 13 February 2021 A.852:8) : pid=621 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success'
+
+# make persistent journal on disk
+sudo mkdir /var/log/journal
+sudo systemd-tmpfiles --create --prefix /var/log/journal 2>/dev/null
+sudo systemctl -s SIGUSR1 kill systemd-journald
+
+# list logged boots form the journal
+journalctl --list-boots
+# journalctl -b {num} -n
+journalctl -b -1 -n
+```
+
+
+
+<br>
+
+# psql
+
+```bash
+# import sql into database
+psql -h 10.0.10.61 -p 5432 -U postgres -d postgres -f pgbouncer-install.sql
+```
+
+<br>
+
 
 # w
 
@@ -146,18 +487,136 @@ ls -d */
 | -l| long format (columns)|
 
 
-## symbols beside the file permissions
 
 
-|Symbol|Filetype|
+<br>
+
+
+# cp
+
+Copy files
+
+|param|action|
 |-|-|
-|-| regular files (data)|
-|d| directory (metadata)|
-|b| block device|
-|c| character device|
-|p| pipe device|
-|s| socket device|
-|l| symlink|
+| -r | recursive|
+| -p | keep permissions, owner and timestamps|
+| -i | confirm overwriting|
+| -v | verbose |
+| -n | do not overwrite|
+| -u | copy only if source is newer|
+
+<br>
+
+# rm
+
+Delete files and directories
+
+
+|param|action|
+|-|-|
+| -f| (force) do not prompt|
+| -i| (input) prompt for confirmation|
+| -R, -r| recursive|
+
+
+
+<br>
+
+# mv
+
+Move or rename files
+
+|param|action|
+|-|-|
+| -i | confirm overwriting|
+| -f | do not prompt if destination exists|
+| -n | do not overwrite|
+| -u | copy only if source is newer|
+| -v | verbose|
+
+
+
+
+
+<br>
+
+
+
+# tail/head
+
+Display tail (last) or head (first) lines or chars from a file
+
+
+|param|action|
+|-|-|
+| -c +\|-{number}| number of bytes (chars)|
+| -n +\|-{number} | number of lines|
+| -f | view new entries real time (only tail)|
+
+
+<br>
+
+# stat
+
+
+
+
+
+# find
+```bash
+find {location} -type f/d -name {regex}
+
+# find files that contain STRING (gnu grep)
+find . -name "*.php" -exec grep "STRING" {} \;
+
+# find files with permissions 644
+find . -type f -perm 644
+
+# find files with at least 700 permissions
+find . -type f -perm -700
+
+# find files where anyone has write permissions
+find . -type f -perm /222
+
+# find files where owner has at least write permission
+find . -type f -perm -u=w
+
+# find files not writable by the current user
+find . -type f ! -writable
+
+# find files with not exactly 644 permissions
+find . -type f \! -perm 644
+
+# files larger than 1MB but not modified in the last 7 days
+find /path/to/search -size +1M \! -mtime -7
+
+```
+
+
+
+|Param|Action|
+|-|-|
+| -print0 | don't output results|
+| -iname | case insensitive|
+| -mtime 0 | time rounded to the last 24 hours|
+| -mmin 1 | modified in the last minute|
+| -maxdepth | levels|
+| -type d/f | filetype|
+| -daystart | measures times from the start of today |
+| -pep | permissions|
+| -size +1024b | find files bigger than 1024 bytes|
+| -P | never follow symlinks|
+| -L | follow symlinks|
+| -D | debug|
+| -o | or|
+| -a | and|
+| -not, \\!, ! | not|
+| -n | print line number|
+| -empty | if file is empty (check man for test)|
+| -exec | execute command|
+| \; | execute command for each file|
+| \+ | concatenate all find results and execute command for that resulting line|
+| {} | placeholder for find results|
 
 
 <br>
@@ -178,6 +637,8 @@ ls | tee filename.txt filename2.txt
 
 
 <br>
+
+
 
 # tr
 
@@ -226,6 +687,17 @@ cut -d ',' -f 2,4 MOCK_DATA.csv
 <br>
 
 
+# awk
+
+```bash
+#  show fields 1 and 2 of the rows in which field 3 is smaller than 50
+awk -F, '$3 < 50 {print $1, $2}' data.csv
+```
+
+<br>
+
+
+
 # wc
 
 Count lines, words or bytes from a file or standard input
@@ -269,6 +741,9 @@ grep -r --include \*.php "TEXTO"
 |param|description|
 |-|-|
 | -r | recursive directory|
+| -G | use basic regex |
+| -E | use extended regex |
+| -P | use pearl compatible regex |
 | -i | case insensitive|
 | -n | prefix each line with line number|
 | -w | select only lines containing whole words, not substrings|
@@ -286,6 +761,222 @@ Change file access and modification files. Also used for the creation of empty f
 ```bash
 touch -d "1 day ago" filename.txt
 ```
+
+<br>
+
+
+
+# signals
+
+
+|signal|name|description|
+|-|-|-|
+|1|SIGHUP|reload config|
+|2|SIGNINT|interrupt from keyboard ctrl+c|
+|9|SIGKILL|kill the process immediately|
+|15|SIGTERM|request process to terminate|
+|18|SIGCNT|move stopped process to running (continue)|
+|19|SIGSTOP|stop a process|
+
+
+# ps
+
+```bash
+# check process with string
+ps aux | grep -i {process-name} | grep -v grep
+
+# print processes with (n)ice value, (p)id and (c)ommand
+ps -o %n\ %p\ %c
+
+# show proceses formatted
+ps -eo pid,user,cmd
+
+# grep processes but adding a table header
+ps aux | head -n 1 ; ps aux | grep vi
+ps -fea
+
+pkill {process-name}
+kill {process-id}
+
+pstree
+pgrep
+```
+
+
+|symbol| type | description |
+|-|-|-|
+|R| running/runnable | receiving or waiting for cpu cycles |
+|S| sleeping interruptible | waiting for signal or something to wake it up |
+|D| sleeping uninterruptible | ignores signals |
+|T| stopped | from R, can be restarted with a signal |
+|Z| zombie | terminated and releasing resources. parent must remove it from process list |
+
+
+
+|Params| description |
+|-|-|
+| -e | all processes|
+| -f | full format|
+| -l | long listing (additional columns)|
+| -H | hierarchy in tree view|
+| -L | individual threads|
+| -o | pid,tid,euid,pgrp format (comma separated list of items)|
+| a | all processes|
+| u | user orientated format|
+| x | include processes without tty |
+| f | process tree|
+| o | format for the output|
+| k | sort order of the input|
+| --format | format for the output|
+| --forest | tree view|
+| --no-headers | no header lines|
+| --sort | specify the sorting order|
+
+
+# kill
+
+- sends a signal to a process by PID
+- without arguments it sends a SIGTERM by default
+
+
+|Params| description |
+|-|-|
+| -s <signame>|send signal|
+| -<signumber>|send signal|
+| -l|list available signals|
+
+<br>
+
+# killall
+
+- sends a signal to processes with specific name
+- without number it sends a SIGTERM by default
+
+
+|Params| description |
+|-|-|
+| -<signumber>|send signal|
+| -I|case insensitive|
+| -i|interactive, asks for confirmation|
+| -u <username>|signal only processes that the usere owns|
+| -w|wait for processes to die, (may be forever if the process does not respond|
+
+
+<br>
+
+# pkill
+
+- is like pgrep
+- sends a signal to each process by name
+- without arguments it sends a SIGTERM by default
+
+
+|Params| description |
+|-|-|
+| -<signumber>|send signal|
+| -r <run-state>|match only processes in the specified runstate (D,R,S,Z)|
+| -i|case insesitive|
+
+
+<br>
+
+# pstree
+
+Show process tree
+
+
+|Params| description |
+|-|-|
+| -a|show command arguments of the process|
+| -g|show process group identifiers|
+| -h|highlight current process and ancestors|
+| -n|sort by PID instead of name|
+| -p|display PID|
+| -c| disable compactation of identical branches|
+
+
+<br>
+
+# pgrep
+
+Searches for processes that match the criteria given on the command line
+
+
+|Params| description |
+|-|-|
+| -u|specific effective users|
+| -U|specific actual users|
+| -l|list names along with PID|
+| -a|show command arguments|
+| -r|list with state (D,R,S,Z,etc)|
+| -i|case insensitive|
+| -o|oldest|
+
+
+<br>
+
+# nice
+
+Run command with nice value
+
+```bash
+nice -n +5 firefox &
+```
+
+
+|Params| description |
+|-|-|
+| -n increment|20 to -19 value|
+
+
+<br>
+
+# renice
+
+change nice value
+
+
+|Params| description |
+|-|-|
+| -n <increment>|20 to -19 value|
+| -p <PID>|process|
+| -u <username/UID>|user|
+
+
+<br>
+
+# jobs
+
+- the + sign indicates that is the default job for fg
+- [id]{+|-} {status} {command-with-arguments}
+
+|Params| description |
+|-|-|
+| -l| include PIDs|
+| -p| only PIDs|
+| -r| only running|
+| -s| only stopped|
+
+
+# bg
+
+starts a background job that is currently stopped
+
+# special bash variables
+
+
+|variable| description|
+|-|-|
+|$0|name of the script of shell being executed|
+|$#|number of arguments|
+|$*| all arguments in a single string|
+|$1 - $9| arguments by position|
+|$?| last exit code|
+|$$| pid of current shell|
+|$!| pid of last background command|
+|$_| last argument of previous command|
+|$IFS| internal field separator|
+
 
 <br>
 
@@ -308,17 +999,25 @@ doas chown -R david.diosdado:david.diosdado /home/david.diosdado
 
 # edit group related files locking them#
 vipw
+
+# view current user
+whoami
+id -un # username
+id -u # uid
 ```
 
 
-|Params|
-|-|
-| -p {password}|
-| -d {directory}|
-| -c {name}|
-| -u {uid}|
-| -g {primary-group}|
-| -g {secondary,groups}|
+|Params| description|
+|-|-|
+| -p {password}|-|
+| -d {directory}|custom home directory path|
+| -c {name}|-|
+| -u {uid}|-|
+| -g {primary-group}|-|
+| -G {secondary-groups}|-|
+| -m| generate home directory with `/etc/skel`|
+
+
 
 
 | user defaults | description |
@@ -454,15 +1153,36 @@ passwd -e cosmefulanito
 
 ## /etc/passwd structure
 
+```
 {user}:{pass}:{uid}:{gid}:{comment}:{home-dir}:{shell}
+```
+
+The `{comment}` field is also called GECOS is a standard that defines a comma separated list of sub fields in the following order:
+
+```
+{full-name},{room-number},{work-phone},{home},{phone},{other}
+```
 
 ## /etc/shadow structure
 
-{user}:{pass}:{last-change-days}:{min-age}:{max-age}:{warning-days}:{grace-days}:{expiration-date}:
+```
+{user}:{hashed-pass}:{last-change-days}:{min-days-between-changes}:{max-days-pass-validity}:{warning-days-for-expiry}:{grace-period-days}:{expiration-date}:{reserved}
+
+```
+
+- password hash uses blowfish
+- sys accounts have `*` or `!` instead of a hashed password and do not login
+- empty password means that the user can login without a password
+- Expiration date is in format `yyyy-mm-dd`. If empty, the account never expires
 
 ## /etc/group structure
 
+```
 {group}:{pass}:{gid}:{members}
+```
+
+- groups can have passwords (in `/etc/gshadow`), but usually is not enabled by default.
+- the command for group password administration is `gpasswd`
 
 <br>
 
@@ -493,12 +1213,37 @@ chage -E 0 {username}
 | -w {days}| set password expiration warning days|
 
 
+Password aging options
+
+```
+        |              -M               |
+        |<----------------------------->|
+        |                               |
+        |       |   can change pass     |       |
+        |       |                       |       |
+        |       |<--------------|------>|       |
+        |       |               |       |       |
+        |  -m   |               |  -w   |  -I   |
+        |<----->|               |<----->|<----->|
+        |                               |       |
+days----|-------------------------------|-------|------>
+        |                               |       |
+        last change                 expiration  inactive
+        -d                              -E
+```
+
 <br>
 
 
 # chmod
 
 Change file permissions
+
+Order of permissions evaluation
+
+1. if process uid is equal of the user of the file, the user permissions apply
+1. if process guid is equal of the group associated with the file, the group permissions apply
+1. other permissions apply
 
 ```bash
 chmod (-R) {ref}{operator}{modes}/{octets} {file/dir}
@@ -1262,21 +2007,32 @@ ssh keys allow to connect (authenticate) to another server without using a passw
 `ssh-agent` holds your decrypted private ssh keys in memory, so you only have to enter the keys' passphrase once per login session
 
 ```bash
+
+
+ssh-add ~/.ssh/id_rsa
+
+
 # generate ssh key
 # ssh-keygen -t {type} [options]
 ssh-keygen -r rsa -b 4096
-ssh-keygen -t ed25519 -C "david.diosdado@.sandox.com.mx" # recommended
+ssh-keygen -t ed25519 -C "david.diosdado@sandox.com.mx" # recommended
 
 # transfer public key
 # ssh-copy-id -i {public-key-file} {server}
 ssh-copy-id -i ~/.ssh/id_rsa.pub user_name@remoteserver.com
+ssh-copy-id -i ~/.ssh/id_ed25519.pub david.diosdado@sandox.info
+
+
+ssh-copy-id -i ~/.ssh/id_ed25519.pub david.diosdado@10.0.1.178
+
+cat ~/.ssh/id_ed25519.pub | ssh david.diosdado@10.0.1.178 'cat >> ~/.ssh/authorized_keys'
 
 # check ssh agent
 ps aux | grep ssh-agent
 
 # start ssh-agent
 eval $(ssh-agent -s)
-ssh-add .ssh/id_rsa
+ssh-add .ssh/id_ed25519
 ```
 
 
@@ -1744,6 +2500,7 @@ mount -t ext4 -o ro /dev/sda2 /mnt/data2
 |nouser, user|allow user to mount or not| |x|
 |defaults|rw,suid,exec,auto,nouse and sync| |x|
 |relatime|update inode access time relative to modify or change time| | |
+|intr| interruptible| | |
 
 
 # umount
@@ -2432,7 +3189,7 @@ snapper -c config create-config directory
 |delete number{-number}|delete snapshots|
 |status {options} number1..number2|compare|
 |diff {options} number1..number2|show differences|
-| | &nbsp|
+| | &nbsp;|
 |create-config {path}| |
 |list-configs| |
 
@@ -2638,6 +3395,58 @@ lspci -D | grep Ethernet
 
 <br>
 
+# ss
+
+Socket statistics. Is the newwe version of `netstat` and use the same parameters
+
+```bash
+# view all open ports
+ss -tlpn
+
+netstat -lp
+
+
+
+# listening services
+ss -patn
+
+# sockets
+ss -patne
+
+# udp
+ss -paun
+
+# show all iptables rules for specific table
+ss -tuln iptables -t {table} -vL
+
+# listenin ports
+doas netstat -na -f inet inet | grep LISTEN
+
+# manipulating and showing ip routing table|
+netstat -rn / route -n
+```
+
+
+| param | description |
+|-|-|
+| -t, --tcp | Display only TCP sockets |
+| -u, --udp | Display only UDP sockets |
+| -x, --unix | Display only Unix domain sockets |
+| -a, --all | Display all sockets (both listening and non-listening/established) |
+| -l, --listening | Display only listening sockets (omitted by default) |
+| -p, --processes | Display the process ID (PID) and name of the program using the socket |
+| -n, --numeric | Do not resolve service names or hostnames to their symbolic names; show numeric addresses and port numbers |
+| -r, --resolve | Attempt to resolve numeric host addresses and port numbers to symbolic names |
+| -s, --summary | Display summary statistics for each socket type |
+| -4, --ipv4 | Display only IPv4 sockets |
+| -6, --ipv6 | Display only IPv6 sockets |
+
+
+
+<br>
+
+
+
 # ip (linux)
 
 Changes made with this command do not persist across reboots
@@ -2657,8 +3466,8 @@ Changes made with this command do not persist across reboots
     - `down`: bring the link down
 
 ```bash
-ip link show eth0
-ip link set eth0 down
+ip link set up eth1
+ip link show eth1
 ```
 
 ## address
@@ -2675,7 +3484,7 @@ ip addr show
 ip a s
 ip a s eth1 # show status only of specific ip address
 
-# add
+# add an ip address to a nic
 ip addr add 172.16.201.11/24 dev eth1
 ```
 
@@ -2692,17 +3501,6 @@ ip route show
 ip route add default via 192.160.201.1
 ip r s
 ```
-
-
-
-# ethtool
-
-```bash
-
-```
-
-
-
 
 
 ## flags
@@ -2722,6 +3520,17 @@ ip r s
 |MASTER/SLAVE|in bonded or bridged interfaces|
 
 
+# ethtool
+
+Query and manage the ethernet lefel configuration of network interfaces
+
+- Network card driver must support the ethtool interface
+- Settings that can be viewed or changed: speed, auto-negotiation, wake on lan
+
+```bash
+# display all settings of the device
+ethtool eth0
+```
 
 
 <br>
@@ -2736,14 +3545,16 @@ ethtool {device}
 
 <br>
 
-# network
-```bash
+# network configuration file
 
-ping {address} # usese ICMP
-# one file for each physical interface and one for each logical
-/etc/sysconfig/network/ifcfg-{interface-name}
+Configuration files are located in `/etc/sysconfig/network/ifcfg-{interface-name}`
+
+```ini
+DEVICE='192.162.201.11/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+ZONE=public
 ```
-
 
 
 |option| description |
@@ -2754,13 +3565,15 @@ ping {address} # usese ICMP
 |ZONE|name of the firewall zone the interface is in|
 
 
-
 <br>
-
 
 # ping
 
-- uses ICMP to send an echo request
+Uses ICMP to send an echo request
+
+```bash
+ping -c 5 google.com
+```
 
 
 |param| description |
@@ -2784,6 +3597,10 @@ ping {address} # usese ICMP
 - first system decrements the ttl to 0 and sends an ICMP error message to the source
 - udp default, but can use ICMP and TCP
 
+```bash
+tracert google.com
+```
+
 
 |param| description |
 |-|-|
@@ -2797,22 +3614,579 @@ ping {address} # usese ICMP
 <br>
 
 
+# wicked
+
+framework for managing network configuration (default in SLES15) comprised of systemd services that manage different aspects of the network. It supports ethernet and wifi.
+
+Configuration is stored in plain text files (translated internally to XML syntax)
+
+
+|service|description|
+|-|-|
+|wickedd| main wicked service, spawns additional supplicant services<br> when enabled, the alias systemd unit network.service is created and points to wicked.service, allowing systemd to manage wicked services|
+|wicked| service that manages the network interfaces|
+|wicked-dhcp4, wicked-dhcp6|services that provide IPv4 and IPv6 DHCP clients|
+|wicked-nanny|service that automatically bring up configured interfaces as soon as they become available|
+
+
+
+## config files
+
+- stored in: /etc/sysconfig/network/
+- nic: ifcfg-{name-of-nic}: ifcfg-eth0
+- routes: ifroute-{route-name}
+
+
+
+
+## basic interfaces
+
+### ifcfg-eth
+
+```
+IPADDR='192.168.201.11/24'
+BOOTPROTO='static'
+STARTMODE='auto
+```
+
+### ifcfg-eth0 netmask
+
+```
+IPADDR='192.168.201.11'
+NETMASK='255.255.255.0'
+BOOTPROTO='dhcp'
+STARTMODE='auto
+```
+
+### ifcfg-eth0 dhcp
+
+```
+BOOTPROTO='dhcp'
+STARTMODE='auto
+```
+
+
+## bond configuration
+
+### ifcfg-bond0
+
+```
+IPADDR='192.168.202.11/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+BONDING_MASTER='yes'
+BONDING_SLAVE0='eth1'
+BONDING_SLAVE1='eth2'
+BONDING_MODULE_OPTS='mode=active-backup miimon=0'
+```
+
+### ifcfg-eth1/ifcfg-eth2
+
+```
+BOOTPROTO='none'
+STARTMODE='hotplug
+```
+
+
+
+## routes
+
+### ifroute-{name}
+
+```
+# {destination} {gateway address} {gateway interface} {additional options}
+default 192.168.201.1 - -
+10.0.0.0/24 192.168.202.1 - -
+```
+
+\*A \'-\' character in the gateway interface results in the interface with the address in field {2} being used
+
+
+
+## commands
+
+```bash
+# status of the current network
+# ifstatus {device} -o {options}
+ifstatus eth0
+
+# stop an interface even if it is in use
+# ifdown {device} -o force
+ifdown eth0
+ifdown eth0 -o force # stop the interface even if it is in use
+
+# activate preconfigured interface
+# ifup {device} -o {options}
+ifup eth0
+```
 
 
 
 
 
+# name resolution mechanisms
+
+Process of taking a name and mapping it to an ip addess
+
+- common mechanisms are file (/etc/hosts) and dns
+- name resolutions mechanisms is stored in `/etc/nsswitch.conf` order of lines reflects the order of the mechanism use
+- dns servers are defined in `/etc/resolv.conf`
+- resolv.conf can be configured with text editor or with netconfig
+- hostname and ip address mapping can be displayed with
+
+```bash
+# display hostname and ip address mapping
+host {host} [{nameserver}]
+nslookup {host} [{nameserver}]
+# display detailed hostname to ip address mapping and dns name server information
+# options: +[no]all toggles display flags, +[no]answer toggles answer section
+dig {@nameserver} {options} {host} {type} {class} {query-option}
+dig google.com +noall +answer
+# check only for mail records
+dig google.com MX
+```
 
 
 
+### `nsswitch.conf`
+
+```
+passwd:     compat
+group:      compat
+shadow:     compat
+
+hosts:      files dns
+networks:   files dns
+
+aliases:    files usrfiles
+ethers:     files usrfiles
+gshadow:    files usrfiles
+netgroup:   files nis
+protocols:  files usrfiles
+publickey:  files usrfiles
+rpc:        files
+services:   files usrfiles
+
+automount:  files nis
+bootparams: files
+netmasks:   files
+```
+
+
+### `/etc/resolv.conf`
+
+A maximum of three nameservers can be configured
+
+```
+search example.com
+nameserver 192.168.201.1
+```
+
+
+<br>
+
+# other network commands
+
+```bash
+# show physical nics
+lspci | grep -E -i --color 'network|ethernet'
+
+# restart webservice
+systemctl restart NetworkManager.service
+```
+
+
+|command|action|
+|-|-|
+| tracert, traceroute, tracepath | route packets take to host|
+| telnet {server} 80 | ver si es accesible desde afuera el puerto 80|
+| lsof -i -P -n | list open ports|
+| ifconfig | configuration of network|
+| dig | dns lookup|
+| nmcli con show | show all available connections|
+| ifup/ifdown| enable/disable nic|
+| nslookop | check if domain resolves to a ip address|
 
 
 
+# sofware management in SUSE
 
+- automatic handling of dependencies
+- ensuring version compatibility
+- verifying software integrity
+
+## RPM
+
+Package manager used in SLES, consists of:
+
+- rpm database
+    - contains metatadata of installed packages
+    - keeps track of any files that have been changed or created since the package was installed
+- command line utility (rpm package manager)
+    - handles installing, uninstalling rpm packages and updates the rpm database
+- `.rpm` packages.
+    - Come in two types:
+        - binary: precompiled and accompanying files that are ready to run once installed
+        - source: code that can be compiled to the specific architecture binary
+    - Consist of:
+        - compiled binaries, configuration, documentation contained in a CPIO archive
+        - metadata
+        - scripts to be executed during the installation and removal of the package
+        - a gpg signature used to verify a package source and integrity
+
+Benefits:
+
+- informs the administrator if requiered software is missing
+- rpm tools can verify that software is installed correctly
+- tracks dependant software
+- software installation using scripts
+- packages can be signed using digital signatures to verify integrity of an rpm archive
+
+- packages consist of:
+- compiledd rpm packages naming convention:
+    - {name}-{version}-{release}.{architecture}.rpm
+    - wget-1.11.8-1.1.x86_64.rpm
+
+
+```bash
+# general syntax
+# rpm {option} {package} {package}
+
+# query and view details about a package
+# both the rpm database and .rpm files can be queried
+# rpm -q {options} {package}
+# rpm -q {options} {package-file.rpm}
+
+rpm -q {package-file.rpm}
+
+# check if wget is installed
+rpm -q wget
+
+# check files owned by wget package
+rpm -ql wget
+
+# show which package owns a file
+rpm -qf /usr/bin/wget
+
+# list all files owned by an rpm package that's not installed
+rpm -qpl {package-name.rpm}
+
+# info about installed packaged
+rpm -qi {package-name}
+
+# info about NOT installed packaged
+rpm -qpi {package-name.rpm}
+
+# install package
+rpm -q cdrecord
+
+# update a package from a file
+rpm -Fvh ~/Downloads/package-name.rpm
+
+# install rpm package file with progress bar
+rpm -ihv package-file.rpm
+
+# uninstall package
+rpm -evh cdrecord
+
+# compare the changes in installed package versus the files in the rpm repo
+rpm -V wget
+
+```
+
+
+### general options
+
+
+|param| description |
+|-|-|
+| -q| query package metadatea in either the rpm databas or a package file|
+| -i| install package|
+| -U| upgrade a package (or install if it's not installed)|
+| -F| upgrade (freshen) an installed package (won't install not installed)|
+| -V| verify installed package (file changes) against rpm database|
+| --reinstall| reinstall installed package|
+| -e| erase a package|
+| -v| verbose|
+| -h| human (progress bar)|
+
+
+### -q specific options
+
+|param| description |
+|-|-|
+| -a| list all installed packages|
+| -i| list package info|
+| -l {package}| display list of files installed with the package|
+| -f {file}| display the package name that owns the {file}|
+| -p| query a package instead of the rpm database|
+| -d| list only documentation files|
+
+
+<br>
+
+
+
+# zypper
+
+Package manager for SLES that automates dependency resolution and It's a wrapper for rpm
+
+## zypper features
+
+- keeps a history to review changes in the past
+- supports rollback of instalations and updates
+- can be scripted to automate package management process
+- designed to be fast, efficient and manages complex package dependencies
+- supports local and remote repositories, and contain aditional information about these as metadata
+- offers interaction via zipper command line, yast and packagekit
+- enables rpm caching in a local directory
+- gpg check verifies integrity of packages
+
+
+## definitions
+
+- **package**: compressed file in rpm format that contains the files and metadata for a package; and contains the files to be installed in the system
+- **patterns**: a groups of packages dedicated to certain purupose (for example apache2 web server)
+- **products**: contains one or more patterns, and represents a specific release with it's own features and support life cycle
+
+
+## repositories configurationes
+
+Stored in the `/etc/zypp/repos.d` directory. Each `.repo` file contains the name, enabled, autorefresh and baseurl
+
+```bash
+# repos contain name, enabled, autorefresh and baseurl
+cd /etc/zypp/repos.d
+cat /etc/zypp/repos.d/{file.repo}
+```
+
+### subcommands
+
+
+|param| description |
+|-|-|
+| lr| list repositories|
+| ar, addrepo| add repo|
+| rr, removerepo| remove repo|
+| mr, modifyrepo| modify repo|
+| ref {repo-number}| refresh repository|
+| se, search| search repo|
+| nr| rename repo alias|
+| mr| rename repo name|
+| if, info| info about packages|
+| in, install| install|
+| lu, list-updates| display available software updates|
+| up, update| update newest available version|
+| rm, remove| remove package|
+
+
+### global parameters
+
+
+|param| description |
+|-|-|
+| -h| help|
+| -v| verbose|
+| -n| non-interactive mode|
+| -q| suppress normal output|
+| -y| non-interactive mode|
+| -D| dry run|
+| -t| type|
+
+
+### lr (list repositories)
+
+```bash
+# outputs columns: #, Alias, Name, Enabled, GPG Check, Refresh
+zypper lr
+```
+
+
+|param| description |
+|-|-|
+| -E| show only enabled repositories|
+
+
+### up, update
+
+```bash
+zypper up vim
+```
+
+
+|param| description |
+|-|-|
+| -r {alias/name/#/uri}| only from specified repo|
+| -y| (yes) don't requiere user interaction|
+
+
+### lu, list-updates
+
+```bash
+# zypper lu {options}
+zypper lu
+```
+
+
+|param| description |
+|-|-|
+| -r {alias/name/#/uri}| only display updates in the specified repository|
+| -a| display all update, even for not installed packages|
+
+
+### in, install
+
+```bash
+# install package
+zypper in apache2
+
+# install package without user interaction
+zypper in -y gvim
+
+# install pattern
+zypper in -t pattern games
+```
+
+
+|param| description |
+|-|-|
+| -y| non-interactive installation|
+| -f| force. reinstall or downgrade package|
+| --oldpackage| replace newer item with older one|
+| -D| perform a dry run of the installation|
+| -d| download packages to local cache but don't install them|
+
+
+### ref (refresh repo)
+
+```bash
+zypper ref 5
+```
+
+### ar, addrepo
+
+```bash
+# zypper ar {options} {uri} {alias}
+zypper addrepo {options} {uri} {alias}
+zypper ar http://192.168.201.2/sles17/CD1\ sles15
+```
+
+
+|param| description |
+|-|-|
+| -d| add repo and disable it|
+| -f| enable auto refresh (disable by default)|
+| -p| set priority or repo|
+
+
+### mr, modifyrepo
+
+```bash
+# rename alias
+zypper mr Python Python3_Module
+
+# enable repo
+zypper mr -e SLES15-SP5-15.5
+
+# rename repo
+#zypper mr --name {new-repo-name} {repo-number}
+zypper mr --name SLE-Module-Python3 5
+```
+
+
+|param| description |
+|-|-|
+| -e| enable repo|
+| -d| disable repo|
+| -f| enable autorefresh|
+| -F| disable autorefresh|
+| -a| apply to all repos|
+| -l| apply to local repos|
+| -r| apply to all remote repos (http, https, ftp)|
+
+### rm, removerepo
+
+```bash
+zypper rm apache2
+zypper rm -tD pattern games # dry run remove the games pattern
+```
+
+
+|param| description |
+|-|-|
+| -y| don't requiere user interaction|
+| -D| dry run|
+
+### rr, removerepo
+
+```bash
+# zypper rr {options} {alias/name/#/uri}
+zypper rr sles15
+zypper rr 5
+zypper clean # remove the repo from the cache
+```
+
+
+### se, search
+
+```bash
+# zypper {options} {search-string}
+zypper se -r 5
+zypper se wget
+# zypper se -t pattern {search-string}
+zypper se -t pattern apparmor
+```
+
+
+|param| description |
+|-|-|
+| -r {alias/name/#/uri}| search specified repos|
+| -C| case sensitive|
+| -x| exact match|
+| -i| show only installed|
+| -u| show only packages not installed|
+
+
+### if, info
+
+```bash
+# view status
+zypper if wget
+zypper info -t pattern mail_server
+```
+
+
+
+### Example of repository definition `.repo` file
+
+```
+[SUSE_Linux_Enterprise_Server_x86_64:SLE-Product-SLES15-SP5-Source-Pool]
+name=SLE-Product-SLES15-SP5-Source-Pool
+enabled=0
+autorefresh=0
+baseurl=http://software.example/repo/SUSE/Products/SLE-Product-SLES/15-SP5/x86_64/product_source/?
+credentials=SUSE_Linux_Enterprise_Server_x86_64
+service=SUSE_Linux_Enterprise_Server_x86_64
+```
 
 
 
 <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3084,20 +4458,6 @@ zypper in net-tools-deprecated # install netstat that is deprecated but is an al
 # netstat and ss use the same parameters
 
 
-netstat
-ss
-
-# listening services
-netstat -patn
-ss -patn
-
-# sockets
-netstat -patne
-ss -patne
-
-# udp
-netstat -paun
-ss -paun
 
 
 ```
@@ -3356,124 +4716,6 @@ vi /etc/ssl/openssl.cnf
 
 
 
-
-# wicked
-
-- framework for managing network configuration (default in SLES15)
-- comprised of systemd services that manage different aspects of the network
-- supports ethernet, wifi
-- stored in plain text files (translated internally to XML syntax)
-
-
-|service|description|
-|-|-|
-|wickedd| main wicked service, spawns additional supplicant services<br> when enabled, the alias systemd unit network.service is created and points to wicked.service, allowing systemd to manage wicked services|
-|wicked| service that manages the network interfaces|
-|wicked-dhcp4, wicked-dhcp6|services that provide IPv4 and IPv6 DHCP clients|
-|wicked-nanny|service that automatically bring up configured interfaces as soon as they become available|
-
-
-## commands
-
-
-|command|description|
-|-|-|
-|ifstatus {device} -o {options}|status of the current network|
-|ifdown {device} -o force|stop an interface even if it is in use|
-|ifup {device} -o {options}|activate preconfigured interface|
-
-
-## config files
-
-- stored in: /etc/sysconfig/network/
-- nic: ifcfg-{name-of-nic}: ifcfg-eth0
-- routes: ifroute-{route-name}
-
-
-## routes
-
-``` ifroute-{name}
-# {1} {2} {3} {4}
-default 192.168.201.1 - -
-10.0.0.0/24 192.168.202.1 - -
-```
-
-
-|field|description|
-|-|-|
-|1|destination|
-|2|gateway|
-|3|gateway interface. A \'-\' character results in the interface with the address in field {2} being used|
-|4|additional options|
-
-
-
-## basic interfaces
-
-``` ifcfg-eth0
-IPADDR='192.168.201.11/24'
-BOOTPROTO='static'
-STARTMODE='auto
-```
-
-``` ifcfg-eth0 netmask
-IPADDR='192.168.201.11'
-NETMASK='255.255.255.0'
-BOOTPROTO='dhcp'
-STARTMODE='auto
-```
-
-``` ifcfg-eth0 dhcp
-BOOTPROTO='dhcp'
-STARTMODE='auto
-```
-
-
-## bond configuration
-
-``` ifcfg-bond0
-IPADDR='192.168.202.11/24'
-BOOTPROTO='static'
-STARTMODE='auto'
-BONDING_MASTER='yes'
-BONDING_SLAVE0='eth1'
-BONDING_SLAVE1='eth2'
-BONDING_MODULE_OPTS='mode=active-backup miimon=0'
-```
-
-``` ifcfg-eth1/ifcfg-eth2
-BOOTPROTO='none'
-STARTMODE='hotplug
-```
-
-## name resolution
-
-```bash
-# display hostname and ip address mapping
-host {host} [{nameserver}]
-nslookup {host} [{nameserver}]
-# display detailed hostname to ip address mapping and dns name server information
-# options: +[no]all toggles display flags, +[no]answer toggles answer section
-dig {@nameserver} {options} {host} {type} {class} {query-option}
-dig google.com +noall +answer
-# check only for mail records
-dig google.com MX
-
-```
-
-- common mechanisms are file (/etc/hosts) and dns
-- mechanisms order is stored in /etc/nsswitch.conf
-- dns servers are defined in /etc/resolv.conf
-- resolv.conf can be configured with text editor or with netconfig
-- hostname and ip address mapping can be displayed with
-
-
-``` resolv.conf
-search example.com
-nameserver 192.168.201.1
-```
-
-<br>
 
 
 # linux logging
@@ -3790,6 +5032,12 @@ journalctl -p err
 journalctl -p crit
 journalctl -p 1..4
 
+
+
+# check errors service
+journalctl -xeu myservice.service
+
+
 ```
 
 
@@ -3807,6 +5055,8 @@ journalctl -p 1..4
 | -k, --dmesg| show only kernel messages|
 | -S, --since={date}| show messages since time and date|
 | -U, --until ={date}| show messages until time and date|
+| -x, --catalog| Augment log lines with explanation texts from the message catalog|
+| -e, --pager-end| jump to the end of journal inside the implied pager tool|
 
 
 ### Configuring persistent storage for journalctl
@@ -3867,604 +5117,16 @@ tar -xJf scc_server1_240121_2047.txz
 
 
 
-# suse
 
-- automatic handling of dependencies
-- ensuring version compatibility
-- verifying software integrity
 
-## RPM
 
-- rpm database (contains metatadata, keeps track of any files that have been changed or created since the package was installed), command line utility and .rpm packages
-- informs the adminjistrator if requiered software is missing
-- rpm tools can verigy that software is installed correctly
-- software installation using scripts
-- packages can be signed using digital signatures to verify integrity
-- packages consist of:
-    - compiled binaries, configuration, documentation contained in a CPIO archive
-    - metadata
-    - scripts to be executed during the installation and removal of the package
-    - a gpg signature used to verify a package source and integrity
-- compiledd rpm packages naming convention:
-    - {name}-{version}-{release}.{architecture}.rpm
-    - wget-1.11.8-1.1.x86_64.rpm
 
 
-```bash
-rpm {option} {package}
 
-rpm -q {options} {package}
-rpm -q {package-file.rpm}
 
-# check if wget is installed
-rpm -q wget
 
-# check files owned by wget package
-rpm -ql wget
 
-# show which package owns a file
-rpm -qf /usr/bin/wget
 
-# list all files owned by an rpm package that's not installed
-rpm -qpl {package-name.rpm}
-
-# info about installed packaged
-rpm -qi {package-name}
-
-# info about NOT installed packaged
-rpm -qpi {package-name.rpm}
-
-# install package
-rpm -q cdrecord
-
-# update a package from a file
-rpm -Fvh ~/Downloads/package-name.rpm
-
-# uninstall package
-rpm -evh cdrecord
-```
-
-
-### general options
-
-|param| description |
-|-|-|
-| -q| query package metadatea in either the rpm databas or a package file|
-| -i| install package|
-| -U| upgrade a package (or install if it's not installed)|
-| -F| upgrade (freshen) an installed package (won't install not installed)|
-| -V| verify installed package (file changes) against rpm database|
-| --reinstall| reinstall installed package|
-| -e| erase a package|
-| -v| verbose|
-| -h| human (progress bar)|
-
-
-### -q specific options
-
-|param| description |
-|-|-|
-| -a| list all installed packages|
-| -i| list package info|
-| -l {package}| display list of files installed with the package|
-| -f {file}| display the package name that owns the {file}|
-| -p| query a package instead of the rpm database|
-
-
-
-
-
-
-## Zypper
-
-- wrapper for rpm
-- keeps a history
-- enables rpm caching in a local directory
-- supports rollback
-- supports local and remote repositories
-- zipper command line, yast, package kit
-- patterns are groups of packages dedicated to certain purupose, for example apache2 web server
-- products containt 1 or more patterns, represent a specific release with it's own features and support life cycle
-- gpg check verifies integrity of packages
-
-
-
-
-
-```bash
-
-# edit repositories
-# repos contain name, enabled, autorefresh and baseurl
-cd /etc/zypp/repos.d
-cat /etc/zypp/repos.d/{file.repo}
-
-# add repositories
-zypper ar {options} {uri} {alias}
-zypper addrepo {options} {uri} {alias}
-zypper ar http://192.168.201.2/sles17/CD1\ sles15
-
-# list repositories
-zypper lr
-
-# remove repo
-zypper rr {options} {alias/name/#/uri}
-
-# enable repo
-zypper mr -e SLES15-SP5-15.5
-
-# search packages from repository
-zypper se -r 5
-zypper se wget
-zypper se -t pattern {search-string}
-
-# rename alias
-zypper nr Python Python3_Module
-
-# rename name
-#zypper mr --name {new-repo-name} {repo-number}
-zypper mr --name SLE-Module-Python3 5
-
-# remove repo
-zypper rr 5
-zypper clean
-
-# view status
-zypper if wget
-zypper info -t pattern mail_server
-
-# install package
-zypper in apache2
-zypper in -t pattern games
-
-# install package
-zypper up vim
-
-# remove package zipper
-zypper rm -tD pattern games # dry run remo
-
-
-```
-
-### subcommands
-
-|param| description |
-|-|-|
-| lr| list repositories|
-| ar, addrepo| add repo|
-| rr, removerepo| remove repo|
-| mr, modifyrepo| modify repo|
-| ref {repo-number}| refresh repository|
-| se, search| search repo|
-| nr| rename repo alias|
-| mr| rename repo name|
-| if, info| info about packages|
-| in, install| install|
-| lu, list-updates| display available software updates|
-| up, update| update newest available version|
-| rm, remove| remove package|
-
-
-
-
-### general parameters
-
-|param| description |
-|-|-|
-| -h| help|
-| -v| verbose|
-| -n| non-interactive mode|
-| -q| suppress normal output|
-| -y| non-interactive mode|
-| -D| dry run|
-
-### rm parameters
-
-|param| description |
-|-|-|
-
-
-
-
-
-### up parameters
-
-|param| description |
-|-|-|
-| -r {alias/name/#/uri}| only from specified repo|
-
-
-### lu parameters
-
-
-|param| description |
-|-|-|
-| -r {alias/name/#/uri}| only display updates in the specified repository|
-| -a| display all update, even for not installed packages|
-
-
-### in parameters
-
-|param| description |
-|-|-|
-| -f| force. reinstall or downgrade package|
-| --oldpackage| replace newer item with older one|
-| -d| download packages to local cache but don't install them|
-
-
-### ar parameters
-
-|param| description |
-|-|-|
-| -d| add repo and disable it|
-| -f| enable auto refresh (disable by default)|
-| -p| set priority or repo|
-
-
-### mr parameters
-
-
-|param| description |
-|-|-|
-| -e| enable repo|
-| -d| disable repo|
-| -f| enable autorefresh|
-| -F| disable autorefresh|
-| -a| apply to all repos|
-| -l| apply to local repos|
-| -r| apply to all remote repos (http, https, ftp)|
-
-
-### se parameters
-
-
-|param| description |
-|-|-|
-| -r {alias/name/#/uri}| search specified repos|
-| -C| case sensitive|
-| -x| exact match|
-| -i| show only installed|
-| -u| show only packages not installed|
-
-
-
-<br>
-
-# yast
-```bash
-# partitioner
-yast2 disk
-# network settings
-
-```
-
-
-hiperconvergencia: significa que hay muchos caminos para llegar a un solo punto, tener hasta 2 puntos de fallo en todos los componentes
-
-zil cache de lectura, guarda los 1000 archivos más demanadados del arreglo
-
-
-JBOD y IT-MODE son lo mismo
-
-JBOD (lenovo)
-just a bunch of disk drives
-
-IT MODE
-initiator-target mode
-pass through, permite al sistema operativo
-
-"ve los discos de manera directa, sin arreglo
-
-
-
-
-
-
-
-en el caso de las san en proxmox todo se tiene que hacer por línea de comandos,
-se requiere multipath, grupo de volumenes, se usan wwns
-
-
-iscsi es scsi pero por ethernet (y alternativa a FC)
-
-switches san implica que tienes un millon de pesos
-
-
-
-$
-
-
-almacenamiento
-
-
-
-
-según el tipo de storage se usa para cosas distintas
-
-
-snippet:
-
-lvm es default para sans
-
-
-
-
-
-
-
-ext4 es más rápido que el zfs si tienes una controladora
-
-
-revisar arreglo tipo 0 o modo mirror
-
-zfs raid1 es modo mirror
-
-
-2 maneras de instalar:
-- controladora física del servidor haciendo el mirror, usando el filesystem ext4
-- si no hay controladora raid2
-
-
-single disk: cuando
-
-
-
-ext3 como ntfs 1 de windows, sin journaling
-ext4 journaling de 3 o 4 movimientos
-
-
-un giga un millon de archivos, pero si se hace journaling se multiplique, hasta 10 veces más grande
-
-
-
-xfs NO RECOMENDADO
-
-journaling es una bitácora de movimientos de los archivos
-de tal fecha a tal fecha el archivo ocupaba de tal bit a tal bit, pero cambiós
-
-
-zfs es un journaling con esteroides
-
-raid0 solo junta el espacio de los discos duros (no los está respaldando)
-raid1 mirror de un disco en el otro al instante
-raid10 suma del 1 y el 0 4 discos mínimo
-
-
-a partir de 4 discos duros sean sólidos o mecánicos
-
-por ejemplo 4 discos de 20TB,
-
-
-
-
-80
-
-z1 60
-z2 40 (quedaría como 35TB si se tuvieran 4 discos duros de 18)
-z3 20 (a menos que tengas arreglos de muchísimos discos duros como 12), mucha paranoia
-
-
-dos discos duros dedicados al systema operativo para que no afecte al performance del pool de la máquinas
-
-
-
-
-
-
-# ps pgrep
-
-```bash
-# check process with string
-ps aux | grep -i {process-name} | grep -v grep
-
-# print processes with (n)ice value, (p)id and (c)ommand
-ps -o %n\ %p\ %c
-
-
-
-# show proceses formatted
-ps -eo pid,user,cmd
-
-# grep processes but adding a table header
-ps aux | head -n 1 ; ps aux | grep vi
-ps -fea
-
-
-
-pkill {process-name}
-kill {process-id}
-
-# other commands
-pstree
-pgrep
-```
-
-
-|symbol| type | description |
-|-|-|-|
-|R| running/runnable | receiving or waiting for cpu cycles |
-|S| sleeping interruptible | waiting for signal or something to wake it up |
-|D| sleeping uninterruptible | ignores signals |
-|T| stopped | from R, can be restarted with a signal |
-|Z| zombie | terminated and releasing resources. parent must remove it from process list |
-
-
-
-|Params| description |
-|-|-|
-| -e | all processes|
-| -f | full format|
-| -l | long listing (additional columns)|
-| -H | hierarchy in tree view|
-| -L | individual threads|
-| -o | pid,tid,euid,pgrp format (comma separated list of items)|
-| a | all processes|
-| u | user orientated format|
-| x | include processes without tty |
-| f | process tree|
-| o | format for the output|
-| k | sort order of the input|
-| --format | format for the output|
-| --forest | tree view|
-| --no-headers | no header lines|
-| --sort | specify the sorting order|
-
-
-# kill
-
-- sends a signal to a process by PID
-- without arguments it sends a SIGTERM by default
-
-
-|Params| description |
-|-|-|
-| -s <signame>|send signal|
-| -<signumber>|send signal|
-| -l|list available signals|
-
-
-
-# killall
-
-- sends a signal to processes with specific name
-- without number it sends a SIGTERM by default
-
-
-|Params| description |
-|-|-|
-| -<signumber>|send signal|
-| -I|case insensitive|
-| -i|interactive, asks for confirmation|
-| -u <username>|signal only processes that the usere owns|
-| -w|wait for processes to die, (may be forever if the process does not respond|
-
-
-
-# pkill
-
-- is like pgrep
-- sends a signal to each process by name
-- without arguments it sends a SIGTERM by default
-
-
-|Params| description |
-|-|-|
-| -<signumber>|send signal|
-| -r <run-state>|match only processes in the specified runstate (D,R,S,Z)|
-| -i|case insesitive|
-
-
-
-
-## signals
-
-```bash
-kill
-killall
-pkill
-```
-
-- another process
-- root process
-- owner
-
-
-|signal|name|description|
-|-|-|-|
-|1|SIGHUP|reload config|
-|2|SIGNINT|interrupt from keyboard ctrl+c|
-|9|SIGKILL|kill the process immediately|
-|15|SIGTERM|request process to terminate|
-|18|SIGCNT|move stopped process to running (continue)|
-|19|SIGSTOP|stop a process|
-
-
-
-
-# pstree
-
-Show process tree
-
-
-|Params| description |
-|-|-|
-| -a|show command arguments of the process|
-| -g|show process group identifiers|
-| -h|highlight current process and ancestors|
-| -n|sort by PID instead of name|
-| -p|display PID|
-| -c| disable compactation of identical branches|
-
-
-# pgrep
-
-
-|Params| description |
-|-|-|
-| -u|specific effective users|
-| -U|specific actual users|
-| -l|list names along with PID|
-| -a|show command arguments|
-| -r|list with state (D,R,S,Z,etc)|
-| -i|case insensitive|
-| -o|oldest|
-
-
-# nice
-- run command with nice value
-
-```bash
-nice -n +5 firefox &
-```
-
-
-|Params| description |
-|-|-|
-| -n increment|20 to -19 value|
-
-
-# renice
-- change nice value
-
-|Params| description |
-|-|-|
-| -n <increment>|20 to -19 value|
-| -p <PID>|process|
-| -u <username/UID>|user|
-
-
-# jobs
-- the + sign indicates that is the default job for fg
-- [id]{+|-} {status} {command-with-arguments}
-
-|Params| description |
-|-|-|
-| -l| include PIDs|
-| -p| only PIDs|
-| -r| only running|
-| -s| only stopped|
-
-
-# bg
-- starts a background job that is currently stopped
-
-
-
-# special bash variables
-
-
-
-
-|variable| description|
-|-|-|
-|$0|name of the script of shell being executed|
-|$#|number of arguments|
-|$*| all arguments in a single string|
-|$1 - $9| arguments by position|
-|$?| last exit code|
-|$$| pid of current shell|
-|$!| pid of last background command|
-|$_| last argument of previous command|
-|$IFS| internal field separator|
 
 
 
@@ -4532,11 +5194,15 @@ tmux attach -t session-name
 brew leaves
 
 # only update specific package
-brew upgrade {package-name}
+brew upgrade {package-names}
+
+brew outdated --cask
+brew outdated --formulae
 ```
 
 
 # oracle
+
 ```bash
 # connection strings
 vi /etc/oratab
@@ -4546,51 +5212,46 @@ vi /etc/oratab
 vi {configuration-path}/tnsnames.ora
 ```
 
+# hiawatha
 
-# Network
 ```bash
+# syntax check
+hiawatha -k
 
-# show physical nics
-lspci | grep -E -i --color 'network|ethernet'
+# restart service
+doas pkill hiawatha
+doas hiawatha
 
-# show all iptables rules for specific table
-ss -tuln iptables -t {table} -vL
-
-# listenin ports
-doas netstat -na -f inet inet | grep LISTEN
-
-# restart webservice
-systemctl restart NetworkManager.service
+# edit configuration
+doas vi /etc/hiawatha/hiawatha.conf
 ```
 
 
-|command|action|
-|-|-|
-| tracert, traceroute, tracepath | route packets take to host|
-| netstat -tuplen | ver ip tables|
-| netstat -rn / route -n | manipulating and showing ip routing table|
-| telnet {server} 80 | ver si es accesible desde afuera el puerto 80|
-| lsof -i -P -n | list open ports|
-| ifconfig | configuration of network|
-| ip link show, ip a | check nics|
-| dig | dns lookup|
-| ethtool | dns lookup|
-| nmcli con show | show all available connections|
-| ifup/ifdown| enable/disable nic|
-| ip address | configuration of network|
-| nslookop | check if domain resolves to a ip address|
+# doas
+
+```conf
+# Sandox default config using wheel
+permit nopass setenv { -ENV PS1=$DOAS_PS1 SSH_AUTH_SOCK } :wheel
+
+
+# permit alice to run commands as root user
+permit alice as root
+
+# same but keep env variables
+permit keepenv bob as root
+
+# permit cindy to only use the package manager as root
+permit cindy as root cmd pkg args update
+permit cindy as root cmd pkg args upgrade
+
+# permit david but disable logging
+permit nolog david as root cmd id
+```
 
 
 
 
-
-
-
-( doas pkill hiawatha ; doas hiawatha ) → reinicio de hiawatha
-( sudo systemctl restart mysql ) → restart mysql
 ( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
-( /etc/sysconfig/network-scripts/ifcg-{device-name} ) → software interface for network device
-/etc/systemd/system/some_target.target.wants -> autostart files (services) sudo rm /etc/systemd/system/nginx.service remove service unit
 ( pkg_delete ) → remove installed package
 ( /etc/pkg.conf ) → package repository
 yum install samba samba-client samba-common
@@ -4621,32 +5282,6 @@ yum install samba samba-client samba-common
 | pushd | |
 | popd | |
 
-
-# cp
-|param|action|
-|-|-|
-| -p | keep permissions, owner and timestamps|
-| -i | confirm overwriting|
-| -n | do not overwrite|
-| -u | copy only if source is newer|
-
-
-
-# mv
-|param|action|
-|-|-|
-| -i | confirm overwriting|
-| -f | do not prompt if destination exists|
-| -n | do not overwrite|
-| -u | copy only if source is newer|
-
-
-
-mkdir -p - create parent directories
-rm -i force confirmation for deletion
-rm -f force no confirmation
-
-stat {filename}  file info
 
 
 # samba
@@ -4823,35 +5458,6 @@ sshfs {user}@{host}:{directory} -o port={port}
 
 
 
-# find
-```bash
-find {location} -type f/d -name {regex}
-
-# encuentra archivos con STRING (gnu grep)
-find . -name "*.php" -exec grep "STRING" {} \;
-```
-
-
-|Param|Action|
-|-|-|
-| -print0 | don't output results|
-| -iname | case insensitive|
-| -mtime 0 | time rounded to the last 24 hours|
-| -mmin 1 | modified in the last minute|
-| -maxdepth | levels|
-| -type d/f | filetype|
-| -size +1024b | find files bigger than 1024 bytes|
-| -P | never follow symlinks|
-| -L | follow symlinks|
-| -D | debug|
-| -o | or|
-| -a | and|
-| -n | print line number|
-| -empty | if file is empty (check man for test)|
-| -exec | execute command|
-| \; | execute command for each file|
-| \+ | concatenate all find results and execute command for that resulting line|
-| {} | placeholder for find results|
 
 
 
@@ -4861,13 +5467,43 @@ find . -name "*.php" -exec grep "STRING" {} \;
 fzf --preview="bat --color=always {}
 ```
 
+# VIM configuration
 
-# awk
-```bash
-#  show fields 1 and 2 of the rows in which field 3 is smaller than 50
-awk -F, '$3 < 50 {print $1, $2}' data.csv
+The location of the configuration files for vim is:
+
+- `~/.vimrc`: for user
+- `/etc/vimrc`: global
+
+```vimrc
+" show all set options
+:set all
+" same but one per line
+:set! all
+
+" show only the options that have been changed from their default configuration
+:set!
+
+" show options configured using variables
+:let
+
+" view the current value of a setting
+:set undolevels?
+
+" show line numbers
+set number
+
+" set tab size
+set tabstop=4
+
+" enable syntax highligthting
+syntax on
+
+" set custom variables
+let g:my_tabstop=4
+
+" use the variable to set the option
+execute 'set tabstop=' . g:my_tabstop
 ```
-
 
 # VIM commands
 ```bash
@@ -5160,20 +5796,11 @@ sandoxIP
 
 
 
-# ports
-
-|number|service|
-|-|-|
-|22| ssh|
 
 
 
 
 
-
-
-
-# Linux Enterprise server
 
 ## YaST security hardening module
 
@@ -5214,6 +5841,7 @@ usr:sandox
 
 10.0.1.45:7655
 https://github.com/rcourtman/Pulse
+
 
 
 

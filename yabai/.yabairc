@@ -79,6 +79,12 @@ yabai -m rule --add app="owncloud"                  manage=off
 yabai -m rule --add title="Picture in Picture"      manage=off
 yabai -m rule --add app="^OBS Studio$"              manage=off
 yabai -m rule --add app="^iPhone Mirroring$"        manage=off
+yabai -m rule --add app="^Karabiner-Elements$"      manage=off
+yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
+yabai -m rule --add app="^Wacom Center$"            manage=off
+yabai -m rule --add app="^Wacom Tablet Utility$"    manage=off
+
+yabai -m rule --add app="^Notes$"                   manage=off
 
 # patch for the windows of Affinity that are created with the wrong subrole
 yabai -m rule --add title="^Affinity$"              manage=on
@@ -98,9 +104,12 @@ yabai -m rule --add app="^MAMP PRO$"                sticky=on
 ~/.scripts/yabai/set-rules.sh
 
 
-yabai -m rule --add app="^alacritty$" scratchpad=alacritty      grid=11:11:3:3:5:5
-# yabai -m rule --add app="^Karabiner-Elements$"      scratchpad=karabiner1   grid=12:12:1:1:5:5
-# yabai -m rule --add app="^Karabiner-EventViewer$"   scratchpad=karabiner2   grid=12:12:6:1:5:5
+yabai -m rule --add app="^Alacritty$" scratchpad=alacritty      grid=11:11:3:3:5:5
+yabai -m rule --add app="^Terminal$" scratchpad=alacritty      grid=11:11:3:3:5:5
+
+yabai -m rule --add app="^Terminal$"                space=s_primary
+yabai -m rule --add app="^Karabiner-Elements$"      space=s_primary
+yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_primary
 
 
 # defaul spaces for apps
@@ -151,8 +160,8 @@ yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
 yabai -m rule --add app="^SUSE\ Learning\ Center$"  space=s_primary
 yabai -m rule --add app="^SUSE\ Labs$"              space=s_secondary
 
-yabai -m rule --add app="^Karabiner-Elements$"      space=s_development
-yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_development
+# yabai -m rule --add app="^Karabiner-Elements$"      space=s_development
+# yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_development
 
 
 yabai -m space s_secondary      --layout bsp

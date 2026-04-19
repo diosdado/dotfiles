@@ -7,16 +7,65 @@
     "from": { "key_code": "application" },
     "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
 },
+
+
+
+
+
 {
-    "description": "Delete to spacebar", "type": "basic",
-    "from": { "key_code": "delete_forward" },
-    "to": [{ "key_code": "spacebar" }]
-},
-{
-    "description": "Insert to left click", "type": "basic",
+    "description": "Delete to equal+cmd", "type": "basic",
     "from": { "key_code": "insert" },
-    "to": [{ "key_code": "equal_sign", "modifiers": ["shift"] }]
+    "to": [{ "key_code": "equal_sign", "modifiers": ["command"] }],
+    "conditions":[{
+        "bundle_identifiers":[
+            "org.inkscape.Inkscape",
+            "org.gimp.gimp"
+        ],
+        "type": "frontmost_application_unless"
+    }]
 },
+{
+    "description": "Insert to hyphen+cmd", "type": "basic",
+    "from": { "key_code": "delete_forward" },
+    "to": [{ "key_code": "hyphen", "modifiers":["command"] }],
+    "conditions":[{
+        "bundle_identifiers":[
+            "org.inkscape.Inkscape",
+            "org.gimp.gimp"
+        ],
+        "type": "frontmost_application_unless"
+    }]
+},
+
+
+
+{
+    "description": "Delete to plus sign", "type": "basic",
+    "from": { "key_code": "insert" },
+    "to": [{ "key_code": "equal_sign", "modifiers": ["shift"] }],
+    "conditions":[{
+        "bundle_identifiers":[
+            "org.inkscape.Inkscape",
+            "org.gimp.gimp"
+        ],
+        "type": "frontmost_application_if"
+    }]
+},
+{
+    "description": "Insert to hyphen", "type": "basic",
+    "from": { "key_code": "delete_forward" },
+    "to": [{ "key_code": "hyphen" }],
+    "conditions":[{
+        "bundle_identifiers":[
+            "org.inkscape.Inkscape",
+            "org.gimp.gimp"
+        ],
+        "type": "frontmost_application_if"
+    }]
+},
+
+
+
 
 
 {
@@ -67,20 +116,6 @@
 },
 
 
-{
-    "description": "shift two times to cava","type": "basic",
-    "conditions": [ { "name": "right_shift pressed", "type": "variable_if", "value": 1 } ],
-    "from": { "key_code": "right_shift", "modifiers": { "optional": ["any"] } },
-    "to": [{ "shell_command": "/opt/homebrew/bin/alacritty -e /opt/homebrew/bin/cava" }]
-},
-{
-    "from": { "key_code": "right_shift", "modifiers": { "optional": ["any"] } },
-    "to": [ { "set_variable": { "name": "right_shift pressed", "value": 1 } }, { "key_code": "right_shift" } ],
-    "to_delayed_action": {
-        "to_if_canceled": [ { "set_variable": { "name": "right_shift pressed", "value": 0 } } ],
-        "to_if_invoked": [ { "set_variable": { "name": "right_shift pressed", "value": 0 } } ]
-    }, "type": "basic"
-},
 
 
 {

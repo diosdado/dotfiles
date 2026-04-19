@@ -71,7 +71,7 @@ case $apps in
         ;;
 
     messages)
-        # open -a "Instagram"
+        open -a "Instagram"
         open -a "WhatsApp"
         ;;
 

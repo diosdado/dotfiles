@@ -281,17 +281,10 @@ cp -v /etc/hosts/* ~/ >> cp_result.log 2>&1
 
 
 ```bash
-
-telnet 127
-
-
-
+telnet 127.0.0.1
 stats items
-
-
 # connections
 stats conns
-
 ```
 
 
@@ -558,9 +551,11 @@ Display tail (last) or head (first) lines or chars from a file
 
 # stat
 
+```bash
+stat file.txt
+```
 
-
-
+<br>
 
 # find
 ```bash
@@ -638,16 +633,20 @@ ls | tee filename.txt filename2.txt
 
 <br>
 
-
+# String manipulation
 
 # tr
 
-Trim white space from strings, replace strings or characters
+Translate, delete or squeeze characters
 
 ```bash
 # converte multiple spaces to a single space and convert dots to underscores
 echo "palabra1  palabra2     ....palabra3" | tr -s '[:space:]' | tr . _
-# returns: palabra1 palabra2 ____palabra3
+# returns: 'palabra1 palabra2 ____palabra3'
+
+# trim whitespace
+echo "     Hello     World    " | tr -d '[:space:]'
+# returns: 'Hello     World'
 ```
 
 
@@ -766,18 +765,6 @@ touch -d "1 day ago" filename.txt
 
 
 
-# signals
-
-
-|signal|name|description|
-|-|-|-|
-|1|SIGHUP|reload config|
-|2|SIGNINT|interrupt from keyboard ctrl+c|
-|9|SIGKILL|kill the process immediately|
-|15|SIGTERM|request process to terminate|
-|18|SIGCNT|move stopped process to running (continue)|
-|19|SIGSTOP|stop a process|
-
 
 # ps
 
@@ -835,8 +822,7 @@ pgrep
 
 # kill
 
-- sends a signal to a process by PID
-- without arguments it sends a SIGTERM by default
+Send signal by PID (SIGTERM by default)
 
 
 |Params| description |
@@ -845,11 +831,25 @@ pgrep
 | -<signumber>|send signal|
 | -l|list available signals|
 
+
+## signals
+
+
+|signal|name|description|
+|-|-|-|
+|1|SIGHUP|reload config|
+|2|SIGNINT|interrupt from keyboard ctrl+c|
+|9|SIGKILL|kill the process immediately|
+|15|SIGTERM|request process to terminate|
+|18|SIGCNT|move stopped process to running (continue)|
+|19|SIGSTOP|stop a process|
+
+
 <br>
 
 # killall
 
-- sends a signal to processes with specific name
+Sends a signal to processes with specific name
 - without number it sends a SIGTERM by default
 
 
@@ -4233,17 +4233,9 @@ ldconfig -p # display contents of ld.so.cache
 
 # monitoring
 
-```bash
 
-
-
-
-
-```
-
-
-- create a baseline
-    - bood log information
+- create a baseline:
+    - boot log information
     - hardware information (/proc, /sys, command line utils)
     - system and process information
     - hard drive usage
@@ -5420,11 +5412,27 @@ Consideraciones
 - Un core físico de Proxmox puede soportar 6 cores virtuales
 - Para BSD y Linux usar iSCSI
 
+<br>
 
+# stow
 
+```bash
+# creates a symlink in ~/ of the directory structure in ~/dotfiles/yazi
+cd ~/dotfiles
+stow yazi
 
+# remove the symlink
+stow -D yazi
 
+# removes and re creates the symlink
+stow -R yazi
 
+# create all the symlinks of the directories
+cd ~/dotfiles
+stow *
+```
+
+<br>
 
 # macos
 
@@ -5841,6 +5849,38 @@ usr:sandox
 
 10.0.1.45:7655
 https://github.com/rcourtman/Pulse
+
+
+
+
+# pv
+
+Show a progress bar when streaming a file to a pipe
+
+```bash
+pv source_file > destination_file
+cat large_file | pv | gzip > large_file.gz
+dd if=/path/to/iso | pv | dd of=/dev/sdX bs=4M
+tar -czf - /home/user | pv > backup.tar.gz
+```
+
+
+
+# git
+
+https://git.sandox.info/david.diosdado/sandox-mailings-2026
+gitea-demo-1.srv-prod-1.home.clcreative.de/xcad/test-1
+ssh://git@gitea-demo-1.srv-prod-1.home.clcreative.de:2223/xcad/test-1.git
+
+
+https://git.sandox.info/
+
+ssh://git@git.dando
+https://git.sandox.info/david.diosdado/sandox-mailings-2026.git
+
+ssh//git@git.sandox.info/david.diosdado/sandox-mailings-2026.git
+
+
 
 
 

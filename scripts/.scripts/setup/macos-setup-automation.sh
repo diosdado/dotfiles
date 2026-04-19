@@ -61,9 +61,9 @@ PACKAGES=(
     bash
     dart-lang/dart/dart
     meson # buildsystem
-    pypy
-    python
-    python3
+    pypy # faster python
+    python # python 2
+    python3 # python 3
     pipx # execute python binares
     node
     nvm # manage multiple node versions
@@ -73,13 +73,13 @@ PACKAGES=(
 
     coreutils # gnu core utilities
     findutils # gfind, glocate, gupdatedb, gxargs
-    gnu-indent
+    gnu-indent # c prettyfier
     gnu-sed
     gnu-tar
     gnu-which
     gawk # gnu awk
     grep
-    inetutils # network utilities
+    inetutils # network utilities # c prettyfier
     wget
 
     clamav # antivirus
@@ -93,7 +93,8 @@ PACKAGES=(
     tree # tree view of directories
     ripgrep # rg, like grep
 
-    postgresql
+    # postgresql
+    # mongodb-community@7.0
     sass/sass/sass
     composer
 
@@ -102,26 +103,24 @@ PACKAGES=(
     stow
     tmux
     bat
-    cmatrix
     fastfetch
     htop
     cava # mic preview
-    switchaudio-osx # togge mute mic
+    switchaudio-osx # toggle mute mic
     socsieng/tap/sendkeys # send keystrokes in mac
-    pv # pipe viewer
+    pv # progressvar
     watch # executes a program periodically
     watchexec # execute commands when watched files change
     fswatch # monitor changes in files or directories
     gh # github
-    lynx # web browser
     yt-dlp # youtube downloader
 
     pandoc # render to different file types
     glow # render markdown in terminal
     imagemagick
-    sevenzip
-    poppler
-    resvg
+    sevenzip # render zip contents
+    poppler # render pdf
+    resvg # render svg
     ffmpeg
 
     powerlevel10k
@@ -136,6 +135,12 @@ PACKAGES=(
     jeffreywildman/virt-manager/virt-viewer
     felixkratz/formulae/borders
     terminal-notifier
+
+    # ascii art
+    figlet
+    cowsay
+    lolcat
+    cmatrix
 )
 
 
@@ -256,13 +261,11 @@ echo "Ask the doctor"
 brew doctor
 echo "Installations done"
 
-brew install pipx
-
-
 npm i -g pyright
 npm i -g sql-language-server
 npm i -g bash-language-server
 npm i -g dockerfile-language-server-nodejs
+
 pipx install python-lsp-server
 
 git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier

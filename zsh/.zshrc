@@ -40,6 +40,7 @@ alias mana="man zshall"
 
 # aliases to scripts
 alias so="source ~/.zshrc" # reload zshrc
+alias vi="nvim"
 alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css public/sass:public/css" # watch sass
 alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
 alias mount-fs="~/.scripts/mount-fs.sh"
@@ -53,8 +54,9 @@ alias tf="~/.scripts/tmux/tmuxifier-load.sh"
 alias tn="tmuxifier new-session"
 alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
 alias tss="~/.scripts/tmux/tmux-sessionizer.sh -s"
-alias th="ts -d ~/"
-alias td="ts -d ~/dotfiles"
+alias th="tmuxifier load-session ~/.tmuxifier/layouts/home.session.sh"
+alias td="tmuxifier load-session ~/.tmuxifier/layouts/dotfiles.session.sh"
+# alias td="ts -d ~/dotfiles"
 alias tk="ts -d  ~/ownCloud/Bases-conocimiento"
 alias rv="~/.scripts/remote-vv.sh"
 alias ll="ls -plah --color=auto"

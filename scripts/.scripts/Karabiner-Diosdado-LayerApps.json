@@ -148,7 +148,7 @@
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
     "from": { "key_code": "z" },
-    "to": [{ "shell_command": "" }]
+    "to": [{ "shell_command": "~/.scripts/restart-wacom.sh" }]
 },
 {
     "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",

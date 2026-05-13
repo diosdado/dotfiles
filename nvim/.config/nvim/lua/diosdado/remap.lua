@@ -84,6 +84,9 @@ vim.keymap.set("n", "<leader>q", "<cmd>clo<CR>")
 -- delete buffer
 vim.keymap.set("n", "<leader>D", ":bd!<CR>")
 
+-- delete buffer
+vim.keymap.set("n", "<leader>G", ":bufdo bd<CR>")
+
 -- netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -190,10 +193,11 @@ vim.keymap.set("n", "<leader>n", [[:e ~/Notes/.md<Left><Left><Left>]])
 vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
 
 -- view LSP configuration for file
-vim.keymap.set("n", "<leader>i", "<cmd>LspInfo<CR>")
+vim.keymap.set("n", "<leader>i", "<cmd>checkhealth vim.lsp<CR>")
 
 -- render markdown file to html
-vim.keymap.set("n", "<leader>R", ":! ~/.scripts/markdown/render.sh \"%:p\" <CR><CR>")
+vim.keymap.set("n", "<leader>R", ":w <CR> :! ~/.scripts/markdown/render.sh -t 0 -f \"%:p\" <CR><CR>")
+vim.keymap.set("n", "<leader>T", ":w <CR> :! ~/.scripts/markdown/render.sh -t 1 -f \"%:p\" <CR><CR>")
 
 -- render markdown in neovim
 vim.keymap.set("n", "<leader>d", ":RenderMarkdown toggle<CR>", { silent = true })

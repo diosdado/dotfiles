@@ -1,7 +1,3 @@
-
-
-
-
 -- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -25,7 +21,6 @@ vim.opt.undofile = true
 vim.opt.autoread = true
 vim.opt.autowrite = false
 vim.opt.hidden = true
-
 vim.opt.encoding = "UTF-8"
 vim.opt.path:append('**')
 -- vim.opt.iskeywordd('-')
@@ -38,8 +33,6 @@ vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
-vim.api.nvim_set_hl(0, "Cursor", { fg = "#252535", bg = "#ffb86c" })
-
 vim.opt.number = true
 vim.opt.wrap = false
 vim.opt.mouse = "a"
@@ -66,17 +59,25 @@ vim.opt.list = true
 vim.opt.listchars = {
     tab = '» ',
     trail = '.',
-    -- eol = "↲",
+    eol = "↲",
     multispace = '→   ',
     nbsp = '␣',
     precedes = '←',
     extends = '→',
 }
 
+-- Netrw
+vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+vim.g.netrw_list_hide = '.DS_Store,.git'
+vim.g.netrw_hide = 1
+vim.g.tmux_navigator_disable_netrw_workaround = 1
+
+
+-- Cursor size and blinking
 vim.o.guicursor = table.concat({
-  "n-v-c:block-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100",
-  "i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100",
-  "r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100"
+    "n-v-c:block-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100",  -- block cuersor on normal, visual and command modes
+    "i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100",   -- vertical bar cursor of a 25% width of the chararcter on insert and command-insert modes
+    "r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100"        -- horizontal var of a 50% height of the character size on replace mode
 }, ",")
 
 -- Highlight text on yank
@@ -88,6 +89,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
+-- Open the buffer at the last edited location
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = augroup,
     callback = function()
@@ -97,15 +99,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
             pcall(vim.api.nvim_win_set_cursor, 0, mark)
         end
     end,
-} )
+})
 
+-- Balance split layout on terminal resize
 vim.api.nvim_create_autocmd("VimResized", {
     group = augroup,
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
 })
-
 
 -- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -117,14 +119,24 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end,
 })
 
-
+-- Wordwrap on text files
 vim.api.nvim_create_autocmd("BufReadPre", {
-    pattern = {
-        "*.txt"
-    },
+    pattern = { "*.txt" },
+    callback = function() vim.cmd("set wrap") end
+})
+
+
+-- Autocomplete
+vim.o.complete = '.,w,b,o'
+vim.o.completeopt = 'menuone,noselect,fuzzy'
+vim.o.autocomplete = true
+vim.o.autocompletedelay = 250
+-- disable autocomplete in telescope prompt
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "TelescopePrompt",
     callback = function()
-        vim.cmd("set wrap")
-    end
+        vim.opt_local.complete = ''
+    end,
 })
 
 
@@ -132,35 +144,4 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
 
 
-
-vim.g.python3_host_prog = '/opt/miniconda3/envs/tensorflow/bin/python'
-vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-
-vim.g.netrw_list_hide = '.DS_Store,.git'
-vim.g.netrw_hide = 1
-vim.g.tmux_navigator_disable_netrw_workaround = 1
-
-
--- vim.api.nvim_create_autocmd("BufWritePost", {
---     pattern = {
---         "*"
---     },
---     callback = function()
---         print(vim.api.nvim_buf_get_name(0))
---         vim.fn.jobstart(
---             'echo hello',
---             {
---                 on_exit = function()
---                     print('exit')
---                 end,
---                 on_stdout = function()
---                     print('stdout')
---                 end,
---                 on_stderr = function()
---                     print('stderr')
---                 end
---             }
---         )
---     end
--- })
 

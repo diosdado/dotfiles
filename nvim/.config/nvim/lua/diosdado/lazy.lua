@@ -1,81 +1,64 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
 
 
-
 require('lazy').setup({
-    'tpope/vim-commentary',
-    'tpope/vim-surround',
-    'tpope/vim-repeat',
-    'tpope/vim-fugitive',
-    'ThePrimeagen/harpoon',
-    'ThePrimeagen/vim-be-good',
-    'christoomey/vim-tmux-navigator',
-    'lewis6991/gitsigns.nvim',
-    "nvim-telescope/telescope-file-browser.nvim",
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    'mbbill/undotree',
-    "catppuccin/nvim",
-    {
-        'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        ---@module 'render-markdown'
-        ---@type render.md.UserConfig
-        opts = {},
-    },
+    'tpope/vim-commentary',           -- comments
+    'tpope/vim-surround',             -- surround with tags etc
+    'tpope/vim-repeat',               -- patch to use the repeat command (.) multiple times
+    'tpope/vim-fugitive',             -- git
+    'lewis6991/gitsigns.nvim',        -- git gutter indicators
+    'ThePrimeagen/harpoon',           -- harpoon
+    'christoomey/vim-tmux-navigator', -- tmux panes
+    'mbbill/undotree',                -- undo sidebar
+    'catppuccin/nvim',                -- theme
+
+    -- vim line interface
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
-    },
-    {
-        'andymass/vim-matchup',
-        setup = function()
-            vim.g.matchup_matchparen_offscreen = { method = "popup" }
-        end
-    },
-    {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        dependencies = { { 'nvim-lua/plenary.nvim' } }
-    },
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate'
-    },
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = "v1.x",
         dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'hrsh7th/cmp-cmdline' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'saadparwaiz1/cmp_luasnip' },
-
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
+            'nvim-tree/nvim-web-devicons',
+            opt = true
         }
     },
+
+    -- telescope
+    {
+        'nvim-telescope/telescope.nvim',
+        version = '*',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-file-browser.nvim',
+            'nvim-telescope/telescope-live-grep-args.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        }
+    },
+
+    -- mason
+    {
+        'mason-org/mason-lspconfig.nvim',
+        opts = {},
+        dependencies = {
+            { 'mason-org/mason.nvim', opts = {} },
+            'neovim/nvim-lspconfig',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+        },
+    },
+
+
 })

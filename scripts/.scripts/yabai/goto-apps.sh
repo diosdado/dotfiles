@@ -71,7 +71,7 @@ case $apps in
         ;;
 
     messages)
-        open -a "Instagram"
+        # open -a "Instagram"
         open -a "WhatsApp"
         ;;
 
@@ -119,8 +119,8 @@ case $apps in
         ;;
 
     virtualization)
-        if ps aux | grep 'SUSE Labs' | grep -v grep; then
-            open -a 'SUSE Labs'
+        if ps aux | grep 'Windows App' | grep -v grep; then
+            open -a 'Windows App'
             exit 0
         fi
         if ps aux | grep 'UTM' | grep -v grep; then
@@ -131,7 +131,7 @@ case $apps in
             open -a 'Screen Sharing'
             exit 0
         fi
-        open -a 'Windows App'
+        open -a 'SUSE Live Lab'
         ;;
 
     learning)

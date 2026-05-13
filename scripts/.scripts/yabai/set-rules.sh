@@ -13,8 +13,14 @@ done
 config_file=~/.scripts/.conf
 . $config_file
 
+/opt/homebrew/bin/yabai -m rule --remove  jitsi
+/opt/homebrew/bin/yabai -m rule --remove  meet
+/opt/homebrew/bin/yabai -m rule --remove  teams
+/opt/homebrew/bin/yabai -m rule --remove  zoom
+
 /opt/homebrew/bin/yabai -m rule --remove  librewolf
 /opt/homebrew/bin/yabai -m rule --remove  bravebrowser
+/opt/homebrew/bin/yabai -m rule --remove  safari
 /opt/homebrew/bin/yabai -m rule --remove  kitty
 /opt/homebrew/bin/yabai -m rule --remove  inkscape
 /opt/homebrew/bin/yabai -m rule --remove  gimp
@@ -35,11 +41,13 @@ config_file=~/.scripts/.conf
 case $conference_layout in
     primary)
         /opt/homebrew/bin/yabai -m rule --add app="^Jitsi\ Meet$"           space=s_primary       label=jitsi
+        /opt/homebrew/bin/yabai -m rule --add app="^Google\ Meet$"          space=s_primary       label=meet
         /opt/homebrew/bin/yabai -m rule --add app="^Microsoft\ Teams$"      space=s_primary       label=teams
         /opt/homebrew/bin/yabai -m rule --add app="^zoom\.os$"              space=s_primary       label=zoom
         ;;
     default)
         /opt/homebrew/bin/yabai -m rule --add app="^Jitsi\ Meet$"           space=s_conference    label=jitsi
+        /opt/homebrew/bin/yabai -m rule --add app="^Google\ Meet$"          space=s_conference    label=meet
         /opt/homebrew/bin/yabai -m rule --add app="^Microsoft\ Teams$"      space=s_conference    label=teams
         /opt/homebrew/bin/yabai -m rule --add app="^zoom\.os$"              space=s_conference    label=zoom
         ;;
@@ -52,6 +60,7 @@ case $yabai_layout in
     default)
         /opt/homebrew/bin/yabai -m rule --add app="LibreWolf"         space=s_primary       label=librewolf
         /opt/homebrew/bin/yabai -m rule --add app="Brave\ Browser"    space=s_primary       label=bravebrowser
+        /opt/homebrew/bin/yabai -m rule --add app="Safari"            space=s_primary       label=safari
         /opt/homebrew/bin/yabai -m rule --add app="kitty"             space=s_primary       label=kitty
         /opt/homebrew/bin/yabai -m rule --add app="Inkscape"          space=s_third         label=inkscape
         /opt/homebrew/bin/yabai -m rule --add app="GIMP"              space=s_third         label=gimp
@@ -72,6 +81,7 @@ case $yabai_layout in
     design)
         /opt/homebrew/bin/yabai -m rule --add app="LibreWolf"         space=s_third         label=librewolf
         /opt/homebrew/bin/yabai -m rule --add app="Brave\ Browser"    space=s_third         label=bravebrowser
+        /opt/homebrew/bin/yabai -m rule --add app="Safari"            space=s_third         label=safari
         /opt/homebrew/bin/yabai -m rule --add app="kitty"             space=s_third         label=kitty
         /opt/homebrew/bin/yabai -m rule --add app="Inkscape"          space=s_primary       label=inkscape
         /opt/homebrew/bin/yabai -m rule --add app="GIMP"              space=s_primary       label=gimp
@@ -91,6 +101,7 @@ case $yabai_layout in
     office)
         /opt/homebrew/bin/yabai -m rule --add app="LibreWolf"         space=s_third         label=librewolf
         /opt/homebrew/bin/yabai -m rule --add app="Brave\ Browser"    space=s_third         label=bravebrowser
+        /opt/homebrew/bin/yabai -m rule --add app="Safari"            space=s_third         label=safari
         /opt/homebrew/bin/yabai -m rule --add app="kitty"             space=s_third         label=kitty
         /opt/homebrew/bin/yabai -m rule --add app="Inkscape"          space=s_secondary     label=inkscape
         /opt/homebrew/bin/yabai -m rule --add app="GIMP"              space=s_secondary     label=gimp
@@ -114,11 +125,13 @@ esac
 case "$apply" in
     1)
         /opt/homebrew/bin/yabai -m rule --apply  jitsi
+        /opt/homebrew/bin/yabai -m rule --apply  meet
         /opt/homebrew/bin/yabai -m rule --apply  teams
         /opt/homebrew/bin/yabai -m rule --apply  zoom
 
         /opt/homebrew/bin/yabai -m rule --apply  librewolf
         /opt/homebrew/bin/yabai -m rule --apply  bravebrowser
+        /opt/homebrew/bin/yabai -m rule --apply  safari
         /opt/homebrew/bin/yabai -m rule --apply  kitty
         /opt/homebrew/bin/yabai -m rule --apply  inkscape
         /opt/homebrew/bin/yabai -m rule --apply  gimp

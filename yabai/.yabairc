@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+/opt/homebrew/bin/terminal-notifier -message "\(Re\)starting Yabai...⏳" -title "Yabai"
 
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
@@ -77,15 +78,15 @@ yabai -m rule --add app="^remote-viewer$"           manage=off
 yabai -m rule --add app="^Activity\ Monitor$"       manage=off
 yabai -m rule --add app="owncloud"                  manage=off
 yabai -m rule --add title="Picture in Picture"      manage=off
-yabai -m rule --add app="^OBS Studio$"              manage=off
 yabai -m rule --add app="^iPhone Mirroring$"        manage=off
 yabai -m rule --add app="^Karabiner-Elements$"      manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$"   manage=off
 yabai -m rule --add app="^Wacom Center$"            manage=off
 yabai -m rule --add app="^Wacom Tablet Utility$"    manage=off
-
+yabai -m rule --add app="^AdGuard Mini$"            manage=off
 yabai -m rule --add app="^Notes$"                   manage=off
-
+yabai -m rule --add app="^calibre$"                 manage=off
+#
 # patch for the windows of Affinity that are created with the wrong subrole
 yabai -m rule --add title="^Affinity$"              manage=on
 yabai -m rule --add app="^Affinity$" title="^Open$" manage=off
@@ -98,72 +99,69 @@ yabai -m rule --add app="^Transmission$"            sticky=on
 yabai -m rule --add app="^MAMP PRO$"                sticky=on
 
 
-
-
 # dynamic space rules based on personal configuration file
 ~/.scripts/yabai/set-rules.sh
 
 
-yabai -m rule --add app="^Alacritty$" scratchpad=alacritty      grid=11:11:3:3:5:5
-yabai -m rule --add app="^Terminal$" scratchpad=alacritty      grid=11:11:3:3:5:5
-
-yabai -m rule --add app="^Terminal$"                space=s_primary
-yabai -m rule --add app="^Karabiner-Elements$"      space=s_primary
-yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_primary
-
-
 # defaul spaces for apps
-yabai -m rule --add app="^OBS Studio$"              space=s_primary
-
 yabai -m rule --add app="^Windows\ App$"            space=s_development
 yabai -m rule --add app="^Screen\ Sharing$"         space=s_development
 yabai -m rule --add app="^UTM$"                     space=s_development
 yabai -m rule --add app="^draw.io$"                 space=s_primary
-
 yabai -m rule --add app="^Blender$"                 space=s_development
-
 yabai -m rule --add app="^FileZilla$"               space=s_etc
 yabai -m rule --add app="^Transmit$"                space=s_etc
 yabai -m rule --add app="^DevToys$"                 space=s_etc
 yabai -m rule --add app="^VSCodium$"                space=s_etc
-
 yabai -m rule --add app="^Reminders$"               space=s_reminders
 yabai -m rule --add app="^Calendar$"                space=s_reminders
 yabai -m rule --add app="^Stickies$"                space=s_reminders
-
+yabai -m rule --add app="^Karabiner-Elements$"      space=s_etc
+yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_etc
 yabai -m rule --add app="^wine64-preloader$"        space=s_development
 yabai -m rule --add app="^Whisky$"                  space=s_development
 yabai -m rule --add app="^Steam$"                   space=s_development
 yabai -m rule --add app="^OpenEmu$"                 space=s_development
-
 yabai -m rule --add app="^Music$"                   space=s_entertainment
-yabai -m rule --add app="^YouTube$"                 space=s_entertainment
-yabai -m rule --add app="^Crunchyroll.*"            space=s_entertainment
-yabai -m rule --add app="^Disney.*"                 space=s_entertainment
-yabai -m rule --add app="^Prime\ Video$"            space=s_entertainment
-yabai -m rule --add app="^YouTube$"                 space=s_entertainment
-
 yabai -m rule --add app="^Sandox\ Meet$"            space=s_conference
 yabai -m rule --add app="^Google\ Meet$"            space=s_conference
 yabai -m rule --add app="^Microsoft\ Teams$"        space=s_conference
 yabai -m rule --add app="^zoom.us$"                 space=s_conference
-
 yabai -m rule --add app="^Gmail$"                   space=s_email
 yabai -m rule --add app="^Mail$"                    space=s_email
-
 yabai -m rule --add app="^WhatsApp$"                space=s_messages
-yabai -m rule --add app="^Stickies$"                space=s_messages
 yabai -m rule --add app="‎WhatsApp"            space=s_messages
+yabai -m rule --add app="^Stickies$"                space=s_messages
 yabai -m rule --add app="^Instagram$"               space=s_messages
 yabai -m rule --add app="^iPhone Mirroring$"        space=s_messages
-
+yabai -m rule --add app="^OBS Studio$"              space=s_messages
 yabai -m rule --add app="^SUSE\ Learning\ Center$"  space=s_primary
-yabai -m rule --add app="^SUSE\ Labs$"              space=s_secondary
+yabai -m rule --add app="^SUSE\ Live\ Lab$"         space=s_primary
 
-# yabai -m rule --add app="^Karabiner-Elements$"      space=s_development
-# yabai -m rule --add app="^Karabiner-EventViewer$"   space=s_development
+# change opacity of specific apps when focused
+yabai -m signal --add event=window_focused \
+    label='custom-opacity-on-focus' \
+    action='~/.scripts/yabai/custom-opacity-on-focus.sh'
+
+# force layout of specific apps when changing focus
+yabai -m signal --add event=window_focused \
+    label='custom-layout-on-focus_window_focused' \
+    action='~/.scripts/yabai/custom-layout-on-focus.sh'
+
+# force layout of specific apps when creating a new window
+yabai -m signal --add event=window_created \
+    label='custom-layout-on-focus_window_created' \
+    action='sleep 1 ; ~/.scripts/yabai/custom-layout-on-focus.sh'
 
 
+
+sleep .5
+
+~/.scripts/yabai/custom-opacity-on-focus.sh
+~/.scripts/yabai/custom-layout-on-focus.sh
+
+
+yabai -m rule --apply
 yabai -m space s_secondary      --layout bsp
 yabai -m space s_messages       --layout bsp
 yabai -m space s_email          --layout bsp
@@ -174,28 +172,8 @@ yabai -m space s_development    --layout bsp
 yabai -m space s_entertainment  --layout stack
 yabai -m space s_conference     --layout stack
 
-
-# change opacity of specific apps when focused
-yabai -m signal --add event=window_focused \
-    label='custom-opacity-on-focus' \
-    action='~/.scripts/yabai/custom-opacity-on-focus.sh'
-
-# force layout of specific apps when changing focus
-yabai -m signal --add event=window_focused \
-    label='custom-layout-on-focus' \
-    action='~/.scripts/yabai/custom-layout-on-focus.sh'
-
-sleep .5
-
-~/.scripts/yabai/custom-opacity-on-focus.sh
-~/.scripts/yabai/custom-layout-on-focus.sh
-
-terminal-notifier -message "Service (re)started" -title "Yabai"
-
-# sleep 1
-
-yabai -m rule --apply
-
-# ~/.scripts/yabai/resize-stickies.sh
+~/.scripts/yabai/resize-stickies.sh
 ~/.scripts/yabai/reset-borders.sh
 ~/.scripts/yabai/reset-mouse-focus.sh
+
+/opt/homebrew/bin/terminal-notifier -message "Yabai service was \(re\)started!! ✅" -title "Yabai"

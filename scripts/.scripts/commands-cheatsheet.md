@@ -1,5 +1,7 @@
 
 
+
+
 # linux file system structure
 
 |directory|description|
@@ -18,6 +20,8 @@
 | `/etc/motd`| message after login|
 | `/etc/issue`| message before login|
 | `/etc/sysconfig/*`| system configuration files|
+| `/etc/exports`| directories available for mounting from another ip|
+| `/etc/fstab`| |
 | `/usr/X11R6/`| x window system files|
 | `/usr/bin/`| almost all executables|
 | `/usr/lib/`| libraries and application directories|
@@ -218,6 +222,19 @@ GUID ranges
 - is SLES the primary group for every newly created user is named *users* with a GUID of 100
 
 
+# misc commands
+
+
+
+|command|action|
+|-|-|
+| diff  | diff -q dir-1/ dir-2/|
+| tty  | name of the terminal|
+| sync  | synchronizes cached data to permanent storage.|
+| wait4path  | sleeps until path exists|
+
+
+
 
 # man
 
@@ -412,6 +429,66 @@ Who is logged in and what they are doing, like `who` but more detailed
 
 <br>
 
+# ln
+
+Create a link to a file
+
+```bash
+# ln -s {source} {target}
+# create a soft link in ~/Desktop/file.txt to the existing file ~/file.txt
+ln -s ~/file.txt ~/Desktop/file.txt
+```
+
+<br>
+
+# tar
+
+Create or extract tar files (tape archives)
+
+```bash
+# extract
+tar -xvf {filename}
+
+# compress
+tar -czvf {filename} {data}
+```
+
+
+| param | test |
+|-|-|
+| -x | extract|
+| -v | verbose|
+| -f | filename|
+| -c | create archive|
+| -z | compress using gzip|
+
+<br>
+
+# fswatch
+
+Get notifications when the contents of a file or directory change
+
+```bash
+fswatch -xr {directory}
+````
+
+
+| param | test |
+|-|-|
+| -x | prints the event flags|
+| -r | recursive |
+
+
+<br>
+
+# watch
+
+Execute a program periodically showing output fullscreen
+
+```bash
+watch {command}
+```
+
 # ffmpeg
 
 Video encoder
@@ -424,6 +501,16 @@ ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:a copy output2.mov
 ```
 
 <br>
+
+# expr
+
+Calculate math expressions
+
+```bash
+# divide 283 by 3 and multiply it by two
+expr 283 / 3 \* 2
+```
+
 
 # test
 
@@ -799,21 +886,26 @@ pgrep
 |Z| zombie | terminated and releasing resources. parent must remove it from process list |
 
 
+## bsd style
 
 |Params| description |
 |-|-|
-| -e | all processes|
+| a | all processes|
+| u | user orientated format|
+| x | include processes without tty |
+| o | format for the output|
+
+
+## linux style
+
+|Params| description |
+|-|-|comn
+| -e | all (every) processes|
 | -f | full format|
 | -l | long listing (additional columns)|
 | -H | hierarchy in tree view|
 | -L | individual threads|
 | -o | pid,tid,euid,pgrp format (comma separated list of items)|
-| a | all processes|
-| u | user orientated format|
-| x | include processes without tty |
-| f | process tree|
-| o | format for the output|
-| k | sort order of the input|
 | --format | format for the output|
 | --forest | tree view|
 | --no-headers | no header lines|
@@ -1258,6 +1350,10 @@ chmod u=rwx,go=u-w
 chmod 663
 
 
+
+
+
+
 # default permission values: file 666, dir 777
 # umask is set in /etc/login.defs
 ```
@@ -1331,14 +1427,15 @@ Commands for **Access Control** Lists are in the `acl` package
 
 <br>
 
-# tune2fs
-
-You can check if ACL is enabled with this command
-
-The purpose of this command is to list or adjusts tunable parameters for ext2, ext3 and ext4 filesystems
+## check if ACLs are enabled
 
 ```bash
-tune2fs
+# check all the mount options in the mount table
+grep ' / ' /proc/mounts
+
+# check the capabilities of the volume (ext)
+tune2fs -l /dev/vda3
+
 ```
 
 
@@ -1508,6 +1605,7 @@ View and control the state of systemd system and service manager
 
 
 ```bash
+( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
 systemctl [options-specific-to-command] {command} [unit-name]
 ```
 
@@ -1644,7 +1742,7 @@ crontab -e
 0 20 * * 1-5  /home/tux/bin/backup.sh
 
 # run the script backup.sh at 8:15am every monday in the month of january
-5 8 * JAN MON  /home/tux/bin/backup.sh
+15 8 * JAN MON  /home/tux/bin/backup.sh
 ```
 
 ### date rules format
@@ -1863,11 +1961,11 @@ sudo -u other_user cat file.txt
 
 |Params| description |
 |-|-|
-| -h| help|
-| -l| list config options apply to the current user along with commands|
-| -Ul {user}| list privileges for the specified user|
-| -i| lauch configured shell of the target user with its env|
-| -u {user}| run as a user other than root|
+| `-h`| help|
+| `-l`| list config options apply to the current user along with commands|
+| `-l -U {user}` {user}| list privileges for the specified user|
+| `-i`| lauch configured shell of the target user with its env|
+| `-u {user}`| run as a user other than root|
 
 
 ## sudoers file
@@ -1937,6 +2035,7 @@ Connect securely to a remote server and execute commands over an encrypted chann
 | Fingerprints[^ssh-fingerprints] | `/home/user_name/.ssh/known_hosts`|
 
 
+
 [^ssh-fingerprints]: Fingerprints can be added manually or using a sistem management tool like **SUSE Manager**
 
 ```bash
@@ -1959,7 +2058,7 @@ ssh user_name@server1.com -t \"ssh user_name@server2.com\"
 | -q | supress warnings|
 | -v | verbose|
 | -X | X11 forwarding|
-| -f | force pseudo terminal allocation. typically for running applications in the remote server that require a terminal to function properly |
+| -t | force pseudo terminal allocation. typically for running applications in the remote server that require a terminal to function properly |
 
 
 ### check sshd service status
@@ -2007,14 +2106,12 @@ ssh keys allow to connect (authenticate) to another server without using a passw
 `ssh-agent` holds your decrypted private ssh keys in memory, so you only have to enter the keys' passphrase once per login session
 
 ```bash
-
-
+# add private keys to authentication agent
 ssh-add ~/.ssh/id_rsa
-
 
 # generate ssh key
 # ssh-keygen -t {type} [options]
-ssh-keygen -r rsa -b 4096
+ssh-keygen -t rsa -b 4096
 ssh-keygen -t ed25519 -C "david.diosdado@sandox.com.mx" # recommended
 
 # transfer public key
@@ -2195,7 +2292,7 @@ zypper in xrdp yast2-rdp
 [^mpio]: multipath input/output
 [^btrfs]: b-tree filesystem
 [^fhs]: filesystem hierarchy standard
-[^attached storage devices]: attached storage devices are represented by a device file
+[^attached-storage-devices]: attached storage devices are represented by a device file
 [^filesystems]: filesystems are where the data is stored. They maintain metadata entries that reference storage blocks corresponding to files and directories
 
 <br>
@@ -2301,6 +2398,28 @@ dd if=/dev/zero of=/dev/sdd count=1
 
 # show disks by uuid
 ls -l /dev/disk/by-partuuid/
+
+
+# get the number of the partition
+sudo parted /dev/sda print
+
+
+```
+## Creating logical partitions (using interactive shell)
+
+```bash
+sudo parted /dev/sdb
+(parted) mkpart extended 10GB 20GB
+(parted) mkpart logical ext4 10GB 15GB
+(parted) print
+(parted) quit
+```
+
+## Creating logical partitions (scripted)
+
+```bash
+sudo parted -s /dev/sdb mkpart extended 10GB 20GB
+sudo parted -s /dev/sdb mkpart logical ext4 10GB 15GB
 ```
 
 
@@ -2537,11 +2656,6 @@ Contains the current mounted filesystems. Must be identical to `/proc/mounts` (i
 `/etc/mtab` and `/proc/mounts` can become out of sync if `/` is mounted as read only for some reason
 
 <br>
-
-
-# /etc/mtab
-
-Contains the current mounted filesystems. Must be identical to `/proc/mounts` (in some systems it's a symlink to it)
 
 
 # /etc/fstab
@@ -2944,11 +3058,7 @@ df -h /mnt # must be 30G
 ```
 
 
-## LVM Snapshots
-
-
-
-# LVM SNAPSHOTS
+# LVM Snapshots
 
 ```bash
 # the param -s stands for 'snapshot'
@@ -4550,12 +4660,6 @@ cset proc -m -k --force -f test3 -t root
 vi /etc/cgconfig.conf
 
 
-
-
-
-
-
-
 # view cgrous
 cat /proc/mounts | grep cgroup
 
@@ -4663,45 +4767,6 @@ systemctl set-property system.slice DeviceAllow="/dev/sdv1 r"
 -
 
 
-
-<br>
-
-
-# public key cryptography
-
-- sender encrypts with public key of recipient, recipient decrypts its private key
-- digital signature: signed by the private key, and public key validates with the public key
-- CA: Certificate Authority
-- A certificate is a public key signed by a CA
-- Process
-    - a browser recognizes a web address starting with https
-    - web browser asks the server for ita public key, signed by CA
-    - web server sends the public key to the web browser
-    - web browser verifies the key of the server with the public key of the CS that signed the key
-    - if key is valid, web browesr and web server stablish a secure connection
-
-
-
-<br>
-
-# openssl
-```bash
-# list all commands
-openssl help
-
-# tools for cryptogrphy, certificates, certificate authorities, certificate signatures, etc
-
-# view man page for each subcommand
-man req
-
-# edit configuration to store default values to pre-populate various fields
-vi /etc/ssl/openssl.cnf
-
-```
-
-
-
-
 <br>
 
 
@@ -4732,8 +4797,6 @@ lastlog
 
 # kernel buffer ring
 dmesg -x --time-format iso | less
-
-
 ```
 
 
@@ -4982,9 +5045,6 @@ uncompresscmd /usr/bin/xzdec
 ```bash
 # show messages humand readable with dates in iso
 dmesg -x --time-format iso
-
-
-
 ```
 
 
@@ -5024,12 +5084,8 @@ journalctl -p err
 journalctl -p crit
 journalctl -p 1..4
 
-
-
 # check errors service
 journalctl -xeu myservice.service
-
-
 ```
 
 
@@ -5110,17 +5166,9 @@ tar -xJf scc_server1_240121_2047.txz
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+---
+---
+---
 
 # Tmux
 ```bash
@@ -5150,7 +5198,7 @@ tmux attach -t session-name
 
 
 
-# BSD
+# Installing BSD
 ## Partition commands
 
 |command| action |
@@ -5177,6 +5225,16 @@ tmux attach -t session-name
 
 \* en linux a veces usan opt en vez de var
 
+
+## BSD Package manager
+
+```bash
+# remove installed package
+pkg_delete
+
+# package repository definition
+vi /etc/pkg.conf
+```
 
 
 # brew
@@ -5241,22 +5299,9 @@ permit nolog david as root cmd id
 ```
 
 
-
-
-( hostnamectl command ) → Display host name and Linux distro info on systemd based distros.
-( pkg_delete ) → remove installed package
-( /etc/pkg.conf ) → package repository
-yum install samba samba-client samba-common
-
-
-
-
 # suse linux enterprise
 
 - press e on boot screen in the snapshots menu to view more info about the snapshot
-
-
-
 
 
 |command|action|
@@ -5284,11 +5329,10 @@ vi /etc/samba/smb.conf
 # restart samba services
 systemctl restart smb
 systemctl restart nmb
+
+yum install samba samba-client samba-common
 ```
 
-head -n
-
-diskutil list ) → list volumes macos
 
 # system info
 ```bash
@@ -5316,101 +5360,6 @@ fdisk {mount-point}
 # p - print dir structure
 # q - quit
 ```
-
-
-
-
-
-
-
-
-
-cambiar cosas que se hacen en passwd también en shadow
-añadir /bin/bash al usuario en passwd o en group?
-
-( /etc/{sudoers, passwd, shadow, group, gshadow, *-release} ) → users, groups, distro
-( /proc/{mounts, version, cpuinfo} ) → disks, kernel, cpus bsd linux
-( /home ) → user home folders bsd linux
-( /Users ) → user home folders macos
-( id ) → id user, group
-( uname -a ) → os
-( free -m ) → ram
-( adduser ) → create user higher level script
-( useradd ) →create user linux
-
-Redhat
-( tally files: faillock ) → display/modify authentication failure record files
-pam_tally2 --user=isis --reset faillock --user isis --reset useradd -c "Info detalle Oracle - CONSAR" isis -d /dminftab1/isis -s /bin/bash -u 140 -g 115
-
-( chage --maxdays -1 {username} ) → remove password expiration date
-( user mod -a -G {group} {user} ) → add user group bsd
-( usermod -a -G {group} {user} ) → add user group linux
-( gpasswd -d {user} {group} ) → remove user from group
-( passwd ) → change password
-( dscl . append /Group/group {group} {user}) → add user group macos
-( lsb_release command ) → distro info linux
-( lsof | grep {volume} ) → process locking the volume macos
-( dmesg ) → system message buffer
-( chflags -h hidden {symlink} ) → hide symling in finder macos bsd
-( openssl {mdf5/sha1/etc} {filename} ) → get checksum of file
-( systemctl restart mysql ) → restart mysql
-( echo 'PermitRootLogin yes' > /etc/ssh/ssh_config ) → permitir login remoto como root
-( echo 'AllowUsers {user-names}' > /etc/ssh/ssh_config ) → permitir ssh únicamente a los user-names específicos
-( launchd ) → system wide daemon manager macos
-( launchctl ) → interface with launchd macos
-( service {service-name} status ) → interface with launchd macos
-( kbd -l ) → list keyboard layouts bsd
-( du -h -d 2 | sort -h ) → dir size
-( exportfs -arv ) → selectively export or unexport directories without restarting the NFS service
-( ln -s /usr/local/bin/{package} /var/www/bin/ ) → make package accessible to www
-( dd if=image.iso of=/dev/{drive} bs=4M status=progres ) → Burn iso image
-
-firewall-cmd
---------------------
-
-( --get-active-zones) → current zone
-( --zone=public --list-all) → list all rules of zone
-( --zone=public --remove-service=service) → remove service
-( --zone=public --add-source=192.168.240.103) → add ip to zone
-( --zone=public --add-source=192.168.255.0/24) → add ip segment to zone
-( --zone=public --add-rich-rule='rule family=ipv4 service name=ssh log prefix="Dropped SSH" level="notice" limit value=1/m drop') → add ip to zone
-( /var/log/messages) → firewall messages
-
-
-# PROXMOX
-
-```bash
-# ingresar a contenedor
-pct enter {id-container}
-```
-
-
-## Add free repository
-
-- access the proxmox server via terminal
-- navigate to the apt repositories directory
-    - `cd /etc/apt/sources.list.d`
-- edit the `pmg-enterprise.sources` file and comment the url inside it
-- create another repository file called `proxmox.sources` and add a source from the manual
-    - [manual](https://pmg.proxmox.com/pmg-docs/pmg-admin-guide.html#pmg_package_repositories)
-
-
-
-
-
-( qm )
-------
-qm unlock es para desbloquear maquina con el id
-qm stop para apagar la máquina
-qm list dice los ids de las máquinas que existen
-vmdiscs los qcow2 son las discos de las  máquinas
-
-Consideraciones
----------------
-- Debian - instar con el cable de red desenchufado
-- La swap debe de ser del doble de la memoria RAM que se le asigne a la VM
-- Un core físico de Proxmox puede soportar 6 cores virtuales
-- Para BSD y Linux usar iSCSI
 
 <br>
 
@@ -5440,33 +5389,16 @@ stow *
 |-|-|
 |pbcopy | copy to clipboard|
 |mdfind | spotlight|
+|disktil list | list volumes|
+| dscl . append /Group/group {group} {user} | add user group |
+| lsof \| grep {volume} ) | process locking the volume |
+| chflags -h hidden {symlink} ) | hide symlink in finder|
+| launchd  | system wide daemon manager |
+| launchctl  | interface with launchd |
+| service {service-name} status  | interface with launchd |
 
 
-
-```bash
-scp {user}@{host}:{remote-file} {destination} -P {port}
-cat ~/.ssh/id_rsa.pub | ssh {user}@{host} -p {port} 'cat >> ~/.ssh/authorized_keys'
-sshfs {user}@{host}:{directory} -o port={port}
-```
-
-
-|command|action|
-|-|-|
-| ln -s {source} {target} | symlinks|
-| tar -xvf {filename}  | extract|
-| tar -czvf {filename} {data}  | compress|
-| fswatch -xr {directory} | watch directory changes|
-| watch  | exec program periodically fullscreen|
-| diff  | diff -q dir-1/ dir-2/|
-| expr  | calculate math expressions|
-| tty  | name of the terminal|
-| sync  | synchronizes cached data to permanent storage.|
-| wait4path  | sleeps until path exists|
-
-
-
-
-
+<br>
 
 
 # fzf
@@ -5790,26 +5722,6 @@ nvim /etc/vimrc
 
 
 
-
-
-
-
-
-
-
-sandoxIP
----------
-
-10.0.1.50 prettyhatemachine
-
-
-
-
-
-
-
-
-
 ## YaST security hardening module
 
 YaST Control Center > Security and Users > Security Center and Hardening
@@ -5827,32 +5739,6 @@ ls /etc/systemd/system
 
 ```
 
-
-
-
-
-
-
-zabbix-agent
-
-
-
-
-pbs 10.0.1.19:8007
-
-
-# Pulse Proxmox
-
-usr:sandox
-729
-
-
-10.0.1.45:7655
-https://github.com/rcourtman/Pulse
-
-
-
-
 # pv
 
 Show a progress bar when streaming a file to a pipe
@@ -5865,22 +5751,111 @@ tar -czf - /home/user | pv > backup.tar.gz
 ```
 
 
+# Proxmox
 
-# git
-
-https://git.sandox.info/david.diosdado/sandox-mailings-2026
-gitea-demo-1.srv-prod-1.home.clcreative.de/xcad/test-1
-ssh://git@gitea-demo-1.srv-prod-1.home.clcreative.de:2223/xcad/test-1.git
-
-
-https://git.sandox.info/
-
-ssh://git@git.dando
-https://git.sandox.info/david.diosdado/sandox-mailings-2026.git
-
-ssh//git@git.sandox.info/david.diosdado/sandox-mailings-2026.git
+```bash
+# ingresar a contenedor
+pct enter {id-container}
+```
 
 
+## Add free repository
+
+- access the proxmox server via terminal
+- navigate to the apt repositories directory
+    - `cd /etc/apt/sources.list.d`
+- edit the `pmg-enterprise.sources` file and comment the url inside it
+- create another repository file called `proxmox.sources` and add a source from the manual
+    - [manual](https://pmg.proxmox.com/pmg-docs/pmg-admin-guide.html#pmg_package_repositories)
+
+
+( qm )
+------
+qm unlock es para desbloquear maquina con el id
+qm stop para apagar la máquina
+qm list dice los ids de las máquinas que existen
+vmdiscs los qcow2 son las discos de las  máquinas
+
+Consideraciones
+---------------
+- Debian - instar con el cable de red desenchufado
+- La swap debe de ser del doble de la memoria RAM que se le asigne a la VM
+- Un core físico de Proxmox puede soportar 6 cores virtuales
+- Para BSD y Linux usar iSCSI
+
+<br>
+
+
+
+cambiar cosas que se hacen en passwd también en shadow
+añadir /bin/bash al usuario en passwd o en group?
+
+( /etc/{sudoers, passwd, shadow, group, gshadow, *-release} ) → users, groups, distro
+( /proc/{mounts, version, cpuinfo} ) → disks, kernel, cpus bsd linux
+( /home ) → user home folders bsd linux
+( id ) → id user, group
+( uname -a ) → os
+( free -m ) → ram
+( adduser ) → create user higher level script
+( useradd ) →create user linux
+
+Redhat
+( tally files: faillock ) → display/modify authentication failure record files
+pam_tally2 --user=isis --reset faillock --user isis --reset useradd -c "Info detalle Oracle - CONSAR" isis -d /dminftab1/isis -s /bin/bash -u 140 -g 115
+
+( chage --maxdays -1 {username} ) → remove password expiration date
+( user mod -a -G {group} {user} ) → add user group bsd
+( usermod -a -G {group} {user} ) → add user group linux
+( gpasswd -d {user} {group} ) → remove user from group
+( passwd ) → change password
+( lsb_release command ) → distro info linux
+( dmesg ) → system message buffer
+( openssl {mdf5/sha1/etc} {filename} ) → get checksum of file
+( systemctl restart mysql ) → restart mysql
+( echo 'PermitRootLogin yes' > /etc/ssh/ssh_config ) → permitir login remoto como root
+( echo 'AllowUsers {user-names}' > /etc/ssh/ssh_config ) → permitir ssh únicamente a los user-names específicos
+( kbd -l ) → list keyboard layouts bsd
+( du -h -d 2 | sort -h ) → dir size
+( exportfs -arv ) → selectively export or unexport directories without restarting the NFS service
+( ln -s /usr/local/bin/{package} /var/www/bin/ ) → make package accessible to www
+( dd if=image.iso of=/dev/{drive} bs=4M status=progres ) → Burn iso image
+
+firewall-cmd
+--------------------
+
+( --get-active-zones) → current zone
+( --zone=public --list-all) → list all rules of zone
+( --zone=public --remove-service=service) → remove service
+( --zone=public --add-source=192.168.240.103) → add ip to zone
+( --zone=public --add-source=192.168.255.0/24) → add ip segment to zone
+( --zone=public --add-rich-rule='rule family=ipv4 service name=ssh log prefix="Dropped SSH" level="notice" limit value=1/m drop') → add ip to zone
+( /var/log/messages) → firewall messages
+
+
+
+
+
+### Sandox git
+[Sandox Gitea](https://git.sandox.info/)
+
+- Use *http* instead of *ssh*
+- Remove port
+- Change the protocol of the link to *https*
+
+### Sandox IPs
+| IP | description |
+|-|-|
+| 10.0.1.50 |prettyhatemachine|
+
+
+### Proxmox Backup Server
+[10.0.1.19:8007](http://10.0.1.19:8007)
+
+### Pulse Proxmox
+[10.0.1.45:7655](https://10.0.1.45:7655)
+sandox
+#Xo.33.DnAs-729
+[Documentation](https://github.com/rcourtman/Pulse)
 
 
 

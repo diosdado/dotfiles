@@ -1,4 +1,3 @@
-
 fastfetch
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -30,43 +29,38 @@ export PATH=~/.local/bin/:$PATH
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
-# aliases to programs
+
+# coloring man pages
+export MANPAGER="LESS_TERMCAP_mb=$'\e[1;31m' LESS_TERMCAP_md=$'\e[1;31m' LESS_TERMCAP_me=$'\e[0m' LESS_TERMCAP_se=$'\e[0m' LESS_TERMCAP_so=$'\e[1;33;44m' LESS_TERMCAP_ue=$'\e[0m' LESS_TERMCAP_us=$'\e[4;1;32m' LESS_TERMCAP_mr=$'\e[7m' LESS_TERMCAP_mh=$'\e[2m' LESS_TERMCAP_ZN=$'\e[74m' LESS_TERMCAP_ZV=$'\e[75m' LESS_TERMCAP_ZO=$'\e[73m' LESS_TERMCAP_ZW=$'\e[75m' less -s -M +Gg"
+
+# aliases
+alias usage="du -h -d 1 | sort -hr"
+alias manzsh="man zshbuiltins"
+alias manzsha="man zshall"
+alias so="source ~/.zshrc" # reload zshrc
+alias brewout="brew outdated --formulae | grep -f <(brew leaves)"
+alias md="~/.scripts/markdown/render.sh"
+alias lr="~/.scripts/laravel-reset.sh" # reset laravel
+alias tetris="tetriscurses -h"
+
+# override commands
 alias mmysql="/Applications/MAMP/Library/bin/mysql"
 alias mmysqldump="/Applications/MAMP/Library/bin/mysqldump"
-alias usage="du -h -d 1 | sort -hr"
-alias cb="pbcopy"
-alias manb="man zshbuiltins"
-alias mana="man zshall"
-
-# aliases to scripts
-alias so="source ~/.zshrc" # reload zshrc
-alias vi="nvim"
-alias wsass="sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css public/sass:public/css" # watch sass
-alias larareset="~/.scripts/laravel-reset.sh" # reset laravel
-alias mount-fs="~/.scripts/mount-fs.sh"
-alias umount-fs="~/.scripts/umount-fs.sh"
 alias bttcli="/Applications/BetterTouchTool.app/Contents/SharedSupport/bin/bttcli"
-alias md="~/.scripts/markdown/render.sh"
-
-# tmux sessions
-alias ta="tmux attach"
-alias tf="~/.scripts/tmux/tmuxifier-load.sh"
-alias tn="tmuxifier new-session"
-alias ts="~/.scripts/tmux/tmux-sessionizer.sh"
-alias tss="~/.scripts/tmux/tmux-sessionizer.sh -s"
-alias th="tmuxifier load-session ~/.tmuxifier/layouts/home.session.sh"
-alias td="tmuxifier load-session ~/.tmuxifier/layouts/dotfiles.session.sh"
-# alias td="ts -d ~/dotfiles"
-alias tk="ts -d  ~/ownCloud/Bases-conocimiento"
-alias rv="~/.scripts/remote-vv.sh"
+alias more="less"
+alias c="clear"
+alias vi="nvim"
 alias ll="ls -plah --color=auto"
 alias lo="find . -maxdepth 1 -exec gstat -c '%a %n' {} \\;"
 
-alias brewout="brew outdated --formulae | grep -f <(brew leaves)"
+# tmux sessions
+alias ta="tmux attach"
+alias tf="~/.scripts/tmux/tmuxifier-load.sh" # select tmuxifier layouts
+alias ts="~/.scripts/tmux/tmux-sessionizer.sh" # load session with simple layout
+alias tss="~/.scripts/tmux/tmux-sessionizer.sh -s" # load session with sass compiler
+alias th="tmuxifier load-session ~/.tmuxifier/layouts/home.session.sh" # load home session
+alias td="tmuxifier load-session ~/.tmuxifier/layouts/dotfiles.session.sh" # load dotfiles session
 
-# override commands
-alias more="less"
-alias c="clear"
 
 # load plugins
 if type brew &>/dev/null; then

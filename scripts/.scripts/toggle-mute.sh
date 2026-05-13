@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+exit
+
+
 message=$(/opt/homebrew/bin/SwitchAudioSource -m toggle -t input)
 
 filename=~/rendered.html

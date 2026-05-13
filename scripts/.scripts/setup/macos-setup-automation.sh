@@ -85,6 +85,7 @@ PACKAGES=(
     clamav # antivirus
     socat # sockets
     buf # work with protocol buffers
+    mole # mac cleanup
     pstree # ps in a tree
     ncdu # disk usage
     fzf # fuzzy finder
@@ -148,30 +149,20 @@ CASKS=(
     contexts
     karabiner-elements
     bettertouchtool
-    only-switch
-    monitorcontrol
     wacom-tablet
-    macfuse
     owncloud
-    free-ruler
     homerow
     instantview
-    onyx
     boom-3d
     appcleaner
-    anybar
+    calibre
 
     librewolf
-    brave-browser
-    vscodium
     kitty
     blender
     gimp
     inkscape
-    drawio
     affinity
-    rawtherapee
-    qcad
     onlyoffice
     mysqlworkbench
     obs
@@ -186,16 +177,29 @@ CASKS=(
     utm
 
     whatsapp
-    jitsi-meet
     zoom
-    microsoft-teams
 
     whisky
     openemu
     steam
 )
 
-
+OTHER_CASKS=(
+    elgato-stream-deck
+    only-switch
+    monitorcontrol
+    macfuse
+    free-ruler
+    onyx
+    anybar
+    brave-browser
+    vscodium
+    drawio
+    rawtherapee
+    qcad
+    jitsi-meet
+    microsoft-teams
+)
 
 
 
@@ -270,5 +274,9 @@ pipx install python-lsp-server
 
 git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
+
+
+
+defaults write com.apple.Safari DebugDisableTabHoverPreview 1
 
 

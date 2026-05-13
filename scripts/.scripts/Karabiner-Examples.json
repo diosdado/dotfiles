@@ -22,3 +22,19 @@
 ]
 
 }
+
+
+
+
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "open_bracket" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_comma.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+},
+{
+    "conditions": [ { "name": "app_layer", "type": "variable_if", "value": 1 } ], "type": "basic",
+    "from": { "key_code": "close_bracket" },
+    "to": [{ "shell_command": "cat ~/clipboard/cp_period.txt | tr -d '\n' | pbcopy" }],
+    "to_after_key_up": [ { "key_code": "v", "modifiers": ["command"] } ]
+}

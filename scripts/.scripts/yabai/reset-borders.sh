@@ -4,17 +4,19 @@
 
 . ~/.scripts/.conf
 
+killall borders
 
-/opt/homebrew/bin/borders       \
-style=round                     \
-active_color=$border_active     \
-inactive_color=$border_inactive \
-width=10.0                      \
-hidpi=on                        \
-blacklist="Free Ruler,Stickies,remote-viewer,Free\ Ruler,wine64\-preloader,steamwebhelper.exe,iPhone\ Mirroring"
+options=(
+    style=round
+    active_color=$border_active
+    inactive_color=$border_inactive
+    width=10.0
+    blacklist="Free\ Ruler,Stickies,remote-viewer,wine64\-preloader,steamwebhelper.exe,iPhone\ Mirroring"
+)
 
+echo "${options[@]}"
 
-
+/opt/homebrew/bin/borders "${options[@]}" &
 
 # shift
 # /opt/homebrew/bin/borders active_color=0xFFFFEC00

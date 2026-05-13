@@ -59,11 +59,11 @@ _s+="send-keys -t 1.2 \"clear\" Enter \\; "
 _s+="resize-pane -t 1.2 -y 10% \\; "
 # create new terminal to watch for file changes in sass files
 if [[ -n $watch_sass ]]; then
-    _s+="split-window -t 1.2 -h \\; "
-    _s+="send-keys -t 1.3 \"cd '$selected'\" Enter \\; "
-    _s+="send-keys -t 1.3 \"sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css public/sass:public/css engine/modules/__assets/sass:engine/modules/__assets/css \" Enter \\; "
+    _s+="new-window \\; "
+    _s+="send-keys -t 2.1 \"cd '$selected'\" Enter \\; "
+    _s+="send-keys -t 2.1 \"sass --watch sass:css assets/sass:assets/css public/assets/sass:public/assets/css public/sass:public/css engine/modules/__assets/sass:engine/modules/__assets/css \" Enter \\; "
 fi
-_s+="select-pane -t 1.1 \\; "
+_s+="select-window -t 1.1 \\; "
 
 
 

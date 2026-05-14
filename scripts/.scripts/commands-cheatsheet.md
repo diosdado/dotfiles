@@ -246,8 +246,6 @@ man -k ls
 
 # view section of man page
 man 3 history
-
-
 ```
 
 |section|description|
@@ -2269,8 +2267,6 @@ zypper in xrdp yast2-rdp
 
 ### storage types
 
-
-
 |type|contains|
 |-|-|
 |file system mount layer | fhs[^fhs] (files and directories)|
@@ -2294,6 +2290,36 @@ zypper in xrdp yast2-rdp
 [^fhs]: filesystem hierarchy standard
 [^attached-storage-devices]: attached storage devices are represented by a device file
 [^filesystems]: filesystems are where the data is stored. They maintain metadata entries that reference storage blocks corresponding to files and directories
+
+<br>
+
+
+## storage layers
+
+|layer| description|
+|-|-|
+| file system mount layer| a|
+| file system layer| a|
+| logical storage layer| a|
+| block device layes| a|
+| disk access protocol layer| a|
+| physical storage layer| a|
+
+
+
+## raid types
+
+|type|desecription|
+|-|-|
+| raid 0| striped, splits data across disks without redundancy, used only for speed|
+| raid 1| exact copy (mirror), used for read performance|
+| raid 2| splits data at bit level (error correction with hamming code), drives spin in unison. Not longer used as modern hard drives implement built-in error correction|
+| raid 3| byte level striping with a dedicated parity disk, I/O requieres activity on every disk|
+| raid 4| block level striping with a dedicated parity disk, can be quickly extended online|
+| raid 5| like raid 4 but with parity distributed among drives. Requires all drives but one be present to operate|
+| raid 6| extends raid 5, by adding a second parity block, requieres at least 4 disks, any form of raid that can continue to execute r/w in presence of 2 failures|
+
+
 
 <br>
 
@@ -2593,6 +2619,13 @@ mount -t ext4 /dev/sda1 /mnt/data
 
 # mount the ext4 filesystem located on /dev/sda2 as read-only on mount point /data2
 mount -t ext4 -o ro /dev/sda2 /mnt/data2
+
+# show mounted filesystems
+mount | grep ^/dev
+cat /proc/mounts | grep ^/dev
+
+
+
 ```
 
 
@@ -2668,6 +2701,8 @@ mount -a
 ```
 
 ## fstab row structure
+
+{which device} on {mount point} type {fs type} ({mount options})
 
 {1} {2} {3} {4} {5} {6}
 
@@ -2809,9 +2844,6 @@ lvchange -a y /vg1/linear_lv
 
 <br>
 
-
-
-
 ## Logical Volumes
 
 - **Volume groups (VG)** are comprised of many **Physical Volumes (PV)** (entire disks, individual partitions on disk, NAS).
@@ -2835,6 +2867,8 @@ lvchange -a y /vg1/linear_lv
     - Which storage devices use when creating LVM devices
     - Default behavior of LVM tools
 
+*The location of the configuration file can be changed using the LVM_SYSTEM_DIR environment variable before loading the tools
+
 ### LVM Boot Time Initialization
 
 1. Disks attached to the system are scanned for LVM metadata based on the configuration in the lvm.conf file
@@ -2849,19 +2883,54 @@ Additional LVM services that manage and monnitor LVM devices
 
 - lvm2-monitor.service
     - Executes `vgchange --monitor y`:
-        - Starts monitoring a mirrored snapshot logical volume using the dmeventd service
+        - Starts monitoring a mirrored snapshot logical volume using the `dmeventd` service
 - lvm2-lmvetad.service
-    - performs metadata chaching for lvm
+    - performs metadata caching for lvm
     - receives notifications from udev
     - maintains a current and consistent image of the available volume groups
 
+> `vgchange` is a command used for changing volume group attributes
+
 ## Creating and preparing Logical Volumes
 
-1. Create one or more PV
+1. Create one or more PV (installs the lvm metadata structures requiered in it)
 1. Create a VG using one or more PVs
 1. Create LVs
 1. A filesystem can be added to the LVs
 1. The filesystem can be mounted
+
+## Main commands
+
+- pvcreate, pvscan, pvs, pvdisplay
+- vgcreate, vgscan, vgs, vgdisplay
+
+> All commands that end with 's' display details.<br> All commands that end with 'scan' list.<br> All commands that end with 'display' display attributes.
+
+<br>
+
+### Example creating a logical volume
+
+```bash
+# prepare the block device to turn it into a physical volume
+# wipe the first two blocks that contain the partition table
+dd if=/dev/zero of=/dev/sdb bs=512 count=2
+
+# create the physical volume
+pvcrate /dev/sdb
+
+# check the created physical volume information with commands
+pvscan
+pvs
+pvdisplay
+
+
+
+
+
+```
+
+
+
 
 Creating a PV on a block device installs LVM metadata structures required
 

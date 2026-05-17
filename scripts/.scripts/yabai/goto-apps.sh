@@ -131,7 +131,6 @@ case $apps in
             open -a 'Screen Sharing'
             exit 0
         fi
-        open -a 'SUSE Live Lab'
         ;;
 
     learning)
@@ -140,6 +139,7 @@ case $apps in
             exit 0
         fi
         open -a 'SUSE Learning Center'
+        open -a 'Learner Home'
         ;;
 esac
 

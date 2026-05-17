@@ -938,7 +938,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "quote" },
-                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a virtualization" }],
+                                "to": [{ "shell_command": "~/.scripts/yabai/goto-apps.sh -a learning" }],
                                 "type": "basic"
                             },
                             {

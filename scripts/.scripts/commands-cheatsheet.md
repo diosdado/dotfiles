@@ -496,6 +496,10 @@ Video encoder
 ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:v copy -c:a copy output.mov
 # trim with re-encoding
 ffmpeg -i input.mov -ss 00:00:00 -t 01:45:13 -c:a copy output2.mov
+
+ffmpeg -i "" -c:v libx264 -vf "scale=1024:768:force_original_aspect_ratio=decrease,pad=1024:768:(ow-iw)/2:(oh-ih)/2" -c:a aac -pix_fmt yuv420p output.mp4
+ffmpeg -i "" -c:v libx264 -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1024:768:(ow-iw)/2:(oh-ih)/2" -c:a aac -pix_fmt yuv420p output.mp4
+ffmpeg -i "" -c:v libx264 -vf "scale=1024:576:force_original_aspect_ratio=decrease,pad=1024:576:(ow-iw)/2:(oh-ih)/2" -c:a aac -pix_fmt yuv420p output.mp4
 ```
 
 <br>
@@ -2904,7 +2908,7 @@ Additional LVM services that manage and monnitor LVM devices
 - pvcreate, pvscan, pvs, pvdisplay
 - vgcreate, vgscan, vgs, vgdisplay
 
-> All commands that end with 's' display details.<br> All commands that end with 'scan' list.<br> All commands that end with 'display' display attributes.
+> All commands that end with 's' display tabular data.<br> All commands that end with 'scan' rebuild the cache and show results.<br> All commands that end with 'display' display attributes.
 
 <br>
 
@@ -2912,23 +2916,115 @@ Additional LVM services that manage and monnitor LVM devices
 
 ```bash
 # prepare the block device to turn it into a physical volume
-# wipe the first two blocks that contain the partition table
+# wipe the first two blocks that contain the partition table if it has a partition
 dd if=/dev/zero of=/dev/sdb bs=512 count=2
 
-# create the physical volume
-pvcrate /dev/sdb
+# create the physical volumes
+pvcrate /dev/sdb /dev/sdc /dev/sdd
 
 # check the created physical volume information with commands
 pvscan
 pvs
 pvdisplay
 
+# create a volume group named vg1 with the physical volumes
+lvcreate vg1 /dev/sdb /dev/sdc /dev/sdd
+
+# check the created volume group
+vgscan
+vgs
+vgdisplay
+
+# create a linear logical volume using the volume group vg1
+lvcreate -L 20G -n linear_lv vg1
+
+# check the created logical volume
+lvscan
+lvs
+lvdisplay
+lvdisplay /dev/vg1/linear_lv
+lvdisplay vg1/linear_lv
+
+# add a file system to the newly created volume
+mkfs.ext4 /dev/vg1/linear_lv
 
 
+# create a linear logical volume using the volume group vg1
+lvcreate -L 10G -n -i 3 striped_lv vg1
 
+# check the created striped volume
+lvdisplay /dev/vg1/striped_lv
 
+# add a file system to the striped volume
+mkfs.ext4 /dev/vg1/striped_lv
+
+# create a logical volume with 1 mirror using the volume group vg1
+lvcrete -L 10G -m 1 -n mirrored_lv vg1
+
+# adding a physical volume to the volume group vg1
+pvcreate /dev/sde
+vgextend vg1 /def/sde
+
+vgdisplay vg1 #will show one more Cur PV
+
+# expand a logical volume to fill the remaining space in the volume group
+# (30780 is the remaining pe in the vg1 group)
+lvextend -l +30780 /dev/vg1/linear_lv
+
+# expand the filesystem in the logical volume to fill the available space in the logical volume
+# commands for resizing a partition are: resize2fs, xfs_growfs, btrfs filesystem resize
+
+# mount to check the size
+mount /etc/vg1/linear_lv /mnt
+df -hv /mnt
+
+# unmount to check the volume for errors and then resize the volume
+umount /mnt
+e2fsck -f /dev/vg1/linear_lv
+
+# resize the filesystem
+resize2fs /dev/vg1/linear_lv
+```
+### Example creting an snapshot
+
+```bash
+#  the parameter -s indicates that the new volumue is a snapshot
+lvcreate -s -L 5G -n snap_lv vg1/linear_lv
 ```
 
+### Delete a logical volume
+
+```bash
+# unmount and disable the volume to delete
+umount /mnt
+lvchange -a n vg1/striped_lv
+
+# delete the logical volume
+lvremove /dev/vg1/striped_lv
+```
+
+### Example merging the snapshot to the original volume
+
+```bash
+
+# merging the snapshot to the original volume, -i shows the progress
+lvconvert --mergesnapshot -i 1 vg/snap_lv
+
+# unmount both volumes, the snapshot and the source
+umount /mnt /snap_lv_mnt
+
+# deactivate and activate again the source volume to apply the merge
+lvchange -a n vg1/linear_lv
+lvchange -a y vg1/linear_lv
+
+# check the changes, the snapshot volume would disappear
+lvs
+```
+> there are 3 types of merge: `--mergesnapshot`, `--mergemirror` and `--mergethin`. <br> `--merge` executes the appripriate depending on the type of the source volume
+
+
+
+> Logical volumes appear as devices in /dev/{volume-group}/{logical-volume-name}
 
 
 
@@ -3206,7 +3302,7 @@ Btrfs stands for binary tree filesystem. Is the filesystem used by default in SU
 
 With COW, if the content of a block changes, a new block is allocated and the old block is unchanged. The filesystem metadata is updated to reference the new block
 
-- Supports 16EiB maximum file size
+- 16EiB maximum file size
 - Snapshots roll back and forward (uses COW[^cow])
 - Subvolumes
 - Data compression

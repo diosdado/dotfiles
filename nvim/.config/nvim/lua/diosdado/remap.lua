@@ -170,6 +170,11 @@ vim.keymap.set("n", "<leader>F", ":! open \"%:p:h\"<CR><CR>", { silent = true })
 -- use line as filename and open it in a new buffer
 vim.keymap.set("n", "<leader>e", "^v$h\"zy<ESC>:e <C-R>z<CR>")
 
+vim.fn.expand('%:p:h')
+
+vim.keymap.set("n", "<leader>\\", ":lua vim.api.nvim_set_current_dir(vim.fn.expand(\"%:p:h\"))<CR><CR>")
+
+
 
 --------------------------------------------------------------------------------------------------
 -- etc

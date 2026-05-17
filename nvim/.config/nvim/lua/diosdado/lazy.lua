@@ -60,8 +60,7 @@ require('lazy').setup({
         },
     },
 
-
-
+    -- render-markdown
     {
         'MeanderingProgrammer/render-markdown.nvim',
         dependencies = {

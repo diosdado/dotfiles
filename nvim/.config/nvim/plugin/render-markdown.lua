@@ -297,13 +297,13 @@ require('render-markdown').setup({
         -- Amount of margin to add to the left of code blocks.
         -- If a float < 1 is provided it is treated as a percentage of available window space.
         -- Margin available space is computed after accounting for padding.
-        left_margin = 2,
+        left_margin = 0,
         -- Amount of padding to add to the left of code blocks.
         -- If a float < 1 is provided it is treated as a percentage of available window space.
-        left_pad = 2,
+        left_pad = 0,
         -- Amount of padding to add to the right of code blocks when width is 'block'.
         -- If a float < 1 is provided it is treated as a percentage of available window space.
-        right_pad = 2,
+        right_pad = 1,
         -- Minimum width to use for code blocks when width is 'block'.
         min_width = 0,
         -- Determines how the top / bottom of code block are rendered.
@@ -311,7 +311,7 @@ require('render-markdown').setup({
         -- | thick | use the same highlight as the code body              |
         -- | thin  | when lines are empty overlay the above & below icons |
         -- | hide  | conceal lines unless language name or icon is added  |
-        border = 'thick',
+        border = 'thin',
         -- Used above code blocks to fill remaining space around language.
         language_border = '█',
         -- Added to the left of language.
